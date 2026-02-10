@@ -24,7 +24,7 @@ from pathlib import Path
 warnings.filterwarnings('ignore')
 
 # ── Paths ──────────────────────────────────────────────────────────────
-CSV_PATH = '/Users/sakai/Desktop/产业调研/教育产品统计_V5.csv'
+CSV_PATH = '/Users/sakai/Desktop/产业调研/ai-edu-research/output/教育产品统计_V6_框架标注.csv'
 OUTPUT_DIR = Path('/Users/sakai/Desktop/产业调研/ai-edu-research/output')
 FIG_DIR = OUTPUT_DIR / 'figures'
 FIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -345,10 +345,9 @@ def fig04():
 # FIG 05 — Scenario Sunburst (Nested Donut)
 # ═══════════════════════════════════════════════════════════════════════
 def fig05():
-    print('Fig05: Scenario sunburst...')
+    print('Fig05: Scenario sunburst with 三赋能...')
     l1 = scenario_data['scenario_level1']
     l2 = scenario_data['scenario_level2']
-    # Remove 未提及
     l1 = {k: v for k, v in l1.items() if k != '未提及'}
     l2 = {k: v for k, v in l2.items() if k != '未提及'}
 
@@ -357,7 +356,7 @@ def fig05():
     l1_vals = list(l1.values())
     l1_total = sum(l1_vals)
 
-    # Outer ring: L2 (top 12 + other)
+    # Middle ring: L2 (top 12 + other)
     l2_sorted = sorted(l2.items(), key=lambda x: -x[1])
     l2_main = l2_sorted[:12]
     l2_other = sum(v for _, v in l2_sorted[12:])
@@ -366,48 +365,72 @@ def fig05():
     l2_names = [x[0] for x in l2_main]
     l2_vals = [x[1] for x in l2_main]
 
+    # Outer ring: 三赋能分类
+    sanfuneng = df['三赋能分类'].value_counts()
+    sf_names = sanfuneng.index.tolist()
+    sf_vals = sanfuneng.values.tolist()
+    sf_total = sum(sf_vals)
+    sf_colors_map = {'赋能学生': '#3498DB', '赋能教师': '#E74C3C', '赋能评价': '#F39C12', '赋能学校': '#27AE60'}
+    sf_colors = [sf_colors_map.get(n, '#999') for n in sf_names]
+
     # Color schemes
     warm_cool = plt.cm.get_cmap('RdYlBu_r')
     inner_colors = [warm_cool(i / max(1, len(l1_names) - 1)) for i in range(len(l1_names))]
-    outer_colors = [warm_cool(i / max(1, len(l2_names) - 1)) for i in range(len(l2_names))]
+    mid_colors = [warm_cool(i / max(1, len(l2_names) - 1)) for i in range(len(l2_names))]
 
-    fig, ax = plt.subplots(figsize=(12, 12))
+    fig, ax = plt.subplots(figsize=(13, 13))
 
-    # Inner donut
-    wedges1, _ = ax.pie(l1_vals, radius=0.6, colors=inner_colors,
-                        wedgeprops=dict(width=0.25, edgecolor='white', linewidth=1.5),
+    # Inner donut: L1
+    wedges1, _ = ax.pie(l1_vals, radius=0.45, colors=inner_colors,
+                        wedgeprops=dict(width=0.2, edgecolor='white', linewidth=1.5),
                         startangle=90)
-    # Outer donut
-    wedges2, _ = ax.pie(l2_vals, radius=0.95, colors=outer_colors,
-                        wedgeprops=dict(width=0.3, edgecolor='white', linewidth=1),
+    # Middle donut: L2
+    wedges2, _ = ax.pie(l2_vals, radius=0.72, colors=mid_colors,
+                        wedgeprops=dict(width=0.22, edgecolor='white', linewidth=1),
+                        startangle=90)
+    # Outer donut: 三赋能
+    wedges3, _ = ax.pie(sf_vals, radius=0.98, colors=sf_colors,
+                        wedgeprops=dict(width=0.2, edgecolor='white', linewidth=1.5),
                         startangle=90)
 
     # Inner labels
     for w, name, val in zip(wedges1, l1_names, l1_vals):
         ang = (w.theta1 + w.theta2) / 2
-        x = 0.47 * np.cos(np.radians(ang))
-        y = 0.47 * np.sin(np.radians(ang))
+        x = 0.35 * np.cos(np.radians(ang))
+        y = 0.35 * np.sin(np.radians(ang))
         pct = val / l1_total * 100
         ax.text(x, y, f'{name}\n{pct:.0f}%', ha='center', va='center',
-                fontsize=9, fontweight='bold', color='#333')
+                fontsize=8, fontweight='bold', color='#333')
 
-    # Outer labels for major segments
+    # Middle labels for major segments
     l2_total = sum(l2_vals)
     for w, name, val in zip(wedges2, l2_names, l2_vals):
         pct = val / l2_total * 100
-        if pct >= 3:
+        if pct >= 4:
             ang = (w.theta1 + w.theta2) / 2
-            x = 1.15 * np.cos(np.radians(ang))
-            y = 1.15 * np.sin(np.radians(ang))
-            ha = 'left' if x > 0 else 'right'
-            ax.text(x, y, f'{name} ({pct:.1f}%)', ha=ha, va='center',
-                    fontsize=7.5, color='#444')
+            x = 0.61 * np.cos(np.radians(ang))
+            y = 0.61 * np.sin(np.radians(ang))
+            ax.text(x, y, f'{name}', ha='center', va='center',
+                    fontsize=6.5, color='#444')
 
-    ax.set_title('应用场景层级结构（L1→L2）', fontsize=16, fontweight='bold',
+    # Outer labels: 三赋能
+    for w, name, val in zip(wedges3, sf_names, sf_vals):
+        pct = val / sf_total * 100
+        ang = (w.theta1 + w.theta2) / 2
+        x = 1.12 * np.cos(np.radians(ang))
+        y = 1.12 * np.sin(np.radians(ang))
+        ha = 'left' if x > 0 else 'right'
+        ax.text(x, y, f'{name} ({pct:.1f}%)', ha=ha, va='center',
+                fontsize=9, fontweight='bold', color=sf_colors_map.get(name, '#333'))
+
+    # Ring labels
+    ax.text(0, 0, 'L1', ha='center', va='center', fontsize=10, fontweight='bold', color='#999')
+
+    ax.set_title('应用场景层级结构（L1→L2→三赋能）', fontsize=16, fontweight='bold',
                  color=PRIMARY, pad=30)
     fig.subplots_adjust(bottom=0.08)
-    _add_caption(fig, '图5 应用场景层级结构（L1→L2）', y=0.01)
-    _add_analysis(fig, '"助学"和"助教"场景占据主导地位，AI技术在教学核心环节的渗透率最高。', x=0.05, y=0.08)
+    _add_caption(fig, '图5 应用场景层级结构（内→外: 场景L1→场景L2→三赋能分类）', y=0.01)
+    _add_analysis(fig, '"赋能学生"占绝对主导(77%)，"助学"和"助教"场景渗透率最高，三赋能视角揭示AI教育的核心服务对象。', x=0.05, y=0.08)
     _save(fig, 'fig05_scenario_sunburst.png')
 
 # ═══════════════════════════════════════════════════════════════════════
@@ -709,58 +732,72 @@ def fig10():
 # FIG 11 — Industry Maturity (Horizontal Stacked Pipeline)
 # ═══════════════════════════════════════════════════════════════════════
 def fig11():
-    print('Fig11: Industry maturity...')
-    raw = maturity_data['maturity_keyword_freq']
-    # Group into maturity stages
-    stages_map = {
-        '探索期': ['探索', '起步'],
-        '初期应用': ['初期'],
-        '发展期': ['发展', '成长'],
-        '规模化': ['规模化', '常态化'],
-        '深度融合': ['深度融合'],
-        '成熟期': ['成熟'],
+    print('Fig11: iSTAR层级 distribution...')
+    # Use iSTAR人机协同层级 from V6 CSV
+    istar = df['iSTAR人机协同层级'].value_counts()
+    # Define ordered levels
+    level_order = ['HUM(0)', 'HMC(1)', 'HM2C(2)']
+    level_labels = ['HUM(0)\n人类主导', 'HMC(1)\n人机协作', 'HM2C(2)\n人机共创']
+    level_desc = {
+        'HUM(0)': '教师完全主导\nAI仅提供环境支持',
+        'HMC(1)': '人机分工协作\nAI辅助教学决策',
+        'HM2C(2)': '人机深度共创\nAI参与核心教学'
     }
-    stage_vals = {}
-    for stage, keys in stages_map.items():
-        stage_vals[stage] = sum(raw.get(k, 0) for k in keys)
-
-    stage_names = list(stages_map.keys())
-    vals = [stage_vals[s] for s in stage_names]
+    vals = [istar.get(lv, 0) for lv in level_order]
     total = sum(vals)
 
-    # Gradient from light to dark
-    grad_colors = ['#D5F5E3', '#82E0AA', '#2ECC71', '#27AE60', '#1E8449', '#145A32']
+    # Gradient colors: light to deep blue
+    grad_colors = ['#AED6F1', '#3498DB', '#1B4F72']
 
-    fig, ax = plt.subplots(figsize=(14, 5))
+    fig, (ax_main, ax_detail) = plt.subplots(1, 2, figsize=(16, 7),
+                                              gridspec_kw={'width_ratios': [2, 1]})
 
-    # Stacked horizontal bar
+    # Left: Stacked horizontal progress bar
     left = 0
-    for i, (name, v) in enumerate(zip(stage_names, vals)):
+    bars = []
+    for i, (lv, label, v) in enumerate(zip(level_order, level_labels, vals)):
         pct = v / total * 100
-        bar = ax.barh(0, v, left=left, color=grad_colors[i], edgecolor='white',
-                       linewidth=1, height=0.6)
+        bar = ax_main.barh(0, v, left=left, color=grad_colors[i], edgecolor='white',
+                           linewidth=2, height=0.5)
+        bars.append(bar)
         # Label inside bar
-        if pct > 4:
-            ax.text(left + v / 2, 0, f'{name}\n{v}例\n({pct:.1f}%)',
-                    ha='center', va='center', fontsize=9, fontweight='bold',
-                    color='white' if i >= 3 else '#333')
+        if pct > 5:
+            ax_main.text(left + v / 2, 0, f'{label}\n{v}例 ({pct:.1f}%)',
+                        ha='center', va='center', fontsize=10, fontweight='bold',
+                        color='white' if i >= 1 else '#333')
         left += v
 
-    # Arrow annotations showing progression
-    ax.annotate('', xy=(total * 1.02, 0), xytext=(-total * 0.02, 0),
-                arrowprops=dict(arrowstyle='->', color='#999', lw=1.5))
-    ax.text(total * 0.5, -0.55, '← 探索                                                成熟 →',
+    # Arrow showing progression
+    ax_main.annotate('', xy=(total * 1.02, -0.45), xytext=(-total * 0.02, -0.45),
+                arrowprops=dict(arrowstyle='->', color='#999', lw=2))
+    ax_main.text(total * 0.5, -0.6, '← 人类主导                                                人机共创 →',
             ha='center', va='center', fontsize=10, color='#666', fontstyle='italic')
 
-    ax.set_xlim(-total * 0.03, total * 1.05)
-    ax.set_ylim(-1, 1)
-    ax.axis('off')
-    ax.set_title('产业应用成熟度分布', fontsize=16, fontweight='bold', color=PRIMARY, pad=20)
+    ax_main.set_xlim(-total * 0.03, total * 1.05)
+    ax_main.set_ylim(-0.8, 0.8)
+    ax_main.axis('off')
 
-    fig.subplots_adjust(top=0.88, bottom=0.10)
-    _add_caption(fig, '图11 产业应用成熟度分布', y=0.01)
-    _add_analysis(fig, '多数案例处于探索期和初期应用阶段，规模化和深度融合案例占比较低，产业整体仍处于早期。', x=0.05, y=0.10)
-    _save(fig, 'fig11_industry_maturity.png')
+    # Right: Vertical bar chart with descriptions
+    bar_colors = grad_colors
+    rects = ax_detail.bar(range(3), vals, color=bar_colors, edgecolor='white',
+                          linewidth=1.5, width=0.6)
+    ax_detail.set_xticks(range(3))
+    ax_detail.set_xticklabels([lv.split('(')[0] for lv in level_order], fontsize=10, fontweight='bold')
+    _remove_spines(ax_detail)
+
+    for i, (rect, v) in enumerate(zip(rects, vals)):
+        pct = v / total * 100
+        ax_detail.text(rect.get_x() + rect.get_width() / 2, rect.get_height() + total * 0.01,
+                      f'{v}\n({pct:.1f}%)', ha='center', va='bottom', fontsize=9, fontweight='bold')
+
+    ax_detail.set_ylabel('案例数量', fontsize=11, fontweight='bold')
+    ax_detail.set_title('iSTAR层级分布', fontsize=12, fontweight='bold', color=PRIMARY)
+
+    fig.suptitle('iSTAR人机协同层级分布', fontsize=16, fontweight='bold', color=PRIMARY, y=0.98)
+    fig.subplots_adjust(top=0.88, bottom=0.12, wspace=0.3)
+    _add_caption(fig, '图11 iSTAR人机协同层级分布 (HUM→HMC→HM2C)', y=0.01)
+    _add_analysis(fig, 'HMC(1)和HM2C(2)合计占比超过97%，表明AI教育已普遍进入人机协作阶段，纯人类主导模式仅占2.3%。', x=0.05, y=0.10)
+    _save(fig, 'fig11_istar_distribution.png')
 
 # ═══════════════════════════════════════════════════════════════════════
 # FIG 12 — Self-Developed Ratio (Waffle Chart)
@@ -938,76 +975,96 @@ def fig14():
 # FIG 15 — Tech Pathway Sankey (Alluvial Diagram)
 # ═══════════════════════════════════════════════════════════════════════
 def fig15():
-    print('Fig15: Tech pathway sankey...')
-    transitions = pathway_data['transitions']
-    steps = pathway_data['step_frequency']
+    print('Fig15: Tech pathway sankey (技术路径类型 → 技术代际)...')
+    # Use V6 framework columns: 技术路径类型 and 产品技术代际
+    tech_path = df['技术路径类型'].dropna()
+    tech_gen = df['产品技术代际'].dropna()
 
-    # Build multi-layer flow: starting → middle → ending
-    starting = {s['step']: s['count'] for s in pathway_data['starting_steps'][:8]}
-    ending = {s['step']: s['count'] for s in pathway_data['ending_steps'][:8]}
+    # Cross-tabulate: 技术路径类型 → 产品技术代际
+    cross = pd.crosstab(df['技术路径类型'], df['产品技术代际'])
 
-    # Get top transitions
-    top_trans = sorted(transitions, key=lambda x: -x['count'])[:25]
+    # Order
+    path_order = ['T1_内容生成', 'T2_智能评测', 'T3_数据驱动', 'T4_沉浸体验', 'T5_智能硬件', 'T6_平台生态']
+    gen_order = ['Gen1_传统信息化', 'Gen2_互联网+', 'Gen3_AI辅助', 'Gen4_大模型', 'Gen5_多模态AI']
+    path_order = [p for p in path_order if p in cross.index]
+    gen_order = [g for g in gen_order if g in cross.columns]
 
-    # Assign layers: from_step → to_step
-    all_from = set(t['from'] for t in top_trans)
-    all_to = set(t['to'] for t in top_trans)
-    left_nodes = list(all_from - all_to)[:6] + list(all_from & all_to)[:4]
-    right_nodes = list(all_to - all_from)[:6] + list(all_from & all_to)[:4]
-
-    # Deduplicate
-    left_nodes = list(dict.fromkeys(left_nodes))[:8]
-    right_nodes = list(dict.fromkeys(right_nodes))[:8]
+    # Short labels
+    path_short = {p: p.split('_')[1] for p in path_order}
+    gen_short = {g: g.split('_')[1] if '_' in g else g for g in gen_order}
 
     fig, ax = plt.subplots(figsize=(16, 10))
 
     # Position nodes
-    n_left = len(left_nodes)
-    n_right = len(right_nodes)
+    n_left = len(path_order)
+    n_right = len(gen_order)
     left_y = np.linspace(0.9, 0.1, n_left)
     right_y = np.linspace(0.9, 0.1, n_right)
 
-    left_pos = {n: (0.15, left_y[i]) for i, n in enumerate(left_nodes)}
-    right_pos = {n: (0.85, right_y[i]) for i, n in enumerate(right_nodes)}
+    left_pos = {n: (0.12, left_y[i]) for i, n in enumerate(path_order)}
+    right_pos = {n: (0.88, right_y[i]) for i, n in enumerate(gen_order)}
+
+    # Compute max flow for scaling
+    all_flows = []
+    for p in path_order:
+        for g in gen_order:
+            v = cross.loc[p, g] if p in cross.index and g in cross.columns else 0
+            if v > 0:
+                all_flows.append(v)
+    max_flow = max(all_flows) if all_flows else 1
+
+    # Color map for paths
+    path_cmap = {path_order[i]: PALETTE_8[i % len(PALETTE_8)] for i in range(n_left)}
 
     # Draw connections
-    max_count = max(t['count'] for t in top_trans)
-    path_colors = plt.cm.get_cmap('RdYlBu_r')
+    for p in path_order:
+        for g in gen_order:
+            v = cross.loc[p, g] if p in cross.index and g in cross.columns else 0
+            if v > 5:  # Only show meaningful flows
+                x0, y0 = left_pos[p]
+                x1, y1 = right_pos[g]
+                alpha = 0.12 + 0.45 * v / max_flow
+                lw = 1.5 + 10 * v / max_flow
+                color = path_cmap[p]
 
-    for t in top_trans:
-        if t['from'] in left_pos and t['to'] in right_pos:
-            x0, y0 = left_pos[t['from']]
-            x1, y1 = right_pos[t['to']]
-            alpha = 0.15 + 0.5 * t['count'] / max_count
-            lw = 1 + 8 * t['count'] / max_count
-            color = path_colors(t['count'] / max_count)
+                # Bezier curve
+                xs = np.linspace(x0, x1, 50)
+                t = (xs - x0) / (x1 - x0)
+                ys = y0 + (y1 - y0) * (3 * t**2 - 2 * t**3)
+                ax.plot(xs, ys, color=color, alpha=alpha, linewidth=lw, solid_capstyle='round')
 
-            # Bezier-like curve
-            xs = np.linspace(x0, x1, 50)
-            ys = y0 + (y1 - y0) * (3 * ((xs - x0) / (x1 - x0))**2 - 2 * ((xs - x0) / (x1 - x0))**3)
-            ax.plot(xs, ys, color=color, alpha=alpha, linewidth=lw, solid_capstyle='round')
-
-    # Draw nodes
+    # Draw left nodes (技术路径)
     for name, (x, y) in left_pos.items():
-        ax.scatter(x, y, s=200, color=PRIMARY, zorder=5, edgecolors='white', linewidths=1.5)
-        ax.text(x - 0.02, y, name, ha='right', va='center', fontsize=9, fontweight='bold', color='#333')
+        total_p = cross.loc[name].sum() if name in cross.index else 0
+        size = 150 + 400 * total_p / cross.sum().sum()
+        ax.scatter(x, y, s=size, color=path_cmap[name], zorder=5,
+                   edgecolors='white', linewidths=2)
+        ax.text(x - 0.02, y, f'{path_short[name]} ({total_p})', ha='right', va='center',
+                fontsize=10, fontweight='bold', color='#333')
 
-    for name, (x, y) in right_pos.items():
-        ax.scatter(x, y, s=200, color=ACCENT, zorder=5, edgecolors='white', linewidths=1.5)
-        ax.text(x + 0.02, y, name, ha='left', va='center', fontsize=9, fontweight='bold', color='#333')
+    # Draw right nodes (技术代际)
+    gen_cmap = plt.cm.get_cmap('YlOrRd')
+    for i, (name, (x, y)) in enumerate(right_pos.items()):
+        total_g = cross[name].sum() if name in cross.columns else 0
+        size = 150 + 400 * total_g / cross.sum().sum()
+        color = gen_cmap(0.3 + 0.6 * i / max(1, n_right - 1))
+        ax.scatter(x, y, s=size, color=color, zorder=5,
+                   edgecolors='white', linewidths=2)
+        ax.text(x + 0.02, y, f'{gen_short[name]} ({total_g})', ha='left', va='center',
+                fontsize=10, fontweight='bold', color='#333')
 
     # Stage labels
-    ax.text(0.15, 0.98, '起始阶段', ha='center', fontsize=12, fontweight='bold', color=PRIMARY)
-    ax.text(0.85, 0.98, '终止阶段', ha='center', fontsize=12, fontweight='bold', color=ACCENT)
+    ax.text(0.12, 0.98, '技术路径类型', ha='center', fontsize=13, fontweight='bold', color=PRIMARY)
+    ax.text(0.88, 0.98, '产品技术代际', ha='center', fontsize=13, fontweight='bold', color=ACCENT)
 
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1.05)
     ax.axis('off')
-    ax.set_title('技术实施路径桑基图', fontsize=16, fontweight='bold', color=PRIMARY, pad=20)
+    ax.set_title('技术路径×技术代际流向图', fontsize=16, fontweight='bold', color=PRIMARY, pad=20)
 
     fig.subplots_adjust(top=0.92, bottom=0.08)
-    _add_caption(fig, '图15 技术实施路径桑基图', y=0.01)
-    _add_analysis(fig, '技术路径呈现从"数据采集"到"智能反馈"的典型实施链条，路径多样性反映应用场景差异。', x=0.05, y=0.08)
+    _add_caption(fig, '图15 技术路径类型→产品技术代际桑基图', y=0.01)
+    _add_analysis(fig, 'T1内容生成路径主要流向Gen4大模型和Gen5多模态AI，T6平台生态则以Gen2互联网+为主，反映技术路径的代际分化。', x=0.05, y=0.08)
     _save(fig, 'fig15_tech_pathway_sankey.png')
 
 # ═══════════════════════════════════════════════════════════════════════

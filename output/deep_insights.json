@@ -1,0 +1,1748 @@
+{
+  "counter_intuitive_findings": [
+    {
+      "type": "province_econ_vs_innovation",
+      "finding": "经济水平与创新深度的Spearman相关系数 r=-0.272, p=0.1876",
+      "interpretation": "经济水平与创新深度呈负相关——欠发达地区反而创新更深",
+      "r": -0.2725,
+      "p": 0.1876
+    },
+    {
+      "type": "overperformer_province",
+      "finding": "经济欠发达但创新领先: 陕西省 (经济tier=3, 创新均分=2.84)",
+      "all_overperformers": [
+        {
+          "省份": "陕西省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.8421052631578947,
+          "mean_gen": 3.1052631578947367
+        },
+        {
+          "省份": "河南省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.8,
+          "mean_gen": 3.066666666666667
+        },
+        {
+          "省份": "辽宁省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.4285714285714284,
+          "mean_gen": 3.0714285714285716
+        },
+        {
+          "省份": "甘肃省",
+          "econ_tier": 4.0,
+          "mean_innovation": 2.4166666666666665,
+          "mean_gen": 3.25
+        },
+        {
+          "省份": "安徽省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.388888888888889,
+          "mean_gen": 3.5
+        },
+        {
+          "省份": "新疆维吾尔自治区",
+          "econ_tier": 4.0,
+          "mean_innovation": 2.3225806451612905,
+          "mean_gen": 3.4274193548387095
+        },
+        {
+          "省份": "黑龙江省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.2837837837837838,
+          "mean_gen": 3.4864864864864864
+        },
+        {
+          "省份": "四川省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.2612826603325415,
+          "mean_gen": 3.209026128266033
+        },
+        {
+          "省份": "山西省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.2586206896551726,
+          "mean_gen": 3.3620689655172415
+        },
+        {
+          "省份": "吉林省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.2542372881355934,
+          "mean_gen": 3.3220338983050848
+        },
+        {
+          "省份": "河北省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.246268656716418,
+          "mean_gen": 3.3059701492537314
+        },
+        {
+          "省份": "内蒙古自治区",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.2142857142857144,
+          "mean_gen": 3.107142857142857
+        },
+        {
+          "省份": "江西省",
+          "econ_tier": 3.0,
+          "mean_innovation": 2.0714285714285716,
+          "mean_gen": 3.0
+        },
+        {
+          "省份": "宁夏回族自治区",
+          "econ_tier": 4.0,
+          "mean_innovation": 2.01010101010101,
+          "mean_gen": 3.484848484848485
+        },
+        {
+          "省份": "湖南省",
+          "econ_tier": 3.0,
+          "mean_innovation": 1.975,
+          "mean_gen": 3.025
+        }
+      ]
+    },
+    {
+      "type": "stage_tech_generation",
+      "finding": "技术代际最高学段: 高中 (均值=3.43), 最低: 幼儿园 (均值=3.18)",
+      "detail": [
+        {
+          "学段": "高中",
+          "mean_gen": 3.4251781472684084,
+          "pct_gen4plus": 56.057007125890735,
+          "mean_innovation": 2.339667458432304,
+          "mean_istar": 1.4204275534441806
+        },
+        {
+          "学段": "初中",
+          "mean_gen": 3.404632152588556,
+          "pct_gen4plus": 55.72207084468664,
+          "mean_innovation": 2.2438692098092643,
+          "mean_istar": 1.422343324250681
+        },
+        {
+          "学段": "小学",
+          "mean_gen": 3.269994905756495,
+          "pct_gen4plus": 49.312277126846666,
+          "mean_innovation": 2.318390219052471,
+          "mean_istar": 1.4060112073357107
+        },
+        {
+          "学段": "幼儿园",
+          "mean_gen": 3.181598062953995,
+          "pct_gen4plus": 46.246973365617436,
+          "mean_innovation": 2.3292978208232444,
+          "mean_istar": 1.3995157384987893
+        }
+      ]
+    },
+    {
+      "type": "low_tech_high_innovation",
+      "finding": "Gen1-2(低技术)中有7.7%达到创新深度4-5分",
+      "gen12_mean": 2.25,
+      "gen45_mean": 2.367,
+      "mann_whitney_U": 1186872.0,
+      "p_value": 0.000141
+    },
+    {
+      "type": "subject_innovation_ranking",
+      "finding": "创新深度最高学科: 信息科技 (2.68), 最低: 综合素质 (1.75)",
+      "ranking": [
+        {
+          "学科": "信息科技",
+          "mean_innovation": 2.684931506849315,
+          "mean_gen": 3.5205479452054793,
+          "count": 73
+        },
+        {
+          "学科": "综合实践",
+          "mean_innovation": 2.638888888888889,
+          "mean_gen": 3.7777777777777777,
+          "count": 36
+        },
+        {
+          "学科": "科学",
+          "mean_innovation": 2.618181818181818,
+          "mean_gen": 3.3515151515151516,
+          "count": 165
+        },
+        {
+          "学科": "英语",
+          "mean_innovation": 2.5336538461538463,
+          "mean_gen": 3.3413461538461537,
+          "count": 208
+        },
+        {
+          "学科": "化学",
+          "mean_innovation": 2.5211267605633805,
+          "mean_gen": 3.2535211267605635,
+          "count": 71
+        },
+        {
+          "学科": "历史",
+          "mean_innovation": 2.4918032786885247,
+          "mean_gen": 3.622950819672131,
+          "count": 61
+        },
+        {
+          "学科": "综合",
+          "mean_innovation": 2.423076923076923,
+          "mean_gen": 3.4871794871794872,
+          "count": 78
+        },
+        {
+          "学科": "劳动教育",
+          "mean_innovation": 2.4193548387096775,
+          "mean_gen": 3.5483870967741935,
+          "count": 31
+        },
+        {
+          "学科": "音乐",
+          "mean_innovation": 2.41025641025641,
+          "mean_gen": 3.217948717948718,
+          "count": 78
+        },
+        {
+          "学科": "语言",
+          "mean_innovation": 2.404255319148936,
+          "mean_gen": 3.148936170212766,
+          "count": 47
+        },
+        {
+          "学科": "美术",
+          "mean_innovation": 2.3872340425531915,
+          "mean_gen": 3.4595744680851066,
+          "count": 235
+        },
+        {
+          "学科": "数学",
+          "mean_innovation": 2.369098712446352,
+          "mean_gen": 3.332618025751073,
+          "count": 466
+        },
+        {
+          "学科": "艺术",
+          "mean_innovation": 2.3333333333333335,
+          "mean_gen": 3.9583333333333335,
+          "count": 24
+        },
+        {
+          "学科": "美育",
+          "mean_innovation": 2.3125,
+          "mean_gen": 3.8125,
+          "count": 16
+        },
+        {
+          "学科": "语文",
+          "mean_innovation": 2.287694974003466,
+          "mean_gen": 3.5095320623916813,
+          "count": 577
+        },
+        {
+          "学科": "物理",
+          "mean_innovation": 2.25,
+          "mean_gen": 3.435185185185185,
+          "count": 108
+        },
+        {
+          "学科": "道德与法治",
+          "mean_innovation": 2.2432432432432434,
+          "mean_gen": 2.918918918918919,
+          "count": 37
+        },
+        {
+          "学科": "心理健康教育",
+          "mean_innovation": 2.175,
+          "mean_gen": 2.875,
+          "count": 40
+        },
+        {
+          "学科": "德育",
+          "mean_innovation": 2.1538461538461537,
+          "mean_gen": 2.871794871794872,
+          "count": 39
+        },
+        {
+          "学科": "地理",
+          "mean_innovation": 2.142857142857143,
+          "mean_gen": 3.5714285714285716,
+          "count": 56
+        },
+        {
+          "学科": "生物",
+          "mean_innovation": 2.0925925925925926,
+          "mean_gen": 3.462962962962963,
+          "count": 54
+        },
+        {
+          "学科": "体育",
+          "mean_innovation": 2.0551181102362204,
+          "mean_gen": 3.047244094488189,
+          "count": 127
+        },
+        {
+          "学科": "未提及",
+          "mean_innovation": 1.9720496894409938,
+          "mean_gen": 3.0217391304347827,
+          "count": 644
+        },
+        {
+          "学科": "人工智能",
+          "mean_innovation": 1.9655172413793103,
+          "mean_gen": 2.8275862068965516,
+          "count": 29
+        },
+        {
+          "学科": "信息技术",
+          "mean_innovation": 1.9393939393939394,
+          "mean_gen": 3.3333333333333335,
+          "count": 33
+        },
+        {
+          "学科": "综合素质",
+          "mean_innovation": 1.75,
+          "mean_gen": 2.875,
+          "count": 16
+        }
+      ]
+    }
+  ],
+  "digital_divide": {
+    "province_divide_index": {
+      "上海市": {
+        "digital_divide_index": 1.145,
+        "gen4plus_pct": 44.9,
+        "gen12_pct": 39.2,
+        "mean_innovation": 2.54,
+        "mean_istar": 1.35,
+        "econ_tier": 1,
+        "n": 158
+      },
+      "内蒙古自治区": {
+        "digital_divide_index": 0.923,
+        "gen4plus_pct": 42.9,
+        "gen12_pct": 46.4,
+        "mean_innovation": 2.21,
+        "mean_istar": 1.25,
+        "econ_tier": 3,
+        "n": 28
+      },
+      "北京市": {
+        "digital_divide_index": 1.697,
+        "gen4plus_pct": 53.0,
+        "gen12_pct": 31.2,
+        "mean_innovation": 2.27,
+        "mean_istar": 1.39,
+        "econ_tier": 1,
+        "n": 285
+      },
+      "吉林省": {
+        "digital_divide_index": 1.571,
+        "gen4plus_pct": 55.9,
+        "gen12_pct": 35.6,
+        "mean_innovation": 2.25,
+        "mean_istar": 1.47,
+        "econ_tier": 3,
+        "n": 118
+      },
+      "四川省": {
+        "digital_divide_index": 1.266,
+        "gen4plus_pct": 46.3,
+        "gen12_pct": 36.6,
+        "mean_innovation": 2.26,
+        "mean_istar": 1.35,
+        "econ_tier": 3,
+        "n": 421
+      },
+      "天津市": {
+        "digital_divide_index": 2.037,
+        "gen4plus_pct": 59.6,
+        "gen12_pct": 29.2,
+        "mean_innovation": 2.14,
+        "mean_istar": 1.49,
+        "econ_tier": 2,
+        "n": 277
+      },
+      "宁夏回族自治区": {
+        "digital_divide_index": 1.931,
+        "gen4plus_pct": 56.6,
+        "gen12_pct": 29.3,
+        "mean_innovation": 2.01,
+        "mean_istar": 1.46,
+        "econ_tier": 4,
+        "n": 99
+      },
+      "安徽省": {
+        "digital_divide_index": 1.727,
+        "gen4plus_pct": 52.8,
+        "gen12_pct": 30.6,
+        "mean_innovation": 2.39,
+        "mean_istar": 1.44,
+        "econ_tier": 3,
+        "n": 36
+      },
+      "山东省": {
+        "digital_divide_index": 1.136,
+        "gen4plus_pct": 45.0,
+        "gen12_pct": 39.6,
+        "mean_innovation": 2.4,
+        "mean_istar": 1.35,
+        "econ_tier": 2,
+        "n": 149
+      },
+      "山西省": {
+        "digital_divide_index": 1.65,
+        "gen4plus_pct": 56.9,
+        "gen12_pct": 34.5,
+        "mean_innovation": 2.26,
+        "mean_istar": 1.4,
+        "econ_tier": 3,
+        "n": 58
+      },
+      "广东省": {
+        "digital_divide_index": 1.28,
+        "gen4plus_pct": 50.8,
+        "gen12_pct": 39.7,
+        "mean_innovation": 2.33,
+        "mean_istar": 1.43,
+        "econ_tier": 1,
+        "n": 63
+      },
+      "新疆维吾尔自治区": {
+        "digital_divide_index": 2.029,
+        "gen4plus_pct": 55.6,
+        "gen12_pct": 27.4,
+        "mean_innovation": 2.32,
+        "mean_istar": 1.44,
+        "econ_tier": 4,
+        "n": 124
+      },
+      "未提及": {
+        "digital_divide_index": 1.568,
+        "gen4plus_pct": 49.6,
+        "gen12_pct": 31.6,
+        "mean_innovation": 2.26,
+        "mean_istar": 1.38,
+        "econ_tier": null,
+        "n": 117
+      },
+      "江苏省": {
+        "digital_divide_index": 1.074,
+        "gen4plus_pct": 44.6,
+        "gen12_pct": 41.5,
+        "mean_innovation": 2.46,
+        "mean_istar": 1.25,
+        "econ_tier": 1,
+        "n": 65
+      },
+      "江西省": {
+        "digital_divide_index": 0.833,
+        "gen4plus_pct": 35.7,
+        "gen12_pct": 42.9,
+        "mean_innovation": 2.07,
+        "mean_istar": 1.21,
+        "econ_tier": 3,
+        "n": 14
+      },
+      "河北省": {
+        "digital_divide_index": 1.458,
+        "gen4plus_pct": 52.2,
+        "gen12_pct": 35.8,
+        "mean_innovation": 2.25,
+        "mean_istar": 1.41,
+        "econ_tier": 3,
+        "n": 134
+      },
+      "河南省": {
+        "digital_divide_index": 1.143,
+        "gen4plus_pct": 53.3,
+        "gen12_pct": 46.7,
+        "mean_innovation": 2.8,
+        "mean_istar": 1.47,
+        "econ_tier": 3,
+        "n": 15
+      },
+      "浙江省": {
+        "digital_divide_index": 1.346,
+        "gen4plus_pct": 49.2,
+        "gen12_pct": 36.5,
+        "mean_innovation": 2.26,
+        "mean_istar": 1.38,
+        "econ_tier": 1,
+        "n": 1005
+      },
+      "湖北省": {
+        "digital_divide_index": 1.0,
+        "gen4plus_pct": 45.0,
+        "gen12_pct": 45.0,
+        "mean_innovation": 2.45,
+        "mean_istar": 1.45,
+        "econ_tier": 2,
+        "n": 20
+      },
+      "湖南省": {
+        "digital_divide_index": 0.765,
+        "gen4plus_pct": 32.5,
+        "gen12_pct": 42.5,
+        "mean_innovation": 1.98,
+        "mean_istar": 1.3,
+        "econ_tier": 3,
+        "n": 40
+      },
+      "甘肃省": {
+        "digital_divide_index": 1.5,
+        "gen4plus_pct": 50.0,
+        "gen12_pct": 33.3,
+        "mean_innovation": 2.42,
+        "mean_istar": 1.5,
+        "econ_tier": 4,
+        "n": 12
+      },
+      "福建省": {
+        "digital_divide_index": 1.161,
+        "gen4plus_pct": 42.9,
+        "gen12_pct": 36.9,
+        "mean_innovation": 2.49,
+        "mean_istar": 1.32,
+        "econ_tier": 2,
+        "n": 84
+      },
+      "贵州省": {
+        "digital_divide_index": 0.667,
+        "gen4plus_pct": 33.3,
+        "gen12_pct": 50.0,
+        "mean_innovation": 2.33,
+        "mean_istar": 1.17,
+        "econ_tier": 4,
+        "n": 6
+      },
+      "辽宁省": {
+        "digital_divide_index": 1.0,
+        "gen4plus_pct": 42.9,
+        "gen12_pct": 42.9,
+        "mean_innovation": 2.43,
+        "mean_istar": 1.29,
+        "econ_tier": 3,
+        "n": 14
+      },
+      "重庆市": {
+        "digital_divide_index": 1.62,
+        "gen4plus_pct": 53.1,
+        "gen12_pct": 32.8,
+        "mean_innovation": 2.36,
+        "mean_istar": 1.43,
+        "econ_tier": 2,
+        "n": 369
+      },
+      "陕西省": {
+        "digital_divide_index": 0.857,
+        "gen4plus_pct": 31.6,
+        "gen12_pct": 36.8,
+        "mean_innovation": 2.84,
+        "mean_istar": 1.26,
+        "econ_tier": 3,
+        "n": 19
+      },
+      "青海省": {
+        "digital_divide_index": 2.5,
+        "gen4plus_pct": 62.5,
+        "gen12_pct": 25.0,
+        "mean_innovation": 2.25,
+        "mean_istar": 1.38,
+        "econ_tier": 4,
+        "n": 8
+      },
+      "黑龙江省": {
+        "digital_divide_index": 2.1,
+        "gen4plus_pct": 56.8,
+        "gen12_pct": 27.0,
+        "mean_innovation": 2.28,
+        "mean_istar": 1.38,
+        "econ_tier": 3,
+        "n": 74
+      }
+    },
+    "econ_vs_istar_correlation": {
+      "spearman_r": 0.0873,
+      "p_value": 0.665,
+      "interpretation": "经济水平与人机协同层级的关系"
+    },
+    "leapfrog_provinces": [
+      {
+        "province": "青海省",
+        "digital_divide_index": 2.5,
+        "gen4plus_pct": 62.5,
+        "gen12_pct": 25.0,
+        "mean_innovation": 2.25,
+        "mean_istar": 1.38,
+        "econ_tier": 4,
+        "n": 8
+      },
+      {
+        "province": "黑龙江省",
+        "digital_divide_index": 2.1,
+        "gen4plus_pct": 56.8,
+        "gen12_pct": 27.0,
+        "mean_innovation": 2.28,
+        "mean_istar": 1.38,
+        "econ_tier": 3,
+        "n": 74
+      },
+      {
+        "province": "新疆维吾尔自治区",
+        "digital_divide_index": 2.029,
+        "gen4plus_pct": 55.6,
+        "gen12_pct": 27.4,
+        "mean_innovation": 2.32,
+        "mean_istar": 1.44,
+        "econ_tier": 4,
+        "n": 124
+      },
+      {
+        "province": "宁夏回族自治区",
+        "digital_divide_index": 1.931,
+        "gen4plus_pct": 56.6,
+        "gen12_pct": 29.3,
+        "mean_innovation": 2.01,
+        "mean_istar": 1.46,
+        "econ_tier": 4,
+        "n": 99
+      },
+      {
+        "province": "安徽省",
+        "digital_divide_index": 1.727,
+        "gen4plus_pct": 52.8,
+        "gen12_pct": 30.6,
+        "mean_innovation": 2.39,
+        "mean_istar": 1.44,
+        "econ_tier": 3,
+        "n": 36
+      },
+      {
+        "province": "山西省",
+        "digital_divide_index": 1.65,
+        "gen4plus_pct": 56.9,
+        "gen12_pct": 34.5,
+        "mean_innovation": 2.26,
+        "mean_istar": 1.4,
+        "econ_tier": 3,
+        "n": 58
+      },
+      {
+        "province": "吉林省",
+        "digital_divide_index": 1.571,
+        "gen4plus_pct": 55.9,
+        "gen12_pct": 35.6,
+        "mean_innovation": 2.25,
+        "mean_istar": 1.47,
+        "econ_tier": 3,
+        "n": 118
+      },
+      {
+        "province": "甘肃省",
+        "digital_divide_index": 1.5,
+        "gen4plus_pct": 50.0,
+        "gen12_pct": 33.3,
+        "mean_innovation": 2.42,
+        "mean_istar": 1.5,
+        "econ_tier": 4,
+        "n": 12
+      },
+      {
+        "province": "河北省",
+        "digital_divide_index": 1.458,
+        "gen4plus_pct": 52.2,
+        "gen12_pct": 35.8,
+        "mean_innovation": 2.25,
+        "mean_istar": 1.41,
+        "econ_tier": 3,
+        "n": 134
+      },
+      {
+        "province": "四川省",
+        "digital_divide_index": 1.266,
+        "gen4plus_pct": 46.3,
+        "gen12_pct": 36.6,
+        "mean_innovation": 2.26,
+        "mean_istar": 1.35,
+        "econ_tier": 3,
+        "n": 421
+      },
+      {
+        "province": "河南省",
+        "digital_divide_index": 1.143,
+        "gen4plus_pct": 53.3,
+        "gen12_pct": 46.7,
+        "mean_innovation": 2.8,
+        "mean_istar": 1.47,
+        "econ_tier": 3,
+        "n": 15
+      }
+    ],
+    "tool_diversity_gini": 0.5701,
+    "tool_diversity_gini_interpretation": "0=完全均等, 1=完全集中. 当前Gini=0.5701, 高度不均",
+    "innovation_gini": 0.0447,
+    "stage_divide": {
+      "幼儿园": {
+        "digital_divide_index": 1.291,
+        "gen4plus_pct": 46.2,
+        "hm2c_pct": 42.6
+      },
+      "小学": {
+        "digital_divide_index": 1.383,
+        "gen4plus_pct": 49.3,
+        "hm2c_pct": 41.9
+      },
+      "初中": {
+        "digital_divide_index": 1.771,
+        "gen4plus_pct": 55.7,
+        "hm2c_pct": 44.0
+      },
+      "高中": {
+        "digital_divide_index": 1.788,
+        "gen4plus_pct": 56.1,
+        "hm2c_pct": 44.9
+      }
+    }
+  },
+  "tool_ecosystem": {
+    "top_tool_pairs": [
+      {
+        "tool1": "豆包",
+        "tool2": "豆包AI绘画",
+        "co_occurrences": 2
+      },
+      {
+        "tool1": "文心一格",
+        "tool2": "文心一言",
+        "co_occurrences": 2
+      },
+      {
+        "tool1": "360AI",
+        "tool2": "3D地图WebGL技术",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "360AI",
+        "tool2": "3D建模工具",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "3D地图WebGL技术",
+        "tool2": "3D建模工具",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "3D虚拟实验室",
+        "tool2": "4K智能跟拍系统",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "3D虚拟实验室",
+        "tool2": "5G AI相机",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "4K智能跟拍系统",
+        "tool2": "5G AI相机",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "720云VR全景",
+        "tool2": "AA班级助手",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "Adobe Audition",
+        "tool2": "Adobo Premiere",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "Adobe Audition",
+        "tool2": "Agent-1",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "Adobo Premiere",
+        "tool2": "Agent-1",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI World平台",
+        "tool2": "AI for Science学习实验室",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI World平台",
+        "tool2": "AI 数据处理插件",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI for Science学习实验室",
+        "tool2": "AI 数据处理插件",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI+校园全域智学成长平台",
+        "tool2": "AI360度全景虚拟视频生成工具",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI+校园全域智学成长平台",
+        "tool2": "AICG平台",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI360度全景虚拟视频生成工具",
+        "tool2": "AICG平台",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI-classroom",
+        "tool2": "AIClassroom",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AIGC互动情境",
+        "tool2": "AIGC交互式写作辅助平台",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AIGC互动情境",
+        "tool2": "AIGC动态迁移",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AIGC交互式写作辅助平台",
+        "tool2": "AIGC动态迁移",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AIGC科学剧场",
+        "tool2": "AIoT智能训练站",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI书法教学系统",
+        "tool2": "AI二维码生成APP",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI云鉴课堂",
+        "tool2": "AI互动助手",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI云鉴课堂",
+        "tool2": "AI互动工具",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI互动助手",
+        "tool2": "AI互动工具",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI互动工具",
+        "tool2": "AI互动平台",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI互动平板",
+        "tool2": "AI互动签到系统",
+        "co_occurrences": 1
+      },
+      {
+        "tool1": "AI互动系统",
+        "tool2": "AI互动绘本系统",
+        "co_occurrences": 1
+      }
+    ],
+    "top_tool_bundles": [
+      {
+        "tools": [
+          "豆包",
+          "豆包AI绘画"
+        ],
+        "frequency": 2,
+        "mean_innovation": 3.62
+      },
+      {
+        "tools": [
+          "文心一格",
+          "文心一言"
+        ],
+        "frequency": 2,
+        "mean_innovation": 2.0
+      },
+      {
+        "tools": [
+          "360AI",
+          "3D地图WebGL技术",
+          "3D建模工具"
+        ],
+        "frequency": 1,
+        "mean_innovation": 4.0
+      },
+      {
+        "tools": [
+          "3D虚拟实验室",
+          "4K智能跟拍系统",
+          "5G AI相机"
+        ],
+        "frequency": 1,
+        "mean_innovation": 3.33
+      },
+      {
+        "tools": [
+          "720云VR全景",
+          "AA班级助手"
+        ],
+        "frequency": 1,
+        "mean_innovation": 2.5
+      },
+      {
+        "tools": [
+          "Adobe Audition",
+          "Adobo Premiere",
+          "Agent-1"
+        ],
+        "frequency": 1,
+        "mean_innovation": 3.0
+      },
+      {
+        "tools": [
+          "AI World平台",
+          "AI for Science学习实验室",
+          "AI 数据处理插件"
+        ],
+        "frequency": 1,
+        "mean_innovation": 3.2
+      },
+      {
+        "tools": [
+          "AI+校园全域智学成长平台",
+          "AI360度全景虚拟视频生成工具",
+          "AICG平台"
+        ],
+        "frequency": 1,
+        "mean_innovation": 3.33
+      },
+      {
+        "tools": [
+          "AI-classroom",
+          "AIClassroom"
+        ],
+        "frequency": 1,
+        "mean_innovation": 3.33
+      },
+      {
+        "tools": [
+          "AIGC互动情境",
+          "AIGC交互式写作辅助平台",
+          "AIGC动态迁移"
+        ],
+        "frequency": 1,
+        "mean_innovation": 2.33
+      },
+      {
+        "tools": [
+          "AIGC科学剧场",
+          "AIoT智能训练站"
+        ],
+        "frequency": 1,
+        "mean_innovation": 2.5
+      },
+      {
+        "tools": [
+          "AI书法教学系统",
+          "AI二维码生成APP"
+        ],
+        "frequency": 1,
+        "mean_innovation": 2.33
+      },
+      {
+        "tools": [
+          "AI云鉴课堂",
+          "AI互动助手",
+          "AI互动工具"
+        ],
+        "frequency": 1,
+        "mean_innovation": 3.33
+      },
+      {
+        "tools": [
+          "AI互动工具",
+          "AI互动平台"
+        ],
+        "frequency": 1,
+        "mean_innovation": 2.0
+      },
+      {
+        "tools": [
+          "AI互动平板",
+          "AI互动签到系统"
+        ],
+        "frequency": 1,
+        "mean_innovation": 2.5
+      },
+      {
+        "tools": [
+          "AI互动系统",
+          "AI互动绘本系统"
+        ],
+        "frequency": 1,
+        "mean_innovation": 3.0
+      },
+      {
+        "tools": [
+          "AI交互系统",
+          "AI交互网页导学单"
+        ],
+        "frequency": 1,
+        "mean_innovation": 2.0
+      },
+      {
+        "tools": [
+          "AI人脸识别考勤系统",
+          "AI仪表盘"
+        ],
+        "frequency": 1,
+        "mean_innovation": 3.5
+      },
+      {
+        "tools": [
+          "AI伴学精灵",
+          "AI体测吧"
+        ],
+        "frequency": 1,
+        "mean_innovation": 2.0
+      },
+      {
+        "tools": [
+          "AI体育智能体测机",
+          "AI体育锻炼屏"
+        ],
+        "frequency": 1,
+        "mean_innovation": 3.0
+      }
+    ],
+    "multi_vs_single_tool": {
+      "multi_tool_mean_innovation": 2.774,
+      "single_tool_mean_innovation": 1.803,
+      "multi_tool_n": 587,
+      "single_tool_n": 1069,
+      "mann_whitney_U": 543023.5,
+      "p_value": 0.0
+    },
+    "tool_scenario_map": {
+      "豆包": {},
+      "DeepSeek 大模型": {},
+      "即梦AI": {},
+      "剪映AI": {},
+      "即梦 AI": {},
+      "希沃白板": {},
+      "文心一言": {},
+      "国家智慧教育平台": {},
+      "Kimi": {},
+      "数字人": {},
+      "豆包智能体": {},
+      "通义千问大模型": {},
+      "星火大模型": {},
+      "问卷星": {},
+      "扣子AI": {}
+    }
+  },
+  "teacher_innovation": {
+    "self_developed": {
+      "count": 544,
+      "pct_of_total": 14.3,
+      "mean_innovation": 3.27,
+      "non_self_mean_innovation": 2.12,
+      "top_provinces": {
+        "浙江省": 122,
+        "重庆市": 63,
+        "四川省": 59,
+        "上海市": 35,
+        "北京市": 30
+      },
+      "top_stages": {
+        "小学": 270,
+        "初中": 84,
+        "幼儿园": 74,
+        "高中": 65,
+        "中学": 13
+      },
+      "top_subjects": {
+        "未提及": 100,
+        "语文": 80,
+        "数学": 69,
+        "英语": 36,
+        "科学": 21
+      },
+      "mann_whitney_p": 0.0
+    },
+    "tool_count_vs_innovation": {
+      "spearman_r": 0.6245,
+      "p_value": 0.0,
+      "mean_tools_per_case": 1.58,
+      "interpretation": "工具数量与创新深度的关系"
+    },
+    "pioneers_top5pct": {
+      "threshold": 4.0,
+      "count": 306,
+      "top_provinces": {
+        "浙江省": 71,
+        "重庆市": 39,
+        "四川省": 30,
+        "山东省": 19,
+        "北京市": 19
+      },
+      "top_stages": {
+        "小学": 174,
+        "初中": 45,
+        "高中": 39
+      },
+      "top_subjects": {
+        "数学": 47,
+        "语文": 34,
+        "英语": 31,
+        "科学": 26,
+        "未提及": 25
+      },
+      "mean_gen": 3.35,
+      "hm2c_pct": 73.2,
+      "top_tech_paths": {
+        "T1_内容生成": 156,
+        "T6_平台生态": 90,
+        "T5_智能硬件": 38
+      }
+    },
+    "followers_bottom25pct": {
+      "threshold": 2.0,
+      "count": 2431,
+      "top_provinces": {
+        "浙江省": 659,
+        "四川省": 267,
+        "重庆市": 224,
+        "天津市": 200,
+        "北京市": 187
+      },
+      "top_stages": {
+        "小学": 1249,
+        "初中": 469,
+        "高中": 258
+      },
+      "mean_gen": 3.28,
+      "hm2c_pct": 32.0
+    }
+  },
+  "subject_ai_fit": {
+    "subject_matrix": [
+      {
+        "subject": "信息科技",
+        "n": 73,
+        "mean_istar": 1.644,
+        "mean_innovation": 2.685,
+        "tool_diversity": 46,
+        "gen4plus_pct": 61.6,
+        "hm2c_pct": 64.4,
+        "mean_gen": 3.521,
+        "d1_deep_learning_pct": 97.3
+      },
+      {
+        "subject": "综合实践",
+        "n": 36,
+        "mean_istar": 1.667,
+        "mean_innovation": 2.639,
+        "tool_diversity": 18,
+        "gen4plus_pct": 66.7,
+        "hm2c_pct": 66.7,
+        "mean_gen": 3.778,
+        "d1_deep_learning_pct": 97.2
+      },
+      {
+        "subject": "科学",
+        "n": 165,
+        "mean_istar": 1.588,
+        "mean_innovation": 2.618,
+        "tool_diversity": 93,
+        "gen4plus_pct": 53.9,
+        "hm2c_pct": 58.8,
+        "mean_gen": 3.352,
+        "d1_deep_learning_pct": 100.0
+      },
+      {
+        "subject": "英语",
+        "n": 208,
+        "mean_istar": 1.524,
+        "mean_innovation": 2.534,
+        "tool_diversity": 130,
+        "gen4plus_pct": 57.2,
+        "hm2c_pct": 52.4,
+        "mean_gen": 3.341,
+        "d1_deep_learning_pct": 61.1
+      },
+      {
+        "subject": "化学",
+        "n": 71,
+        "mean_istar": 1.394,
+        "mean_innovation": 2.521,
+        "tool_diversity": 48,
+        "gen4plus_pct": 45.1,
+        "hm2c_pct": 39.4,
+        "mean_gen": 3.254,
+        "d1_deep_learning_pct": 95.8
+      },
+      {
+        "subject": "历史",
+        "n": 61,
+        "mean_istar": 1.525,
+        "mean_innovation": 2.492,
+        "tool_diversity": 37,
+        "gen4plus_pct": 60.7,
+        "hm2c_pct": 52.5,
+        "mean_gen": 3.623,
+        "d1_deep_learning_pct": 91.8
+      },
+      {
+        "subject": "综合",
+        "n": 78,
+        "mean_istar": 1.397,
+        "mean_innovation": 2.423,
+        "tool_diversity": 43,
+        "gen4plus_pct": 53.8,
+        "hm2c_pct": 39.7,
+        "mean_gen": 3.487,
+        "d1_deep_learning_pct": 94.9
+      },
+      {
+        "subject": "劳动教育",
+        "n": 31,
+        "mean_istar": 1.581,
+        "mean_innovation": 2.419,
+        "tool_diversity": 21,
+        "gen4plus_pct": 67.7,
+        "hm2c_pct": 58.1,
+        "mean_gen": 3.548,
+        "d1_deep_learning_pct": 71.0
+      },
+      {
+        "subject": "音乐",
+        "n": 78,
+        "mean_istar": 1.462,
+        "mean_innovation": 2.41,
+        "tool_diversity": 48,
+        "gen4plus_pct": 47.4,
+        "hm2c_pct": 46.2,
+        "mean_gen": 3.218,
+        "d1_deep_learning_pct": 85.9
+      },
+      {
+        "subject": "语言",
+        "n": 47,
+        "mean_istar": 1.404,
+        "mean_innovation": 2.404,
+        "tool_diversity": 31,
+        "gen4plus_pct": 44.7,
+        "hm2c_pct": 40.4,
+        "mean_gen": 3.149,
+        "d1_deep_learning_pct": 95.7
+      },
+      {
+        "subject": "美术",
+        "n": 235,
+        "mean_istar": 1.532,
+        "mean_innovation": 2.387,
+        "tool_diversity": 139,
+        "gen4plus_pct": 59.6,
+        "hm2c_pct": 53.2,
+        "mean_gen": 3.46,
+        "d1_deep_learning_pct": 93.6
+      },
+      {
+        "subject": "数学",
+        "n": 466,
+        "mean_istar": 1.479,
+        "mean_innovation": 2.369,
+        "tool_diversity": 269,
+        "gen4plus_pct": 54.1,
+        "hm2c_pct": 47.9,
+        "mean_gen": 3.333,
+        "d1_deep_learning_pct": 76.6
+      },
+      {
+        "subject": "艺术",
+        "n": 24,
+        "mean_istar": 1.625,
+        "mean_innovation": 2.333,
+        "tool_diversity": 13,
+        "gen4plus_pct": 83.3,
+        "hm2c_pct": 62.5,
+        "mean_gen": 3.958,
+        "d1_deep_learning_pct": 87.5
+      },
+      {
+        "subject": "美育",
+        "n": 16,
+        "mean_istar": 1.625,
+        "mean_innovation": 2.312,
+        "tool_diversity": 8,
+        "gen4plus_pct": 68.8,
+        "hm2c_pct": 62.5,
+        "mean_gen": 3.812,
+        "d1_deep_learning_pct": 100.0
+      },
+      {
+        "subject": "语文",
+        "n": 577,
+        "mean_istar": 1.484,
+        "mean_innovation": 2.288,
+        "tool_diversity": 291,
+        "gen4plus_pct": 56.7,
+        "hm2c_pct": 48.4,
+        "mean_gen": 3.51,
+        "d1_deep_learning_pct": 76.1
+      },
+      {
+        "subject": "物理",
+        "n": 108,
+        "mean_istar": 1.324,
+        "mean_innovation": 2.25,
+        "tool_diversity": 64,
+        "gen4plus_pct": 55.6,
+        "hm2c_pct": 32.4,
+        "mean_gen": 3.435,
+        "d1_deep_learning_pct": 90.7
+      },
+      {
+        "subject": "道德与法治",
+        "n": 37,
+        "mean_istar": 1.351,
+        "mean_innovation": 2.243,
+        "tool_diversity": 28,
+        "gen4plus_pct": 35.1,
+        "hm2c_pct": 35.1,
+        "mean_gen": 2.919,
+        "d1_deep_learning_pct": 62.2
+      },
+      {
+        "subject": "心理健康教育",
+        "n": 40,
+        "mean_istar": 1.35,
+        "mean_innovation": 2.175,
+        "tool_diversity": 32,
+        "gen4plus_pct": 32.5,
+        "hm2c_pct": 35.0,
+        "mean_gen": 2.875,
+        "d1_deep_learning_pct": 30.0
+      },
+      {
+        "subject": "德育",
+        "n": 39,
+        "mean_istar": 1.154,
+        "mean_innovation": 2.154,
+        "tool_diversity": 33,
+        "gen4plus_pct": 30.8,
+        "hm2c_pct": 20.5,
+        "mean_gen": 2.872,
+        "d1_deep_learning_pct": 46.2
+      },
+      {
+        "subject": "地理",
+        "n": 56,
+        "mean_istar": 1.446,
+        "mean_innovation": 2.143,
+        "tool_diversity": 25,
+        "gen4plus_pct": 64.3,
+        "hm2c_pct": 44.6,
+        "mean_gen": 3.571,
+        "d1_deep_learning_pct": 85.7
+      },
+      {
+        "subject": "生物",
+        "n": 54,
+        "mean_istar": 1.407,
+        "mean_innovation": 2.093,
+        "tool_diversity": 27,
+        "gen4plus_pct": 57.4,
+        "hm2c_pct": 40.7,
+        "mean_gen": 3.463,
+        "d1_deep_learning_pct": 66.7
+      },
+      {
+        "subject": "体育",
+        "n": 127,
+        "mean_istar": 1.504,
+        "mean_innovation": 2.055,
+        "tool_diversity": 61,
+        "gen4plus_pct": 44.1,
+        "hm2c_pct": 50.4,
+        "mean_gen": 3.047,
+        "d1_deep_learning_pct": 38.6
+      },
+      {
+        "subject": "未提及",
+        "n": 644,
+        "mean_istar": 1.012,
+        "mean_innovation": 1.972,
+        "tool_diversity": 362,
+        "gen4plus_pct": 39.6,
+        "hm2c_pct": 13.8,
+        "mean_gen": 3.022,
+        "d1_deep_learning_pct": 46.1
+      },
+      {
+        "subject": "人工智能",
+        "n": 29,
+        "mean_istar": 1.31,
+        "mean_innovation": 1.966,
+        "tool_diversity": 16,
+        "gen4plus_pct": 27.6,
+        "hm2c_pct": 31.0,
+        "mean_gen": 2.828,
+        "d1_deep_learning_pct": 93.1
+      },
+      {
+        "subject": "信息技术",
+        "n": 33,
+        "mean_istar": 1.576,
+        "mean_innovation": 1.939,
+        "tool_diversity": 18,
+        "gen4plus_pct": 57.6,
+        "hm2c_pct": 57.6,
+        "mean_gen": 3.333,
+        "d1_deep_learning_pct": 78.8
+      },
+      {
+        "subject": "综合素质",
+        "n": 16,
+        "mean_istar": 1.312,
+        "mean_innovation": 1.75,
+        "tool_diversity": 11,
+        "gen4plus_pct": 37.5,
+        "hm2c_pct": 31.2,
+        "mean_gen": 2.875,
+        "d1_deep_learning_pct": 75.0
+      }
+    ],
+    "ai_ready_subjects": [
+      "信息科技",
+      "综合实践",
+      "英语",
+      "历史",
+      "劳动教育",
+      "美术",
+      "艺术"
+    ],
+    "ai_resistant_subjects": [
+      "道德与法治",
+      "心理健康教育",
+      "德育",
+      "体育",
+      "未提及",
+      "人工智能",
+      "综合素质"
+    ],
+    "wuyu_coverage": [
+      {
+        "五育": "智育",
+        "count": 2801,
+        "mean_innovation": 2.31,
+        "mean_gen": 3.29,
+        "hm2c_pct": 41.13
+      },
+      {
+        "五育": "德育",
+        "count": 467,
+        "mean_innovation": 2.25,
+        "mean_gen": 3.25,
+        "hm2c_pct": 38.76
+      },
+      {
+        "五育": "美育",
+        "count": 355,
+        "mean_innovation": 2.36,
+        "mean_gen": 3.43,
+        "hm2c_pct": 50.99
+      },
+      {
+        "五育": "体育",
+        "count": 115,
+        "mean_innovation": 2.07,
+        "mean_gen": 3.14,
+        "hm2c_pct": 52.17
+      },
+      {
+        "五育": "未提及",
+        "count": 62,
+        "mean_innovation": 1.87,
+        "mean_gen": 3.0,
+        "hm2c_pct": 1.61
+      },
+      {
+        "五育": "综合",
+        "count": 15,
+        "mean_innovation": 1.53,
+        "mean_gen": 2.93,
+        "hm2c_pct": 0.0
+      }
+    ],
+    "subject_istar_chi2": {
+      "chi2": 597.9,
+      "p_value": 0.0,
+      "dof": 50,
+      "cramers_v": 0.2988,
+      "interpretation": "学科与iSTAR层级显著相关 (V=0.299, 中效应量)"
+    }
+  },
+  "temporal_inference": {
+    "tech_generation_distribution": {
+      "Gen1_传统信息化": 0.7,
+      "Gen2_互联网+": 34.3,
+      "Gen3_AI辅助": 14.7,
+      "Gen4_大模型": 36.3,
+      "Gen5_多模态AI": 14.1
+    },
+    "cumulative_adoption": {
+      "Gen1_传统信息化": 0.7,
+      "Gen2_互联网+": 34.9,
+      "Gen3_AI辅助": 49.6,
+      "Gen4_大模型": 85.9,
+      "Gen5_多模态AI": 100.0
+    },
+    "llm_tipping_point": {
+      "llm_era_pct": 50.4,
+      "pre_llm_pct": 49.6,
+      "ratio": 1.015,
+      "interpretation": "LLM时代工具已超过传统工具"
+    },
+    "scenario_growth_potential": [
+      {
+        "应用场景（一级）": "助研",
+        "gen4plus_pct": 73.33,
+        "mean_gen": 3.87,
+        "count": 15
+      },
+      {
+        "应用场景（一级）": "助学",
+        "gen4plus_pct": 51.64,
+        "mean_gen": 3.32,
+        "count": 2804
+      },
+      {
+        "应用场景（一级）": "助教",
+        "gen4plus_pct": 50.97,
+        "mean_gen": 3.27,
+        "count": 669
+      },
+      {
+        "应用场景（一级）": "助育",
+        "gen4plus_pct": 44.44,
+        "mean_gen": 3.25,
+        "count": 126
+      },
+      {
+        "应用场景（一级）": "助评",
+        "gen4plus_pct": 36.84,
+        "mean_gen": 2.98,
+        "count": 114
+      },
+      {
+        "应用场景（一级）": "助管",
+        "gen4plus_pct": 25.93,
+        "mean_gen": 2.8,
+        "count": 81
+      }
+    ],
+    "stage_adoption_curve": [
+      {
+        "学段": "初中",
+        "gen4plus_pct": 55.72,
+        "gen5_pct": 16.89
+      },
+      {
+        "学段": "小学",
+        "gen4plus_pct": 49.31,
+        "gen5_pct": 14.01
+      },
+      {
+        "学段": "幼儿园",
+        "gen4plus_pct": 46.25,
+        "gen5_pct": 8.47
+      },
+      {
+        "学段": "高中",
+        "gen4plus_pct": 56.06,
+        "gen5_pct": 18.29
+      }
+    ],
+    "innovation_by_generation": [
+      {
+        "gen_num": 1,
+        "mean_innovation": 2.04,
+        "std_innovation": 0.935,
+        "count": 25
+      },
+      {
+        "gen_num": 2,
+        "mean_innovation": 2.254,
+        "std_innovation": 0.868,
+        "count": 1307
+      },
+      {
+        "gen_num": 3,
+        "mean_innovation": 2.109,
+        "std_innovation": 0.846,
+        "count": 561
+      },
+      {
+        "gen_num": 4,
+        "mean_innovation": 2.41,
+        "std_innovation": 0.852,
+        "count": 1384
+      },
+      {
+        "gen_num": 5,
+        "mean_innovation": 2.255,
+        "std_innovation": 0.77,
+        "count": 538
+      }
+    ],
+    "generation_innovation_kruskal": {
+      "H_statistic": 57.27,
+      "p_value": 0.0,
+      "interpretation": "技术代际间创新深度差异显著"
+    }
+  },
+  "policy_implications": {
+    "stage_balance": {
+      "gini": 0.0081,
+      "stage_means": {
+        "初中": 2.24,
+        "小学": 2.32,
+        "幼儿园": 2.33,
+        "高中": 2.34
+      },
+      "max_gap": 0.1
+    },
+    "subject_balance": {
+      "gini": 0.0571,
+      "max_gap": 0.93,
+      "highest": "信息科技 (2.68)",
+      "lowest": "综合素质 (1.75)"
+    },
+    "regional_balance": {
+      "gini": 0.0456,
+      "n_provinces": 28,
+      "max_gap": 0.87,
+      "top3": {
+        "陕西省": 2.84,
+        "河南省": 2.8,
+        "海南省": 2.67
+      },
+      "bottom3": {
+        "湖南省": 1.98,
+        "宁夏回族自治区": 2.01,
+        "江西省": 2.07
+      }
+    },
+    "wuyu_imbalance": {
+      "distribution_pct": {
+        "智育": 74.9,
+        "德育": 12.5,
+        "美育": 9.5,
+        "体育": 3.1
+      },
+      "zhiyu_dominance_pct": 74.9,
+      "non_zhiyu_total_pct": 25.1,
+      "gini": 0.5464,
+      "ideal_pct": 20.0,
+      "max_deviation_from_ideal": 54.9
+    },
+    "hmc_to_hm2c_transition": {
+      "hmc1_count": 2154,
+      "hm2c_count": 1575,
+      "hmc1_pct": 56.5,
+      "hm2c_pct": 41.3,
+      "hm2c_gen4plus_pct": 86.6,
+      "hmc1_gen4plus_pct": 24.9,
+      "gap_analysis": "HM2C案例中Gen4+工具占比 vs HMC(1)案例"
+    },
+    "policy_gaps": [
+      {
+        "gap": "五育严重失衡",
+        "metric": "智育占74.9%, 劳育仅占0.0%",
+        "severity": "高"
+      }
+    ]
+  },
+  "industry_health": {
+    "scenario_hhi": {
+      "助学": 187.0,
+      "助教": 285.3,
+      "助评": 299.9,
+      "助育": 279.7,
+      "助管": 283.6,
+      "未提及": 1666.7,
+      "助研": 3066.7
+    },
+    "hhi_interpretation": "HHI<1500=竞争性, 1500-2500=中度集中, >2500=高度集中",
+    "overall_hhi": 196.1,
+    "long_tail": {
+      "total_unique_tools": 1830,
+      "single_use_tools": 1479,
+      "single_use_pct": 80.8,
+      "top10_tools_share_pct": 30.8,
+      "top3_tools_share_pct": 20.7
+    },
+    "platform_dependency": {
+      "top_company": "豆包",
+      "top_company_share_pct": 11.4,
+      "bytedance_ecosystem_pct": 16.6,
+      "bytedance_ecosystem_count": 635,
+      "top5_companies": {
+        "豆包": 427,
+        "DeepSeek 大模型": 300,
+        "即梦 AI": 180,
+        "剪映AI": 78,
+        "希沃白板": 68
+      },
+      "company_hhi": 237.5
+    },
+    "open_source": {
+      "open_source_count": 308,
+      "open_source_pct": 8.1,
+      "proprietary_pct": 91.9,
+      "note": "开源工具主要为DeepSeek系列"
+    },
+    "product_form_diversity": {
+      "distribution": {
+        "软件平台": 2748,
+        "硬件 + AI系统": 140,
+        "AI系统": 135,
+        "硬件": 79,
+        "硬件 + 软件": 59,
+        "硬件 + 软件系统": 52,
+        "AI模型": 46,
+        "AI工具": 42,
+        "移动端 App": 37,
+        "软件工具": 34
+      },
+      "hhi": 5332.4
+    }
+  },
+  "golden_insights": [
+    "[反直觉] 经济水平与创新深度的Spearman相关系数 r=-0.272, p=0.1876 — 经济水平与创新深度呈负相关——欠发达地区反而创新更深",
+    "[学段差异] 技术代际最高学段: 高中 (均值=3.43), 最低: 幼儿园 (均值=3.18)",
+    "[反直觉] Gen1-2(低技术)中有7.7%达到创新深度4-5分 (Gen1-2均分=2.25, Gen4-5均分=2.367, p=0.000141)",
+    "[跨越式发展] 青海省经济tier=4, 但数字鸿沟指数=2.5 (Gen4+占62.5%)",
+    "[数字鸿沟] 工具多样性Gini=0.5701 — 0=完全均等, 1=完全集中. 当前Gini=0.5701, 高度不均",
+    "[工具组合] 多工具案例创新均分=2.774 vs 单工具=1.803 (p=0.0)",
+    "[自研工具] 自研工具创新均分=3.27 vs 非自研=2.12 (p=0.0)",
+    "[五育失衡] 智育占74.9%, 非智育仅25.1% (Gini=0.5464)",
+    "[长尾效应] 80.8%的工具仅被使用1次, Top3工具占20.7%市场份额",
+    "[平台依赖] 字节跳动生态(豆包+即梦+剪映)占16.6%"
+  ]
+}
