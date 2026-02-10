@@ -986,5 +986,35 @@ blockquote { background: var(--highlight-bg); border-left: 4px solid var(--prima
 </section>
 
 <!-- APPENDIX_PLACEHOLDER -->
+
+<!-- ==================== APPENDIX ==================== -->
+<section class="section" id="appendix">
+  <h2 class="section-title"><span class="num">附录</span>方法论说明</h2>
+
+  <h3 class="subsection-title">A.1 数据采集与清洗</h3>
+  <p>原始数据来源于全国中小学教师AI教育应用案例征集活动的提交材料。数据清洗流程包括：去除重复提交、修正明显的填写错误、统一工具/产品名称的表述规范、补充缺失的省份和学段信息等。最终获得1690个有效案例和3815条工具/产品记录。</p>
+
+  <h3 class="subsection-title">A.2 文本分析方法</h3>
+  <p><strong>关键词提取：</strong>采用TF-IDF算法和TextRank算法相结合的方式，从案例文本中提取高频关键词和核心概念。</p>
+  <p><strong>LDA主题建模：</strong>使用潜在狄利克雷分配（Latent Dirichlet Allocation）模型，设定主题数K=7（基于困惑度和主题一致性指标优化），对案例文本进行主题发现。</p>
+  <p><strong>KMeans聚类：</strong>对案例进行多维特征向量化（包括学段、学科、工具类型、应用场景、文本TF-IDF特征等），使用KMeans算法（K=10，基于轮廓系数优化）进行聚类分析。</p>
+
+  <h3 class="subsection-title">A.3 产业分析方法</h3>
+  <p>工具/产品的企业归属通过名称匹配和人工核验相结合的方式确定。市场集中度采用CRn指标（前n名企业市场份额之和）衡量。产品形态和类别的分类基于预设的分类体系，由研究团队进行编码。</p>
+
+  <h3 class="subsection-title">A.4 局限性说明</h3>
+  <p>本研究存在以下局限：（1）样本来源于自愿提交的案例征集活动，可能存在自选择偏差，积极使用AI的教师更倾向于参与；（2）案例文本为教师自述，可能存在主观美化或信息不完整的情况；（3）浙江省案例占比过高（25.6%），可能影响全国性结论的代表性；（4）工具使用频次反映的是教师提及次数而非实际使用深度，两者之间可能存在差异。</p>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="report-footer">
+  <div class="disclaimer">
+    <p>本报告基于1690个AI教育应用案例的数据分析生成，数据截止至案例征集活动结束日期。</p>
+    <p>报告中的分析和建议仅代表研究团队基于数据的学术判断，不构成政策承诺或商业建议。</p>
+    <p style="margin-top:12px; opacity:0.6;">AI赋能基础教育研究报告 &copy; 2026 &nbsp;|&nbsp; 数据来源：全国中小学教师AI教育应用案例征集活动</p>
+  </div>
+</footer>
 </body>
 </html>
