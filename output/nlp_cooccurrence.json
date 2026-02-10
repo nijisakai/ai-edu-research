@@ -1,0 +1,1441 @@
+﻿{
+  "n_docs": 1690,
+  "top_keywords": [
+    {
+      "word": "AI",
+      "freq": 878
+    },
+    {
+      "word": "个性化",
+      "freq": 327
+    },
+    {
+      "word": "教学模式",
+      "freq": 306
+    },
+    {
+      "word": "效率",
+      "freq": 300
+    },
+    {
+      "word": "融合",
+      "freq": 273
+    },
+    {
+      "word": "传统",
+      "freq": 272
+    },
+    {
+      "word": "模式",
+      "freq": 259
+    },
+    {
+      "word": "深度",
+      "freq": 238
+    },
+    {
+      "word": "驱动",
+      "freq": 209
+    },
+    {
+      "word": "精准",
+      "freq": 197
+    },
+    {
+      "word": "协同",
+      "freq": 183
+    },
+    {
+      "word": "兴趣",
+      "freq": 170
+    },
+    {
+      "word": "智能",
+      "freq": 165
+    },
+    {
+      "word": "参与度",
+      "freq": 163
+    },
+    {
+      "word": "探究",
+      "freq": 162
+    },
+    {
+      "word": "显著",
+      "freq": 159
+    },
+    {
+      "word": "范式",
+      "freq": 149
+    },
+    {
+      "word": "幼儿",
+      "freq": 145
+    },
+    {
+      "word": "打破",
+      "freq": 133
+    },
+    {
+      "word": "动态",
+      "freq": 129
+    },
+    {
+      "word": "闭环",
+      "freq": 129
+    },
+    {
+      "word": "转变",
+      "freq": 122
+    },
+    {
+      "word": "互动",
+      "freq": 120
+    },
+    {
+      "word": "理解",
+      "freq": 119
+    },
+    {
+      "word": "流程",
+      "freq": 110
+    },
+    {
+      "word": "复制",
+      "freq": 102
+    },
+    {
+      "word": "转型",
+      "freq": 97
+    },
+    {
+      "word": "激发",
+      "freq": 96
+    },
+    {
+      "word": "突破",
+      "freq": 95
+    },
+    {
+      "word": "赋能",
+      "freq": 93
+    },
+    {
+      "word": "反馈",
+      "freq": 92
+    },
+    {
+      "word": "跨学科",
+      "freq": 89
+    },
+    {
+      "word": "人工智能",
+      "freq": 88
+    },
+    {
+      "word": "文化",
+      "freq": 88
+    },
+    {
+      "word": "解决",
+      "freq": 87
+    },
+    {
+      "word": "生成",
+      "freq": 87
+    },
+    {
+      "word": "体系",
+      "freq": 86
+    },
+    {
+      "word": "AI赋能",
+      "freq": 85
+    },
+    {
+      "word": "科学",
+      "freq": 85
+    },
+    {
+      "word": "个性化学习",
+      "freq": 81
+    },
+    {
+      "word": "可视化",
+      "freq": 80
+    },
+    {
+      "word": "数字化",
+      "freq": 80
+    },
+    {
+      "word": "实验",
+      "freq": 77
+    },
+    {
+      "word": "情境",
+      "freq": 75
+    },
+    {
+      "word": "场景",
+      "freq": 74
+    },
+    {
+      "word": "认知",
+      "freq": 70
+    },
+    {
+      "word": "体验",
+      "freq": 69
+    },
+    {
+      "word": "自主",
+      "freq": 69
+    },
+    {
+      "word": "主动",
+      "freq": 68
+    },
+    {
+      "word": "降低",
+      "freq": 67
+    },
+    {
+      "word": "课堂教学",
+      "freq": 64
+    },
+    {
+      "word": "批改",
+      "freq": 64
+    },
+    {
+      "word": "路径",
+      "freq": 63
+    },
+    {
+      "word": "备课",
+      "freq": 62
+    },
+    {
+      "word": "实时",
+      "freq": 62
+    },
+    {
+      "word": "智能体",
+      "freq": 62
+    },
+    {
+      "word": "辅助",
+      "freq": 61
+    },
+    {
+      "word": "指导",
+      "freq": 60
+    },
+    {
+      "word": "沉浸",
+      "freq": 60
+    },
+    {
+      "word": "局限",
+      "freq": 60
+    },
+    {
+      "word": "成长",
+      "freq": 58
+    },
+    {
+      "word": "作业",
+      "freq": 58
+    },
+    {
+      "word": "抽象",
+      "freq": 57
+    },
+    {
+      "word": "人机",
+      "freq": 57
+    },
+    {
+      "word": "核心素养",
+      "freq": 56
+    },
+    {
+      "word": "经验",
+      "freq": 55
+    },
+    {
+      "word": "专业",
+      "freq": 54
+    },
+    {
+      "word": "负担",
+      "freq": 54
+    },
+    {
+      "word": "教研",
+      "freq": 54
+    },
+    {
+      "word": "减轻",
+      "freq": 52
+    },
+    {
+      "word": "整合",
+      "freq": 52
+    },
+    {
+      "word": "诊断",
+      "freq": 51
+    },
+    {
+      "word": "智能化",
+      "freq": 51
+    },
+    {
+      "word": "门槛",
+      "freq": 50
+    },
+    {
+      "word": "综合",
+      "freq": 50
+    },
+    {
+      "word": "重构",
+      "freq": 49
+    },
+    {
+      "word": "数字",
+      "freq": 49
+    },
+    {
+      "word": "数学",
+      "freq": 49
+    },
+    {
+      "word": "虚拟",
+      "freq": 47
+    },
+    {
+      "word": "多模态",
+      "freq": 47
+    }
+  ],
+  "top_cooccurrence_pairs": [
+    {
+      "word1": "AI",
+      "word2": "教学模式",
+      "count": 178
+    },
+    {
+      "word1": "AI",
+      "word2": "效率",
+      "count": 168
+    },
+    {
+      "word1": "AI",
+      "word2": "融合",
+      "count": 159
+    },
+    {
+      "word1": "AI",
+      "word2": "个性化",
+      "count": 153
+    },
+    {
+      "word1": "AI",
+      "word2": "传统",
+      "count": 150
+    },
+    {
+      "word1": "AI",
+      "word2": "深度",
+      "count": 143
+    },
+    {
+      "word1": "深度",
+      "word2": "融合",
+      "count": 140
+    },
+    {
+      "word1": "AI",
+      "word2": "模式",
+      "count": 128
+    },
+    {
+      "word1": "传统",
+      "word2": "打破",
+      "count": 105
+    },
+    {
+      "word1": "AI",
+      "word2": "参与度",
+      "count": 98
+    },
+    {
+      "word1": "AI",
+      "word2": "兴趣",
+      "count": 93
+    },
+    {
+      "word1": "传统",
+      "word2": "教学模式",
+      "count": 93
+    },
+    {
+      "word1": "AI",
+      "word2": "协同",
+      "count": 92
+    },
+    {
+      "word1": "AI",
+      "word2": "显著",
+      "count": 92
+    },
+    {
+      "word1": "AI",
+      "word2": "精准",
+      "count": 91
+    },
+    {
+      "word1": "个性化",
+      "word2": "效率",
+      "count": 90
+    },
+    {
+      "word1": "AI",
+      "word2": "幼儿",
+      "count": 84
+    },
+    {
+      "word1": "AI",
+      "word2": "互动",
+      "count": 82
+    },
+    {
+      "word1": "AI",
+      "word2": "探究",
+      "count": 81
+    },
+    {
+      "word1": "AI",
+      "word2": "驱动",
+      "count": 81
+    },
+    {
+      "word1": "AI",
+      "word2": "动态",
+      "count": 77
+    },
+    {
+      "word1": "教学模式",
+      "word2": "融合",
+      "count": 76
+    },
+    {
+      "word1": "个性化",
+      "word2": "精准",
+      "count": 74
+    },
+    {
+      "word1": "AI",
+      "word2": "理解",
+      "count": 71
+    },
+    {
+      "word1": "AI",
+      "word2": "范式",
+      "count": 70
+    },
+    {
+      "word1": "AI",
+      "word2": "打破",
+      "count": 68
+    },
+    {
+      "word1": "传统",
+      "word2": "突破",
+      "count": 65
+    },
+    {
+      "word1": "效率",
+      "word2": "显著",
+      "count": 64
+    },
+    {
+      "word1": "AI",
+      "word2": "智能",
+      "count": 63
+    },
+    {
+      "word1": "AI",
+      "word2": "闭环",
+      "count": 63
+    },
+    {
+      "word1": "AI",
+      "word2": "流程",
+      "count": 63
+    },
+    {
+      "word1": "AI",
+      "word2": "生成",
+      "count": 61
+    },
+    {
+      "word1": "AI",
+      "word2": "激发",
+      "count": 61
+    },
+    {
+      "word1": "教学模式",
+      "word2": "深度",
+      "count": 57
+    },
+    {
+      "word1": "AI",
+      "word2": "文化",
+      "count": 55
+    },
+    {
+      "word1": "传统",
+      "word2": "局限",
+      "count": 55
+    },
+    {
+      "word1": "AI",
+      "word2": "反馈",
+      "count": 54
+    },
+    {
+      "word1": "人机",
+      "word2": "协同",
+      "count": 54
+    },
+    {
+      "word1": "AI",
+      "word2": "复制",
+      "count": 54
+    },
+    {
+      "word1": "传统",
+      "word2": "融合",
+      "count": 54
+    },
+    {
+      "word1": "AI",
+      "word2": "突破",
+      "count": 53
+    },
+    {
+      "word1": "协同",
+      "word2": "模式",
+      "count": 53
+    },
+    {
+      "word1": "AI",
+      "word2": "情境",
+      "count": 53
+    },
+    {
+      "word1": "AI",
+      "word2": "转变",
+      "count": 52
+    },
+    {
+      "word1": "模式",
+      "word2": "驱动",
+      "count": 52
+    },
+    {
+      "word1": "传统",
+      "word2": "模式",
+      "count": 51
+    },
+    {
+      "word1": "AI",
+      "word2": "跨学科",
+      "count": 50
+    },
+    {
+      "word1": "融合",
+      "word2": "跨学科",
+      "count": 50
+    },
+    {
+      "word1": "模式",
+      "word2": "融合",
+      "count": 50
+    },
+    {
+      "word1": "兴趣",
+      "word2": "激发",
+      "count": 49
+    },
+    {
+      "word1": "探究",
+      "word2": "教学模式",
+      "count": 49
+    },
+    {
+      "word1": "个性化",
+      "word2": "模式",
+      "count": 48
+    },
+    {
+      "word1": "AI",
+      "word2": "转型",
+      "count": 48
+    },
+    {
+      "word1": "减轻",
+      "word2": "负担",
+      "count": 48
+    },
+    {
+      "word1": "打破",
+      "word2": "教学模式",
+      "count": 48
+    },
+    {
+      "word1": "AI",
+      "word2": "辅助",
+      "count": 47
+    },
+    {
+      "word1": "AI",
+      "word2": "场景",
+      "count": 47
+    },
+    {
+      "word1": "AI",
+      "word2": "可视化",
+      "count": 46
+    },
+    {
+      "word1": "AI",
+      "word2": "科学",
+      "count": 46
+    },
+    {
+      "word1": "探究",
+      "word2": "科学",
+      "count": 45
+    },
+    {
+      "word1": "AI",
+      "word2": "认知",
+      "count": 44
+    },
+    {
+      "word1": "备课",
+      "word2": "效率",
+      "count": 44
+    },
+    {
+      "word1": "AI",
+      "word2": "体验",
+      "count": 44
+    },
+    {
+      "word1": "精准",
+      "word2": "驱动",
+      "count": 43
+    },
+    {
+      "word1": "个性化",
+      "word2": "驱动",
+      "count": 43
+    },
+    {
+      "word1": "范式",
+      "word2": "驱动",
+      "count": 43
+    },
+    {
+      "word1": "个性化",
+      "word2": "传统",
+      "count": 43
+    },
+    {
+      "word1": "传统",
+      "word2": "深度",
+      "count": 43
+    },
+    {
+      "word1": "教学模式",
+      "word2": "驱动",
+      "count": 42
+    },
+    {
+      "word1": "门槛",
+      "word2": "降低",
+      "count": 42
+    },
+    {
+      "word1": "协同",
+      "word2": "教学模式",
+      "count": 42
+    },
+    {
+      "word1": "经验",
+      "word2": "驱动",
+      "count": 42
+    },
+    {
+      "word1": "个性化",
+      "word2": "教学模式",
+      "count": 41
+    },
+    {
+      "word1": "个性化",
+      "word2": "指导",
+      "count": 41
+    },
+    {
+      "word1": "AI",
+      "word2": "降低",
+      "count": 41
+    },
+    {
+      "word1": "AI",
+      "word2": "解决",
+      "count": 40
+    },
+    {
+      "word1": "AI",
+      "word2": "指导",
+      "count": 40
+    },
+    {
+      "word1": "批改",
+      "word2": "效率",
+      "count": 40
+    },
+    {
+      "word1": "AI",
+      "word2": "沉浸",
+      "count": 40
+    },
+    {
+      "word1": "智能",
+      "word2": "精准",
+      "count": 39
+    },
+    {
+      "word1": "参与度",
+      "word2": "效率",
+      "count": 39
+    },
+    {
+      "word1": "AI",
+      "word2": "批改",
+      "count": 39
+    },
+    {
+      "word1": "闭环",
+      "word2": "驱动",
+      "count": 39
+    },
+    {
+      "word1": "数字化",
+      "word2": "转型",
+      "count": 39
+    },
+    {
+      "word1": "AI",
+      "word2": "赋能",
+      "count": 39
+    },
+    {
+      "word1": "效率",
+      "word2": "智能",
+      "count": 38
+    },
+    {
+      "word1": "效率",
+      "word2": "精准",
+      "count": 38
+    },
+    {
+      "word1": "转变",
+      "word2": "驱动",
+      "count": 37
+    },
+    {
+      "word1": "个性化",
+      "word2": "显著",
+      "count": 37
+    },
+    {
+      "word1": "模式",
+      "word2": "深度",
+      "count": 37
+    },
+    {
+      "word1": "文化",
+      "word2": "融合",
+      "count": 37
+    },
+    {
+      "word1": "兴趣",
+      "word2": "教学模式",
+      "count": 37
+    },
+    {
+      "word1": "AI",
+      "word2": "抽象",
+      "count": 36
+    },
+    {
+      "word1": "个性化",
+      "word2": "兴趣",
+      "count": 36
+    },
+    {
+      "word1": "智能",
+      "word2": "驱动",
+      "count": 36
+    },
+    {
+      "word1": "个性化",
+      "word2": "反馈",
+      "count": 35
+    },
+    {
+      "word1": "个性化",
+      "word2": "协同",
+      "count": 35
+    },
+    {
+      "word1": "协同",
+      "word2": "效率",
+      "count": 35
+    },
+    {
+      "word1": "个性化",
+      "word2": "深度",
+      "count": 35
+    },
+    {
+      "word1": "AI",
+      "word2": "个性化学习",
+      "count": 35
+    }
+  ],
+  "network": {
+    "nodes": [
+      {
+        "id": "文化",
+        "freq": 88
+      },
+      {
+        "id": "教学模式",
+        "freq": 306
+      },
+      {
+        "id": "模式",
+        "freq": 259
+      },
+      {
+        "id": "沉浸",
+        "freq": 60
+      },
+      {
+        "id": "负担",
+        "freq": 54
+      },
+      {
+        "id": "门槛",
+        "freq": 50
+      },
+      {
+        "id": "指导",
+        "freq": 60
+      },
+      {
+        "id": "局限",
+        "freq": 60
+      },
+      {
+        "id": "协同",
+        "freq": 183
+      },
+      {
+        "id": "情境",
+        "freq": 75
+      },
+      {
+        "id": "科学",
+        "freq": 85
+      },
+      {
+        "id": "转型",
+        "freq": 97
+      },
+      {
+        "id": "个性化",
+        "freq": 327
+      },
+      {
+        "id": "理解",
+        "freq": 119
+      },
+      {
+        "id": "批改",
+        "freq": 64
+      },
+      {
+        "id": "辅助",
+        "freq": 61
+      },
+      {
+        "id": "复制",
+        "freq": 102
+      },
+      {
+        "id": "突破",
+        "freq": 95
+      },
+      {
+        "id": "深度",
+        "freq": 238
+      },
+      {
+        "id": "动态",
+        "freq": 129
+      },
+      {
+        "id": "体验",
+        "freq": 69
+      },
+      {
+        "id": "融合",
+        "freq": 273
+      },
+      {
+        "id": "生成",
+        "freq": 87
+      },
+      {
+        "id": "智能",
+        "freq": 165
+      },
+      {
+        "id": "反馈",
+        "freq": 92
+      },
+      {
+        "id": "传统",
+        "freq": 272
+      },
+      {
+        "id": "人机",
+        "freq": 57
+      },
+      {
+        "id": "AI",
+        "freq": 878
+      },
+      {
+        "id": "可视化",
+        "freq": 80
+      },
+      {
+        "id": "效率",
+        "freq": 300
+      },
+      {
+        "id": "流程",
+        "freq": 110
+      },
+      {
+        "id": "降低",
+        "freq": 67
+      },
+      {
+        "id": "跨学科",
+        "freq": 89
+      },
+      {
+        "id": "减轻",
+        "freq": 52
+      },
+      {
+        "id": "经验",
+        "freq": 55
+      },
+      {
+        "id": "认知",
+        "freq": 70
+      },
+      {
+        "id": "参与度",
+        "freq": 163
+      },
+      {
+        "id": "闭环",
+        "freq": 129
+      },
+      {
+        "id": "范式",
+        "freq": 149
+      },
+      {
+        "id": "打破",
+        "freq": 133
+      },
+      {
+        "id": "兴趣",
+        "freq": 170
+      },
+      {
+        "id": "精准",
+        "freq": 197
+      },
+      {
+        "id": "幼儿",
+        "freq": 145
+      },
+      {
+        "id": "驱动",
+        "freq": 209
+      },
+      {
+        "id": "备课",
+        "freq": 62
+      },
+      {
+        "id": "场景",
+        "freq": 74
+      },
+      {
+        "id": "解决",
+        "freq": 87
+      },
+      {
+        "id": "探究",
+        "freq": 162
+      },
+      {
+        "id": "激发",
+        "freq": 96
+      },
+      {
+        "id": "显著",
+        "freq": 159
+      },
+      {
+        "id": "互动",
+        "freq": 120
+      },
+      {
+        "id": "转变",
+        "freq": 122
+      }
+    ],
+    "edges": [
+      {
+        "source": "AI",
+        "target": "教学模式",
+        "weight": 178
+      },
+      {
+        "source": "AI",
+        "target": "效率",
+        "weight": 168
+      },
+      {
+        "source": "AI",
+        "target": "融合",
+        "weight": 159
+      },
+      {
+        "source": "AI",
+        "target": "个性化",
+        "weight": 153
+      },
+      {
+        "source": "AI",
+        "target": "传统",
+        "weight": 150
+      },
+      {
+        "source": "AI",
+        "target": "深度",
+        "weight": 143
+      },
+      {
+        "source": "深度",
+        "target": "融合",
+        "weight": 140
+      },
+      {
+        "source": "AI",
+        "target": "模式",
+        "weight": 128
+      },
+      {
+        "source": "传统",
+        "target": "打破",
+        "weight": 105
+      },
+      {
+        "source": "AI",
+        "target": "参与度",
+        "weight": 98
+      },
+      {
+        "source": "AI",
+        "target": "兴趣",
+        "weight": 93
+      },
+      {
+        "source": "传统",
+        "target": "教学模式",
+        "weight": 93
+      },
+      {
+        "source": "AI",
+        "target": "协同",
+        "weight": 92
+      },
+      {
+        "source": "AI",
+        "target": "显著",
+        "weight": 92
+      },
+      {
+        "source": "AI",
+        "target": "精准",
+        "weight": 91
+      },
+      {
+        "source": "个性化",
+        "target": "效率",
+        "weight": 90
+      },
+      {
+        "source": "AI",
+        "target": "幼儿",
+        "weight": 84
+      },
+      {
+        "source": "AI",
+        "target": "互动",
+        "weight": 82
+      },
+      {
+        "source": "AI",
+        "target": "探究",
+        "weight": 81
+      },
+      {
+        "source": "AI",
+        "target": "驱动",
+        "weight": 81
+      },
+      {
+        "source": "AI",
+        "target": "动态",
+        "weight": 77
+      },
+      {
+        "source": "教学模式",
+        "target": "融合",
+        "weight": 76
+      },
+      {
+        "source": "个性化",
+        "target": "精准",
+        "weight": 74
+      },
+      {
+        "source": "AI",
+        "target": "理解",
+        "weight": 71
+      },
+      {
+        "source": "AI",
+        "target": "范式",
+        "weight": 70
+      },
+      {
+        "source": "AI",
+        "target": "打破",
+        "weight": 68
+      },
+      {
+        "source": "传统",
+        "target": "突破",
+        "weight": 65
+      },
+      {
+        "source": "效率",
+        "target": "显著",
+        "weight": 64
+      },
+      {
+        "source": "AI",
+        "target": "智能",
+        "weight": 63
+      },
+      {
+        "source": "AI",
+        "target": "闭环",
+        "weight": 63
+      },
+      {
+        "source": "AI",
+        "target": "流程",
+        "weight": 63
+      },
+      {
+        "source": "AI",
+        "target": "生成",
+        "weight": 61
+      },
+      {
+        "source": "AI",
+        "target": "激发",
+        "weight": 61
+      },
+      {
+        "source": "教学模式",
+        "target": "深度",
+        "weight": 57
+      },
+      {
+        "source": "AI",
+        "target": "文化",
+        "weight": 55
+      },
+      {
+        "source": "传统",
+        "target": "局限",
+        "weight": 55
+      },
+      {
+        "source": "AI",
+        "target": "反馈",
+        "weight": 54
+      },
+      {
+        "source": "人机",
+        "target": "协同",
+        "weight": 54
+      },
+      {
+        "source": "AI",
+        "target": "复制",
+        "weight": 54
+      },
+      {
+        "source": "传统",
+        "target": "融合",
+        "weight": 54
+      },
+      {
+        "source": "AI",
+        "target": "突破",
+        "weight": 53
+      },
+      {
+        "source": "协同",
+        "target": "模式",
+        "weight": 53
+      },
+      {
+        "source": "AI",
+        "target": "情境",
+        "weight": 53
+      },
+      {
+        "source": "AI",
+        "target": "转变",
+        "weight": 52
+      },
+      {
+        "source": "模式",
+        "target": "驱动",
+        "weight": 52
+      },
+      {
+        "source": "传统",
+        "target": "模式",
+        "weight": 51
+      },
+      {
+        "source": "AI",
+        "target": "跨学科",
+        "weight": 50
+      },
+      {
+        "source": "融合",
+        "target": "跨学科",
+        "weight": 50
+      },
+      {
+        "source": "模式",
+        "target": "融合",
+        "weight": 50
+      },
+      {
+        "source": "兴趣",
+        "target": "激发",
+        "weight": 49
+      },
+      {
+        "source": "探究",
+        "target": "教学模式",
+        "weight": 49
+      },
+      {
+        "source": "个性化",
+        "target": "模式",
+        "weight": 48
+      },
+      {
+        "source": "AI",
+        "target": "转型",
+        "weight": 48
+      },
+      {
+        "source": "减轻",
+        "target": "负担",
+        "weight": 48
+      },
+      {
+        "source": "打破",
+        "target": "教学模式",
+        "weight": 48
+      },
+      {
+        "source": "AI",
+        "target": "辅助",
+        "weight": 47
+      },
+      {
+        "source": "AI",
+        "target": "场景",
+        "weight": 47
+      },
+      {
+        "source": "AI",
+        "target": "可视化",
+        "weight": 46
+      },
+      {
+        "source": "AI",
+        "target": "科学",
+        "weight": 46
+      },
+      {
+        "source": "探究",
+        "target": "科学",
+        "weight": 45
+      },
+      {
+        "source": "AI",
+        "target": "认知",
+        "weight": 44
+      },
+      {
+        "source": "备课",
+        "target": "效率",
+        "weight": 44
+      },
+      {
+        "source": "AI",
+        "target": "体验",
+        "weight": 44
+      },
+      {
+        "source": "精准",
+        "target": "驱动",
+        "weight": 43
+      },
+      {
+        "source": "个性化",
+        "target": "驱动",
+        "weight": 43
+      },
+      {
+        "source": "范式",
+        "target": "驱动",
+        "weight": 43
+      },
+      {
+        "source": "个性化",
+        "target": "传统",
+        "weight": 43
+      },
+      {
+        "source": "传统",
+        "target": "深度",
+        "weight": 43
+      },
+      {
+        "source": "教学模式",
+        "target": "驱动",
+        "weight": 42
+      },
+      {
+        "source": "门槛",
+        "target": "降低",
+        "weight": 42
+      },
+      {
+        "source": "协同",
+        "target": "教学模式",
+        "weight": 42
+      },
+      {
+        "source": "经验",
+        "target": "驱动",
+        "weight": 42
+      },
+      {
+        "source": "个性化",
+        "target": "教学模式",
+        "weight": 41
+      },
+      {
+        "source": "个性化",
+        "target": "指导",
+        "weight": 41
+      },
+      {
+        "source": "AI",
+        "target": "降低",
+        "weight": 41
+      },
+      {
+        "source": "AI",
+        "target": "解决",
+        "weight": 40
+      },
+      {
+        "source": "AI",
+        "target": "指导",
+        "weight": 40
+      },
+      {
+        "source": "批改",
+        "target": "效率",
+        "weight": 40
+      },
+      {
+        "source": "AI",
+        "target": "沉浸",
+        "weight": 40
+      },
+      {
+        "source": "智能",
+        "target": "精准",
+        "weight": 39
+      }
+    ]
+  }
+}
