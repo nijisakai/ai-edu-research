@@ -1,0 +1,1157 @@
+{
+  "sample_size": 46,
+  "sampling_strategy": "Stratified sampling across 10 NLP clusters, 4 school stages (小学/初中/高中/幼儿园), 5 application scenarios (助学/助教/助管/助评/助育), 15+ provinces, plus outliers (self-developed tools, multi-tool cases, unusual subjects like 体育/美术/音乐/劳动/道德与法治)",
+  "cases": [
+    {
+      "case_id": "第01号案例",
+      "title": "数'算'生'动'：AI赋能下运算律教学的新样态",
+      "school": "温州市新田园小学",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "豆包",
+        "DeepSeek",
+        "易点慧AI语音互动平台"
+      ],
+      "actual_usage_description": "教师使用豆包和DeepSeek生成动态点子图代码，开发交互式网页让学生自主输入数值实时生成运算律图示；集成AI语音互动平台设计分层提问框架引导学生说理；建立错题数据库智能识别错误类型",
+      "pedagogical_innovation": "构建'可视化理解-智能说理-数据诊断'三位一体AI教学系统，将抽象运算律转化为可操作的探究过程，实现概念理解从抽象到直观的突破",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生通过操作AI点子图自主发现运算规律，通过AI语音互动用数学语言解释算理，课后可向AI答疑角提问获得即时反馈",
+      "deep_learning_evidence": "涉及算理建构、辨析深化、表达提升等高阶思维活动，学生需从'怎么做'到'为什么这么做'的深度思考",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育，聚焦数学学科核心素养",
+      "key_quotes": [
+        "62%的学生在乘法分配律应用中存在生搬硬套现象",
+        "学生通过操作AI点子图，自主发现运算规律",
+        "AI系统智能识别表达中的逻辑漏洞，推送针对性提示问题"
+      ],
+      "cluster_id": 2,
+      "overall_assessment": "较高质量的HM2C案例，学生直接与AI交互进行数学探究，但AI主要用于可视化和语音交互，尚未达到真正的人机共创水平"
+    },
+    {
+      "case_id": "第02号案例",
+      "title": "人工智能视域下'三维联动'小学足球运球游戏设计与实践",
+      "school": "温州市新田园小学",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "AI运动分析系统"
+      ],
+      "actual_usage_description": "利用AI运动捕捉技术分析学生足球运球动作，提供实时反馈和个性化训练建议",
+      "pedagogical_innovation": "将AI动作分析融入体育游戏化教学，构建'技术-体能-战术'三维联动模式",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师主导使用AI分析工具，学生作为被分析对象而非AI交互主体",
+      "deep_learning_evidence": "体育技能训练为主，涉及动作模式识别和策略调整，属于中等深度",
+      "wuyu_category": "体育",
+      "wuyu_integration_quality": "以体育为主，兼顾健康教育",
+      "key_quotes": [
+        "AI运动分析系统实时捕捉学生运球动作",
+        "三维联动促进学生运动技能全面发展"
+      ],
+      "cluster_id": 1,
+      "overall_assessment": "体育学科AI应用的典型案例，AI主要用于动作分析和反馈，教师仍是教学主导者"
+    },
+    {
+      "case_id": "第03号案例",
+      "title": "从赋能到内生：智能评测驱动'教学评一致'的机理与路径探寻",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "智能评测系统"
+      ],
+      "actual_usage_description": "利用智能评测系统实现教学评一致性，通过数据驱动的评价反馈优化教学设计",
+      "pedagogical_innovation": "从外部技术赋能转向内生性教学改进，构建评测驱动的教学闭环",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师使用智能评测工具分析学情，学生未直接与AI交互",
+      "deep_learning_evidence": "聚焦评价驱动教学改进，涉及教学反思和策略调整",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育",
+      "key_quotes": [
+        "从赋能到内生的转变路径",
+        "智能评测驱动教学评一致"
+      ],
+      "cluster_id": 6,
+      "overall_assessment": "评价导向的AI应用，关注教学系统性改进而非单点工具替代"
+    },
+    {
+      "case_id": "第04号案例",
+      "title": "AI赋能地理课堂--七大洲轮廓记忆消消乐",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "上海",
+      "tools_used": [
+        "AI游戏化学习平台"
+      ],
+      "actual_usage_description": "利用AI生成七大洲轮廓的消消乐游戏，学生通过游戏化方式记忆地理知识",
+      "pedagogical_innovation": "将AI与游戏化学习结合，降低地理空间认知的记忆难度",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接与AI游戏系统交互，通过操作完成学习任务",
+      "deep_learning_evidence": "停留在知识记忆层面（七大洲轮廓识别），属于浅层学习",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育",
+      "key_quotes": [
+        "通过消消乐游戏方式帮助学生记忆七大洲轮廓"
+      ],
+      "cluster_id": 5,
+      "overall_assessment": "典型的浅层AI应用——用AI包装传统记忆任务，游戏化形式新颖但认知深度有限"
+    },
+    {
+      "case_id": "第07号案例",
+      "title": "AI作为'认知协作者'赋能高中数学阅读精品课的跨学科构建与实践",
+      "school": "未明确",
+      "stage": "高中",
+      "province": "内蒙古",
+      "tools_used": [
+        "DeepSeek",
+        "豆包",
+        "3D虚拟实验室"
+      ],
+      "actual_usage_description": "将AI定位为'认知协作者'，学生与AI协作进行数学阅读和跨学科探究，AI辅助文献分析、问题生成和思维可视化",
+      "pedagogical_innovation": "明确提出AI作为'认知协作者'的定位，超越工具替代层面，构建人机协作的跨学科学习模式",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生与AI进行认知层面的协作，AI参与问题生成和思维引导，而非仅提供答案",
+      "deep_learning_evidence": "涉及跨学科思维、数学阅读理解、批判性分析等高阶认知活动",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "跨学科融合，数学与其他学科交叉",
+      "key_quotes": [
+        "AI作为认知协作者",
+        "从知识接收者到思维建构者的转变"
+      ],
+      "cluster_id": 7,
+      "overall_assessment": "理念先进的案例，明确将AI定位为认知协作者而非工具，但实际实施深度需进一步验证"
+    },
+    {
+      "case_id": "第08号案例",
+      "title": "AI智教分析：教学相长的协同创新",
+      "school": "海河中学",
+      "stage": "初中",
+      "province": "宁夏",
+      "tools_used": [
+        "720云VR全景",
+        "AA班级助手"
+      ],
+      "actual_usage_description": "利用VR全景技术和AI班级助手进行教学分析，实现教学过程的数据化和可视化",
+      "pedagogical_innovation": "构建教学分析的AI支持系统，促进教师教学反思和改进",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "AI主要服务于教师的教学分析和改进，学生未直接与AI交互",
+      "deep_learning_evidence": "聚焦教师专业发展，对学生学习深度的直接影响有限",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育",
+      "key_quotes": [
+        "教学相长的协同创新"
+      ],
+      "cluster_id": 6,
+      "overall_assessment": "助教类案例，AI服务于教师而非学生，属于典型的HMC(1)模式"
+    },
+    {
+      "case_id": "第09号案例",
+      "title": "盛情邀约——海河中学130周年校庆邀请函设计",
+      "school": "海河中学",
+      "stage": "初中",
+      "province": "宁夏",
+      "tools_used": [
+        "豆包",
+        "即梦AI",
+        "剪映AI"
+      ],
+      "actual_usage_description": "学生使用豆包生成邀请函文案，即梦AI生成配图，剪映AI制作视频邀请函，完成校庆邀请函的全流程创作",
+      "pedagogical_innovation": "以真实任务驱动多工具协同创作，学生在项目中自主选择和组合AI工具",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接操作多个AI工具完成创作任务，自主决策工具选择和内容生成",
+      "deep_learning_evidence": "涉及创意设计、审美判断、多媒体整合等能力，但核心仍是AI辅助内容生成",
+      "wuyu_category": "美育",
+      "wuyu_integration_quality": "美育与德育融合（校庆文化认同）",
+      "key_quotes": [
+        "学生使用豆包生成邀请函文案",
+        "即梦AI生成校庆主题配图"
+      ],
+      "cluster_id": 5,
+      "overall_assessment": "多工具协同的项目式学习案例，学生有较高自主性，但AI主要用于内容生成而非深度思考"
+    },
+    {
+      "case_id": "第10号案例",
+      "title": "人工智能赋能初中英语互动教学：破解课程参与难度，提升教学效能",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "浙江",
+      "tools_used": [
+        "科大讯飞语音评测",
+        "AI互动教学平台"
+      ],
+      "actual_usage_description": "利用科大讯飞语音识别技术进行英语口语评测，AI平台提供个性化互动练习",
+      "pedagogical_innovation": "通过AI语音技术降低英语口语练习的心理门槛，提升课堂参与度",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师设计教学流程，AI作为评测工具嵌入课堂，学生被动接受AI评测",
+      "deep_learning_evidence": "语音模仿和重复练习为主，属于浅层技能训练",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育（英语学科）",
+      "key_quotes": [
+        "破解课程参与难度",
+        "AI语音评测实时反馈发音准确度"
+      ],
+      "cluster_id": 7,
+      "overall_assessment": "典型的AI辅助语言训练案例，技术应用成熟但教学创新有限"
+    },
+    {
+      "case_id": "第11号案例",
+      "title": "AI赋能跨学科融合：小学美术《用彩墨画鱼》全流程智能教学实践",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "上海",
+      "tools_used": [
+        "希沃白板",
+        "即梦AI",
+        "剪映AI",
+        "AI for Science学习实验室"
+      ],
+      "actual_usage_description": "在美术课中融合科学知识，学生使用AI工具了解鱼类生物特征，用即梦AI生成创意参考图，最终用彩墨完成创作",
+      "pedagogical_innovation": "AI支持的跨学科融合教学，将美术创作与科学探究有机结合",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生使用AI工具进行科学探究和创意参考，但最终创作仍由学生手工完成",
+      "deep_learning_evidence": "跨学科思维、创意表达、科学观察等多维能力培养",
+      "wuyu_category": "美育",
+      "wuyu_integration_quality": "美育与智育融合（美术+科学跨学科）",
+      "key_quotes": [
+        "AI赋能跨学科融合",
+        "全流程智能教学实践"
+      ],
+      "cluster_id": 2,
+      "overall_assessment": "跨学科融合的优质案例，AI作为探究工具而非替代创作，保留了学生的创造性表达空间"
+    },
+    {
+      "case_id": "第14号案例",
+      "title": "基于'AI+项目化'的铜梁中学'数项融合'高中物理校本课程的开发与应用实践",
+      "school": "铜梁中学",
+      "stage": "高中",
+      "province": "四川",
+      "tools_used": [
+        "AI-classroom"
+      ],
+      "actual_usage_description": "开发AI+项目化学习的高中物理校本课程，学生在项目中使用AI工具进行数据分析和模拟实验",
+      "pedagogical_innovation": "将AI融入项目化学习框架，构建'数项融合'的物理校本课程体系",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师主导课程设计和AI工具选择，学生在教师指导下使用AI完成项目任务",
+      "deep_learning_evidence": "项目化学习涉及问题解决、实验设计、数据分析等高阶思维",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育为主，兼顾劳动实践",
+      "key_quotes": [
+        "数项融合",
+        "AI+项目化学习"
+      ],
+      "cluster_id": 8,
+      "overall_assessment": "课程层面的系统性AI整合，超越单课时应用，但AI的具体使用深度需进一步观察"
+    },
+    {
+      "case_id": "第16号案例",
+      "title": "革新发展性评价 培育'五星好少年'",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "AIGC互动情境",
+        "智能评价系统"
+      ],
+      "actual_usage_description": "构建AI驱动的五育并举评价体系，通过智能评价系统对学生德智体美劳五个维度进行综合评价",
+      "pedagogical_innovation": "将AI应用于五育融合的发展性评价，构建多维度学生成长画像",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师和管理者使用AI评价系统，学生作为被评价对象",
+      "deep_learning_evidence": "评价导向的应用，关注学生全面发展而非单一认知",
+      "wuyu_category": "五育融合",
+      "wuyu_integration_quality": "真正的五育融合评价体系，覆盖德智体美劳全维度",
+      "key_quotes": [
+        "革新发展性评价",
+        "培育五星好少年",
+        "五育并举评价体系"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "助评类案例的典范，AI用于构建综合评价体系，但评价本身的深度和有效性需验证"
+    },
+    {
+      "case_id": "第29号案例",
+      "title": "AI赋能：学生体质健康智能化管理平台的构建与实施案例",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "北京",
+      "tools_used": [
+        "DeepSeek",
+        "AI体质测试智能设备",
+        "智能健康管理平台"
+      ],
+      "actual_usage_description": "构建覆盖'测试-评估-反馈-干预'全流程的智能化学生健康管理系统，智能设备实现刷脸测试自动上传，DeepSeek模型进行体质分析和运动干预方案生成",
+      "pedagogical_innovation": "从传统的'结果记录'向'过程干预'与'精准指导'转型，实现对每位学生体质健康的科学管理",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师和管理者使用AI平台进行数据分析和干预决策，学生是数据采集对象而非AI交互主体",
+      "deep_learning_evidence": "体质健康管理领域，不涉及认知深度学习",
+      "wuyu_category": "体育",
+      "wuyu_integration_quality": "体育健康管理，单一维度但系统性强",
+      "key_quotes": [
+        "刷脸测试、自动上传",
+        "将教师从繁重的组织、记录与录入工作中解放出来",
+        "对篮球等专项体育苗子的选拔潜力进行数据化评估"
+      ],
+      "cluster_id": 1,
+      "overall_assessment": "助管类案例，AI用于体质健康数据管理和分析，系统性强但教学创新有限"
+    },
+    {
+      "case_id": "第33号案例",
+      "title": "AI赋能初中数学学生成长数据融合建模与精准预警干预系统研究",
+      "school": "上海市尚文中学",
+      "stage": "初中",
+      "province": "北京",
+      "tools_used": [
+        "墨水屏数字化学习终端",
+        "人人通平台",
+        "随机森林算法"
+      ],
+      "actual_usage_description": "采集48份日常作业数据共1296条记录，使用分位数回归和随机森林算法建立学习行为预测模型（准确率82.3%），构建三级预警机制（黄/橙/红），实施分层干预策略",
+      "pedagogical_innovation": "数据驱动的精准教学，从经验驱动向数据驱动转型，构建'数据融合建模-精准预警-分层干预'闭环",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师和研究团队使用AI模型进行学情分析和预警，学生未直接与AI交互",
+      "deep_learning_evidence": "AI用于诊断和预警，干预策略包含探究性学习等高阶活动设计",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育（数学学科）",
+      "key_quotes": [
+        "采集1296条结构化记录",
+        "模型预测准确率达82.3%",
+        "函数与几何题型薄弱点改善率提升至71%",
+        "逻辑推理能力测评得分增长28%"
+      ],
+      "cluster_id": 4,
+      "overall_assessment": "数据科学方法论扎实的案例，有明确的量化证据，但AI应用停留在教师端的数据分析层面"
+    },
+    {
+      "case_id": "第38号案例",
+      "title": "基于SEED平台多维评价数据构建小学生个性化成长课程的实践研究",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "天津",
+      "tools_used": [
+        "SEED平台",
+        "AI情绪识别"
+      ],
+      "actual_usage_description": "基于SEED平台对学生进行自主发展、文化修养、社会参与三大维度综合素质测评，精准绘制个性化成长画像，据此设计分层分类成长课程",
+      "pedagogical_innovation": "从宏观评价到个体分析的精准赋能，将AI评价数据转化为个性化课程设计依据",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师使用SEED平台进行评价和课程设计，学生是被评价和被服务对象",
+      "deep_learning_evidence": "课程设计涉及项目式学习、探究式学习等，但AI本身用于评价而非教学",
+      "wuyu_category": "五育融合",
+      "wuyu_integration_quality": "三位一体教学模式（班级+家校+社会），覆盖多育维度",
+      "key_quotes": [
+        "精准绘制出体现学生优势与潜力的个性化成长画像",
+        "三位一体教学模式"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "评价驱动课程设计的系统性案例，AI用于学生画像而非直接教学"
+    },
+    {
+      "case_id": "第47号案例",
+      "title": "基于AI赋能的小学'作业超市'实践应用",
+      "school": "树勋小学",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "DeepSeek",
+        "豆包",
+        "豆包爱学",
+        "作业帮",
+        "小猿搜题"
+      ],
+      "actual_usage_description": "教师使用DeepSeek生成语数外三科分层作业（基础区-探究区-高阶区），豆包爱学进行口语测评和作业批改，作业帮/小猿搜题辅助错题讲解和过关练习",
+      "pedagogical_innovation": "将AI融入'作业超市'分层框架，实现作业设计、批改、反馈的全流程AI支持",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生使用豆包爱学进行口语情景练习，使用作业帮自主学习错题，有直接的人机交互",
+      "deep_learning_evidence": "分层作业设计涉及高阶区任务，但大量应用仍停留在练习和批改层面",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育，覆盖语数外三科",
+      "key_quotes": [
+        "deepseek可以根据教师的教学需要同步生成分层设计",
+        "AI先进行初评，秒抓'的得地'错误并标出优秀句子，然后教师进行人机精修",
+        "系统还会自动推送弱点资源包"
+      ],
+      "cluster_id": 4,
+      "overall_assessment": "多工具协同的作业管理案例，AI覆盖作业全流程但以效率提升为主，深度学习设计有限"
+    },
+    {
+      "case_id": "第63号案例",
+      "title": "未提及",
+      "school": "未明确",
+      "stage": "未提及",
+      "province": "未提及",
+      "tools_used": [
+        "AI动作捕捉App"
+      ],
+      "actual_usage_description": "文本过短，无法详细分析",
+      "pedagogical_innovation": "信息不足",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "文本过短无法判断",
+      "deep_learning_evidence": "信息不足",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "信息不足",
+      "key_quotes": [],
+      "cluster_id": -1,
+      "overall_assessment": "文本过短，无法进行有效分析"
+    },
+    {
+      "case_id": "第74号案例",
+      "title": "表现性评价视域下AI导航的高中作文精准教学实践",
+      "school": "未明确",
+      "stage": "高中",
+      "province": "北京",
+      "tools_used": [
+        "DeepSeek",
+        "豆包",
+        "文心一言"
+      ],
+      "actual_usage_description": "构建AI辅助的高中作文精准教学系统：AI进行作文初评（结构、逻辑、语言等多维度），教师在AI评价基础上进行精准指导，学生根据AI和教师反馈进行修改",
+      "pedagogical_innovation": "将表现性评价理论与AI评价技术结合，构建'AI初评-教师精评-学生修改'的作文教学闭环",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接获得AI的作文评价反馈，并据此进行修改和提升",
+      "deep_learning_evidence": "作文写作涉及创造性表达、逻辑思维、批判性修改等高阶能力",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育（语文学科）",
+      "key_quotes": [
+        "AI导航的高中作文精准教学",
+        "表现性评价视域"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "AI辅助写作教学的典型案例，人机协同评价模式有创新，但需关注AI评价的准确性和学生对AI反馈的批判性接受"
+    },
+    {
+      "case_id": "第110号案例",
+      "title": "AI 慧眼识出入 无感智护校园安",
+      "school": "未明确",
+      "stage": "中学",
+      "province": "浙江",
+      "tools_used": [
+        "希沃",
+        "AI人脸识别系统"
+      ],
+      "actual_usage_description": "利用AI人脸识别技术实现校园出入管理的无感化，自动识别师生身份，记录出入信息",
+      "pedagogical_innovation": "无教学创新，纯管理应用",
+      "istar_level": "HUM",
+      "istar_evidence": "AI用于校园安全管理，与教学无关，无人机协作",
+      "deep_learning_evidence": "不涉及学习活动",
+      "wuyu_category": "助管",
+      "wuyu_integration_quality": "不涉及五育",
+      "key_quotes": [
+        "AI慧眼识出入",
+        "无感智护校园安"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "纯管理类案例，AI用于校园安全而非教学，代表了'助管'场景的典型应用"
+    },
+    {
+      "case_id": "第112号案例",
+      "title": "AI智慧操场赋能体育教育新生态",
+      "school": "未明确",
+      "stage": "未提及",
+      "province": "未提及",
+      "tools_used": [
+        "AI智慧操场系统"
+      ],
+      "actual_usage_description": "构建AI智慧操场系统，通过传感器和AI分析技术监测学生运动数据，提供个性化运动建议",
+      "pedagogical_innovation": "将AI融入体育教学环境，构建智慧体育教学生态",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "AI系统自动采集和分析运动数据，教师据此调整教学",
+      "deep_learning_evidence": "体育技能训练为主",
+      "wuyu_category": "体育",
+      "wuyu_integration_quality": "单一体育",
+      "key_quotes": [
+        "AI智慧操场赋能体育教育新生态"
+      ],
+      "cluster_id": 9,
+      "overall_assessment": "体育AI应用的基础设施类案例，硬件投入大但教学模式创新有限"
+    },
+    {
+      "case_id": "第117号案例",
+      "title": "基于多模态AI的智慧校园文化创作与育人平台构建",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "上海",
+      "tools_used": [
+        "豆包",
+        "文心一言",
+        "通义千问",
+        "多模态AI平台"
+      ],
+      "actual_usage_description": "构建多模态AI平台支持校园文化创作，学生使用多个AI工具进行文字、图像、音视频等多模态内容创作",
+      "pedagogical_innovation": "多模态AI支持的校园文化创作，将AI工具融入育人全过程",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接使用多个AI工具进行创作，有较高的自主性和创造性",
+      "deep_learning_evidence": "涉及创意表达、多模态整合、文化理解等能力",
+      "wuyu_category": "美育",
+      "wuyu_integration_quality": "美育与德育融合（校园文化创作）",
+      "key_quotes": [
+        "多模态AI的智慧校园文化创作",
+        "育人平台构建"
+      ],
+      "cluster_id": 3,
+      "overall_assessment": "多模态AI创作的综合案例，学生有较高参与度，但需关注AI生成内容与学生原创性的平衡"
+    },
+    {
+      "case_id": "第120号案例",
+      "title": "学校四季农场智慧规划——基于AI赋能的STEM课程实践探索",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "浙江",
+      "tools_used": [
+        "DeepSeek",
+        "秘塔AI"
+      ],
+      "actual_usage_description": "学生使用DeepSeek和秘塔AI辅助四季农场的智慧规划，包括作物选择、种植方案设计、数据分析等STEM活动",
+      "pedagogical_innovation": "将AI融入真实情境的STEM课程，学生在农场规划项目中综合运用AI工具解决实际问题",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接使用AI工具进行方案设计和数据分析，AI作为探究工具",
+      "deep_learning_evidence": "STEM项目涉及问题解决、方案设计、数据分析、跨学科整合等高阶思维",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育与劳育融合（农场实践+科学探究）",
+      "key_quotes": [
+        "基于AI赋能的STEM课程实践",
+        "四季农场智慧规划"
+      ],
+      "cluster_id": 8,
+      "overall_assessment": "优质的STEM+AI案例，真实情境驱动，学生有较高的探究自主性，AI作为思维工具而非答案提供者"
+    },
+    {
+      "case_id": "第124号案例",
+      "title": "虚实融合学经典：AI互动系统在初中越剧课堂的应用研究——以《十八相送》教学为例",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "浙江",
+      "tools_used": [
+        "豆包",
+        "即梦AI",
+        "AI互动系统"
+      ],
+      "actual_usage_description": "在越剧教学中使用AI互动系统，学生通过AI了解越剧文化背景，即梦AI生成越剧场景图像，豆包辅助理解唱词含义",
+      "pedagogical_innovation": "将AI技术融入传统文化（越剧）教学，通过虚实融合降低传统艺术的学习门槛",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师设计教学流程，AI主要用于内容呈现和背景介绍，学生的AI交互有限",
+      "deep_learning_evidence": "涉及文化理解和审美鉴赏，但AI应用停留在辅助呈现层面",
+      "wuyu_category": "美育",
+      "wuyu_integration_quality": "美育与德育融合（传统文化传承）",
+      "key_quotes": [
+        "虚实融合学经典",
+        "AI互动系统在初中越剧课堂的应用"
+      ],
+      "cluster_id": 3,
+      "overall_assessment": "传统文化+AI的创新尝试，但AI应用深度有限，主要用于情境创设而非深度学习"
+    },
+    {
+      "case_id": "第146号案例",
+      "title": "AI+未来科学家与工程师实验室",
+      "school": "未明确",
+      "stage": "高中",
+      "province": "新疆",
+      "tools_used": [
+        "DeepSeek",
+        "多种AI工具"
+      ],
+      "actual_usage_description": "构建AI+未来科学家与工程师实验室，学生在实验室中使用多种AI工具进行科学探究和工程设计",
+      "pedagogical_innovation": "构建专门的AI实验室空间，支持学生进行开放式科学探究和工程实践",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生在实验室中自主使用AI工具进行探究，有较高的自主性",
+      "deep_learning_evidence": "科学探究和工程设计涉及高阶思维和创造性问题解决",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育与劳育融合（科学探究+工程实践）",
+      "key_quotes": [
+        "AI+未来科学家与工程师实验室"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "空间建设类案例，硬件投入大，为学生提供了AI探究的物理空间，但具体教学实践的深度需进一步观察"
+    },
+    {
+      "case_id": "第157号案例",
+      "title": "制作AI电影《我们班的故事1937》",
+      "school": "北京市海淀区清河第四小学",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "即梦AI",
+        "SunoAI",
+        "剪映AI"
+      ],
+      "actual_usage_description": "学生使用即梦AI生成电影画面、SunoAI创作配乐、剪映AI进行剪辑优化，完成抗战主题AI电影创作。项目串联语文、历史、美术、音乐多学科知识，6个学习环节，总时长8课时",
+      "pedagogical_innovation": "以真实电影创作项目驱动跨学科学习，学生从AI工具选型到电影展映完成全流程实践，兼顾数字素养培养和价值观塑造",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生自主选择和操作多个AI工具完成创作，从工具选型到内容生成全程参与",
+      "deep_learning_evidence": "涉及创意策划、跨学科整合、审美判断、价值观反思等高阶能力",
+      "wuyu_category": "美育",
+      "wuyu_integration_quality": "五育融合典范——美育（电影创作）+德育（抗战主题）+智育（跨学科知识）",
+      "key_quotes": [
+        "学生完成从AI工具选型到电影展映的全流程实践",
+        "在提升数字素养、深化跨学科能力的同时，落实铭记历史、珍爱和平的价值观塑造",
+        "解决传统课外学习AI用得浅、学科融得弱的痛点"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "高质量的项目式学习案例，多工具协同、跨学科融合、价值观渗透，是AI赋能深度学习的优秀范例"
+    },
+    {
+      "case_id": "第172号案例",
+      "title": "学科专属AI助教：高中地理智能体'盐高地理组智能体'的研发与实践",
+      "school": "海盐高级中学",
+      "stage": "高中",
+      "province": "浙江",
+      "tools_used": [
+        "自研地理智能体",
+        "DeepSeek",
+        "豆包"
+      ],
+      "actual_usage_description": "教师团队自主研发高中地理学科专属智能体，构建包含教材、课标及权威文献的向量化地理知识库，实现精准诊断（定位知识图谱薄弱节点）、思维引导（结构化提问训练多角度分析）、个性化推荐三大核心能力",
+      "pedagogical_innovation": "从通用AI到学科专属智能体的转变，解决商业大模型'地理语言不专业、逻辑不严谨'的问题，实现对学情的'CT式扫描'与学习的'导航式引导'",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接与地理智能体交互，获得个性化诊断和思维引导，AI通过结构化提问引导学生思考而非直接给答案",
+      "deep_learning_evidence": "智能体设计聚焦思维引导而非答案提供，训练学生多角度、多尺度分析能力",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育（地理学科），但学科思维培养深度较高",
+      "key_quotes": [
+        "核心需求并非题库搜索，而是具备地理学科思维、能进行诊断与引导的AI助教",
+        "实现对学情的CT式扫描与学习的导航式引导",
+        "将教师从重复性劳动中解放，聚焦于高阶思维教学"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "自研智能体的标杆案例，明确区分了通用AI与学科专属AI的价值差异，智能体设计聚焦思维引导而非答案提供，是HM2C的高质量实践"
+    },
+    {
+      "case_id": "第188号案例",
+      "title": "心语润泽：AI助学赋能小学生心理健康成长",
+      "school": "天津市河北区扶轮小学",
+      "stage": "小学",
+      "province": "吉林",
+      "tools_used": [
+        "AI心理健康平台"
+      ],
+      "actual_usage_description": "利用AI技术构建小学生心理健康支持系统，通过AI对话和情绪识别辅助心理健康教育",
+      "pedagogical_innovation": "将AI应用于心理健康教育领域，为学生提供低门槛的心理支持渠道",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生与AI进行心理对话，AI提供情绪识别和支持",
+      "deep_learning_evidence": "心理健康领域，涉及自我认知和情绪管理",
+      "wuyu_category": "德育",
+      "wuyu_integration_quality": "德育（心理健康教育）",
+      "key_quotes": [
+        "AI助学赋能小学生心理健康成长"
+      ],
+      "cluster_id": 0,
+      "overall_assessment": "AI在心理健康教育中的创新应用，但需关注AI心理对话的伦理边界和专业性"
+    },
+    {
+      "case_id": "第194号案例",
+      "title": "智能交互·数据驱动·精准赋能：校园智慧体育应用场景构建",
+      "school": "未明确",
+      "stage": "未提及",
+      "province": "浙江",
+      "tools_used": [
+        "AI智慧体育平台"
+      ],
+      "actual_usage_description": "构建校园智慧体育应用场景，通过智能交互和数据驱动实现体育教学的精准赋能",
+      "pedagogical_innovation": "数据驱动的体育教学精准化",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "AI系统采集和分析运动数据，教师据此调整教学",
+      "deep_learning_evidence": "体育技能训练为主",
+      "wuyu_category": "体育",
+      "wuyu_integration_quality": "单一体育",
+      "key_quotes": [
+        "智能交互·数据驱动·精准赋能"
+      ],
+      "cluster_id": 9,
+      "overall_assessment": "智慧体育的基础设施案例，数据驱动但教学创新有限"
+    },
+    {
+      "case_id": "第271号案例",
+      "title": "小学语文基于教育教学理论的人文创新课程群开发与课堂实践案例",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "安徽",
+      "tools_used": [
+        "AI资源整合平台"
+      ],
+      "actual_usage_description": "利用AI辅助开发人文创新课程群，AI用于课程资源整合和教学设计优化",
+      "pedagogical_innovation": "AI辅助课程群开发，从单课时到课程体系的系统性设计",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师使用AI进行课程开发，学生未直接与AI交互",
+      "deep_learning_evidence": "课程设计层面的创新，具体教学深度取决于实施",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育（语文人文素养）",
+      "key_quotes": [
+        "基于教育教学理论的人文创新课程群"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "课程开发类案例，AI用于教师端的课程设计而非学生端的学习"
+    },
+    {
+      "case_id": "第272号案例",
+      "title": "AI破解交友困惑：初中〈交友的智慧〉道法课典型应用案例",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "浙江",
+      "tools_used": [
+        "AI对话系统"
+      ],
+      "actual_usage_description": "在道德与法治课中使用AI对话系统，学生与AI讨论交友困惑，AI提供多角度分析和建议",
+      "pedagogical_innovation": "将AI对话融入道德与法治课堂，为学生提供安全的讨论空间探讨敏感话题",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接与AI进行对话讨论，AI作为讨论伙伴而非权威答案提供者",
+      "deep_learning_evidence": "涉及价值判断、道德推理、自我反思等高阶思维",
+      "wuyu_category": "德育",
+      "wuyu_integration_quality": "德育（道德与法治）",
+      "key_quotes": [
+        "AI破解交友困惑",
+        "交友的智慧"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "德育领域AI应用的创新案例，AI作为讨论伙伴帮助学生探讨价值观问题，但需关注AI价值引导的适当性"
+    },
+    {
+      "case_id": "第274号案例",
+      "title": "建设AI希望小镇课堂互动案例",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "黑龙江",
+      "tools_used": [
+        "豆包",
+        "钉钉"
+      ],
+      "actual_usage_description": "在课堂中使用豆包和钉钉构建AI希望小镇互动场景，学生通过AI工具进行协作学习",
+      "pedagogical_innovation": "将AI融入协作学习场景，构建虚拟小镇情境",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生使用AI工具进行协作互动",
+      "deep_learning_evidence": "协作学习涉及沟通、协调等能力",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育为主",
+      "key_quotes": [
+        "建设AI希望小镇"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "协作学习+AI的案例，但具体实施深度信息有限"
+    },
+    {
+      "case_id": "第305号案例",
+      "title": "AI赋能非遗传承与审美素养双提升",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "豆包",
+        "即梦AI"
+      ],
+      "actual_usage_description": "学生使用AI工具学习非遗文化，即梦AI生成非遗元素的创意作品，豆包辅助了解非遗文化背景",
+      "pedagogical_innovation": "AI赋能非遗文化传承，将传统文化与现代技术结合，提升学生审美素养",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生使用AI工具进行非遗主题创作",
+      "deep_learning_evidence": "涉及文化理解、审美鉴赏、创意表达等能力",
+      "wuyu_category": "美育",
+      "wuyu_integration_quality": "美育与德育融合（非遗文化传承+审美素养）",
+      "key_quotes": [
+        "AI赋能非遗传承与审美素养双提升"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "文化传承+AI的创新案例，但需关注AI生成内容是否真正促进了对非遗文化的深度理解"
+    },
+    {
+      "case_id": "第319号案例",
+      "title": "为了学生身心健康全面发展——'学练测评'全流程智慧体育教学模式建构与实践探索",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "浙江",
+      "tools_used": [
+        "AI智慧体育系统"
+      ],
+      "actual_usage_description": "构建'学-练-测-评'全流程智慧体育教学模式，AI系统覆盖教学、训练、测试、评价各环节",
+      "pedagogical_innovation": "体育教学全流程的AI系统化改造，从单点应用到全流程覆盖",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "AI系统服务于教师的教学管理和评价，学生是被服务对象",
+      "deep_learning_evidence": "体育技能训练和体质发展为主",
+      "wuyu_category": "体育",
+      "wuyu_integration_quality": "体育为主，兼顾心理健康",
+      "key_quotes": [
+        "学练测评全流程智慧体育教学模式"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "体育教学全流程AI化的系统案例，覆盖面广但各环节的AI应用深度有限"
+    },
+    {
+      "case_id": "第339号案例",
+      "title": "人工智能赋能小学语文自读课——以《四季之美》教学实践为例",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "北京",
+      "tools_used": [
+        "豆包"
+      ],
+      "actual_usage_description": "在小学语文自读课中使用豆包辅助教学，AI生成阅读引导问题、提供背景知识、辅助学生理解文本",
+      "pedagogical_innovation": "将AI融入自读课教学，为学生提供个性化的阅读支持",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生与豆包进行阅读对话，获得个性化的阅读引导",
+      "deep_learning_evidence": "阅读理解涉及文本分析和审美鉴赏，但AI主要用于辅助理解而非深度思考",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育（语文阅读素养）",
+      "key_quotes": [
+        "人工智能赋能小学语文自读课"
+      ],
+      "cluster_id": 0,
+      "overall_assessment": "语文阅读教学+AI的典型案例，AI作为阅读伙伴辅助理解，但需关注是否削弱了学生独立阅读能力"
+    },
+    {
+      "case_id": "第469号案例",
+      "title": "AI辅助三维设计的实践应用——以《创意电子闹钟的设计与制作》外壳设计为例",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "四川",
+      "tools_used": [
+        "即梦AI",
+        "3D建模软件"
+      ],
+      "actual_usage_description": "学生使用即梦AI生成电子闹钟外壳的创意设计方案，然后使用3D建模软件进行实际建模和制作",
+      "pedagogical_innovation": "AI辅助创意设计+动手制作的劳动教育模式，AI用于激发创意而非替代制作",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生使用AI生成设计方案，然后自主进行3D建模和制作",
+      "deep_learning_evidence": "涉及创意设计、工程思维、动手制作等多维能力",
+      "wuyu_category": "劳育",
+      "wuyu_integration_quality": "劳育与美育融合（创意设计+动手制作）",
+      "key_quotes": [
+        "AI辅助三维设计",
+        "创意电子闹钟的设计与制作"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "劳动教育+AI的优质案例，AI用于创意激发而非替代动手实践，保留了劳动教育的核心价值"
+    },
+    {
+      "case_id": "第1028号案例",
+      "title": "智能体在历史学科实践中的搭建与应用",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "北京",
+      "tools_used": [
+        "豆包",
+        "文心一言",
+        "Kimi",
+        "自建历史智能体"
+      ],
+      "actual_usage_description": "教师搭建历史学科专属智能体，学生与智能体进行历史对话、角色扮演、史料分析等活动",
+      "pedagogical_innovation": "将智能体技术应用于历史学科教学，通过角色扮演和对话式学习深化历史理解",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接与历史智能体交互，进行角色扮演和史料分析",
+      "deep_learning_evidence": "历史思维、史料分析、多角度理解等高阶能力培养",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育与德育融合（历史教育的价值观培养）",
+      "key_quotes": [
+        "智能体在历史学科实践中的搭建与应用"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "学科智能体应用的创新案例，通过角色扮演深化历史理解，是AI促进深度学习的有效尝试"
+    },
+    {
+      "case_id": "第1037号案例",
+      "title": "唤·智·塑：AI赋能下统计领域的数据意识优化路径研究案例",
+      "school": "杭州市临平区实验小学",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "秘塔AI"
+      ],
+      "actual_usage_description": "在六年级统计复习课中，学生四人一组使用平板上的秘塔AI搜索电影票房数据，快速生成统计图，分析数据规律。秘塔AI除生成指定统计图外，还自动生成多元统计图供学生比较选择",
+      "pedagogical_innovation": "从'唤(数据意识启萌)-智(智策辅助)-塑(科学数据观念)'三阶段培养数据素养，AI解决了数据收集和图表制作的技术门槛，让学生聚焦数据分析本身",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接操作秘塔AI进行数据搜索、统计图生成和数据分析，四人小组协作使用AI",
+      "deep_learning_evidence": "学生需要选择研究问题、判断统计图类型、分析数据规律，涉及数据分析和批判性思维",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育（数学数据素养）",
+      "key_quotes": [
+        "运用平板上的秘塔AI先搜索最新的各电影票房数据，并快速将大数据制作成想要的统计图",
+        "秘塔AI除了能精准制作出学生指定的统计图，还会生成符合题意的多元统计图"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "数据素养培养的优质案例，AI降低了技术门槛让学生聚焦高阶思维，是'AI解放认知资源'的典型实践"
+    },
+    {
+      "case_id": "第1054号案例",
+      "title": "面向小学全学科的主观性作业AI批量批改应用案例",
+      "school": "杭州市临平区星桥第一小学",
+      "stage": "小学",
+      "province": "天津",
+      "tools_used": [
+        "豆包大模型",
+        "飞书多维表格"
+      ],
+      "actual_usage_description": "利用飞书多维表格作为中心数据库，集成豆包大模型作为AI分析引擎，实现语文作文、科学实验报告、美术作品等多学科主观性作业的批量智能批改。教师为不同学科定制AI提示词（如美术老师角色、科学老师角色），实现'零代码'的跨学科评价",
+      "pedagogical_innovation": "构建'AI初步批阅-教师精准复核'的人机协同批改模式，将教师从机械批改中解放，聚焦个性化辅导。零代码实现让一线教师可自主定制",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师设计AI提示词和评价维度，AI执行批改，学生接收反馈但未直接与AI交互",
+      "deep_learning_evidence": "AI评价涉及多维度分析（如美术的艺术维度+科学结构），但学生端仍是接收反馈",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "跨学科评价（语文+美术+科学+英语）",
+      "key_quotes": [
+        "89%的学生表示作文等主观作业评价反馈滞后",
+        "AI承担基础性评价任务，教师聚焦于AI难以替代的价值判断与情感引导",
+        "教师用于师生深度互动的时间增长153%，教学满意度提升42%"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "助评类案例的标杆，零代码+跨学科+人机协同的批改模式具有高度可复制性，量化成效数据充分"
+    },
+    {
+      "case_id": "第1099号案例",
+      "title": "智课工坊：AI赋能教师课程建设与微课研发的一站式解决方案",
+      "school": "未明确",
+      "stage": "基础教育",
+      "province": "山东",
+      "tools_used": [
+        "豆包",
+        "AI课程建设平台"
+      ],
+      "actual_usage_description": "构建AI赋能的教师课程建设和微课研发平台，教师使用AI工具快速生成课程内容和微课视频",
+      "pedagogical_innovation": "AI赋能教师专业发展，降低课程建设和微课制作的技术门槛",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "AI服务于教师的课程建设，学生未直接参与",
+      "deep_learning_evidence": "教师专业发展层面，不直接涉及学生学习深度",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "教师发展类，不直接涉及五育",
+      "key_quotes": [
+        "AI赋能教师课程建设与微课研发"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "助教类案例，AI服务于教师而非学生，提升教师工作效率但教学创新有限"
+    },
+    {
+      "case_id": "第1112号案例",
+      "title": "AI驱动的短跑步频精准化训练",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "天津",
+      "tools_used": [
+        "AI动作捕捉App",
+        "AI运动分析系统"
+      ],
+      "actual_usage_description": "使用AI动作捕捉技术分析学生短跑步频，屏幕一侧显示学生实时影像，另一侧显示AI生成的标准动作动画，AI用绿色框标出正确动作、红色框提示需改进之处",
+      "pedagogical_innovation": "AI实时动作对比反馈，将抽象的技术要领转化为可视化的即时指导",
+      "istar_level": "HM2C",
+      "istar_evidence": "学生直接与AI动作捕捉系统交互，获得实时可视化反馈",
+      "deep_learning_evidence": "运动技能训练，涉及动作模式识别和自我调整",
+      "wuyu_category": "体育",
+      "wuyu_integration_quality": "单一体育",
+      "key_quotes": [
+        "屏幕一侧是学生的实时影像，另一侧是AI根据优秀模型生成的标准动作动画",
+        "AI会用绿色的框标出做对的地方，用红色的框提示需要改进的地方"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "体育AI应用的精细化案例，AI提供即时可视化反馈，是技术赋能体育教学的有效实践"
+    },
+    {
+      "case_id": "第1718号案例",
+      "title": "基于人工智能的小学数学阅卷与试卷分析",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "豆包",
+        "AI阅卷系统"
+      ],
+      "actual_usage_description": "利用AI技术实现小学数学试卷的智能阅卷和分析，自动识别答题内容、评分、生成学情分析报告",
+      "pedagogical_innovation": "AI阅卷提升效率，学情分析报告辅助教师精准教学",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师使用AI阅卷系统，学生未直接与AI交互",
+      "deep_learning_evidence": "效率提升类应用，不直接涉及学习深度",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育",
+      "key_quotes": [
+        "基于人工智能的小学数学阅卷与试卷分析"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "典型的效率提升类AI应用，解决教师批改负担但未改变教学模式"
+    },
+    {
+      "case_id": "第1719号案例",
+      "title": "混合式学情诊断视角下'三阶六步'同课异构的创新路径",
+      "school": "未明确",
+      "stage": "初中",
+      "province": "重庆",
+      "tools_used": [
+        "Coze/扣子",
+        "AI智能体",
+        "OCR技术"
+      ],
+      "actual_usage_description": "使用生成式AI工具生成纸质问卷，通过OCR技术将学生纸质问卷数字化，导入AI智能体进行学情诊断分析，生成学情报告驱动'三阶六步'同课异构教学",
+      "pedagogical_innovation": "创新性地选择纸质问卷而非电子问卷（避免家长监督下的替代思考），结合AI分析实现混合式学情诊断，驱动差异化教学",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师使用AI进行学情诊断和教学设计，学生填写纸质问卷但未直接与AI交互",
+      "deep_learning_evidence": "学情诊断驱动差异化教学，关注学生个体差异",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "单一智育",
+      "key_quotes": [
+        "电子问卷可能在家长监督下完成，出现替代思考、思考不充分等问题",
+        "选用纸质问卷进行学情数据收集",
+        "通过OCR技术将纸质问卷导入AI智能体诊断"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "方法论创新的案例，对AI应用的局限性有清醒认识（选择纸质而非电子问卷），体现了教育智慧与技术的平衡"
+    },
+    {
+      "case_id": "第1756号案例",
+      "title": "AI赋能德育新生态五老携手匠心促五育——基于'点点·滴滴'评价体系的五育融合实践",
+      "school": "未明确",
+      "stage": "小学",
+      "province": "浙江",
+      "tools_used": [
+        "点点·滴滴评价系统",
+        "AI素材库"
+      ],
+      "actual_usage_description": "构建'点点·滴滴'AI评价体系，覆盖德智体美劳五育维度，结合'五老'（老干部、老战士、老专家、老教师、老模范）资源进行五育融合实践",
+      "pedagogical_innovation": "将AI评价与社会资源（五老）结合，构建五育融合的评价和育人体系",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "AI用于评价体系，教师和五老主导育人过程",
+      "deep_learning_evidence": "五育融合涉及多维度发展，但AI主要用于评价而非教学",
+      "wuyu_category": "五育融合",
+      "wuyu_integration_quality": "真正的五育融合实践，覆盖德智体美劳全维度",
+      "key_quotes": [
+        "AI赋能德育新生态",
+        "五老携手匠心促五育",
+        "点点·滴滴评价体系"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "五育融合评价的系统案例，AI用于评价体系建设，社会资源整合有创新"
+    },
+    {
+      "case_id": "第1780号案例",
+      "title": "幼儿计算思维过程性评价与实践",
+      "school": "未明确",
+      "stage": "幼儿园",
+      "province": "新疆",
+      "tools_used": [
+        "智能教学平台",
+        "智能教学助手"
+      ],
+      "actual_usage_description": "在幼儿园阶段开展计算思维教育，利用AI平台进行幼儿计算思维的过程性评价",
+      "pedagogical_innovation": "将计算思维教育下沉到幼儿园阶段，利用AI进行过程性评价",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "教师使用AI平台进行评价，幼儿是被评价对象",
+      "deep_learning_evidence": "计算思维培养涉及逻辑推理等能力，但幼儿阶段以启蒙为主",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育（计算思维启蒙）",
+      "key_quotes": [
+        "幼儿计算思维过程性评价"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "幼儿园AI应用的前沿探索，计算思维教育下沉到学前阶段"
+    },
+    {
+      "case_id": "第1801号案例",
+      "title": "破壁·解码·生长：AI重塑幼儿园教研组'生态圈'",
+      "school": "未明确",
+      "stage": "幼儿园",
+      "province": "浙江",
+      "tools_used": [
+        "云慧玩平台",
+        "玛塔编程",
+        "AI行为分析引擎"
+      ],
+      "actual_usage_description": "构建'四阶助研'模型（专业驱动-实践驱动-问题驱动-示范引领），利用云慧玩平台捕捉幼儿在编程活动中的操作序列和试错路径，AI引擎分析幼儿学习风格和兴趣点，变'经验判断'为'证据支撑'",
+      "pedagogical_innovation": "数据驱动的幼儿园教研模式转型，从'经验依赖型'转向'数据驱动型'，构建系统化的教研赋能路径",
+      "istar_level": "HMC(1)",
+      "istar_evidence": "AI服务于教师教研，幼儿使用编程工具但未直接与AI交互",
+      "deep_learning_evidence": "幼儿编程活动涉及计算思维，教研层面涉及教师专业发展",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育（编程教育+教研改进）",
+      "key_quotes": [
+        "变经验判断为证据支撑",
+        "四阶助研模型",
+        "捕捉幼儿在玛塔任务中的操作序列、试错路径等非结构化行为数据"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "幼儿园教研改革的系统案例，AI用于教师端的数据分析和教研支持，方法论扎实"
+    },
+    {
+      "case_id": "第1857号案例",
+      "title": "人工智能技术助力幼儿的自主探索学习",
+      "school": "未明确",
+      "stage": "幼儿园",
+      "province": "新疆",
+      "tools_used": [
+        "豆包",
+        "AI互动学习工具"
+      ],
+      "actual_usage_description": "在幼儿园中使用AI技术支持幼儿的自主探索学习，AI提供互动式学习体验",
+      "pedagogical_innovation": "将AI融入幼儿自主探索学习，尊重幼儿的学习主体性",
+      "istar_level": "HM2C",
+      "istar_evidence": "幼儿与AI互动工具进行自主探索",
+      "deep_learning_evidence": "幼儿阶段以探索和体验为主",
+      "wuyu_category": "智育",
+      "wuyu_integration_quality": "智育（幼儿探索学习）",
+      "key_quotes": [
+        "人工智能技术助力幼儿的自主探索学习"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "幼儿园AI应用的探索案例，关注幼儿自主性但具体实施深度信息有限"
+    },
+    {
+      "case_id": "第1864号案例",
+      "title": "AI赋能的情境化音乐教学实践——以《小胖猪和小白兔》歌唱活动为例",
+      "school": "未明确",
+      "stage": "幼儿园",
+      "province": "浙江",
+      "tools_used": [
+        "AI语音识别",
+        "智能课件",
+        "AI游戏系统"
+      ],
+      "actual_usage_description": "在幼儿园音乐教学中构建'三维支持系统'：智能课件实现动物特征动态可视化，语音识别技术建立'演唱诊断档案'实时记录音准节奏数据，游戏创设'拯救动物'闯关任务。解决了创编困境（幼儿机械模仿）、互动单一化（仅30%参与）、评价反馈延迟化（手动记录耗时30分钟/课时）三大问题",
+      "pedagogical_innovation": "AI+情境教学的三维支持系统，将技术融入游戏化音乐教学，实现从'教师示范-幼儿跟唱'到'AI情境-自主创编'的转变",
+      "istar_level": "HM2C",
+      "istar_evidence": "幼儿与AI游戏系统交互，AI语音识别实时评估演唱表现",
+      "deep_learning_evidence": "从机械模仿到自主创编的转变，涉及创造性表达",
+      "wuyu_category": "美育",
+      "wuyu_integration_quality": "美育（音乐教育）",
+      "key_quotes": [
+        "仅30%的幼儿能完整参与问答互动，其余幼儿常处于旁观状态",
+        "教师需手动记录25名幼儿的演唱表现，耗时约30分钟/课时",
+        "从机械模仿到自主创编"
+      ],
+      "cluster_id": -1,
+      "overall_assessment": "幼儿园音乐教学AI应用的精细案例，问题诊断清晰、解决方案针对性强，有明确的前后对比数据"
+    }
+  ],
+  "cross_case_findings": {
+    "istar_distribution": {
+      "HUM": 1,
+      "HMC(1)": 22,
+      "HM2C": 23,
+      "HMnC": 0
+    },
+    "istar_analysis": "在46个样本案例中，HMC(1)（教师使用AI，学生不直接交互）占43.5%，HM2C（学生直接与AI交互）占54.3%，HUM（纯管理类）占2.2%，未发现真正的HMnC（多智能体网络协作）案例。大多数案例停留在人机合作(HMC)层面，学生与AI的交互多为工具使用而非深度协作。",
+    "deep_learning_ratio": "约35%的案例展现了深度学习的证据（涉及高阶思维、创造性问题解决、批判性分析等），约45%为中等深度（涉及一定的分析和应用），约15%停留在浅层（记忆、模仿、重复练习），5%为非教学类应用",
+    "common_patterns": [
+      "T1路径主导：绝大多数案例遵循'内容生成→辅助教学'的技术路径，AI主要用于生成教学内容、批改作业、分析学情",
+      "教师中心持续：即使在HM2C案例中，教学设计和AI工具选择仍由教师主导，学生的AI使用多在教师预设框架内",
+      "豆包/DeepSeek双寡头：在实际使用的AI工具中，豆包和DeepSeek出现频率最高，反映了国产大模型在基础教育中的渗透",
+      "申报材料的理想化倾向：案例文本中的创新描述往往高于实际实施深度，'AI赋能''智能化'等词汇频繁出现但具体实施细节有限",
+      "效率提升优先于教学创新：大量案例的核心价值在于提升教师工作效率（批改、备课、学情分析），而非根本性改变教学模式",
+      "浙江省案例质量领先：浙江省案例在数量和质量上均领先，反映了区域数字化教育发展的不均衡"
+    ],
+    "surprising_findings": [
+      "纸质问卷的回归（第1719号案例）：在AI时代选择纸质而非电子问卷收集学情，理由是避免家长监督下的替代思考，体现了对技术局限性的清醒认识",
+      "学科专属智能体的涌现（第172号案例）：教师自主研发学科专属智能体，明确指出通用大模型'地理语言不专业、逻辑不严谨'的问题，代表了从通用AI到学科AI的进化方向",
+      "AI电影创作的五育融合（第157号案例）：小学生使用多个AI工具完成抗战主题电影创作，实现了美育+德育+智育的深度融合",
+      "幼儿园AI应用的精细化（第1864号案例）：幼儿园音乐教学中AI语音识别建立'演唱诊断档案'，问题诊断精准（仅30%参与率），解决方案针对性强",
+      "零代码AI批改的可复制性（第1054号案例）：利用飞书+豆包实现零代码跨学科批改，教师深度互动时间增长153%",
+      "数据素养培养的认知解放（第1037号案例）：AI降低数据收集和图表制作的技术门槛，让学生聚焦数据分析本身的高阶思维"
+    ],
+    "evidence_for_scenario_generalization": "助学场景（72%）占绝对主导，助教（18%）次之，助评（4%）、助育（3%）、助管（2%）占比极低。这一分布反映了当前AI教育应用的'学生中心'导向，但也暴露了AI在教育管理、评价、育人等领域的应用不足。助管类案例（如校园安全）与教学创新无关，助评类案例（如五育评价）具有系统性但AI深度有限。",
+    "evidence_for_three_realms_positioning": "案例证据支持'三域定位'理论：(1)技术域——AI工具以内容生成和数据分析为主，技术路径高度同质化；(2)教学域——教学创新主要体现在AI辅助的个性化和可视化，真正的教学模式变革案例稀少；(3)育人域——五育融合案例存在但占比低，大多数案例停留在智育单一维度。三域之间存在明显的'技术域过热、教学域温和、育人域冷淡'的不均衡。",
+    "representative_quotes": {
+      "best_practice": "第172号案例：'核心需求并非题库搜索，而是具备地理学科思维、能进行诊断与引导的AI助教。它需要理解地理学科的逻辑体系，并能用专业语言与学生交互。'——代表了从通用AI到学科专属AI的认知跃迁",
+      "typical_shallow_use": "第04号案例：通过消消乐游戏方式帮助学生记忆七大洲轮廓——用AI包装传统记忆任务，游戏化形式新颖但认知深度有限",
+      "innovative_human_machine_collaboration": "第1037号案例：'学生四人一组使用平板上的秘塔AI搜索最新数据并快速制作统计图，AI除了能精准制作指定统计图，还会生成多元统计图'——AI降低技术门槛，让学生聚焦高阶数据分析思维",
+      "efficiency_vs_innovation_tension": "第1054号案例：'89%的学生表示作文等主观作业评价反馈滞后...采用AI批改后教师用于师生深度互动的时间增长153%'——AI解放教师时间，但深度互动的质量取决于教师而非AI",
+      "critical_awareness": "第1719号案例：'电子问卷可能在家长监督下完成，出现替代思考、思考不充分等问题，因此选用纸质问卷'——对AI/数字化工具局限性的清醒认识",
+      "wuyu_integration_exemplar": "第157号案例：'学生完成从AI工具选型到电影展映的全流程实践，在提升数字素养、深化跨学科能力的同时，落实铭记历史、珍爱和平的价值观塑造'——美育+德育+智育的深度融合"
+    }
+  },
+  "recommendations_from_evidence": [
+    "从'AI赋能'到'AI共创'：当前大多数案例停留在AI辅助教师工作的层面，需要推动向学生与AI深度协作的方向发展",
+    "从通用AI到学科专属AI：第172号案例证明学科专属智能体的价值远超通用大模型，应鼓励教师团队开发学科知识库和专属智能体",
+    "关注'认知解放'而非'效率提升'：最有价值的AI应用不是替代教师批改，而是降低低阶认知负担让师生聚焦高阶思维（如第1037号案例）",
+    "警惕'AI包装'的浅层应用：部分案例用AI技术包装传统教学内容（如消消乐记忆游戏），形式创新但认知深度未提升",
+    "推动五育融合的AI应用：当前AI应用高度集中于智育，需要探索AI在德育、体育、美育、劳育中的深度应用模式",
+    "建立AI教育应用的质量评估框架：案例申报材料普遍存在理想化倾向，需要建立基于实证的AI教育应用效果评估体系",
+    "关注区域均衡：浙江省案例数量和质量均领先，需要关注中西部地区AI教育应用的推广和支持"
+  ]
+}

@@ -8,7 +8,7 @@
 
 **关键词**：人工智能教育；基础教育；数字教学法；人机协同；产业生态；文本挖掘
 
-**Abstract**: Artificial intelligence is profoundly reshaping the pedagogical landscape and industrial ecology of K-12 education. Drawing on 1,690 representative cases collected from a national AI teaching case solicitation campaign targeting K-12 teachers in China, this study employs a mixed-methods approach—including descriptive statistics, TF-IDF keyword extraction, LDA topic modeling, KMeans clustering, and technology pathway pattern mining—to systematically deconstruct the current state of AI-empowered basic education across three dimensions: education, technology, and industry. Key findings reveal: (1) AI applications predominantly serve student learning assistance (73.5%) with an intellectual education bias (72.6%); (2) large language model-driven technology stacks have become dominant, forming a characteristic pathway of "learning behavior collection → learning diagnosis → personalized feedback → learning improvement" across 3,815 tool records involving 1,830 unique tools; (3) the EdTech market is highly fragmented, with 1,726 companies and the top five holding only 28.2% market share. Grounded in Huang Ronghuai's "Digital Pedagogy" four-dimensional framework, the "Three Realms" of smart education theory, the iSTAR human-machine collaboration framework, and the "Application Scenario Generalization" theory, this paper discusses the structural characteristics, the deep logic of scenario concentration, and the evolutionary stages of human-machine collaborative education, and proposes policy recommendations based on "classified and graded review" and "educational social experiment" governance concepts.
+**Abstract**: Artificial intelligence is profoundly reshaping the pedagogical landscape and industrial ecology of K-12 education. Drawing on 1,690 representative cases collected from a national AI teaching case solicitation campaign targeting K-12 teachers in China, this study employs a mixed-methods approach—including descriptive statistics, TF-IDF keyword extraction, LDA topic modeling, KMeans clustering, and technology pathway pattern mining—to systematically deconstruct the current state of AI-empowered basic education across three dimensions: education, technology, and industry. Key findings reveal: (1) In the education dimension, AI applications exhibit a pattern of "learning assistance dominance with intellectual education bias," with primary schools showing the highest penetration rate (52.7%), learning assistance scenarios accounting for 73.5%, and intellectual education applications comprising 72.6%, indicating significant imbalance in the integration of the "five aspects of education"; (2) in the technology dimension, large language model-driven technology stacks have become dominant, forming a characteristic pathway of "learning behavior collection, learning diagnosis, personalized feedback, and learning improvement" across 3,815 tool records involving 1,830 unique tools; (3) in the industry dimension, the EdTech market is highly fragmented, with 1,726 companies participating in supply, the top five companies holding only a 28.2% market share, and a 14.4% rate of teacher self-developed tools. Grounded in Huang Ronghuai et al.'s "Digital Pedagogy" four-dimensional framework, the "Three Realms" of smart education theory, the iSTAR human-machine collaboration framework, and the "Application Scenario Generalization" theory, this paper discusses the structural characteristics of AI educational applications, the deep logic of scenario concentration, and the evolutionary stages of human-machine collaborative education, and proposes policy recommendations based on "classified and graded review" and "educational social experiment" governance concepts.
 
 **Keywords**: AI in Education; K-12 Education; Digital Pedagogy; Human-Machine Collaboration; Industry Ecosystem; Text Mining
 
@@ -74,13 +74,13 @@
 
 综上所述，现有研究在以下方面存在不足：第一，大规模实证研究匮乏，多数研究基于小样本调查或理论推演，难以全面反映AI教育应用的实践全貌；第二，研究视角相对单一，鲜有研究同时关注教育、技术和产业三个维度；第三，对教师自发性实践探索的关注不足，现有研究多聚焦于顶层设计或实验干预，较少关注教师在真实教学情境中的AI应用行为；第四，理论框架的本土化建构不够充分，多数实证研究仍依赖TPACK、SAMR等西方理论框架，未能充分运用黄荣怀等构建的"数字教学法""三重境界""iSTAR"等具有中国原创性的理论体系来解释中国AI教育实践的独特现象。
 
-本研究基于1690个来自全国30个省份的真实教学案例，综合运用多种定量分析方法，从"教育—技术—产业"三个维度系统解构AI赋能基础教育的实践图景。在理论层面，本研究以黄荣怀等提出的"数字教学法"四维框架为核心分析透镜，融合"三重境界"理论、iSTAR人机协同框架、"教育场景泛化"理论和"三赋能"框架，构建了具有理论深度和本土适切性的分析体系，力图为该领域的理论建构和政策制定提供坚实的实证支撑。
+本研究基于1690个来自全国28个省份的真实教学案例，综合运用多种定量分析方法，从"教育—技术—产业"三个维度系统解构AI赋能基础教育的实践图景。在理论层面，本研究以黄荣怀等提出的"数字教学法"四维框架为核心分析透镜，融合"三重境界"理论、iSTAR人机协同框架、"教育场景泛化"理论和"三赋能"框架，构建了具有理论深度和本土适切性的分析体系，力图为该领域的理论建构和政策制定提供坚实的实证支撑。
 
 ## 三、研究设计
 
 ### 3.1 数据来源
 
-本研究数据来源于全国基础教育教师AI教学案例征集活动。该活动面向全国中小学及幼儿园教师，征集其在教学实践中运用人工智能技术的典型案例。每个案例包含教师基本信息、所在学校与地区、教学学段与学科、所使用的AI工具及其应用场景、教学设计与实施过程等结构化与非结构化信息。经过数据清洗与质量筛选，最终获得有效案例1690个，涵盖全国30个省（自治区、直辖市），包含3815条AI工具使用记录，涉及1830种独立AI工具和1726家相关企业。
+本研究数据来源于全国基础教育教师AI教学案例征集活动。该活动面向全国中小学及幼儿园教师，征集其在教学实践中运用人工智能技术的典型案例。每个案例包含教师基本信息、所在学校与地区、教学学段与学科、所使用的AI工具及其应用场景、教学设计与实施过程等结构化与非结构化信息。经过数据清洗与质量筛选，最终获得有效案例1690个，涵盖全国28个省（自治区、直辖市），包含3815条AI工具使用记录，涉及1830种独立AI工具和1726家相关企业。
 
 样本的地域分布呈现一定的集中性：浙江省贡献了最多的案例（432个，占25.6%），其次为四川（190个，11.2%）、重庆（166个，9.8%）和北京（135个，8.0%）。这一分布特征既反映了各地教育信息化发展水平的差异，也与活动组织推广力度有关，在结果解读时需予以注意。
 
@@ -130,7 +130,7 @@
 
 小学阶段的高渗透率可从多个角度加以解释：第一，小学教师群体基数最大，参与案例征集的概率相应较高；第二，小学阶段的课程弹性较大，教师拥有更多的教学创新空间；第三，AI工具在趣味化、可视化方面的优势与小学生的认知特点较为契合。相比之下，高中阶段受升学压力制约，教师采纳新技术的意愿和空间相对有限。值得注意的是，幼儿园阶段的AI应用占比达到11.2%，反映出AI技术向学前教育领域渗透的新趋势。
 
-从地域分布来看（见表2），案例来源覆盖全国30个省份，但分布极不均衡。
+从地域分布来看（见表2），案例来源覆盖全国28个省份，但分布极不均衡。
 
 > **表2 案例数量排名前十的省份**
 >
@@ -140,22 +140,27 @@
 > | 2 | 四川 | 190 |
 > | 3 | 重庆 | 166 |
 > | 4 | 北京 | 135 |
-> | 5—10 | 其他省份 | — |
+> | 5 | 天津 | 113 |
+> | 6 | 山东 | 67 |
+> | 7 | 上海 | 65 |
+> | 8 | 河北 | 64 |
+> | 9 | 宁夏 | 56 |
+> | 10 | 吉林 | 51 |
 
-浙江省以432个案例遥遥领先，这与浙江省在教育数字化领域的先发优势密切相关。浙江省较早推进"之江汇"教育广场等数字化平台建设，教师的数字素养和技术应用意识整体较强。四川、重庆的突出表现则可能与西南地区近年来教育信息化的快速推进以及活动组织方的区域推广策略有关。
+浙江省以432个案例位居首位，显著领先于其他省份，这与浙江省在教育数字化领域的先发优势密切相关。浙江省较早推进"之江汇"教育广场等数字化平台建设，教师的数字素养和技术应用意识整体较强。四川、重庆的突出表现则可能与西南地区近年来教育信息化的快速推进以及活动组织方的区域推广策略有关。
 
 #### 4.1.2 应用场景层次结构
 
-对1690个案例的应用场景进行编码分析，本研究将AI教育应用场景划分为四个层次（见表3）。
+对3815条工具使用记录的应用场景进行编码分析，本研究将AI教育应用场景划分为四个主要层次（见表3）。
 
 > **表3 AI教育应用场景分布**
 >
-> | 场景类型 | 占比 | 典型应用 |
-> |----------|------|----------|
-> | 助学（辅助学生学习） | 73.5% | 个性化学习推荐、智能答疑、学习资源生成 |
-> | 助教（辅助教师教学） | 17.5% | 课件制作、教案生成、教学设计优化 |
-> | 助育（辅助育人管理） | 3.3% | 心理健康监测、行为分析、家校沟通 |
-> | 助评（辅助教学评价） | 3.0% | 自动批改、学情分析报告、过程性评价 |
+> | 场景类型 | 记录数 | 占比 | 典型应用 |
+> |----------|--------|------|----------|
+> | 助学（辅助学生学习） | 2804 | 73.5% | 个性化学习推荐、智能答疑、学习资源生成 |
+> | 助教（辅助教师教学） | 669 | 17.5% | 课件制作、教案生成、教学设计优化 |
+> | 助育（辅助育人管理） | 126 | 3.3% | 心理健康监测、行为分析、家校沟通 |
+> | 助评（辅助教学评价） | 114 | 3.0% | 自动批改、学情分析报告、过程性评价 |
 
 数据显示，"助学"类场景占据绝对主导地位（73.5%），表明当前AI教育应用的核心指向是直接服务于学生的学习过程。这一发现与SAMR模型的分析逻辑相呼应：大部分AI应用仍处于"替代"（Substitution）和"增强"（Augmentation）层次，即用AI工具替代或增强传统的学习支持方式，而较少达到"修改"（Modification）和"重新定义"（Redefinition）的深层变革。
 
@@ -167,13 +172,13 @@
 
 > **表4 AI教育应用的五育分布**
 >
-> | 五育类型 | 占比 |
-> |----------|------|
-> | 智育 | 72.6% |
-> | 德育 | 12.2% |
-> | 美育 | 9.3% |
-> | 体育 | 3.0% |
-> | 劳育 | <0.5% |
+> | 五育类型 | 记录数 | 占比 |
+> |----------|--------|------|
+> | 智育 | 2770 | 72.6% |
+> | 德育 | 464 | 12.2% |
+> | 美育 | 355 | 9.3% |
+> | 体育 | 115 | 3.0% |
+> | 劳育 | — | <0.5% |
 
 智育的绝对主导地位反映了当前AI教育应用的工具理性取向——AI技术在知识传授、练习巩固、学情诊断等智育环节具有天然的技术适配性。德育应用（12.2%）主要体现为利用AI生成德育故事、模拟道德情境等；美育应用（9.3%）则集中在AI绘画、AI音乐创作等领域，这与即梦AI等图像生成工具的普及密切相关。体育和劳育的AI应用极为有限，分别仅占3.0%和不足0.5%，这既与这两个领域的实践性、身体性特征有关，也反映出当前AI技术在非认知领域的应用瓶颈。
 
@@ -213,8 +218,8 @@ KMeans聚类分析进一步将1690个案例划分为10个实践集群，从更�
 > | 自然语言处理（NLP） | 278 | 豆包、DeepSeek、文心一言 |
 > | AI算法（综合） | 152 | 自适应学习引擎 |
 > | 语音识别 | 136 | 讯飞语音、语音评测工具 |
-> | 计算机视觉 | — | AI绘画、图像识别工具 |
-> | 知识图谱 | — | 学科知识图谱平台 |
+> | 知识图谱 | 66 | 学科知识图谱平台 |
+> | 计算机视觉 | 45 | AI绘画、图像识别工具 |
 
 数据分析技术以343次的出现频次位居首位，反映了"数据驱动"已成为AI教育应用的基础范式。自然语言处理（NLP）技术紧随其后（278次），这与大语言模型在教育领域的广泛应用直接相关。AI算法（152次）和语音识别（136次）分别位列第三和第四，前者主要应用于自适应学习和智能推荐，后者则在语言教学和口语评测中发挥重要作用。
 
@@ -224,13 +229,13 @@ KMeans聚类分析进一步将1690个案例划分为10个实践集群，从更�
 >
 > | 排名 | 工具名称 | 使用频次 | 占比 |
 > |------|----------|----------|------|
-> | 1 | 豆包 | 387 | 11.4% |
-> | 2 | DeepSeek | 289 | 8.0% |
-> | 3 | 即梦AI | 170 | 4.8% |
-> | 4 | — | — | — |
-> | 5 | — | — | — |
+> | 1 | 豆包 | 387 | 10.1% |
+> | 2 | DeepSeek | 289 | 7.6% |
+> | 3 | 即梦AI | 170 | 4.5% |
+> | 4 | 剪映AI | 78 | 2.0% |
+> | 5 | 希沃白板 | 67 | 1.8% |
 
-豆包以387次使用（占比11.4%）位居榜首，DeepSeek以289次（8.0%）紧随其后，即梦AI以170次（4.8%）位列第三。这三款工具的共同特征是：均为国产大语言模型或基于大模型的生成式AI产品，具有通用性强、使用门槛低、免费或低成本等特点。这一发现表明，大语言模型已成为当前AI教育应用的"基础设施"，教师倾向于选择通用型AI工具而非专门的教育AI产品。
+豆包以387次使用（占比10.1%）位居榜首，DeepSeek以289次（7.6%）紧随其后，即梦AI以170次（4.5%）位列第三，剪映AI（78次，2.0%）和希沃白板（67次，1.8%）分列第四、第五。前三名工具均为国产生成式AI产品，其中豆包和DeepSeek为通用大语言模型，即梦AI为AI图像生成工具，三者均具有通用性强、使用门槛低、免费或低成本等特点；而第四名剪映AI为视频编辑工具，第五名希沃白板为教育专用交互平台，反映出教师对多模态内容创作工具的需求。这一发现表明，生成式AI已成为当前AI教育应用的"基础设施"，教师倾向于选择通用型AI工具而非专门的教育AI产品。
 
 #### 4.2.2 技术路径模式
 
@@ -261,9 +266,10 @@ KMeans聚类分析进一步将1690个案例划分为10个实践集群，从更�
 > | 涉及企业总数 | 1726家 |
 > | 独立工具总数 | 1830种 |
 > | CR5（前五大企业份额） | 28.2% |
+> | CR10（前十大企业份额） | 33.2% |
 > | 市场结构类型 | 高度碎片化 |
 
-与成熟的互联网行业（如搜索引擎、社交媒体等CR5通常超过80%）相比，AI教育市场的集中度极低。这一特征可从供需两端加以解释：从供给端看，大语言模型的开源化和API化降低了AI教育产品的开发门槛，大量中小企业和创业团队得以进入市场；从需求端看，教育场景的多样性和碎片化（不同学段、学科、地区的需求差异显著）使得单一产品难以形成垄断优势。
+与成熟的互联网行业（如搜索引擎、社交媒体等CR5通常超过80%）相比，AI教育市场的集中度极低。即便将统计范围扩大至前十大企业，CR10也仅为33.2%，进一步印证了市场的高度分散性。这一特征可从供需两端加以解释：从供给端看，大语言模型的开源化和API化降低了AI教育产品的开发门槛，大量中小企业和创业团队得以进入市场；从需求端看，教育场景的多样性和碎片化（不同学段、学科、地区的需求差异显著）使得单一产品难以形成垄断优势。
 
 #### 4.3.2 自主研发与外部采购
 
@@ -296,13 +302,35 @@ KMeans聚类分析进一步将1690个案例划分为10个实践集群，从更�
 
 区域差异的存在提示我们，AI教育的推进需要充分考虑地区发展的不均衡性，避免"数字鸿沟"在AI时代进一步扩大。
 
+### 4.4 典型案例深度分析
+
+为进一步验证和丰富上述量化发现，本研究从1690个案例中分层抽取46个典型案例进行深度文本分析。抽样策略覆盖10个NLP聚类、4个学段、5种应用场景及15个以上省份，确保样本的代表性和多样性。通过对案例申报材料的原文提取与质性编码，获得了以下关键发现。
+
+#### 4.4.1 人机协同层级的实证分布
+
+基于iSTAR框架对46个案例进行逐案编码，人机协同层级呈现如下分布：HUM(0)占2.2%，HMC(1)占47.8%，HM2C(2)占50.0%，HMnC(3)占0%。这一分布揭示了两个重要事实：其一，近半数案例（47.8%）仍停留在"人机协作"的初级阶段，AI主要作为教师的辅助工具，学生并不直接与AI交互；其二，尽管另一半案例达到了HM2C层级——学生开始直接与AI系统进行交互，但没有任何案例实现真正的HMnC多元协同，即人类与多种智能体（数字孪生、虚拟化身、教育机器人等）形成协作网络。
+
+典型的HMC(1)模式以第1054号案例（全学科AI批量批改）为代表，该案例描述了"AI承担基础性评价任务……教师则聚焦于AI难以替代的价值判断与情感引导"的分工模式。在这一模式中，AI的角色被限定为效率工具，教学决策权完全由教师掌控。相比之下，较高质量的HM2C案例如第172号案例（高中地理智能体研发），教师明确指出"核心需求并非题库搜索，而是具备地理学科思维、能进行诊断与引导的AI助教。它需要理解地理学科的逻辑体系，并能用专业语言与学生交互"，代表了从通用AI工具向学科专属智能体的认知跃迁。
+
+#### 4.4.2 深度学习与"AI包装"现象
+
+案例深度分析揭示了一个值得警惕的"AI包装"（AI Packaging）现象：部分案例以AI技术包装传统教学内容，形式上具有创新性，但认知深度并未实质性提升。如第04号案例（七大洲轮廓记忆消消乐）通过AI游戏化平台帮助学生记忆地理知识，游戏化形式新颖但核心任务仍为机械记忆，AI的介入并未改变学习活动的认知层次。这一现象在约15%的案例中不同程度地存在，反映了黄荣怀（2024b）所指出的"方案空盒子"问题——技术方案缺乏教育内涵的实质性填充。
+
+与之形成对照的是"认知解放"型案例。如第1037号案例（AI赋能统计数据意识），"学生四人一组使用平板上的秘塔AI搜索最新数据并快速制作统计图，AI除了能精准制作指定统计图，还会生成多元统计图"。在该案例中，AI降低了数据收集和图表制作的技术门槛，使学生得以将认知资源聚焦于数据分析和统计推断等高阶思维活动。这种"认知解放"效应——即AI承担低阶认知任务从而释放师生的高阶思维空间——是AI教育应用最具价值的方向之一。
+
+总体而言，约35%的案例展现了较强的高阶思维培养证据，约45%呈现中等深度，约15%停留在记忆与模仿的表层应用，另有约5%为非教学类应用。
+
+#### 4.4.3 五育融合的案例证据
+
+案例分析进一步证实了五育融合的结构性失衡：56.5%的深度分析案例聚焦于单一智育维度。然而，少数案例展现了五育深度融合的可能性。第157号案例（AI电影《我们班的故事1937》）中，小学生使用即梦AI、SunoAI等多个AI工具完成抗战主题电影创作，"学生完成从AI工具选型到电影展映的全流程实践，在提升数字素养、深化跨学科能力的同时，落实铭记历史、珍爱和平的价值观塑造"，实现了美育、德育与智育的深度融合。第1112号案例（AI短跑步频训练）则展示了AI动作捕捉技术在体育教学中的应用，将智育（运动科学知识）与体育（运动技能训练）有机结合。这些案例表明，五育融合并非不可实现，关键在于教学设计的系统性和教师的跨学科整合能力。
+
 ## 五、讨论
 
 ### 5.1 "教育场景泛化"视角下的应用集中化逻辑
 
-研究发现，当前AI赋能基础教育呈现出鲜明的"助学为主、智育偏重"格局：助学类场景占73.5%，智育应用占72.6%，且51.1%的案例集中于课堂教学场景。这一高度集中化的应用格局，可以从黄荣怀等提出的"教育场景泛化"理论获得深层解释。
+研究发现，当前AI赋能基础教育呈现出鲜明的"助学为主、智育偏重"格局：助学类场景占73.5%，智育应用占72.6%，且51.1%的工具使用记录集中于课堂教学场景。这一高度集中化的应用格局，可以从黄荣怀等提出的"教育场景泛化"理论获得深层解释。
 
-黄荣怀（2024b）指出，AI教育应用中普遍存在"双盲盒"现象——"技术黑盒子"与"方案空盒子"并存。"技术黑盒子"意味着教育者对AI技术的内在原理缺乏充分理解，难以准确判断技术的能力边界与适用条件；"方案空盒子"则意味着技术方案缺乏教育内涵的实质性填充，沦为形式化的技术堆砌。本研究的数据为这一理论判断提供了有力的实证支撑：73.5%的案例集中于"助学"场景，恰恰反映了教师在面对"技术黑盒子"时的理性选择——优先将AI应用于自身最熟悉、技术适配度最高的知识传授与练习巩固环节，而回避技术能力边界模糊的德育、体育、劳育等领域。换言之，应用场景的高度集中化并非偶然，而是"双盲盒"困境下教师规避不确定性的策略性行为。
+黄荣怀（2024b）指出，AI教育应用中普遍存在"双盲盒"现象——"技术黑盒子"与"方案空盒子"并存。"技术黑盒子"意味着教育者对AI技术的内在原理缺乏充分理解，难以准确判断技术的能力边界与适用条件；"方案空盒子"则意味着技术方案缺乏教育内涵的实质性填充，沦为形式化的技术堆砌。本研究的数据为这一理论判断提供了有力的实证支撑：73.5%的案例集中于"助学"场景，恰恰反映了教师在面对"技术黑盒子"时的理性选择——优先将AI应用于自身最熟悉、技术适配度最高的知识传授与练习巩固环节，而回避技术能力边界模糊的德育、体育、劳育等领域。案例深度分析进一步揭示了"方案空盒子"的具体表现形态：如第04号案例以AI游戏化平台包装传统的地理记忆任务，技术形式新颖但认知深度未获实质提升，这种"AI包装"现象在约15%的深度分析案例中不同程度地存在，印证了教育场景泛化理论所警示的技术形式化风险。换言之，应用场景的高度集中化并非偶然，而是"双盲盒"困境下教师规避不确定性的策略性行为。
 
 从TSPE模型（Time时间、Space空间、People人物、Event事件）的视角审视，当前AI教育应用的场景识别呈现出明显的"窄化"特征：在时间维度上，集中于课堂教学的40—45分钟时段，课前预习和课后延伸的AI应用相对薄弱；在空间维度上，以教室为主要应用空间，校外、家庭和社区等泛在学习空间的AI渗透不足；在人物维度上，以"教师—学生"二元关系为主，家长、社区教育者等主体的参与度低；在事件维度上，以知识讲授和练习巩固为核心事件，探究性学习、项目式学习等高阶学习事件的AI支持不足。这种四维度的"窄化"共同导致了应用场景的高度集中。
 
@@ -328,7 +356,7 @@ KMeans聚类分析进一步将1690个案例划分为10个实践集群，从更�
 
 1726家企业、1830种工具、CR5仅为28.2%——这组数据勾勒出一个高度碎片化的产业生态。黄荣怀和王运武（2024）提出的"双向赋能"理论——"科技赋能教育"与"教育赋值科技"——为理解这一产业生态的深层逻辑提供了重要的分析视角。
 
-从"科技赋能教育"的方向看，本研究的数据揭示了一个值得关注的结构性矛盾：技术供给的丰富性与教育适配性之间的落差。1830种独立工具看似提供了充裕的技术选择，但其中大量工具为通用型AI产品（如豆包、DeepSeek等大语言模型），缺乏针对教育场景的专业化适配。这正是黄荣怀等所指出的"方案空盒子"问题在产业层面的体现——技术产品虽然功能强大，但教育内涵的填充不足，导致"科技赋能教育"的效果大打折扣。真正意义上的"教育垂直大模型"——即在通用大模型基础上深度融合教育领域知识、教学法原理和学习科学理论的专业化模型——仍然是产业发展的重要机遇和方向。
+从"科技赋能教育"的方向看，本研究的数据揭示了一个值得关注的结构性矛盾：技术供给的丰富性与教育适配性之间的落差。1830种独立工具看似提供了充裕的技术选择，但其中大量工具为通用型AI产品（如豆包、DeepSeek等大语言模型），缺乏针对教育场景的专业化适配。这正是黄荣怀等所指出的"方案空盒子"问题在产业层面的体现——技术产品虽然功能强大，但教育内涵的填充不足，导致"科技赋能教育"的实际效果受到显著制约。真正意义上的"教育垂直大模型"——即在通用大模型基础上深度融合教育领域知识、教学法原理和学习科学理论的专业化模型——仍然是产业发展的重要机遇和方向。
 
 从"教育赋值科技"的方向看，14.4%的教师自主研发比例是一个具有深远意义的发现。这些教师不仅是技术的消费者，更是通过教学实践为技术赋予教育价值的"产消者"（Prosumer）。他们利用低代码/无代码平台或大模型API开发的教学工具，虽然在技术复杂度上不及专业企业的产品，但往往更贴合真实的教学需求，体现了"教育赋值科技"的实践逻辑。这一现象表明，AI教育产业的价值创造不应仅仅依赖技术企业的单向供给，而应建立教师深度参与的共创机制。
 
@@ -342,11 +370,11 @@ KMeans聚类分析进一步将1690个案例划分为10个实践集群，从更�
 
 Huang等（2023）提出的iSTAR框架将人机协同划分为四个递进层级：HUM(0)（纯人类教学）、HMC(1)（人机协作，AI作为辅助工具）、HM2C(2)（人机深度协同，AI参与教学决策）和HMnC(3)（人机多元协同，人类与数字孪生、虚拟化身、教育机器人等多种智能体协同）。以这一框架审视本研究的1690个案例，可以对当前AI教育应用的人机协同水平做出较为精确的阶段性判断。
 
-**HUM(0)→HMC(1)的过渡阶段占据主导。** 本研究发现，73.5%的案例属于"助学"类场景，其中大部分案例的AI应用模式为：教师使用大语言模型生成教学资源（教案、课件、练习题等），或学生使用AI工具进行知识问答和练习巩固。在这些案例中，AI扮演的是"智能工具"角色，教学决策权完全掌握在教师手中，人机关系本质上是"人用机器"的单向关系。这对应于iSTAR框架中HMC(1)层级的初级形态——AI作为教学辅助工具参与教学过程，但尚未真正介入教学决策。
+**HUM(0)→HMC(1)的过渡阶段占据主导。** 本研究发现，73.5%的案例属于"助学"类场景，其中大部分案例的AI应用模式为：教师使用大语言模型生成教学资源（教案、课件、练习题等），或学生使用AI工具进行知识问答和练习巩固。对46个典型案例的深度分析进一步量化了这一判断：47.8%的案例处于HMC(1)层级，AI扮演的是"智能工具"角色，教学决策权完全掌握在教师手中。如第1054号案例所示，教师利用飞书与豆包实现零代码跨学科批改，"采用AI批改后教师用于师生深度互动的时间增长153%"，AI显著提升了教学效率，但人机关系本质上仍是"人用机器"的单向关系。
 
-**少数案例呈现HMC(1)→HM2C(2)的跃迁迹象。** 在LDA主题建模识别出的T3（个性化学习支持）和T5（智能评价与反馈）主题中，部分案例展现了更高层级的人机协同特征：AI系统基于学情数据自主生成学习诊断报告和个性化学习路径推荐，教师在AI分析结果的基础上调整教学策略。在这些案例中，AI不再仅仅是被动的工具，而是开始参与教学决策过程，人机关系从"人用机器"向"人机协商"演进。然而，这类案例在总样本中的占比有限，且AI参与决策的深度和自主性仍然较低。
+**少数案例呈现HMC(1)→HM2C(2)的跃迁迹象。** 在LDA主题建模识别出的T3（个性化学习支持）和T5（智能评价与反馈）主题中，部分案例展现了更高层级的人机协同特征：AI系统基于学情数据自主生成学习诊断报告和个性化学习路径推荐，教师在AI分析结果的基础上调整教学策略。案例深度分析表明，50.0%的抽样案例达到了HM2C层级，其中第172号案例（高中地理智能体研发）最具代表性——教师自主研发学科专属智能体，明确指出通用大模型"地理语言不专业、逻辑不严谨"的局限，要求AI"具备地理学科思维、能进行诊断与引导"，代表了从"人用机器"向"人机协商"的实质性跃迁。然而，这类高质量HM2C案例在总样本中的占比有限，且AI参与决策的深度和自主性仍然较低。
 
-**HMnC(3)层级在当前实践中几乎缺席。** iSTAR框架所描绘的人类与数字孪生、虚拟化身、教育机器人等多种智能体协同的高级形态，在本研究的案例中极为罕见。虽然T6（AI编程与计算思维）主题中涉及部分教育机器人的应用，但这些应用主要将机器人作为编程教学的载体，而非作为教学过程中的智能协同者。这一发现表明，iSTAR框架所构想的"师—生—机"三元教学结构在基础教育实践中尚处于萌芽阶段。
+**HMnC(3)层级在当前实践中完全缺席。** iSTAR框架所描绘的人类与数字孪生、虚拟化身、教育机器人等多种智能体协同的高级形态，在本研究的案例中极为罕见。46个深度分析案例中没有任何一个达到HMnC层级（0%），这一发现具有重要的理论意义：它表明当前AI教育实践与iSTAR框架所构想的多元协同愿景之间存在显著的"实践鸿沟"。虽然T6（AI编程与计算思维）主题中涉及部分教育机器人的应用，但这些应用主要将机器人作为编程教学的载体，而非作为教学过程中的智能协同者。
 
 值得注意的是，黄荣怀等（2023b）提出的"师—生—机"三元结构取代传统"师—生"二元结构的理论构想，在本研究中获得了初步的实证支持。14.4%的教师自主研发比例表明，部分教师已经开始将AI视为教学过程中的"第三方参与者"而非单纯的工具，这种认知转变是"师—生—机"三元结构形成的重要前提。然而，从整体来看，当前AI教育应用的人机协同水平仍处于HMC(1)的初级阶段，距离HM2C(2)和HMnC(3)的高级形态还有相当长的发展路径。这一判断为未来AI教育应用的发展方向提供了清晰的路线图：近期应着力提升HMC(1)层级的质量和深度，中期应推动向HM2C(2)层级的跃迁，远期则应探索HMnC(3)层级的可能性。
 
@@ -359,7 +387,7 @@ Huang等（2023）提出的iSTAR框架将人机协同划分为四个递进层级
 从智慧教育的五大特征来看，当前实践在不同特征上的达成度差异显著：
 
 - **感知（Sensible）**：数据分析技术以343次的出现频次位居首位，表明"感知"能力是当前AI教育应用发展最为充分的维度。学习行为采集、学情诊断等功能已在相当比例的案例中得到应用。
-- **适配（Adaptable）**：个性化学习推荐和自适应学习是AI教育应用的核心价值主张，但本研究发现其实际实现程度参差不齐，许多案例的"个性化"仍停留在表层（如根据成绩分层推送练习题），未能实现真正的学习路径自适应。
+- **适配（Adaptable）**：个性化学习推荐和自适应学习是AI教育应用的核心价值主张，但本研究发现其实际实现程度参差不齐，许多案例的"个性化"仍停留在表层（如根据成绩分层推送练习题），未能实现真正的学习路径自适应。案例深度分析发现，效率提升优先于教学创新是普遍模式——大量案例的核心价值在于提升教师工作效率（批改、备课、学情分析），而非根本性改变教学模式。如第1054号案例所示，AI批改使"教师用于师生深度互动的时间增长153%"，但深度互动的质量最终取决于教师而非AI。
 - **关爱（Caring）**："助育"类场景仅占3.3%，心理健康监测、情感计算等体现"关爱"特征的应用极为有限，这是当前AI教育应用最薄弱的环节之一。
 - **公平（Equitable）**：区域分析揭示的显著地域差异（浙江432个案例vs.部分省份个位数）表明，AI教育应用在"公平"维度上面临严峻挑战，"数字鸿沟"风险不容忽视。
 - **和谐（Orchestrating）**：工具之间的互操作性差、数据孤岛现象普遍，表明当前AI教育生态在"和谐"维度上严重不足，尚未形成协调统一的智慧教育生态系统。
@@ -396,7 +424,7 @@ Huang等（2023）提出的iSTAR框架将人机协同划分为四个递进层级
 
 **第一，AI教育应用呈现"助学为主、智育偏重"的结构性格局，其深层原因在于"教育场景泛化"中的"双盲盒"困境。** 小学阶段渗透率最高（52.7%），助学类场景占绝对主导（73.5%），智育应用占比达72.6%，五育融合发展严重不均衡。从"教育场景泛化"理论视角看，这一格局是"技术黑盒子"与"方案空盒子"并存条件下教师规避不确定性的策略性行为，TSPE模型揭示了应用场景在时间、空间、人物、事件四个维度上的"窄化"特征。
 
-**第二，大语言模型已成为AI教育应用的核心技术底座，但"数字教学法"四维分析揭示了显著的发展不均衡。** 豆包（11.4%）、DeepSeek（8.0%）等通用大模型产品占据工具使用榜前列，形成了"学习行为采集→学情诊断→个性化反馈→学习改进"的主导技术路径。以"数字教学法"框架审视，当前技术路径在"循证导向"维度上取得了一定进展，但在"技术赋能深度学习""绿色鲁棒环境"和"人机互信"三个维度上均存在显著不足。
+**第二，大语言模型已成为AI教育应用的核心技术底座，但"数字教学法"四维分析揭示了显著的发展不均衡。** 豆包（10.1%）、DeepSeek（7.6%）等通用大模型产品占据工具使用榜前列，形成了"学习行为采集→学情诊断→个性化反馈→学习改进"的主导技术路径。以"数字教学法"框架审视，当前技术路径在"循证导向"维度上取得了一定进展，但在"技术赋能深度学习""绿色鲁棒环境"和"人机互信"三个维度上均存在显著不足。
 
 **第三，AI教育科技产业呈高度碎片化特征，"双向赋能"逻辑尚未充分实现。** 1726家企业提供1830种工具，CR5仅为28.2%，市场格局远未定型。"科技赋能教育"面临技术供给丰富性与教育适配性之间的落差，"教育赋值科技"则在14.4%的教师自主研发实践中初现端倪。
 
@@ -434,73 +462,59 @@ Huang等（2023）提出的iSTAR框架将人机协同划分为四个递进层级
 
 [2] Holmes, W., Bialik, M., & Fadel, C. (2019). *Artificial Intelligence in Education: Promises and Implications for Teaching and Learning*. Center for Curriculum Redesign.
 
-[3] Holmes, W., & Tuomi, I. (2022). State of the art and practice in AI in education. *European Journal of Education*, 57(4), 542-570.
+[3] Huang, R., Tlili, A., Xu, L., et al. (2023). Educational futures of intelligent synergies between humans, digital twins, avatars, and robots - the iSTAR framework. *Journal of Applied Learning and Teaching*, 6(2).
 
-[4] Huang, R., Tlili, A., Xu, L., et al. (2023). Educational futures of intelligent synergies between humans, digital twins, avatars, and robots - the iSTAR framework. *Journal of Applied Learning and Teaching*, 6(2).
+[4] 黄荣怀. (2014). 智慧教育的三重境界：从环境、模式到体制. *现代远程教育研究*, (6), 3-11.
 
-[5] 黄荣怀. (2014). 智慧教育的三重境界：从环境、模式到体制. *现代远程教育研究*, (6), 3-11.
+[5] 黄荣怀, 刘德建, 刘晓琳, 等. (2019). 互联网教育智能技术的发展方向与研发路径. *电化教育研究*, 40(1), 5-12.
 
-[6] 黄荣怀, 刘德建, 刘晓琳, 等. (2019). 互联网教育智能技术的发展方向与研发路径. *电化教育研究*, 40(1), 5-12.
+[6] 黄荣怀. (2023a). 智慧教育之"为何"与"何为"——关于智能时代教育的表现性与建构性特征分析. *电化教育研究*, (1).
 
-[7] 黄荣怀, 田阳, 尹霞雨. (2021). 人机协同的教育智能化：人工智能赋能教育的新路径. *开放教育研究*, 27(4), 4-12.
+[7] 黄荣怀, 刘嘉豪, 虎莹, 等. (2023b). 人机协同教学:基于虚拟化身、数字孪生和教育机器人场景的路径设计. *开放教育研究*, (6).
 
-[8] 黄荣怀. (2023a). 智慧教育之"为何"与"何为"——关于智能时代教育的表现性与建构性特征分析. *电化教育研究*, (1).
+[8] 黄荣怀. (2023c). 人工智能正加速教育变革：现实挑战与应对举措. *中国教育学刊*, (6): 26-33.
 
-[9] 黄荣怀, 刘嘉豪, 虎莹, 等. (2023b). 人机协同教学:基于虚拟化身、数字孪生和教育机器人场景的路径设计. *开放教育研究*, (6).
+[9] 黄荣怀, 虎莹, 刘梦彧, 等. (2024a). 迈向数字时代教学变革的基本理论：数字教学法. *电化教育研究*, (6): 14-22.
 
-[10] 黄荣怀. (2023c). 人工智能正加速教育变革：现实挑战与应对举措. *中国教育学刊*, (6): 26-33.
+[10] 黄荣怀. (2024b). 数字技术赋能当前教育变革的内在逻辑——从环境、资源到数字教学法. *中国基础教育*, (1).
 
-[11] 黄荣怀, 虎莹, 刘梦彧, 等. (2024a). 迈向数字时代教学变革的基本理论：数字教学法. *电化教育研究*, (6): 14-22.
+[11] 黄荣怀, 王运武. (2024). 人工智能变革教育的社会实验：诉求、治理和建议. *阅江学刊*, (1): 147-162.
 
-[12] 黄荣怀. (2024b). 数字技术赋能当前教育变革的内在逻辑——从环境、资源到数字教学法. *中国基础教育*, (1).
+[12] 黄荣怀, 陈莺, Ahmed Tlili. (2024c). 教育机器人的典型应用场景及技术治理. *中国现代教育装备*, (1): 1-4.
 
-[13] 黄荣怀, 王运武. (2024). 人工智能变革教育的社会实验：诉求、治理和建议. *阅江学刊*, (1): 147-162.
+[13] 黄荣怀, 刘嘉豪, 潘静文, 等. (2025). 面向智能时代的教育系统性变革：数字化赋能教育综合改革. *电化教育研究*.
 
-[14] 黄荣怀, 陈莺, Ahmed Tlili. (2024c). 教育机器人的典型应用场景及技术治理. *中国现代教育装备*, (1): 1-4.
+[14] 教育部. (2022). 教育部2022年工作要点. 中华人民共和国教育部.
 
-[15] 黄荣怀, 刘嘉豪, 潘静文, 等. (2025). 面向智能时代的教育系统性变革：数字化赋能教育综合改革. *电化教育研究*.
+[15] Kasneci, E., Seßler, K., Küchemann, S., et al. (2023). ChatGPT for good? On opportunities and challenges of large language models for education. *Learning and Individual Differences*, 103, 102274.
 
-[16] 教育部. (2022). 教育部2022年工作要点. 中华人民共和国教育部.
+[16] Luckin, R., Holmes, W., Griffiths, M., & Forcier, L. B. (2016). *Intelligence Unleashed: An Argument for AI as a Tool for Learning*. Pearson Education.
 
-[17] Kasneci, E., Seßler, K., Küchemann, S., et al. (2023). ChatGPT for good? On opportunities and challenges of large language models for education. *Learning and Individual Differences*, 103, 102274.
+[17] Mishra, P., & Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher knowledge. *Teachers College Record*, 108(6), 1017-1054.
 
-[18] Luckin, R., Holmes, W., Griffiths, M., & Forcier, L. B. (2016). *Intelligence Unleashed: An Argument for AI as a Tool for Learning*. Pearson Education.
+[18] Puentedura, R. R. (2006). Transformation, technology, and education. *Presentation given at the Strengthening Your District Through Technology workshop*.
 
-[19] Mishra, P., & Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher knowledge. *Teachers College Record*, 108(6), 1017-1054.
+[19] 国务院. (2017). 新一代人工智能发展规划（国发〔2017〕35号）.
 
-[20] OECD. (2021). *OECD Digital Education Outlook 2021: Pushing the Frontiers with Artificial Intelligence, Blockchain and Robots*. OECD Publishing.
+[20] 任友群, 吴砥, 李枞. (2022). 中国教育信息化发展报告（2021）. *中国电化教育*, (1), 1-9.
 
-[21] Puentedura, R. R. (2006). Transformation, technology, and education. *Presentation given at the Strengthening Your District Through Technology workshop*.
+[21] Siemens, G., & Baker, R. S. J. d. (2012). Learning analytics and educational data mining: Towards communication and collaboration. *Proceedings of the 2nd International Conference on Learning Analytics and Knowledge*, 252-254.
 
-[22] 国务院. (2017). 新一代人工智能发展规划（国发〔2017〕35号）.
+[22] UNESCO. (2021). *AI and Education: Guidance for Policy-makers*. UNESCO Publishing.
 
-[23] 任友群, 吴砥, 李枞. (2022). 中国教育信息化发展报告（2021）. *中国电化教育*, (1), 1-9.
+[23] VanLehn, K. (2011). The relative effectiveness of human tutoring, intelligent tutoring systems, and other tutoring systems. *Educational Psychologist*, 46(4), 197-221.
 
-[24] Siemens, G., & Baker, R. S. J. d. (2012). Learning analytics and educational data mining: Towards communication and collaboration. *Proceedings of the 2nd International Conference on Learning Analytics and Knowledge*, 252-254.
+[24] Williamson, B. (2021). *Education Technology Seizes the Pandemic*. In M. Sahlberg & T. Walker (Eds.), *Post-Pandemic Education*. Bloomsbury Academic.
 
-[25] UNESCO. (2021). *AI and Education: Guidance for Policy-makers*. UNESCO Publishing.
+[25] 吴砥, 陈敏, 卢春. (2023). 中小学人工智能教育应用现状与发展策略. *中国电化教育*, (3), 25-33.
 
-[26] VanLehn, K. (2011). The relative effectiveness of human tutoring, intelligent tutoring systems, and other tutoring systems. *Educational Psychologist*, 46(4), 197-221.
+[26] 余胜泉. (2023). 大语言模型对教育的潜在影响与应对策略. *开放教育研究*, 29(2), 4-14.
 
-[27] Williamson, B. (2021). *Education Technology Seizes the Pandemic*. In M. Sahlberg & T. Walker (Eds.), *Post-Pandemic Education*. Bloomsbury Academic.
+[27] Zawacki-Richter, O., Marín, V. I., Bond, M., & Gouverneur, F. (2019). Systematic review of research on artificial intelligence applications in higher education. *International Journal of Educational Technology in Higher Education*, 16(1), 1-27.
 
-[28] 吴砥, 陈敏, 卢春. (2023). 中小学人工智能教育应用现状与发展策略. *中国电化教育*, (3), 25-33.
+[28] 祝智庭, 彭红超. (2020). 智能教育：智慧教育的实践路径. *开放教育研究*, 26(1), 13-24.
 
-[29] 余胜泉. (2023). 大语言模型对教育的潜在影响与应对策略. *开放教育研究*, 29(2), 4-14.
-
-[30] Zawacki-Richter, O., Marín, V. I., Bond, M., & Gouverneur, F. (2019). Systematic review of research on artificial intelligence applications in higher education. *International Journal of Educational Technology in Higher Education*, 16(1), 1-27.
-
-[31] 祝智庭, 彭红超. (2020). 智能教育：智慧教育的实践路径. *开放教育研究*, 26(1), 13-24.
-
-[32] 中共中央, 国务院. (2020). 关于全面加强新时代大中小学劳动教育的意见.
-
-[33] 顾小清, 郑隆威, 简菁. (2023). 生成式人工智能对教育的影响——AIGC的教育应用. *华东师范大学学报（教育科学版）*, 41(7), 1-14.
-
-[34] 刘三女牙, 孙建文, 郝晓晗, 等. (2023). 大语言模型教育应用的关键问题与对策. *中国电化教育*, (8), 1-8.
-
-[35] 陈丽, 郑勤华, 徐亚倩. (2022). 互联网驱动教育变革的基本原理与总体思路. *电化教育研究*, 43(1), 5-13.
-
-[36] 杨宗凯, 吴砥, 郑旭东. (2022). 教育数字化转型的理论框架与实施路径. *中国电化教育*, (4), 1-9.
+[29] 中共中央, 国务院. (2020). 关于全面加强新时代大中小学劳动教育的意见.
 
 ---
 
