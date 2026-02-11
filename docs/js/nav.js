@@ -20,8 +20,7 @@
         '<span class="nav-author">陈虹宇</span>' +
       '</a>' +
       '<div class="nav-links" id="nav-links">' +
-        '<a href="' + prefix + 'index.html" data-page="index">数据仪表板</a>' +
-        '<a href="' + prefix + 'gallery.html" data-page="gallery">图表画廊</a>' +
+        '<a href="' + prefix + 'index.html" data-page="index">图表画廊</a>' +
         '<a href="' + prefix + 'paper.html" data-page="paper">学术论文</a>' +
         '<a href="' + prefix + 'report.html" data-page="report">研究报告</a>' +
         '<div class="nav-dropdown" id="nav-dropdown">' +
