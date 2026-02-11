@@ -104,9 +104,31 @@
   color: #64748b;
   font-size: 13px;
 }
+.embed-shell {
+  border: 1px solid #d8e0ec;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.embed-shell iframe {
+  width: 100%;
+  min-height: 860px;
+  border: 0;
+  background: #fff;
+}
+.btn-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #0f5ab4;
+  text-decoration: underline;
+  font-size: 14px;
+}
 @media (max-width: 700px) {
   .search-wrap {
     margin-top: 16px;
+  }
+  .embed-shell iframe {
+    min-height: 680px;
   }
 }
 </style>
@@ -120,6 +142,20 @@
       <h2 class="section-header" style="margin-bottom:10px">黄老师学术资源检索（云端版）</h2>
       <p style="color:#4b5563;font-size:14px;margin-bottom:12px">
         已部署到 GitHub Pages 子路径：<code>/huang-search.html</code>。此页面提供浏览器端检索 + 源代码下载。
+      </p>
+      <p style="color:#4b5563;font-size:14px">
+        已融合 Railway 动态版（完整 Gradio 应用）：<code>huang-search-web-production.up.railway.app</code>
+      </p>
+      <a class="btn-link" href="https://huang-search-web-production.up.railway.app" target="_blank" rel="noopener">新窗口打开 Railway 完整版</a>
+      <div class="embed-shell">
+        <iframe src="https://huang-search-web-production.up.railway.app" title="黄老师学术资源检索 Railway 版" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="search-card">
+      <h3 style="font-size:18px;margin-bottom:6px">静态应急版（浏览器端）</h3>
+      <p style="color:#64748b;font-size:13px;margin-bottom:10px">
+        若 Railway 临时不可用，可使用下面的本地数据检索功能（不依赖后端服务）。
       </p>
       <form id="search-form" class="search-form">
         <input id="query" type="text" placeholder="输入关键词：标题 / 摘要 / 作者 / 文献编号" required>
