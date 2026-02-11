@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据API文档 - AI赋能基础教育研究</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    body { background: #f0f2f5; }
+    .api-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .api-container h1 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .api-container .desc {
+      color: var(--text-light);
+      margin-bottom: 32px;
+    }
+    .api-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .api-card h3 {
+      font-size: 15px;
+      color: var(--primary);
+      margin-bottom: 4px;
+      font-family: 'SF Mono', 'Consolas', monospace;
+    }
+    .api-card .meta {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .api-card p { font-size: 14px; }
+    pre {
+      background: #1a3a5c;
+      color: #e0e0e0;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+      margin: 16px 0;
+    }
+    pre code { color: #a8d8ea; }
+    a.back { display: inline-block; margin-bottom: 20px; color: var(--primary); text-decoration: none; }
+    a.back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="api-container">
+    <a href="index.html" class="back">&larr; 返回仪表板</a>
+    <h1>数据 API 文档</h1>
+    <p class="desc">所有分析数据以 JSON 格式提供，可直接通过 HTTP GET 请求获取。支持跨域(CORS)访问。</p>
+
+    <div class="api-card">
+      <h3>Base URL</h3>
+      <pre>https://nijisakai.github.io/ai-edu-research/data/</pre>
+    </div>
+
+    <div class="api-card">
+      <h3>使用示例</h3>
+      <pre><code>// JavaScript
+fetch('https://nijisakai.github.io/ai-edu-research/data/province_distribution.json')
+  .then(r => r.json())
+  .then(data => {
+    console.log(data.case_count_by_province);
+    // { "浙江省": 432, "四川省": 190, ... }
+  });
+
+# Python
+import requests
+data = requests.get('https://nijisakai.github.io/ai-edu-research/data/metadata.json').json()
+print(f"总记录数: {data['total_rows']}, 案例数: {data['unique_cases']}")</code></pre>
+    </div>
+
+    <h2 style="margin: 32px 0 16px; color: var(--primary);">可用数据集</h2>
+
+    <div class="api-card">
+      <h3>metadata.json</h3>
+      <div class="meta">1.1 KB</div>
+      <p>数据集元信息：总行数(3,815)、唯一案例数(1,690)、列名列表</p>
+    </div>
+    <div class="api-card">
+      <h3>province_distribution.json</h3>
+      <div class="meta">1.3 KB</div>
+      <p>30省份案例数量与工具数量分布</p>
+    </div>
+    <div class="api-card">
+      <h3>stage_distribution.json</h3>
+      <div class="meta">0.7 KB</div>
+      <p>学段(小学/初中/高中/幼儿园)分布统计</p>
+    </div>
+    <div class="api-card">
+      <h3>subject_distribution.json</h3>
+      <div class="meta">8.9 KB</div>
+      <p>319种学科分布统计及学科-工具映射</p>
+    </div>
+    <div class="api-card">
+      <h3>tool_product_distribution.json</h3>
+      <div class="meta">5.8 KB</div>
+      <p>AI工具使用频次Top30、产品形态、产品分类</p>
+    </div>
+    <div class="api-card">
+      <h3>scenario_analysis.json</h3>
+      <div class="meta">3.3 KB</div>
+      <p>应用场景L1/L2层级分析（助学/助教/助育/助评/助管）</p>
+    </div>
+    <div class="api-card">
+      <h3>framework_stats.json</h3>
+      <div class="meta">2.7 KB</div>
+      <p>理论框架标注统计：三赋能、iSTAR、数字教学法、智慧教育境界、创新深度评分，含交叉表</p>
+    </div>
+    <div class="api-card">
+      <h3>nlp_clusters.json</h3>
+      <div class="meta">24.4 KB</div>
+      <p>10个NLP语义聚类：聚类大小、关键词及TF-IDF权重</p>
+    </div>
+    <div class="api-card">
+      <h3>nlp_all_results.json</h3>
+      <div class="meta">229.7 KB</div>
+      <p>综合NLP分析：TF-IDF关键词、LDA主题模型、共现网络、技术路径</p>
+    </div>
+    <div class="api-card">
+      <h3>case_deep_analysis.json</h3>
+      <div class="meta">64.2 KB</div>
+      <p>46个典型案例深度分析：iSTAR评级、五育分类、工具使用、教学创新评估</p>
+    </div>
+    <div class="api-card">
+      <h3>causal_analysis_results.json</h3>
+      <div class="meta">73.8 KB</div>
+      <p>因果与统计分析：对应分析、MCA、序数/多项Logistic回归、路径分析、SHAP</p>
+    </div>
+    <div class="api-card">
+      <h3>deep_insights.json</h3>
+      <div class="meta">43.0 KB</div>
+      <p>深度洞察挖掘：工具生态分析、数字鸿沟、创新指标、教师创造性模式</p>
+    </div>
+    <div class="api-card">
+      <h3>company_market_share.json</h3>
+      <div class="meta">1.2 KB</div>
+      <p>企业市场集中度数据（CR5/CR10/HHI）</p>
+    </div>
+
+    <div class="api-card">
+      <h3>api-index.json</h3>
+      <div class="meta">自动生成</div>
+      <p>所有数据文件的完整索引，含文件大小信息</p>
+    </div>
+
+    <footer style="text-align:center;padding:40px 0;color:#999;font-size:12px">
+      <a href="https://github.com/nijisakai/ai-edu-research" target="_blank">GitHub Repository</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI赋能基础教育 - 交互式数据仪表板</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading">
+    <div class="spinner"></div>
+    <span>正在加载数据...</span>
+  </div>
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <h1>AI赋能基础教育的实践图景与产业生态</h1>
+    <p class="subtitle">基于1,690个典型案例的交互式数据可视化 | Interactive Dashboard</p>
+    <nav class="kpi-bar">
+      <div class="kpi"><span class="num">1,690</span>教学案例</div>
+      <div class="kpi"><span class="num">3,815</span>工具记录</div>
+      <div class="kpi"><span class="num">28</span>省份覆盖</div>
+      <div class="kpi"><span class="num">1,830</span>种AI工具</div>
+      <div class="kpi"><span class="num">1,726</span>家企业</div>
+    </nav>
+  </header>
+
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <a href="#sec-province" class="nav-item active">省域分布</a>
+    <a href="#sec-tools" class="nav-item">工具生态</a>
+    <a href="#sec-scenario" class="nav-item">应用场景</a>
+    <a href="#sec-framework" class="nav-item">理论框架</a>
+    <a href="#sec-clusters" class="nav-item">语义聚类</a>
+    <a href="#sec-innovation" class="nav-item">创新深度</a>
+    <a href="#sec-wuyu" class="nav-item">五育融合</a>
+    <a href="#sec-cases" class="nav-item">案例浏览</a>
+  </nav>
+
+  <!-- Main Dashboard Grid -->
+  <main class="dashboard-grid">
+
+    <!-- Chart 1: Province Distribution -->
+    <section id="sec-province" class="chart-panel full-width">
+      <h2>一、全国省域分布</h2>
+      <div id="chart-province" class="chart-container"></div>
+    </section>
+
+    <!-- Chart 2: Tool Ecosystem -->
+    <section id="sec-tools" class="chart-panel">
+      <h2>二、AI工具生态 Top 20</h2>
+      <div id="chart-tools" class="chart-container"></div>
+    </section>
+
+    <!-- Chart 3: Scenario Treemap -->
+    <section id="sec-scenario" class="chart-panel">
+      <h2>三、应用场景分布</h2>
+      <div class="chart-toggle">
+        <button data-view="treemap" class="active">树图</button>
+        <button data-view="sunburst">旭日图</button>
+      </div>
+      <div id="chart-scenario" class="chart-container"></div>
+    </section>
+
+    <!-- Chart 4: Framework Heatmap -->
+    <section id="sec-framework" class="chart-panel full-width">
+      <h2>四、理论框架交叉分析</h2>
+      <div class="chart-select-container"></div>
+      <div id="chart-framework" class="chart-container"></div>
+    </section>
+
+    <!-- Chart 5: Clusters -->
+    <section id="sec-clusters" class="chart-panel">
+      <h2>五、NLP语义聚类分析</h2>
+      <div id="chart-clusters" class="chart-container"></div>
+    </section>
+
+    <!-- Chart 6: Innovation Depth -->
+    <section id="sec-innovation" class="chart-panel">
+      <h2>六、创新深度分布</h2>
+      <div id="chart-innovation" class="chart-container"></div>
+    </section>
+
+    <!-- Chart 7: Five Education Radar -->
+    <section id="sec-wuyu" class="chart-panel full-width">
+      <h2>七、五育融合雷达图</h2>
+      <div id="chart-wuyu" class="chart-container"></div>
+    </section>
+
+    <!-- Chart 8: Case Browser -->
+    <section id="sec-cases" class="chart-panel full-width">
+      <h2>八、案例深度分析浏览器</h2>
+      <div class="case-controls">
+        <input type="text" id="case-search" placeholder="搜索案例标题、工具、省份...">
+        <select id="case-filter-stage"><option value="">全部学段</option></select>
+        <select id="case-filter-province"><option value="">全部省份</option></select>
+      </div>
+      <div id="case-table-container"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>数据来源：全国基础教育教师AI教学案例征集活动 (N=1,690) |
+    <a href="https://github.com/nijisakai/ai-edu-research" target="_blank">GitHub</a> |
+    <a href="api.html">数据API</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/utils/data-loader.js"></script>
+  <script src="js/charts/province-map.js"></script>
+  <script src="js/charts/tool-ecosystem.js"></script>
+  <script src="js/charts/scenario-treemap.js"></script>
+  <script src="js/charts/framework-heatmap.js"></script>
+  <script src="js/charts/cluster-scatter.js"></script>
+  <script src="js/charts/innovation-depth.js"></script>
+  <script src="js/charts/wuyu-radar.js"></script>
+  <script src="js/charts/case-browser.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

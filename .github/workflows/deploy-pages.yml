@@ -1,0 +1,79 @@
+name: Deploy Dashboard to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'output/*.json'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync JSON data to docs/data/
+        run: |
+          mkdir -p docs/data
+          for f in output/*.json; do
+            [ -f "$f" ] && cp "$f" docs/data/
+          done
+
+      - name: Generate API index
+        run: |
+          python3 -c "
+          import json, os, glob
+          from datetime import date
+          files = sorted(glob.glob('docs/data/*.json'))
+          index = {
+            'version': '1.0',
+            'project': 'AI赋能基础教育研究',
+            'description': '1,690个典型案例的分析数据API',
+            'base_url': 'https://nijisakai.github.io/ai-edu-research/data/',
+            'updated': str(date.today()),
+            'files': {}
+          }
+          for f in files:
+            name = os.path.basename(f)
+            if name == 'api-index.json':
+              continue
+            size = os.path.getsize(f)
+            index['files'][name] = {
+              'path': 'data/' + name,
+              'size_kb': round(size / 1024, 1)
+            }
+          with open('docs/data/api-index.json', 'w', encoding='utf-8') as out:
+            json.dump(index, out, ensure_ascii=False, indent=2)
+          "
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

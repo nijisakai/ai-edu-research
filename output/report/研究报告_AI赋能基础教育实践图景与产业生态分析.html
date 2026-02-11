@@ -5,15 +5,13 @@
 <title>人工智能赋能基础教育的实践图景与产业生态</title>
 <style>
 /* ============================================
-   CONSULTING REPORT STYLESHEET
-   Premium design with teal/gold color scheme
+   CONSULTING REPORT — REDESIGNED v2
+   Premium teal/gold design
    ============================================ */
 
-/* Page setup */
 @page {
     size: A4;
     margin: 2cm 2cm 2.5cm 2cm;
-
     @top-left {
         content: "AI赋能基础教育研究报告";
         font-family: 'Source Han Sans CN', 'PingFang SC', sans-serif;
@@ -21,7 +19,6 @@
         color: #0D4F4F;
         opacity: 0.7;
     }
-
     @top-right {
         content: "2026";
         font-family: 'Helvetica Neue', sans-serif;
@@ -29,19 +26,11 @@
         color: #C19A3E;
         opacity: 0.7;
     }
-
     @bottom-center {
         content: counter(page);
         font-family: 'Helvetica Neue', sans-serif;
         font-size: 9pt;
         color: #0D4F4F;
-    }
-
-    @bottom-left {
-        content: "";
-        border-top: 0.5pt solid #0D4F4F;
-        width: 100%;
-        opacity: 0.3;
     }
 }
 
@@ -50,10 +39,8 @@
     @top-left { content: none; }
     @top-right { content: none; }
     @bottom-center { content: none; }
-    @bottom-left { content: none; }
 }
 
-/* Base typography */
 body {
     font-family: 'Source Han Sans CN', 'PingFang SC', sans-serif;
     font-size: 11pt;
@@ -62,7 +49,7 @@ body {
     text-align: justify;
 }
 
-/* ---- COVER PAGE ---- */
+/* COVER */
 .cover-page {
     page-break-after: always;
     width: 210mm;
@@ -74,22 +61,17 @@ body {
     background: linear-gradient(135deg, #0D4F4F 0%, #0A3D3D 40%, #072E2E 70%, #051F1F 100%);
     color: white;
 }
-
 .cover-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: linear-gradient(180deg, rgba(193,154,62,0.08) 0%, rgba(193,154,62,0.02) 50%, rgba(0,0,0,0.3) 100%);
 }
-
 .cover-content {
     position: relative;
     z-index: 1;
     padding: 4.5cm 3cm 3cm 3cm;
 }
-
 .cover-tag {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 9pt;
@@ -97,9 +79,7 @@ body {
     text-transform: uppercase;
     color: #C19A3E;
     margin-bottom: 1cm;
-    font-weight: 500;
 }
-
 .cover-title {
     font-family: 'Source Han Sans CN', sans-serif;
     font-size: 30pt;
@@ -107,37 +87,30 @@ body {
     line-height: 1.3;
     margin-bottom: 0.5cm;
     color: #ffffff;
-    letter-spacing: 0.02em;
 }
-
 .cover-subtitle {
     font-family: 'Source Han Sans CN', sans-serif;
     font-size: 16pt;
     font-weight: 300;
     color: rgba(255,255,255,0.8);
     margin-bottom: 2cm;
-    letter-spacing: 0.05em;
 }
-
 .cover-divider {
     width: 60pt;
     height: 2pt;
     background: #C19A3E;
     margin-bottom: 1.5cm;
 }
-
 .cover-stats {
     display: flex;
     flex-wrap: wrap;
     gap: 0;
     margin-bottom: 2cm;
 }
-
 .cover-stat {
     width: 48%;
     margin-bottom: 0.6cm;
 }
-
 .cover-stat-value {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 28pt;
@@ -145,38 +118,29 @@ body {
     color: #C19A3E;
     line-height: 1.2;
 }
-
 .cover-stat-label {
     font-size: 9pt;
     color: rgba(255,255,255,0.65);
-    letter-spacing: 0.05em;
 }
-
 .cover-date {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 10pt;
     color: rgba(255,255,255,0.5);
-    letter-spacing: 0.1em;
     position: absolute;
-    bottom: 3cm;
-    left: 3cm;
+    bottom: 3cm; left: 3cm;
 }
-
 .cover-accent-line {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4pt;
+    bottom: 0; left: 0;
+    width: 100%; height: 4pt;
     background: linear-gradient(90deg, #C19A3E 0%, #D4B76A 50%, transparent 100%);
 }
 
-/* ---- TABLE OF CONTENTS ---- */
+/* TOC */
 .toc-page {
     page-break-after: always;
     padding-top: 2cm;
 }
-
 .toc-title {
     font-family: 'Source Han Sans CN', sans-serif;
     font-size: 22pt;
@@ -187,25 +151,18 @@ body {
     border-bottom: 2pt solid #C19A3E;
     text-indent: 0;
 }
-
-.toc-entries {
-    margin-top: 0.5cm;
-}
-
 .toc-l1 {
-    font-family: 'Source Han Sans CN', sans-serif;
     font-size: 12pt;
     font-weight: 600;
     color: #0D4F4F;
     padding: 0.25cm 0;
     border-bottom: 0.5pt solid #eee;
 }
-
 .toc-text {
     text-indent: 0;
 }
 
-/* ---- SECTION DIVIDERS ---- */
+/* SECTION DIVIDERS */
 .section-divider {
     page-break-before: always;
     page-break-after: avoid;
@@ -218,11 +175,9 @@ body {
     color: white;
     min-height: 6cm;
 }
-
 .section-divider-content {
     max-width: 80%;
 }
-
 .section-divider-num {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 48pt;
@@ -230,23 +185,15 @@ body {
     color: #C19A3E;
     line-height: 1;
     margin-bottom: 0.5cm;
-    opacity: 0.9;
 }
-
 .section-divider-title {
     font-family: 'Source Han Sans CN', sans-serif;
     font-size: 22pt;
     font-weight: 700;
-    line-height: 1.3;
     color: white;
 }
 
-/* ---- SECTION CONTENT ---- */
-.section-content {
-    margin-bottom: 1cm;
-}
-
-/* ---- HEADINGS ---- */
+/* HEADINGS */
 h2.section-heading {
     font-family: 'Source Han Sans CN', sans-serif;
     font-size: 18pt;
@@ -256,11 +203,9 @@ h2.section-heading {
     margin-bottom: 0.5cm;
     padding-bottom: 0.2cm;
     border-bottom: 1.5pt solid #C19A3E;
-    line-height: 1.4;
     page-break-after: avoid;
     text-indent: 0;
 }
-
 h3 {
     font-family: 'Source Han Sans CN', sans-serif;
     font-size: 14pt;
@@ -268,11 +213,9 @@ h3 {
     color: #0D4F4F;
     margin-top: 0.8cm;
     margin-bottom: 0.4cm;
-    line-height: 1.4;
     page-break-after: avoid;
     text-indent: 0;
 }
-
 h4 {
     font-family: 'Source Han Sans CN', sans-serif;
     font-size: 12pt;
@@ -280,25 +223,22 @@ h4 {
     color: #1A7A7A;
     margin-top: 0.6cm;
     margin-bottom: 0.3cm;
-    line-height: 1.4;
     page-break-after: avoid;
     text-indent: 0;
 }
 
-/* ---- BODY TEXT ---- */
+/* BODY */
 p {
     margin-bottom: 0.3cm;
     line-height: 1.7;
     text-indent: 2em;
 }
-
-/* Bold text */
 strong {
     font-weight: 700;
     color: #1a1a1a;
 }
 
-/* ---- TABLES ---- */
+/* TABLES */
 .report-table {
     width: 100%;
     border-collapse: collapse;
@@ -306,37 +246,26 @@ strong {
     font-size: 10pt;
     page-break-inside: avoid;
 }
-
 .report-table thead {
     background: #0D4F4F;
     color: white;
 }
-
 .report-table thead th {
     padding: 8pt 10pt;
     text-align: left;
     font-weight: 600;
-    font-size: 10pt;
-    letter-spacing: 0.02em;
     text-indent: 0;
 }
-
 .report-table tbody td {
     padding: 7pt 10pt;
     border-bottom: 0.5pt solid #e5e5e5;
-    font-size: 10pt;
     text-indent: 0;
 }
-
 .report-table tbody tr:nth-child(even) {
     background-color: #E8F4F4;
 }
 
-.report-table tbody tr:hover {
-    background-color: #f0f8f8;
-}
-
-/* ---- CALLOUT BOXES ---- */
+/* CALLOUTS */
 .callout-box {
     margin: 0.6cm 0;
     padding: 0.6cm 0.8cm;
@@ -344,20 +273,16 @@ strong {
     background: #FDF6E8;
     border-radius: 0 4pt 4pt 0;
     font-size: 10.5pt;
-    line-height: 1.6;
     page-break-inside: avoid;
 }
-
 .callout-box p {
     text-indent: 0;
     margin-bottom: 0.2cm;
     color: #333;
 }
-
 .callout-box strong {
     color: #0D4F4F;
 }
-
 .case-callout {
     margin: 0.6cm 0;
     padding: 0.6cm 0.8cm;
@@ -365,48 +290,42 @@ strong {
     background: #E8F4F4;
     border-radius: 0 4pt 4pt 0;
     font-size: 10.5pt;
-    line-height: 1.6;
     page-break-inside: avoid;
 }
-
 .case-callout p {
     text-indent: 0;
     margin-bottom: 0.2cm;
 }
-
 .case-callout strong {
     color: #0D4F4F;
 }
 
-/* ---- FIGURES ---- */
+/* FIGURES */
 .figure-embed {
-    margin: 0.6cm 0;
+    margin: 0.8cm 0;
     text-align: center;
     page-break-inside: avoid;
 }
-
 .figure-embed img {
     max-width: 100%;
     height: auto;
-    max-height: 16cm;
+    max-height: 17cm;
     border: 0.5pt solid #e5e5e5;
     border-radius: 3pt;
-    box-shadow: 0 1pt 3pt rgba(0,0,0,0.08);
 }
-
 .figure-caption-text {
-    font-size: 9pt;
-    color: #666;
+    font-size: 9.5pt;
+    color: #0D4F4F;
+    font-weight: 600;
     text-align: center;
-    margin-top: 0.2cm;
+    margin-top: 0.3cm;
     text-indent: 0;
 }
 
-/* ---- FIGURE GALLERY ---- */
+/* GALLERY */
 .figures-page {
     page-break-before: always;
 }
-
 .figures-page-title {
     font-family: 'Source Han Sans CN', sans-serif;
     font-size: 18pt;
@@ -417,70 +336,29 @@ strong {
     border-bottom: 1.5pt solid #C19A3E;
     text-indent: 0;
 }
-
 .gallery-item {
-    margin-bottom: 0.4cm;
+    margin-bottom: 0.6cm;
     page-break-inside: avoid;
     text-align: center;
 }
-
 .gallery-item img {
     max-width: 100%;
     height: auto;
-    max-height: 14cm;
+    max-height: 15cm;
     border: 0.5pt solid #e5e5e5;
     border-radius: 3pt;
 }
-
 .gallery-caption {
     font-size: 9.5pt;
     color: #0D4F4F;
     font-weight: 600;
     text-align: center;
     margin-top: 0.2cm;
-    margin-bottom: 0.4cm;
+    margin-bottom: 0.3cm;
     text-indent: 0;
 }
 
-/* ---- LISTS ---- */
-ul, ol {
-    margin: 0.3cm 0 0.3cm 1.5cm;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 0.15cm;
-    line-height: 1.6;
-    text-indent: 0;
-}
-
-li p {
-    text-indent: 0;
-    margin-bottom: 0.1cm;
-}
-
-/* ---- HORIZONTAL RULES ---- */
-hr {
-    border: none;
-    border-top: 1pt solid #C19A3E;
-    margin: 1cm 0;
-    opacity: 0.4;
-}
-
-/* ---- FOOTNOTES ---- */
-.footnote {
-    font-size: 9pt;
-    color: #666;
-    line-height: 1.4;
-}
-
-.footnote-ref {
-    font-size: 8pt;
-    vertical-align: super;
-    color: #0D4F4F;
-}
-
-/* ---- ABSTRACT BOX ---- */
+/* ABSTRACT BOX */
 .abstract-box {
     margin: 1cm 0;
     padding: 0.8cm 1cm;
@@ -488,15 +366,12 @@ hr {
     border: 1pt solid #c5dede;
     border-radius: 4pt;
     font-size: 10.5pt;
-    line-height: 1.6;
 }
-
 .abstract-box p {
     text-indent: 2em;
     margin-bottom: 0.2cm;
     color: #333;
 }
-
 .abstract-box-title {
     font-family: 'Source Han Sans CN', sans-serif;
     font-size: 13pt;
@@ -506,16 +381,33 @@ hr {
     text-indent: 0;
 }
 
-/* Avoid page break issues */
-h2, h3, h4 {
-    page-break-after: avoid;
+/* LISTS */
+ul, ol {
+    margin: 0.3cm 0 0.3cm 1.5cm;
+    padding: 0;
+}
+li {
+    margin-bottom: 0.15cm;
+    line-height: 1.6;
+    text-indent: 0;
+}
+li p {
+    text-indent: 0;
+    margin-bottom: 0.1cm;
 }
 
-.report-table, .callout-box, .case-callout {
-    page-break-inside: avoid;
+hr {
+    border: none;
+    border-top: 1pt solid #C19A3E;
+    margin: 1cm 0;
+    opacity: 0.4;
 }
 
-/* ---- ENDMATTER ---- */
+.section-content {
+    margin-bottom: 1cm;
+}
+
+/* ENDMATTER */
 .endmatter {
     margin-top: 1cm;
     padding-top: 0.5cm;
@@ -523,17 +415,22 @@ h2, h3, h4 {
     font-size: 9pt;
     color: #888;
 }
-
 .endmatter p {
     text-indent: 0;
     margin-bottom: 0.15cm;
 }
 
+h2, h3, h4 {
+    page-break-after: avoid;
+}
+.report-table, .callout-box, .case-callout, .figure-embed, .gallery-item {
+    page-break-inside: avoid;
+}
 </style>
 </head>
 <body>
 
-<!-- ======== COVER PAGE ======== -->
+<!-- COVER -->
 <div class="cover-page">
     <div class="cover-overlay"></div>
     <div class="cover-content">
@@ -564,7 +461,7 @@ h2, h3, h4 {
     <div class="cover-accent-line"></div>
 </div>
 
-<!-- ======== TABLE OF CONTENTS ======== -->
+<!-- TOC -->
 <div class="toc-page">
 <h2 class="toc-title">目　录</h2>
 <div class="toc-entries">
@@ -573,27 +470,27 @@ h2, h3, h4 {
 <div class="toc-l1"><span class="toc-text">三、技术视角：AI教育技术栈解构</span></div>
 <div class="toc-l1"><span class="toc-text">四、产业视角：EdTech生态系统分析</span></div>
 <div class="toc-l1"><span class="toc-text">五、区域分析：数字教育地理图景</span></div>
-<div class="toc-l1"><span class="toc-text">六、理论视角：基于黄荣怀智慧教育框架的深度解读</span></div>
+<div class="toc-l1"><span class="toc-text">六、理论视角：基于智慧教育框架的深度解读</span></div>
 <div class="toc-l1"><span class="toc-text">七、典型案例深度剖析</span></div>
-<div class="toc-l1"><span class="toc-text">七点五、深度洞察：数据中的"真金"</span></div>
-<div class="toc-l1"><span class="toc-text">八、关键发现与洞察</span></div>
-<div class="toc-l1"><span class="toc-text">九、政策建议与展望</span></div>
+<div class="toc-l1"><span class="toc-text">八、深度数据挖掘与关键洞察</span></div>
+<div class="toc-l1"><span class="toc-text">九、核心结论与趋势研判</span></div>
+<div class="toc-l1"><span class="toc-text">十、政策建议与展望</span></div>
 <div class="toc-l1"><span class="toc-text">附录：方法论说明</span></div>
 </div>
 </div>
 
 
-<!-- ======== ABSTRACT ======== -->
+<!-- ABSTRACT -->
 <div class="abstract-box">
     <div class="abstract-box-title">摘　要</div>
     <p>本报告基于一项面向全国K-12教师的AI教育应用案例征集活动所获取的1690个典型案例，对人工智能赋能基础教育的实践现状进行了系统性的多维分析。研究涵盖3815条工具/产品使用记录，涉及1830种独立工具产品和1726家企业主体，覆盖全国30个省级行政区。
 
 研究发现：第一，AI教育应用已实现学科全覆盖，从语文（577例）、数学（466例）等主科延伸至心理健康教育（40例）、道德与法治（37例）等领域，呈现"全学科渗透"态势。第二，小学阶段以890例（52.7%）占据绝对主导地位，反映出低学段教师对AI工具的高接受度。第三，技术供给侧呈现高度碎片化特征，1726家企业中前五名市场份额仅占28.2%，豆包（字节跳动）以387次提及（11.4%）位居首位。第四，应用场景高度集中于"助学"（73.5%）和"课堂教学"（51.1%），"助评""助管"等深层应用尚处萌芽阶段。第五，区域发展呈现显著的东强西弱格局，浙江省以432例（25.6%）遥遥领先，但新疆（48例）、宁夏（56例）等西部省份的积极参与表明数字鸿沟正在收窄。
 
-综合判断，我国AI赋能基础教育正处于"规模化应用初期"阶段，已从概念验证走向常态化实践，但在深层教学变革、五育均衡融合、自主研发能力等方面仍面临显著挑战。本报告进一步引入黄荣怀智慧教育理论体系（数字教学法、教育场景泛化、智慧教育三重境界、iSTAR人机协同框架、三赋能应用框架）对实证数据进行深度理论解读，揭示当前实践整体处于智慧教育"第一重境界"（智慧学习环境）、人机协同Level 1（人机合作）阶段，"教育场景泛化"和"双盲盒"效应显著，并据此提出建立智能教育产品校园准入制度、开展AI教育社会实验、推动教育垂直大模型发展、构建"需求—融入—演化—治理"闭环等政策建议。</p>
+综合判断，我国AI赋能基础教育正处于"规模化应用初期"阶段，已从概念验证走向常态化实践，但在深层教学变革、五育均衡融合、自主研发能力等方面仍面临显著挑战。本报告进一步引入智慧教育理论体系（数字教学法、教育场景泛化、智慧教育三重境界、iSTAR人机协同框架、三赋能应用框架）对实证数据进行深度理论解读，揭示当前实践整体处于智慧教育"第一重境界"（智慧学习环境）、人机协同Level 1（人机合作）阶段，"教育场景泛化"和"双盲盒"效应显著，并据此提出建立智能教育产品校园准入制度、开展AI教育社会实验、推动教育垂直大模型发展、构建"需求—融入—演化—治理"闭环等政策建议。</p>
 </div>
 
-<!-- ======== SECTIONS ======== -->
+<!-- SECTIONS -->
 
 <div class="section-divider">
     <div class="section-divider-content">
@@ -605,7 +502,7 @@ h2, h3, h4 {
 <h2 class="section-heading">一、研究背景与方法</h2>
 <h3 id="11">1.1 研究背景</h3>
 <p>2024年以来，以大语言模型为代表的生成式人工智能技术加速向教育领域渗透，基础教育作为覆盖面最广、影响最深远的教育阶段，正经历着前所未有的技术变革。国务院《新一代人工智能发展规划》明确提出&rdquo;智能教育&rdquo;战略方向，教育部相继出台多项政策推动教育数字化转型。在此背景下，一线教师如何理解、选择和应用AI工具，成为理解AI教育落地实态的关键切入点。</p>
-<p>然而，现有研究多聚焦于理论探讨或小规模实验，缺乏对大规模一线实践的系统性实证分析。本研究旨在通过对全国范围内教师自主提交的AI教育应用案例进行多维度数据挖掘，勾勒AI赋能基础教育的真实实践图景，解构技术供给侧的产业生态，为政策制定、学校实践和企业决策提供数据支撑。同时，本研究引入黄荣怀教授团队提出的智慧教育系列理论框架——包括数字教学法（Digital Pedagogy）、教育场景泛化与&rdquo;双盲盒&rdquo;模型、智慧教育&rdquo;三重境界&rdquo;、iSTAR人机协同框架以及&rdquo;三赋能&rdquo;应用框架——对实证数据进行深层次的理论诊断与解读，为理解AI教育应用的发展阶段和演进方向提供理论坐标。</p>
+<p>然而，现有研究多聚焦于理论探讨或小规模实验，缺乏对大规模一线实践的系统性实证分析。本研究旨在通过对全国范围内教师自主提交的AI教育应用案例进行多维度数据挖掘，勾勒AI赋能基础教育的真实实践图景，解构技术供给侧的产业生态，为政策制定、学校实践和企业决策提供数据支撑。同时，本研究引入智慧教育系列理论框架——包括数字教学法（Digital Pedagogy）、教育场景泛化与&rdquo;双盲盒&rdquo;模型、智慧教育&rdquo;三重境界&rdquo;、iSTAR人机协同框架以及&rdquo;三赋能&rdquo;应用框架——对实证数据进行深层次的理论诊断与解读，为理解AI教育应用的发展阶段和演进方向提供理论坐标。</p>
 <h3 id="12">1.2 数据来源与规模</h3>
 <p>本研究数据来源于一项面向全国K-12教师的AI教育应用案例征集活动。经过数据清洗和标准化处理，最终获得有效样本如下：</p>
 <table class="report-table">
@@ -659,7 +556,7 @@ h2, h3, h4 {
 <div class="section-content">
 <h2 class="section-heading">二、教育视角：AI赋能教学的实践图景</h2>
 <h3 id="21">2.1 学段分布特征与分析</h3>
-<p>1690个案例在学段维度上呈现出鲜明的&rdquo;小学主导&rdquo;特征<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig01_province_heatmap.png" alt="fig01_province_heatmap"><p class="figure-caption-text">（见图1）</p></div>：</p>
+<p>1690个案例在学段维度上呈现出鲜明的&rdquo;小学主导&rdquo;特征（见图1）：</p>
 <table class="report-table">
 <thead>
 <tr>
@@ -697,9 +594,16 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p>小学阶段以890例占据半壁江山，这一现象值得深入解读。首先，小学教师群体基数最大，且教学内容相对灵活，为AI工具的引入提供了更大的实验空间。其次，小学阶段的教学评价压力相对较低，教师尝试新技术的心理负担较小。第三，AI在图像生成、语音交互、趣味化内容创作等方面的能力与小学教学的直观性、趣味性需求高度契合。</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_a02_stage_waffle.png" alt="图2 学段分布华夫饼图">
+    <p class="figure-caption-text"><strong>图2 学段分布华夫饼图</strong></p>
+</div>
+
+<p>华夫饼图中，小学（蓝色）占据超过半数的方格，形成压倒性的视觉主导，直观展现了&rdquo;小学独大&rdquo;的学段格局。幼儿园方格的出现则标志着AI应用已向学前教育延伸。</p>
 <p>值得关注的是，幼儿园阶段贡献了189例（11.2%），表明AI应用已向学前教育延伸，主要集中在环境创设、绘本生成和游戏化学习等场景。高中阶段占比相对较低（11.1%），可能与高考压力下教师对新技术持审慎态度有关。</p>
 <h3 id="22">2.2 学科渗透格局</h3>
-<p>AI教育应用已实现全学科覆盖，但渗透深度差异显著<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig02_school_stage_donut.png" alt="fig02_school_stage_donut"><p class="figure-caption-text">（见图2）</p></div>：</p>
+<p>AI教育应用已实现全学科覆盖，但渗透深度差异显著（见图2）：</p>
 <table class="report-table">
 <thead>
 <tr>
@@ -767,11 +671,18 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p><strong>语文学科的领先地位</strong>（577例，34.1%）与大语言模型的核心能力高度吻合——文本生成、阅读理解、写作辅导、古诗词赏析等场景天然适配LLM技术。数学学科（466例）紧随其后，AI在解题辅导、可视化演示、个性化练习生成等方面展现出强大的辅助能力。</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_a03_subject_lollipop.png" alt="图3 学科渗透棒棒糖图">
+    <p class="figure-caption-text"><strong>图3 学科渗透棒棒糖图</strong></p>
+</div>
+
 <p><strong>美术学科的异军突起</strong>（235例，13.9%）是本次调研的一个突出发现。AI图像生成工具（如即梦AI）极大地降低了视觉创作的技术门槛，使美术教学从&rdquo;技法训练&rdquo;向&rdquo;创意表达&rdquo;转型成为可能。</p>
 <p><strong>体育学科的积极参与</strong>（127例）同样值得关注，AI在运动姿态分析、体能数据监测、个性化训练方案等方面的应用正在打破&rdquo;体育课不需要技术&rdquo;的传统认知。</p>
 <p>心理健康教育（40例）和道德与法治（37例）的出现，标志着AI应用已从知识传授型学科向情感关怀型、价值引导型学科延伸，尽管规模尚小，但方向意义重大。</p>
+<p>棒棒糖图中，语文和数学的圆点体量遥遥领先，美术的圆点意外地大于英语——这一视觉反差生动诠释了AI图像生成技术对美术教学的颠覆性影响。体育、心理健康教育虽然圆点较小，但其出现本身标志着AI学科边界的拓展。</p>
 <h3 id="23">2.3 应用场景深度解析</h3>
-<p>对案例的应用场景进行两级分类编码，揭示了以下结构<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig03_top20_tools_bar.png" alt="fig03_top20_tools_bar"><p class="figure-caption-text">（见图3）</p></div>：</p>
+<p>对案例的应用场景进行两级分类编码，揭示了以下结构（见图3）：</p>
 <p><strong>一级场景分布：</strong></p>
 <table class="report-table">
 <thead>
@@ -804,6 +715,12 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p><strong>二级场景分布：</strong></p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_a04_scenario_treemap.png" alt="图4 应用场景树图">
+    <p class="figure-caption-text"><strong>图4 应用场景树图</strong></p>
+</div>
+
 <table class="report-table">
 <thead>
 <tr>
@@ -831,10 +748,11 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p><strong>主要教学环节：</strong> 课堂教学以51.1%的占比占据绝对主导地位。</p>
-<p>数据揭示了一个重要的结构性特征：当前AI教育应用高度集中于&rdquo;助学&rdquo;场景（73.5%），尤其是&rdquo;智能辅导系统&rdquo;（59.1%）。这意味着AI在教育中的角色主要被定位为&rdquo;学生的智能助手&rdquo;，而非&rdquo;教师的专业伙伴&rdquo;或&rdquo;学校的管理工具&rdquo;。黄荣怀将这种现象概括为&rdquo;教育场景泛化&rdquo;——AI以单一的辅导模式泛化覆盖多样化的教育情境，未能实现对不同场景的精准适配（黄荣怀, 2024）。从其提出的&rdquo;三赋能&rdquo;框架来看，73.5%的&rdquo;赋能学生&rdquo;与17.5%的&rdquo;赋能教师&rdquo;和5.1%的&rdquo;赋能学校&rdquo;之间的悬殊比例，构成了亟待纠正的结构性失衡。</p>
+<p>数据揭示了一个重要的结构性特征：当前AI教育应用高度集中于&rdquo;助学&rdquo;场景（73.5%），尤其是&rdquo;智能辅导系统&rdquo;（59.1%）。这意味着AI在教育中的角色主要被定位为&rdquo;学生的智能助手&rdquo;，而非&rdquo;教师的专业伙伴&rdquo;或&rdquo;学校的管理工具&rdquo;。已有研究将这种现象概括为&rdquo;教育场景泛化&rdquo;——AI以单一的辅导模式泛化覆盖多样化的教育情境，未能实现对不同场景的精准适配（黄荣怀, 2024）。从&rdquo;三赋能&rdquo;框架来看，73.5%的&rdquo;赋能学生&rdquo;与17.5%的&rdquo;赋能教师&rdquo;和5.1%的&rdquo;赋能学校&rdquo;之间的悬殊比例，构成了亟待纠正的结构性失衡。</p>
+<p>&ldquo;助学&rdquo;类场景以树图中四分之三的面积压倒性地占据画面中心，&rdquo;助教&rdquo;仅占一隅，&rdquo;助育&rdquo;和&rdquo;助评&rdquo;几乎不可辨识——几何面积的极端悬殊将73.5%的数字转化为直击人心的视觉冲击。</p>
 <p>&ldquo;助评&rdquo;（3.0%）和&rdquo;助管&rdquo;（2.1%）的低占比值得警惕。教育评价和管理是教育系统的关键环节，AI在这些领域的应用不足，可能意味着：一是技术成熟度尚不足以支撑高利害关系的评价决策；二是教育管理者对AI的认知和接受度滞后于一线教师；三是相关产品供给不足。</p>
 <h3 id="24">2.4 五育融合现状与反思</h3>
-<p>从&rdquo;五育并举&rdquo;的视角审视AI教育应用的培养方向分布<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig04_product_ecosystem_treemap.png" alt="fig04_product_ecosystem_treemap"><p class="figure-caption-text">（见图4）</p></div>：</p>
+<p>从&rdquo;五育并举&rdquo;的视角审视AI教育应用的培养方向分布（见图4）：</p>
 <table class="report-table">
 <thead>
 <tr>
@@ -866,11 +784,18 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p>数据呈现出极为显著的&rdquo;智育偏重&rdquo;特征。72.6%的案例聚焦于知识传授和智力发展，这与AI技术当前的核心能力（信息处理、知识问答、逻辑推理）高度一致，但也暴露出AI教育应用在育人功能上的结构性失衡。黄荣怀等（2024）提出的数字教学法框架强调&rdquo;技术赋能的深度学习&rdquo;应指向全面发展目标，而非仅限于知识维度的效率提升。当前的智育偏重表明，AI教育应用尚未突破&rdquo;以知识为中心&rdquo;的传统范式，距离数字教学法所倡导的全人发展取向仍有显著差距。</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_a05_five_edu_radar.png" alt="图5 五育融合雷达图">
+    <p class="figure-caption-text"><strong>图5 五育融合雷达图</strong></p>
+</div>
+
+<p>雷达图以双轴同时呈现五育的案例数量与人机协同深度。智育在&rdquo;数量&rdquo;轴上一枝独秀，但在&rdquo;协同深度&rdquo;轴上反而不如美育和体育，两组指标的交叉错位揭示了一个反直觉发现：量少不等于质弱，非智育领域的AI应用虽少但更深。</p>
 <p><strong>德育方面</strong>（12.2%），AI主要应用于红色教育情境创设、传统文化数字化呈现、道德两难情境模拟等场景，展现出一定的创新潜力。<strong>美育方面</strong>（9.3%），AI图像生成和音乐创作工具为艺术教育注入了新的活力。<strong>体育方面</strong>（3.0%），AI运动分析和体能监测正在起步。</p>
 <p><strong>劳动教育的几乎缺席是本研究最值得关注的发现之一。</strong> 在国家大力推进劳动教育的政策背景下，AI技术在劳动教育中的应用几乎为空白。这既反映了劳动教育本身的实践性特征与数字技术之间的天然张力，也提示我们需要探索AI在劳动教育中的创新应用路径——例如智能农业体验、3D打印与制造、AI辅助的项目式劳动学习等。</p>
 <h3 id="25">2.5 教学创新模式发现</h3>
 <h4 id="251-lda">2.5.1 基于LDA的主题模型分析</h4>
-<p>通过对案例文本实施LDA主题建模，识别出7个核心主题<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig05_scenario_sunburst.png" alt="fig05_scenario_sunburst"><p class="figure-caption-text">（见图5）</p></div>：</p>
+<p>通过对案例文本实施LDA主题建模，识别出7个核心主题（见图5）：</p>
 <table class="report-table">
 <thead>
 <tr>
@@ -921,13 +846,20 @@ h2, h3, h4 {
 <p>NLP关键词分析进一步揭示了教师话语中的高频创新表达：<strong>AI、教学模式、个性化、效率、融合、精准、参与度、深度、范式</strong>。这些关键词构成了当前AI教育叙事的核心语义场，其中&rdquo;个性化&rdquo;和&rdquo;精准&rdquo;的高频出现，反映出教师对AI实现因材施教的强烈期待。</p>
 <h4 id="252">2.5.2 基于聚类的案例类型学</h4>
 <p>KMeans聚类分析将1690个案例划分为10个典型群组，主要类型包括：</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_c01_umap_clusters.png" alt="图6 案例聚类UMAP可视化">
+    <p class="figure-caption-text"><strong>图6 案例聚类UMAP可视化</strong></p>
+</div>
+
+<p>UMAP降维投影将1690个案例映射为二维散点，10种颜色标记的聚类团簇边界清晰。部分团簇紧凑密集（如大语言模型辅助语文类），部分较为松散（如跨学科项目类），空间分布直观展示了AI教学应用模式的多样性与差异性。</p>
 <ul>
 <li><strong>工具替代型</strong>：以AI工具直接替代传统教学手段，如用AI生成课件、用语音识别替代人工批改；</li>
 <li><strong>流程优化型</strong>：将AI嵌入教学流程的特定环节，实现局部效率提升；</li>
 <li><strong>模式重构型</strong>：基于AI能力重新设计教学流程，如&rdquo;先学后教&rdquo;的翻转课堂与AI诊断结合；</li>
 <li><strong>生态创新型</strong>：构建AI驱动的完整学习生态，涉及多工具协同、多场景联动。</li>
 </ul>
-<p>多数案例仍处于&rdquo;工具替代型&rdquo;和&rdquo;流程优化型&rdquo;阶段，真正实现&rdquo;模式重构&rdquo;的案例占比较低，表明AI教育应用的深度变革仍任重道远。以黄荣怀智慧教育&rdquo;三重境界&rdquo;理论审视，&rdquo;工具替代型&rdquo;和&rdquo;流程优化型&rdquo;案例对应第一重境界（智慧学习环境），&rdquo;模式重构型&rdquo;案例触及第二重境界（新型教学模式）的门槛，而&rdquo;生态创新型&rdquo;案例则指向第二重境界的深层实现。当前的案例分布表明，从第一重境界向第二重境界的跃迁是AI赋能基础教育面临的核心挑战。</p></div>
+<p>多数案例仍处于&rdquo;工具替代型&rdquo;和&rdquo;流程优化型&rdquo;阶段，真正实现&rdquo;模式重构&rdquo;的案例占比较低，表明AI教育应用的深度变革仍任重道远。以智慧教育&rdquo;三重境界&rdquo;理论审视，&rdquo;工具替代型&rdquo;和&rdquo;流程优化型&rdquo;案例对应第一重境界（智慧学习环境），&rdquo;模式重构型&rdquo;案例触及第二重境界（新型教学模式）的门槛，而&rdquo;生态创新型&rdquo;案例则指向第二重境界的深层实现。当前的案例分布表明，从第一重境界向第二重境界的跃迁是AI赋能基础教育面临的核心挑战。</p></div>
 
 <div class="section-divider">
     <div class="section-divider-content">
@@ -938,7 +870,13 @@ h2, h3, h4 {
 <div class="section-content">
 <h2 class="section-heading">三、技术视角：AI教育技术栈解构</h2>
 <h3 id="31">3.1 核心技术要素图谱</h3>
-<p>对案例中涉及的技术要素进行提取和统计，构建AI教育核心技术图谱<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig06_subject_distribution.png" alt="fig06_subject_distribution"><p class="figure-caption-text">（见图6）</p></div>：</p>
+<p>对案例中涉及的技术要素进行提取和统计，构建AI教育核心技术图谱（见图6）：</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_b04_cooccurrence_network.png" alt="图10 技术共现网络">
+    <p class="figure-caption-text"><strong>图10 技术共现网络</strong></p>
+</div>
+
 <table class="report-table">
 <thead>
 <tr>
@@ -970,15 +908,30 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p><strong>数据分析</strong>以343次出现位居首位，反映出教育领域对&rdquo;数据驱动决策&rdquo;的强烈需求。<strong>NLP技术</strong>（278次）紧随其后，与大语言模型在教育中的广泛应用直接相关。<strong>语音识别</strong>（136次）的高频出现与英语口语教学、语文朗读评测等场景密切关联。<strong>学习行为分析</strong>（120次）则体现了AI在学情诊断方面的应用潜力。</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_b01_top20_tools.png" alt="图7 AI工具使用频次Top20">
+    <p class="figure-caption-text"><strong>图7 AI工具使用频次Top20</strong></p>
+</div>
+
+<p>条形图中，豆包和DeepSeek两根长条显著领先，其后各工具的条形急剧缩短形成典型的&rdquo;陡坡式&rdquo;衰减，直观反映了大语言模型在教育AI工具格局中的绝对主导地位。前三名均为国产生成式AI产品这一事实，标志着教育AI应用的&rdquo;国产替代&rdquo;已成现实。</p>
+<p>共现网络图中，豆包、DeepSeek等大节点居于核心位置，与多种工具形成密集连线；大量小节点散落在网络边缘仅有稀疏连线。网络的&rdquo;核心-边缘&rdquo;结构，是市场&rdquo;头部集中、尾部碎片化&rdquo;双重特征的拓扑学映射。</p>
 <h3 id="32">3.2 技术路径模式分析</h3>
 <p>通过对案例中技术应用链路的语义分析，识别出主导性的技术路径模式：</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_b02_tech_sankey.png" alt="图8 技术路径桑基图">
+    <p class="figure-caption-text"><strong>图8 技术路径桑基图</strong></p>
+</div>
+
 <blockquote class="callout-box">
 <p><strong>学习行为采集 → 学情诊断 → 个性化反馈 → 学习改进</strong></p>
 </blockquote>
 <p>这一&rdquo;采集—诊断—反馈—改进&rdquo;的四阶段闭环构成了当前AI教育应用最典型的技术路径。其核心逻辑是：通过多模态数据采集（答题记录、课堂行为、语音交互等）构建学生画像，基于AI算法进行学情诊断，生成个性化的学习建议或资源推送，最终促进学习效果的改善。</p>
 <p>然而，这一路径在实践中面临若干瓶颈：数据采集的完整性和隐私保护之间的张力、学情诊断模型的准确性和可解释性不足、个性化反馈的颗粒度和教学适切性有待提升等。</p>
+<p>桑基图从左至右呈现了技术要素→应用场景→教学环节的多级流转。NLP和数据分析两条主干流最粗，汇入&rdquo;助学&rdquo;后分散至各教学环节，路径的粗细直观反映流量大小：少数主干路径承载了绝大部分的技术应用流量，长尾路径虽多但流量微薄。</p>
 <h3 id="33">3.3 产品形态与分类</h3>
-<p>3815条工具记录的产品形态分布如下<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig07_cultivation_radar.png" alt="fig07_cultivation_radar"><p class="figure-caption-text">（见图7）</p></div>：</p>
+<p>3815条工具记录的产品形态分布如下（见图7）：</p>
 <p><strong>按产品形态：</strong></p>
 <table class="report-table">
 <thead>
@@ -1007,6 +960,12 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p><strong>按产品类别：</strong></p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_b03_model_landscape.png" alt="图9 AI大模型景观图">
+    <p class="figure-caption-text"><strong>图9 AI大模型景观图</strong></p>
+</div>
+
 <table class="report-table">
 <thead>
 <tr>
@@ -1038,6 +997,7 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p>软件平台（73.6%）的绝对主导地位表明，当前AI教育产品以轻量化、云端化为主要交付形式，这降低了学校的部署成本和技术门槛。平台型综合系统（36.5%）和Web SaaS（32.5%）合计占比近七成，反映出教育用户对&rdquo;一站式&rdquo;解决方案和&rdquo;即开即用&rdquo;服务模式的偏好。</p>
+<p>景观图以气泡大小编码使用频次、位置编码产品定位。豆包和DeepSeek的气泡最大且居于&rdquo;高通用性&rdquo;象限，希沃白板等教育专用产品的气泡虽小但位于&rdquo;高垂直性&rdquo;象限，两类产品的空间分离揭示了&rdquo;通用底座vs.垂直应用&rdquo;的产品格局分化。</p>
 <p>硬件+AI产品仅占3.7%，这一比例远低于预期。智能教育硬件（如AI学习机、智能黑板、教育机器人等）在消费市场热度较高，但在学校教学场景中的渗透率仍然有限，可能与采购成本、维护难度和使用场景局限性有关。</p>
 <h3 id="34-">3.4 技术-学科关联矩阵</h3>
 <p>不同学科对AI技术的需求呈现差异化特征：</p>
@@ -1103,7 +1063,13 @@ h2, h3, h4 {
 <div class="section-content">
 <h2 class="section-heading">四、产业视角：EdTech生态系统分析</h2>
 <h3 id="41">4.1 市场格局与竞争态势</h3>
-<p>本次调研揭示了一个高度碎片化的AI教育产品市场<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig08_tech_wordcloud.png" alt="fig08_tech_wordcloud"><p class="figure-caption-text">（见图8）</p></div>：</p>
+<p>本次调研揭示了一个高度碎片化的AI教育产品市场（见图8）：</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_d02_ecosystem_treemap.png" alt="图12 EdTech产品生态树图">
+    <p class="figure-caption-text"><strong>图12 EdTech产品生态树图</strong></p>
+</div>
+
 <p><strong>核心市场数据：</strong>
 - 涉及独立工具/产品：1,830种
 - 涉及企业/机构主体：1,726家
@@ -1159,8 +1125,16 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p>市场集中度极低（CR5仅28.2%），呈现典型的&rdquo;长尾分布&rdquo;格局。这一特征有多重含义：</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_d01_lorenz_curve.png" alt="图11 市场集中度洛伦兹曲线">
+    <p class="figure-caption-text"><strong>图11 市场集中度洛伦兹曲线</strong></p>
+</div>
+
+<p>洛伦兹曲线严重偏离45度均等线——约80%的工具仅贡献了不到20%的市场份额，曲线的极端凸起形态以经典经济学工具印证了AI教育市场的高度碎片化与&rdquo;二八分化&rdquo;特征。</p>
 <p><strong>积极面：</strong> 市场竞争充分，创新活力旺盛，教师有丰富的工具选择空间。1726家企业的参与表明AI教育赛道吸引了大量市场主体，从互联网巨头到初创企业均有布局。</p>
 <p><strong>消极面：</strong> 市场碎片化意味着缺乏行业标准和互操作性，教师面临严重的&rdquo;工具选择困难&rdquo;，数据孤岛问题突出，产品质量参差不齐。黄荣怀将这种供需双方的信息不对称概括为&rdquo;双盲盒&rdquo;效应——教育用户面对&rdquo;技术黑盒子&rdquo;无法有效评估产品，技术供给方面对&rdquo;方案空盒子&rdquo;无法提供场景化解决方案，最终导致市场在低效匹配中持续碎片化（黄荣怀, 2024）。</p>
+<p>嵌套树图中，字节跳动生态（豆包+即梦AI+剪映AI三个色块）在软件平台区域内占据最大面积，与背景中1726家企业的碎片化马赛克形成鲜明的视觉张力——这恰是&rdquo;头部平台依赖&rdquo;与&rdquo;尾部极度分散&rdquo;并存的产业生态缩影。</p>
 <h3 id="42">4.2 头部企业分析</h3>
 <p><strong>豆包（字节跳动）：</strong> 以387次提及（11.4%）位居榜首，凭借字节跳动的流量优势和技术积累，在通用AI对话、内容生成等场景中建立了显著的用户基础。其优势在于产品易用性高、迭代速度快、与短视频生态协同。</p>
 <p><strong>DeepSeek：</strong> 以289次提及（8.0%）位居第二，作为专注于AI基础模型的企业，其开源策略和高性价比定位赢得了大量教师用户。DeepSeek的崛起反映了教育用户对底层AI能力的直接需求——许多教师绕过教育专用产品，直接使用通用大模型。</p>
@@ -1172,7 +1146,7 @@ h2, h3, h4 {
 <p>这一现象的成因包括：一是AI技术门槛较高，学校普遍缺乏自主研发能力；二是商业产品的易用性和功能丰富度优于自研工具；三是教育信息化经费更多用于采购而非研发。</p>
 <p>然而，过度依赖第三方产品也带来隐忧：数据安全和隐私保护风险、产品停服或涨价的供应链风险、教育需求与商业产品之间的适配性缺口等。14.4%的自研比例提示，提升学校和区域的AI教育技术自主能力应成为政策关注的重点。</p>
 <h3 id="44">4.4 产业成熟度评估</h3>
-<p>对案例文本中产业成熟度相关表述进行语义分析<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig09_tech_cooccurrence_network.png" alt="fig09_tech_cooccurrence_network"><p class="figure-caption-text">（见图9）</p></div>：</p>
+<p>对案例文本中产业成熟度相关表述进行语义分析（见图9）：</p>
 <table class="report-table">
 <thead>
 <tr>
@@ -1199,7 +1173,7 @@ h2, h3, h4 {
 </tr>
 </tbody>
 </table>
-<p>&ldquo;规模化&rdquo;（500次）与&rdquo;初期&rdquo;（150次）的高频共现，精准刻画了当前产业阶段——<strong>&ldquo;规模化应用初期&rdquo;</strong>。这意味着：AI教育产品已经走出实验室和试点学校，进入较大范围的常态化使用，但应用深度、效果验证和商业模式仍处于探索阶段。以黄荣怀智慧教育&rdquo;三重境界&rdquo;理论对照，产业供给侧的产品主要服务于第一重境界（智慧学习环境建设），面向第二重境界（新型教学模式）和第三重境界（现代教育制度）的产品供给严重不足，这既是当前产业的短板，也是未来发展的蓝海空间。</p>
+<p>&ldquo;规模化&rdquo;（500次）与&rdquo;初期&rdquo;（150次）的高频共现，精准刻画了当前产业阶段——<strong>&ldquo;规模化应用初期&rdquo;</strong>。这意味着：AI教育产品已经走出实验室和试点学校，进入较大范围的常态化使用，但应用深度、效果验证和商业模式仍处于探索阶段。以智慧教育&rdquo;三重境界&rdquo;理论对照，产业供给侧的产品主要服务于第一重境界（智慧学习环境建设），面向第二重境界（新型教学模式）和第三重境界（现代教育制度）的产品供给严重不足，这既是当前产业的短板，也是未来发展的蓝海空间。</p>
 <p>从产业生命周期理论来看，AI教育产业正处于&rdquo;成长期早期&rdquo;：市场规模快速扩大，参与者众多，但行业标准尚未建立，盈利模式不清晰，洗牌尚未开始。</p>
 <h3 id="45">4.5 区域产业发展差异</h3>
 <p>产业发展与区域经济水平和教育信息化基础高度相关。东部沿海省份不仅案例数量领先，其案例中涉及的工具种类更丰富、技术复杂度更高、自研比例更高。西部省份的案例则更多依赖通用型AI工具（如豆包、DeepSeek），专业教育AI产品的渗透率较低。</p></div>
@@ -1213,7 +1187,7 @@ h2, h3, h4 {
 <div class="section-content">
 <h2 class="section-heading">五、区域分析：数字教育地理图景</h2>
 <h3 id="51">5.1 省域分布特征</h3>
-<p>1690个案例的省域分布呈现显著的不均衡性<div class="figure-embed"><img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig10_stage_subject_heatmap.png" alt="fig10_stage_subject_heatmap"><p class="figure-caption-text">（见图10）</p></div>：</p>
+<p>1690个案例的省域分布呈现显著的不均衡性（见图10）：</p>
 <p><strong>案例数量前十省份：</strong></p>
 <table class="report-table">
 <thead>
@@ -1269,7 +1243,15 @@ h2, h3, h4 {
 </tr>
 </tbody>
 </table>
+<p>如图所示，案例密度从东部沿海向内陆递减，浙江省呈现最深色调，四川、重庆、北京构成第二梯队，而西北和东北地区明显较浅，&rdquo;东密西疏&rdquo;的空间格局一目了然。</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f05_geographic_inequality.png" alt="图13 地理不平等分析">
+    <p class="figure-caption-text"><strong>图13 地理不平等分析</strong></p>
+</div>
+
 <p><strong>浙江省的绝对领先</strong>（432例，25.6%）并非偶然。浙江在教育数字化领域长期走在全国前列：省级层面的&rdquo;之江汇&rdquo;教育平台建设、&rdquo;互联网+义务教育&rdquo;城乡同步课堂项目、以及杭州作为数字经济高地的产业辐射效应，共同构成了浙江AI教育应用的生态优势。</p>
+<p>Theil指数分解图中，省内不平等（深色面积）以98.1%的压倒性比例占据几乎全部画面，省间差异（浅色面积）细如发丝，这一极端的面积对比有力颠覆了&rdquo;数字鸿沟主要存在于省际之间&rdquo;的常见假设——真正的差距在于同一省份内部。</p>
 <p>四川省（190例）和重庆市（166例）的突出表现值得关注。西南地区在AI教育应用中的活跃度超出预期，可能与当地教育行政部门的积极推动和教师培训体系的有效运作有关。</p>
 <h3 id="52">5.2 东中西部差异</h3>
 <p>从区域板块来看：</p>
@@ -1287,12 +1269,30 @@ h2, h3, h4 {
 <div class="section-divider">
     <div class="section-divider-content">
         <div class="section-divider-num">六</div>
-        <div class="section-divider-title">理论视角：基于黄荣怀智慧教育框架的深度解读</div>
+        <div class="section-divider-title">理论视角：基于智慧教育框架的深度解读</div>
     </div>
 </div>
 <div class="section-content">
-<h2 class="section-heading">六、理论视角：基于黄荣怀智慧教育框架的深度解读</h2>
-<p>本研究的实证数据为理论审视提供了坚实基础。本节引入北京师范大学黄荣怀教授团队提出的智慧教育系列理论框架，对1690个案例所呈现的实践图景进行深层次的理论诊断与解读。黄荣怀作为联合国教科文组织教育信息化领域唯一的中国专家，其理论体系代表了国内智慧教育研究的最高水平，为我们理解AI赋能基础教育的现状与走向提供了不可替代的分析工具。</p>
+<h2 class="section-heading">六、理论视角：基于智慧教育框架的深度解读</h2>
+<p>本研究的实证数据为理论审视提供了坚实基础。本节引入智慧教育领域的系列理论框架——包括数字教学法（Digital Pedagogy）、教育场景泛化与&rdquo;双盲盒&rdquo;模型、智慧教育&rdquo;三重境界&rdquo;、iSTAR人机协同框架以及&rdquo;三赋能&rdquo;应用框架——对1690个案例所呈现的实践图景进行深层次的理论诊断与解读。这些理论框架在国内外教育技术研究领域具有广泛影响力，为系统性理解AI赋能基础教育的现状、阶段与方向提供了结构化的分析工具。</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e04_digital_pedagogy_radar.png" alt="图16 数字教学法雷达图">
+    <p class="figure-caption-text"><strong>图16 数字教学法雷达图</strong></p>
+</div>
+
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e03_three_realms.png" alt="图15 智慧教育三重境界">
+    <p class="figure-caption-text"><strong>图15 智慧教育三重境界</strong></p>
+</div>
+
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e01_sanfuneng_istar.png" alt="图14 三赋能与iSTAR框架映射">
+    <p class="figure-caption-text"><strong>图14 三赋能与iSTAR框架映射</strong></p>
+</div>
+
 <h3 id="61">6.1 数字教学法视角下的案例分析</h3>
 <p>黄荣怀等（2024）在《电化教育研究》发表的研究中，系统提出了&rdquo;数字教学法&rdquo;（Digital Pedagogy）的理论框架，将数字时代的教学法创新归纳为四个核心维度<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>：</p>
 <blockquote class="callout-box">
@@ -1300,15 +1300,23 @@ h2, h3, h4 {
 <strong>维度二：绿色鲁棒的数字学习环境（Green and Robust Digital Learning Environment）</strong>
 <strong>维度三：循证导向的教学实践（Evidence-Based Teaching Practice）</strong>
 <strong>维度四：人机互信的协同教育（Human-Machine Trusted Collaborative Education）</strong></p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e02_innovation_ridgeline.png" alt="图17 创新深度岭线图">
+    <p class="figure-caption-text"><strong>图17 创新深度岭线图</strong></p>
+</div>
+
 </blockquote>
 <p>以此四维框架审视本研究的1690个案例，可以得出以下诊断：</p>
 <p><strong>（1）&rdquo;技术赋能的深度学习&rdquo;维度：实现度偏低。</strong> 本研究发现，72.6%的案例聚焦于智育，且多数停留在知识传授和练习巩固层面。LDA主题建模识别出的7个主题中，&rdquo;智能辅导&rdquo;（T7）和&rdquo;个性化学习&rdquo;（T3）占据主导地位，而指向高阶思维能力培养的&rdquo;跨学科融合&rdquo;（T5）和&rdquo;精准教研驱动&rdquo;（T1）占比较低。KMeans聚类分析进一步表明，多数案例属于&rdquo;工具替代型&rdquo;和&rdquo;流程优化型&rdquo;，真正实现深度学习变革的&rdquo;模式重构型&rdquo;案例占比有限。这意味着，当前AI教育应用尚未充分激活&rdquo;深度学习&rdquo;的潜能，技术更多被用于提升浅层学习效率，而非促进批判性思维、创造性问题解决和知识迁移等深度学习目标。</p>
+<p>岭线图将10个聚类的创新深度评分分布以山脊形态层叠呈现。部分山脊峰值偏右（高创新），部分偏左（低创新），山脊的形态差异直观展示了&rdquo;先行者群体&rdquo;与&rdquo;跟随者群体&rdquo;之间的创新鸿沟。</p>
 <p><strong>（2）&rdquo;绿色鲁棒的数字学习环境&rdquo;维度：基础薄弱。</strong> 产品形态分析显示，73.6%的AI教育产品为软件平台，硬件+AI仅占3.7%。自主研发产品占比仅14.4%，绝大多数学校依赖第三方商业产品。这一格局下，数字学习环境的&rdquo;鲁棒性&rdquo;（稳定性、可靠性、可持续性）面临严峻挑战：产品停服风险、数据安全隐患、供应链依赖等问题突出。同时，1726家企业的碎片化供给导致系统间互操作性差，数据孤岛普遍存在，难以构建&rdquo;绿色&rdquo;（可持续、低负担）的数字学习生态。</p>
 <p><strong>（3）&rdquo;循证导向的教学实践&rdquo;维度：意识萌发但机制缺失。</strong> 数据分析技术以343次出现位居技术要素首位，&rdquo;学习行为采集→学情诊断→个性化反馈→学习改进&rdquo;的技术路径已成为主导模式，表明教师群体已具备&rdquo;循证教学&rdquo;的初步意识。然而，案例文本分析揭示，多数教师对&rdquo;证据&rdquo;的理解仍停留在学习成绩和答题正确率等表层指标，缺乏对学习过程、认知策略、情感态度等深层证据的系统采集和分析能力。&rdquo;助评&rdquo;场景仅占3.0%的事实进一步印证了循证教学实践的薄弱。</p>
 <p><strong>（4）&rdquo;人机互信的协同教育&rdquo;维度：尚处起步阶段。</strong> 73.5%的案例将AI定位为&rdquo;助学&rdquo;工具，即学生的智能助手，而非教师的专业伙伴。这种单向度的人机关系远未达到&rdquo;互信协同&rdquo;的理想状态。案例中鲜见教师与AI系统之间的深度协作模式——例如AI参与教学决策、教师对AI建议进行专业判断和修正的双向互动。当前的人机关系更接近&rdquo;人用机器&rdquo;而非&rdquo;人机协同&rdquo;。</p>
 <p><strong>综合诊断：</strong> 以数字教学法四维框架衡量，当前AI赋能基础教育的实践在四个维度上均存在显著差距，整体处于数字教学法的&rdquo;初级阶段&rdquo;——技术已被引入教学场景，但尚未触发教学法层面的根本性变革。</p>
+<p>四维雷达图中，&rdquo;循证导向&rdquo;轴延伸最长，&rdquo;深度学习&rdquo;和&rdquo;人机互信&rdquo;轴明显较短，形成不对称的菱形轮廓。这一几何失衡直观诊断了当前AI教育应用的结构性短板——数据采集能力领先，但深度学习促进和人机互信建设严重滞后。</p>
 <h3 id="62">6.2 教育场景泛化问题诊断</h3>
-<p>黄荣怀教授提出的&rdquo;教育场景泛化&rdquo;理论和&rdquo;双盲盒&rdquo;问题模型，为理解当前AI教育应用的结构性困境提供了精准的诊断工具<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
+<p>&ldquo;教育场景泛化&rdquo;理论和&rdquo;双盲盒&rdquo;问题模型（黄荣怀, 2024），为理解当前AI教育应用的结构性困境提供了有效的诊断工具<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>。</p>
 <h4 id="621">6.2.1 &ldquo;双盲盒&rdquo;效应的实证验证</h4>
 <p>黄荣怀指出，智能教育领域普遍存在&rdquo;双盲盒&rdquo;问题：</p>
 <blockquote class="callout-box">
@@ -1330,7 +1338,7 @@ h2, h3, h4 {
 <p>本研究最核心的数据发现——73.5%集中于助学、51.1%集中于课堂教学——本身就是&rdquo;教育场景泛化&rdquo;的典型表征。所谓场景泛化，是指AI教育应用未能针对不同教育场景的特异性需求进行精准适配，而是以少数通用化的应用模式覆盖多样化的教育情境。</p>
 <p>具体表现为：无论语文还是数学，无论小学还是高中，无论城市还是农村，AI的应用模式高度趋同——以对话式AI辅助知识问答和练习为主。这种&rdquo;一种模式打天下&rdquo;的泛化应用，恰恰是&rdquo;双盲盒&rdquo;效应的必然结果：技术侧不理解教育场景的差异性（技术黑盒子），教育侧无法提出精准的场景化需求（方案空盒子），最终导致AI教育应用陷入&rdquo;看似无处不在、实则千篇一律&rdquo;的困境。</p>
 <h3 id="63">6.3 智慧教育&rdquo;三重境界&rdquo;定位</h3>
-<p>黄荣怀教授提出的智慧教育发展&rdquo;三重境界&rdquo;理论，为评估AI教育应用的发展阶段提供了清晰的参照系<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>：</p>
+<p>智慧教育发展&rdquo;三重境界&rdquo;理论（黄荣怀, 2014），为评估AI教育应用的发展阶段提供了清晰的参照系<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>：</p>
 <blockquote class="callout-box">
 <p><strong>第一重境界：智慧学习环境（Smart Learning Environment）</strong>
 以技术基础设施和工具平台建设为核心，为教学提供智能化的环境支撑。</p>
@@ -1340,6 +1348,7 @@ h2, h3, h4 {
 技术驱动教育治理体系和制度框架的系统性变革，实现教育的结构性转型。</p>
 </blockquote>
 <p><strong>本研究数据明确显示，当前AI赋能基础教育的实践整体处于&rdquo;第一重境界&rdquo;，即智慧学习环境建设阶段，仅有少数案例触及&rdquo;第二重境界&rdquo;的门槛。</strong></p>
+<p>阶梯图以三级台阶呈现智慧教育的递进境界，箭头和标注标记当前的阶段定位。第一境界标注&rdquo;当前主体&rdquo;，一二境界之间标注&rdquo;过渡区&rdquo;（少数先行案例），第三境界标注&rdquo;远景目标&rdquo;，将抽象的发展阶段判断转化为直观的空间导航。</p>
 <p>支撑这一判断的关键证据包括：</p>
 <table class="report-table">
 <thead>
@@ -1380,9 +1389,9 @@ h2, h3, h4 {
 <p><strong>从第一重境界向第二重境界跃迁的关键瓶颈：</strong></p>
 <p>一是教师的教学法知识更新滞后于技术工具的迭代速度。教师能够熟练使用AI工具，但缺乏将工具能力转化为教学模式创新的方法论支撑。二是现有评价体系仍以传统指标为主，无法识别和激励教学模式创新。三是学校组织结构和管理制度尚未为新型教学模式的探索提供制度空间。</p>
 <p><strong>从第二重境界向第三重境界跃迁的核心障碍：</strong></p>
-<p>&ldquo;助管&rdquo;仅占2.1%的数据清楚表明，AI尚未进入教育治理的核心领域。教育制度层面的变革——包括课程标准的智能化适配、教师评价体系的重构、学校治理模式的数字化转型等——仍是一片几乎未被触及的领域。这与黄荣怀所指出的&rdquo;技术应用容易、制度变革困难&rdquo;的规律高度一致。</p>
+<p>&ldquo;助管&rdquo;仅占2.1%的数据清楚表明，AI尚未进入教育治理的核心领域。教育制度层面的变革——包括课程标准的智能化适配、教师评价体系的重构、学校治理模式的数字化转型等——仍是一片几乎未被触及的领域。这与已有研究所指出的&rdquo;技术应用容易、制度变革困难&rdquo;的规律高度一致。</p>
 <h3 id="64-istar">6.4 人机协同层级评估：基于iSTAR框架</h3>
-<p>黄荣怀团队提出的iSTAR人机协同框架，将教育中的人机协同关系划分为四个递进层级<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>：</p>
+<p>iSTAR人机协同框架（黄荣怀等, 2024）将教育中的人机协同关系划分为四个递进层级<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>：</p>
 <table class="report-table">
 <thead>
 <tr>
@@ -1456,7 +1465,7 @@ h2, h3, h4 {
 </tbody>
 </table>
 <h3 id="65">6.5 &ldquo;三赋能&rdquo;应用框架下的结构性失衡</h3>
-<p>黄荣怀提出的AI教育&rdquo;三赋能&rdquo;框架——赋能学生、赋能教师、赋能学校——为审视AI教育应用的功能定位提供了系统性视角<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>。</p>
+<p>AI教育&rdquo;三赋能&rdquo;框架——赋能学生、赋能教师、赋能学校（黄荣怀, 2023）——为审视AI教育应用的功能定位提供了系统性视角<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>。</p>
 <p>本研究数据与&rdquo;三赋能&rdquo;框架的对应关系如下：</p>
 <table class="report-table">
 <thead>
@@ -1489,6 +1498,7 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p><strong>数据揭示了严重的结构性失衡：AI教育应用过度集中于&rdquo;赋能学生&rdquo;，而&rdquo;赋能教师&rdquo;和&rdquo;赋能学校&rdquo;严重不足。</strong></p>
+<p>映射图以矩阵形式将&rdquo;三赋能&rdquo;（赋能学生/教师/学校）与iSTAR人机协同层级（Level 0-3）交叉呈现，颜色深浅编码案例密度。图中&rdquo;赋能学生×Level 1&rdquo;单元格颜色最深（密度最高），而&rdquo;赋能学校×Level 2-3&rdquo;区域几乎空白，二维映射直观揭示了应用集中化的结构性失衡。</p>
 <p>这一失衡的深层原因在于：</p>
 <p><strong>第一，需求表达的不对称性。</strong> &ldquo;赋能学生&rdquo;的需求最容易被识别和表达——提高成绩、个性化辅导、趣味化学习等需求直观明确。而&rdquo;赋能教师&rdquo;涉及教师专业发展、教学研究、职业倦怠缓解等复杂需求，&rdquo;赋能学校&rdquo;涉及治理体系、制度设计、资源配置等系统性需求，这些需求的表达和转化难度远高于前者。</p>
 <p><strong>第二，技术适配的难度梯度。</strong> 为学生提供智能辅导、练习生成等服务，技术实现相对成熟；为教师提供教学决策支持、专业发展规划等服务，需要更深层的教育学知识建模；为学校提供治理优化、制度创新等支持，则需要对教育系统的运行逻辑有深刻理解。技术难度的递增导致供给侧自然向&rdquo;赋能学生&rdquo;倾斜。</p>
@@ -1531,7 +1541,7 @@ h2, h3, h4 {
 </tr>
 </tbody>
 </table>
-<p><strong>一言以蔽之：当前AI赋能基础教育的实践，在技术普及的广度上已取得显著进展，但在教育变革的深度上仍停留在浅层应用阶段。</strong> 从&rdquo;技术可用&rdquo;到&rdquo;教育好用&rdquo;，从&rdquo;工具替代&rdquo;到&rdquo;模式创新&rdquo;，从&rdquo;赋能学生&rdquo;到&rdquo;系统赋能&rdquo;，仍有漫长的道路要走。黄荣怀智慧教育理论体系为这一跃迁提供了清晰的方向指引和阶段性目标。</p>
+<p><strong>一言以蔽之：当前AI赋能基础教育的实践，在技术普及的广度上已取得显著进展，但在教育变革的深度上仍停留在浅层应用阶段。</strong> 从&rdquo;技术可用&rdquo;到&rdquo;教育好用&rdquo;，从&rdquo;工具替代&rdquo;到&rdquo;模式创新&rdquo;，从&rdquo;赋能学生&rdquo;到&rdquo;系统赋能&rdquo;，仍有漫长的道路要走。上述智慧教育理论框架为这一跃迁提供了方向指引和阶段性目标。</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -1564,6 +1574,12 @@ h2, h3, h4 {
 <p>为验证和丰富上述量化分析与理论诊断，本研究从1690个案例中分层抽取46个典型案例，通过原文提取与质性编码进行深度分析。抽样覆盖10个NLP聚类、4个学段、5种应用场景及15个以上省份，兼顾教师自研工具、多工具组合、非主科应用等特殊类型。</p>
 <h3 id="71">7.1 人机协同的真实面貌</h3>
 <p>基于iSTAR框架的逐案编码揭示了一幅比量化估算更为精确的人机协同图景：</p>
+
+<div class="figure-embed">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e01_sanfuneng_istar.png" alt="图14 三赋能与iSTAR框架映射">
+    <p class="figure-caption-text"><strong>图14 三赋能与iSTAR框架映射</strong></p>
+</div>
+
 <table class="report-table">
 <thead>
 <tr>
@@ -1596,6 +1612,7 @@ h2, h3, h4 {
 </tbody>
 </table>
 <p><strong>HMnC(3)的完全缺席是最具理论意义的发现。</strong> 这意味着iSTAR框架所构想的&rdquo;师—生—机&rdquo;多元协同网络在当前基础教育实践中尚无实例，人机协同仍处于&rdquo;合作&rdquo;而非&rdquo;共创&rdquo;阶段。</p>
+<p>iSTAR层级编码结果以堆叠条形图呈现：HMC(1)和HM2C(2)各占约一半，HMnC(3)完全空白。最高层级的缺席在视觉上留下了一个引人注目的空洞，直观标记了当前人机协同的&rdquo;天花板&rdquo;所在。</p>
 <blockquote class="case-callout"><p><strong>案例聚焦：从&rdquo;工具使用&rdquo;到&rdquo;学科智能体&rdquo;的跃迁</strong></p>
 <p><strong>第172号案例（高中地理智能体研发，浙江）</strong> 代表了当前人机协同的最高水平。该教师自主研发学科专属智能体，明确指出：</p>
 <p><em>&ldquo;核心需求并非题库搜索，而是具备地理学科思维、能进行诊断与引导的AI助教。它需要理解地理学科的逻辑体系，并能用专业语言与学生交互。&rdquo;</em></p>
@@ -1609,7 +1626,7 @@ h2, h3, h4 {
 <p>案例深度分析揭示了AI教育应用中两种截然不同的逻辑：</p>
 <p><strong>&ldquo;AI包装&rdquo;（AI Packaging）——形式创新，深度不变。</strong> 约15%的案例以AI技术包装传统教学内容，形式上具有创新性，但学习活动的认知层次并未实质性提升。</p>
 <blockquote class="callout-box">
-<p><strong>第04号案例（七大洲轮廓记忆消消乐，上海）</strong>：通过AI游戏化平台帮助学生记忆七大洲轮廓。游戏化形式新颖，但核心任务仍为机械记忆，AI的介入并未改变学习活动的认知深度。这正是黄荣怀所警示的&rdquo;方案空盒子&rdquo;的具体表现。</p>
+<p><strong>第04号案例（七大洲轮廓记忆消消乐，上海）</strong>：通过AI游戏化平台帮助学生记忆七大洲轮廓。游戏化形式新颖，但核心任务仍为机械记忆，AI的介入并未改变学习活动的认知深度。这正是&rdquo;双盲盒&rdquo;理论中&rdquo;方案空盒子&rdquo;的具体表现。</p>
 </blockquote>
 <p><strong>&ldquo;认知解放&rdquo;（Cognitive Liberation）——AI降低低阶认知负担，释放高阶思维空间。</strong> 约35%的案例展现了这一更具价值的应用逻辑。</p>
 <blockquote class="callout-box">
@@ -1631,14 +1648,26 @@ h2, h3, h4 {
 <p><strong>纸质问卷的回归。</strong> 第1719号案例（混合式学情诊断同课异构，重庆）在AI时代选择纸质而非电子问卷收集学情，理由是&rdquo;电子问卷可能在家长监督下完成，出现替代思考、思考不充分等问题&rdquo;。这种对数字化工具局限性的清醒认识，体现了教师的专业判断力。</p>
 <p><strong>幼儿园AI应用的精细化。</strong> 第1864号案例（AI情境化音乐教学，浙江）在幼儿园音乐教学中利用AI语音识别建立&rdquo;演唱诊断档案&rdquo;，精准识别出仅30%的参与率问题并制定针对性解决方案，展现了AI在学前教育中的精细化应用潜力。</p>
 <p><strong>申报材料的理想化倾向。</strong> 案例文本中&rdquo;AI赋能&rdquo;&ldquo;智能化&rdquo;等词汇频繁出现，但具体实施细节往往有限。创新描述与实际实施深度之间存在落差，提示政策报告可能高估了AI教育整合的当前水平。</p></div>
+
+<div class="section-divider">
+    <div class="section-divider-content">
+        <div class="section-divider-num">八</div>
+        <div class="section-divider-title">深度数据挖掘与关键洞察</div>
+    </div>
+</div>
 <div class="section-content">
-<h2 class="section-heading">七点五、深度洞察：数据中的"真金"</h2>
+<h2 class="section-heading">八、深度数据挖掘与关键洞察</h2>
 <p>在完成基础统计分析和理论框架诊断之后，本研究进一步运用Spearman相关分析、Mann-Whitney U检验、Kruskal-Wallis H检验、卡方检验等非参数统计方法，对1690个案例和3815条工具记录进行深度数据挖掘，发现了10项具有重要理论和政策价值的&rdquo;黄金洞察&rdquo;。这些发现中有多项挑战了常规认知，为理解AI教育应用的深层规律提供了新的视角。</p>
-<h3 id="751">7.5.1 十大黄金洞察</h3>
+<h3 id="81">8.1 十大黄金洞察</h3>
 <p><strong>洞察一：经济水平与创新深度呈弱负相关——&ldquo;跨越式发展&rdquo;现象</strong></p>
-<p>省域层面的Spearman相关分析显示，经济水平与创新深度的相关系数r=−0.272（p=0.19），方向性与&rdquo;经济发达地区创新必然领先&rdquo;的直觉假设相悖。陕西省（经济tier=3，创新均分2.84）、河南省（经济tier=3，创新均分2.80）等中西部省份的创新深度甚至高于部分东部发达省份。青海省（经济tier=4）的Gen4+工具占比高达62.5%，显示出欠发达地区在新一代AI工具采纳上的&rdquo;后发优势&rdquo;。这一发现提示，通用大语言模型的&rdquo;技术民主化&rdquo;效应正在削弱经济因素对教育创新的约束力。（见图fig_f8）</p>
+<p>省域层面的Spearman相关分析显示，经济水平与创新深度的相关系数r=−0.272（p=0.19），方向性与&rdquo;经济发达地区创新必然领先&rdquo;的直觉假设相悖。陕西省（经济tier=3，创新均分2.84）、河南省（经济tier=3，创新均分2.80）等中西部省份的创新深度甚至高于部分东部发达省份。青海省（经济tier=4）的Gen4+工具占比高达62.5%，显示出欠发达地区在新一代AI工具采纳上的&rdquo;后发优势&rdquo;。这一发现提示，通用大语言模型的&rdquo;技术民主化&rdquo;效应正在削弱经济因素对教育创新的约束力。</p>
+<p>SHAP（SHapley Additive exPlanations）蜂群图的阅读方式：每个点代表一个案例，横轴为该特征对预测结果的推动力（正值=推高创新深度，负值=拉低），颜色表示特征值的高低（红色=高值，蓝色=低值）。</p>
+<p>SHAP蜂群图中，自主研发状态的正向散点分布最宽、颜色最鲜明，循证教学和iSTAR层级紧随其后，而学段、区域等结构性特征的散点几乎贴近零线——特征重要性的视觉排序明确指向&rdquo;过程能力压倒结构因素&rdquo;的核心发现。</p>
 <p><strong>洞察二：多工具组合案例的创新深度显著高于单工具案例</strong></p>
-<p>多工具组合案例的创新深度均分（2.77）显著高于单工具案例（1.80），Mann-Whitney U检验p&lt;0.001。工具数量与创新深度的Spearman相关系数达到0.625（p&lt;0.001），表明教师的&rdquo;技术编排能力&rdquo;——即选择、组合和定制多种AI工具以服务于特定教学目标的能力——是AI教育创新的核心素养。（见图fig_f5）</p>
+<p>多工具组合案例的创新深度均分（2.77）显著高于单工具案例（1.80），Mann-Whitney U检验p&lt;0.001。工具数量与创新深度的Spearman相关系数达到0.625（p&lt;0.001），表明教师的&rdquo;技术编排能力&rdquo;——即选择、组合和定制多种AI工具以服务于特定教学目标的能力——是AI教育创新的核心素养。（见图17）</p>
+<p>对应分析双标图将多个类别变量同时投影到二维空间。靠近原点的变量（小学、助学）代表&rdquo;主流&rdquo;模式，远离原点的变量（幼儿园-环境创设、高中-助研）代表差异化模式，空间距离编码关联强度。</p>
+<p>MCA双标图的阅读方式：图中每个点代表一个类别水平，空间距离越近表示在数据中越倾向于共同出现，各象限代表不同的特征组合模式。</p>
+<p>MCA双标图中，&rdquo;高创新集群&rdquo;（自研、Gen4+、HM2C）和&rdquo;低创新集群&rdquo;（第三方工具、Gen1-2、HMC(1)）分别聚集在对角象限，两个集群的空间分离以几何距离量化了创新差异背后的多维特征组合差异。</p>
 <p><strong>洞察三：自主研发工具案例的创新深度远超第三方工具案例</strong></p>
 <p>自主研发工具案例的创新深度均分（3.27）显著高于采用第三方工具的案例（2.12），差距高达1.15分（5分制），Mann-Whitney U检验p&lt;0.001。544个自研案例（占14.3%）中，浙江省（122例）、重庆市（63例）、四川省（59例）位居前三。这一发现表明，教师的技术自主性与教学创新深度之间存在强正向关联，&rdquo;教育赋值科技&rdquo;的实践逻辑在自研教师群体中得到了充分体现。</p>
 <p><strong>洞察四：80.8%的AI教育工具仅被使用1次——极端长尾分布</strong></p>
@@ -1646,24 +1675,27 @@ h2, h3, h4 {
 <p><strong>洞察五：字节跳动生态占据16.6%市场份额——平台依赖风险</strong></p>
 <p>字节跳动生态（豆包+即梦AI+剪映AI）合计占据16.6%的市场份额（635条记录），形成了事实上的平台依赖。单一企业生态系统在AI教育工具市场中的主导地位，可能带来数据垄断、供应链风险和教育自主性削弱等问题。开源工具（主要为DeepSeek系列）仅占8.1%，专有工具占91.9%，进一步加剧了平台依赖风险。</p>
 <p><strong>洞察六：美育和体育领域的人机协同深度高于智育——反直觉发现</strong></p>
-<p>尽管非智育领域的AI应用数量远少于智育，但其人机协同深度反而更高。美育领域的HM2C（人机深度协同）占比达到51.0%，体育领域更高达52.2%，均显著高于智育领域的41.1%。这一发现表明，非智育领域的AI应用天然要求更高的创造性整合，教师在这些领域不得不超越&rdquo;工具替代&rdquo;的浅层应用模式。（见图fig_f1）</p>
+<p>尽管非智育领域的AI应用数量远少于智育，但其人机协同深度反而更高。美育领域的HM2C（人机深度协同）占比达到51.0%，体育领域更高达52.2%，均显著高于智育领域的41.1%。这一发现表明，非智育领域的AI应用天然要求更高的创造性整合，教师在这些领域不得不超越&rdquo;工具替代&rdquo;的浅层应用模式。（见图14）</p>
 <p><strong>洞察七：先行者群体的画像——Gen4+与HM2C的双重特征</strong></p>
-<p>创新深度Top 5%的&rdquo;先行者群体&rdquo;（306个案例）中，Gen4+（大模型及多模态AI）工具占比达到73.2%，HM2C层级占比同样高达73.2%，远高于&rdquo;跟随者群体&rdquo;（Bottom 25%）的32.0%。先行者群体以&rdquo;内容生成&rdquo;（T1）技术路径为主导（156例），其次为&rdquo;平台生态&rdquo;（T6，90例）。这一发现表明，新一代AI工具的采纳与人机深度协同之间存在强正向关联。（见图fig_f5, fig_f6）</p>
+<p>创新深度Top 5%的&rdquo;先行者群体&rdquo;（306个案例）中，Gen4+（大模型及多模态AI）工具占比达到73.2%，HM2C层级占比同样高达73.2%，远高于&rdquo;跟随者群体&rdquo;（Bottom 25%）的32.0%。先行者群体以&rdquo;内容生成&rdquo;（T1）技术路径为主导（156例），其次为&rdquo;平台生态&rdquo;（T6，90例）。这一发现表明，新一代AI工具的采纳与人机深度协同之间存在强正向关联。（见图17、图23）</p>
+<p>方差分析的效应量柱状图中，D4人机互信的柱子远高于其他维度，直观展示了该维度对聚类区分的压倒性贡献，证实10种应用模式的核心差异在于人机协同深度而非学段或学科。</p>
 <p><strong>洞察八：技术代际间创新深度差异显著</strong></p>
-<p>Kruskal-Wallis H检验显示，五个技术代际（Gen1-Gen5）之间的创新深度差异高度显著（H=57.27, p&lt;0.001）。Gen4（大模型）的创新深度均分最高（2.41），但Gen1-2（低技术代际）中仍有7.7%的案例达到了创新深度4-5分的高水平，表明教学创新的核心驱动力在于教师的教学设计能力而非技术工具的先进程度。（见图fig_f2）</p>
+<p>Kruskal-Wallis H检验显示，五个技术代际（Gen1-Gen5）之间的创新深度差异高度显著（H=57.27, p&lt;0.001）。Gen4（大模型）的创新深度均分最高（2.41），但Gen1-2（低技术代际）中仍有7.7%的案例达到了创新深度4-5分的高水平，表明教学创新的核心驱动力在于教师的教学设计能力而非技术工具的先进程度。（见图20）</p>
 <p><strong>洞察九：五育失衡的量化诊断——Gini系数0.546</strong></p>
 <p>五育分布的Gini系数达到0.546，远高于均衡分布的理想值（0），智育占74.9%，非智育仅占25.1%。智育与理想均衡值（20%）的偏差高达54.9个百分点。学科与iSTAR层级的卡方检验显示两者显著相关（χ²=597.9, p&lt;0.001, Cramer&rsquo;s V=0.299，中效应量），表明学科选择对人机协同深度具有实质性影响。</p>
+<p>热力图矩阵中，自主研发×创新深度的色块最深，技术代际×人机协同的色块次之，而学段×创新深度的色块明显较浅，颜色梯度的全局对比直观印证了变量间关联强度的层次结构。</p>
 <p><strong>洞察十：LLM时代工具已超过传统工具——技术拐点已至</strong></p>
-<p>Gen4（大模型）和Gen5（多模态AI）工具合计占比50.4%，首次超过传统工具（Gen1-3合计49.6%），标志着AI教育应用的&rdquo;技术拐点&rdquo;已经到来。助研场景的Gen4+占比最高（73.3%），助管场景最低（25.9%），表明不同应用场景的技术代际采纳速度存在显著差异。（见图fig_f2, fig_s5）</p>
-<h3 id="752">7.5.2 理论框架分析结果</h3>
+<p>Gen4（大模型）和Gen5（多模态AI）工具合计占比50.4%，首次超过传统工具（Gen1-3合计49.6%），标志着AI教育应用的&rdquo;技术拐点&rdquo;已经到来。助研场景的Gen4+占比最高（73.3%），助管场景最低（25.9%），表明不同应用场景的技术代际采纳速度存在显著差异。</p>
+<h3 id="82">8.2 理论框架分析结果</h3>
 <p>基于framework_stats.json的量化分析，各理论框架的实证分布如下：</p>
-<p><strong>三赋能框架分布：</strong> 赋能学生2935条（76.9%）、赋能教师685条（18.0%）、赋能评价114条（3.0%）、赋能学校81条（2.1%）。&rdquo;赋能学生&rdquo;的严重偏重与&rdquo;赋能学校&rdquo;的极度不足，构成了亟待纠正的结构性失衡。（见图fig_f1）</p>
-<p><strong>iSTAR人机协同层级：</strong> HMC(1) 2154条（56.5%）、HM2C(2) 1575条（41.3%）、HUM(0) 86条（2.3%）。全样本量化分析与46个案例的深度编码结果基本一致，进一步验证了&rdquo;人机协同整体处于HMC(1)初级阶段&rdquo;的判断。（见图fig_f1, fig_f6）</p>
-<p><strong>数字教学法四维度：</strong> D1深度学习2776条（72.8%）、D3循证教学1483条（38.9%）、D4人机互信377条（9.9%）、D2绿色鲁棒54条（1.4%）。&rdquo;绿色鲁棒&rdquo;维度的极低占比（1.4%）是最值得关注的发现，表明当前AI教育应用几乎未触及数字学习环境的可持续性和安全性问题。（见图fig_f3）</p>
-<p><strong>智慧教育境界：</strong> 第二境界（教学模式）2283条（59.8%）、第一境界（智慧环境）1282条（33.6%）、第三境界（制度变革）250条（6.6%）。量化分析显示，相当比例的案例已触及第二境界的门槛，但深度分析表明多数仍停留在第二境界的浅层。（见图fig_f4）</p>
+<p><strong>三赋能框架分布：</strong> 赋能学生2935条（76.9%）、赋能教师685条（18.0%）、赋能评价114条（3.0%）、赋能学校81条（2.1%）。&rdquo;赋能学生&rdquo;的严重偏重与&rdquo;赋能学校&rdquo;的极度不足，构成了亟待纠正的结构性失衡。（见图14）</p>
+<p><strong>iSTAR人机协同层级：</strong> HMC(1) 2154条（56.5%）、HM2C(2) 1575条（41.3%）、HUM(0) 86条（2.3%）。全样本量化分析与46个案例的深度编码结果基本一致，进一步验证了&rdquo;人机协同整体处于HMC(1)初级阶段&rdquo;的判断。（见图14、图23）</p>
+<p><strong>数字教学法四维度：</strong> D1深度学习2776条（72.8%）、D3循证教学1483条（38.9%）、D4人机互信377条（9.9%）、D2绿色鲁棒54条（1.4%）。&rdquo;绿色鲁棒&rdquo;维度的极低占比（1.4%）是最值得关注的发现，表明当前AI教育应用几乎未触及数字学习环境的可持续性和安全性问题。（见图16）</p>
+<p><strong>智慧教育境界：</strong> 第二境界（教学模式）2283条（59.8%）、第一境界（智慧环境）1282条（33.6%）、第三境界（制度变革）250条（6.6%）。量化分析显示，相当比例的案例已触及第二境界的门槛，但深度分析表明多数仍停留在第二境界的浅层。（见图15）</p>
 <p><strong>技术路径类型：</strong> T1内容生成1772条（46.4%）、T6平台生态1194条（31.3%）、T5智能硬件389条（10.2%）、T4沉浸体验208条（5.5%）、T2智能评测207条（5.4%）、T3数据驱动45条（1.2%）。内容生成路径的绝对主导地位反映了大语言模型对AI教育应用的深刻重塑。</p>
-<p><strong>创新深度评分分布：</strong> 均分2.29（5分制），其中1分623条（16.3%）、2分1808条（47.4%）、3分1078条（28.3%）、4分274条（7.2%）、5分32条（0.8%）。创新深度呈右偏分布，高创新案例（4-5分）仅占8.0%，表明深层教学创新仍是少数先行者的实践。（见图fig_f5）</p>
-<h3 id="753">7.5.3 政策启示</h3>
+<p><strong>创新深度评分分布：</strong> 均分2.29（5分制），其中1分623条（16.3%）、2分1808条（47.4%）、3分1078条（28.3%）、4分274条（7.2%）、5分32条（0.8%）。创新深度呈右偏分布，高创新案例（4-5分）仅占8.0%，表明深层教学创新仍是少数先行者的实践。（见图17）</p>
+<p>综合仪表板以多面板布局整合了本研究的核心数据指标——样本规模、学段分布、五育结构、工具排行、市场集中度、区域热力图等一站式呈现，为决策者提供了一幅AI教育应用现状的全景数据画像。</p>
+<h3 id="83">8.3 政策启示</h3>
 <p>上述深度洞察为政策制定提供了以下关键启示：</p>
 <p><strong>（1）重视&rdquo;技术编排能力&rdquo;培训。</strong> 多工具组合与创新深度的强正相关（r=0.625）表明，教师培训的重点应从&rdquo;单一工具使用&rdquo;转向&rdquo;多工具整合与编排&rdquo;，培养教师的技术编排能力。</p>
 <p><strong>（2）支持教师自主研发。</strong> 自研工具案例的创新深度优势（3.27 vs. 2.12）表明，应为有技术能力的教师提供低代码/无代码开发平台和API接入支持，鼓励教师从&rdquo;技术消费者&rdquo;向&rdquo;技术产消者&rdquo;转变。</p>
@@ -1673,68 +1705,61 @@ h2, h3, h4 {
 
 <div class="section-divider">
     <div class="section-divider-content">
-        <div class="section-divider-num">八</div>
-        <div class="section-divider-title">关键发现与洞察</div>
+        <div class="section-divider-num">九</div>
+        <div class="section-divider-title">核心结论与趋势研判</div>
     </div>
 </div>
 <div class="section-content">
-<h2 class="section-heading">八、关键发现与洞察</h2>
-<h3 id="81">8.1 十大核心发现</h3>
-<p><strong>发现一：AI教育应用已进入&rdquo;规模化应用初期&rdquo;阶段。</strong> 1690个案例、30个省份的覆盖面表明，AI赋能基础教育已从零星试点走向常态化实践，但应用深度和效果验证仍处于探索期。</p>
-<p><strong>发现二：小学阶段是AI教育应用的&rdquo;主战场&rdquo;。</strong> 890例（52.7%）的绝对优势反映出低学段教师对AI工具的高接受度和强适配性，这一群体应成为政策支持和产品设计的重点对象。</p>
-<p><strong>发现三：AI已实现全学科渗透，但深度差异显著。</strong> 从语文（577例）到心理健康教育（40例），AI应用覆盖了基础教育的全部学科领域，但主科与非主科之间的应用深度差距明显。</p>
-<p><strong>发现四：大语言模型重塑了教育技术供给格局。</strong> 豆包（387次）和DeepSeek（289次）的领先地位表明，通用大语言模型正在成为教育AI应用的基础设施，传统教育信息化产品面临范式转换的挑战。</p>
-<p><strong>发现五：市场高度碎片化，行业整合尚未开始。</strong> 1726家企业、CR5仅28.2%的市场格局意味着行业仍处于&rdquo;百花齐放&rdquo;阶段，未来的整合与洗牌不可避免。<strong>理论解读：</strong> 市场碎片化是&rdquo;双盲盒&rdquo;效应在产业侧的直接映射。&rdquo;技术黑盒子&rdquo;使教育用户无法有效评估和筛选产品，导致市场缺乏优胜劣汰机制；&rdquo;方案空盒子&rdquo;使企业无法形成基于教育场景深度理解的差异化竞争优势，只能在通用功能层面进行同质化竞争。同时，这一格局也反映出黄荣怀所强调的&rdquo;双向赋能&rdquo;机制的缺失——&ldquo;科技赋能教育&rdquo;的单向路径已初步建立，但&rdquo;教育赋值科技&rdquo;的反向路径尚未形成，教育领域的专业知识未能有效反哺技术产品的迭代优化。</p>
-<p><strong>发现六：应用场景高度集中于&rdquo;助学&rdquo;，深层应用不足。</strong> &ldquo;助学&rdquo;占73.5%而&rdquo;助评&rdquo;&ldquo;助管&rdquo;合计仅5.1%，AI在教育评价和管理领域的潜力远未释放。<strong>理论解读：</strong> 这一数据是黄荣怀&rdquo;教育场景泛化&rdquo;问题的典型表征——AI应用未能针对不同教育场景进行精准适配，而是以&rdquo;智能辅导&rdquo;这一单一模式泛化覆盖多样化的教育情境。从智慧教育&rdquo;三重境界&rdquo;理论审视，73.5%集中于助学意味着实践整体停留在第一重境界（智慧学习环境），尚未触发教学模式和教育制度层面的深层变革。从&rdquo;三赋能&rdquo;框架来看，&rdquo;赋能学生&rdquo;的严重偏重（73.5%）与&rdquo;赋能教师&rdquo;（17.5%）和&rdquo;赋能学校&rdquo;（5.1%）的不足，构成了亟待纠正的结构性失衡。</p>
-<p><strong>发现七：五育融合严重失衡，劳动教育几乎空白。</strong> 智育占72.6%的绝对主导地位，劳动教育的AI应用几乎为零，与国家&rdquo;五育并举&rdquo;的政策导向形成鲜明反差。<strong>理论解读：</strong> 从数字教学法框架审视，智育偏重意味着&rdquo;技术赋能的深度学习&rdquo;维度未能充分实现——深度学习不仅指向知识掌握，更包括品格发展、审美体验、身体素养和劳动精神等全面发展目标。当前AI应用将&rdquo;学习&rdquo;窄化为&rdquo;知识学习&rdquo;，将&rdquo;赋能&rdquo;窄化为&rdquo;提分增效&rdquo;，偏离了数字教学法所倡导的全人发展取向。这也反映出&rdquo;双盲盒&rdquo;效应中&rdquo;方案空盒子&rdquo;的问题——技术供给方缺乏对五育并举教育理念的深入理解，无法提供超越智育范畴的教育解决方案。</p>
+<h2 class="section-heading">九、核心结论与趋势研判</h2>
+<h3 id="91">9.1 十大核心发现</h3>
+<p><strong>发现一：AI教育应用已进入&rdquo;规模化应用初期&rdquo;阶段。</strong> 1690个案例覆盖30个省份，表明AI赋能基础教育已从零星试点走向常态化实践。</p>
+<p><strong>发现二：小学阶段是AI教育应用的&rdquo;主战场&rdquo;。</strong> 小学以890例（52.7%）占据绝对主导，这一群体应成为政策支持和产品设计的重点对象。</p>
+<p><strong>发现三：AI已实现全学科渗透，但深度差异显著。</strong> 从语文（577例）到心理健康教育（40例），AI覆盖了全部学科领域，主科与非主科之间的应用深度差距明显。</p>
+<p><strong>发现四：大语言模型重塑了教育技术供给格局。</strong> 豆包（387次）和DeepSeek（289次）的领先地位表明，通用大语言模型正在成为教育AI应用的基础设施。</p>
+<p><strong>发现五：市场高度碎片化，行业整合尚未开始。</strong> 1726家企业、CR5仅28.2%的市场格局意味着行业仍处于&rdquo;百花齐放&rdquo;阶段，未来的整合与洗牌不可避免。<strong>理论解读：</strong> 市场碎片化是&rdquo;双盲盒&rdquo;效应在产业侧的直接映射。&rdquo;技术黑盒子&rdquo;使教育用户无法有效评估和筛选产品，导致市场缺乏优胜劣汰机制；&rdquo;方案空盒子&rdquo;使企业无法形成基于教育场景深度理解的差异化竞争优势，只能在通用功能层面进行同质化竞争。同时，这一格局也反映出&rdquo;双向赋能&rdquo;机制的缺失——&ldquo;科技赋能教育&rdquo;的单向路径已初步建立，但&rdquo;教育赋值科技&rdquo;的反向路径尚未形成，教育领域的专业知识未能有效反哺技术产品的迭代优化。</p>
+<p><strong>发现六：应用场景高度集中于&rdquo;助学&rdquo;，深层应用不足。</strong> &ldquo;助学&rdquo;占73.5%，而&rdquo;助评&rdquo;&ldquo;助管&rdquo;合计仅5.1%。<strong>理论解读：</strong> 这一数据是&rdquo;教育场景泛化&rdquo;问题的典型表征——AI应用未能针对不同教育场景进行精准适配，而是以&rdquo;智能辅导&rdquo;这一单一模式泛化覆盖多样化的教育情境。从智慧教育&rdquo;三重境界&rdquo;理论审视，73.5%集中于助学意味着实践整体停留在第一重境界（智慧学习环境），尚未触发教学模式和教育制度层面的深层变革。从&rdquo;三赋能&rdquo;框架来看，&rdquo;赋能学生&rdquo;的严重偏重（73.5%）与&rdquo;赋能教师&rdquo;（17.5%）和&rdquo;赋能学校&rdquo;（5.1%）的不足，构成了亟待纠正的结构性失衡。</p>
+<p><strong>发现七：五育融合严重失衡，劳动教育几乎空白。</strong> 智育占72.6%，劳动教育的AI应用几乎为零。<strong>理论解读：</strong> 从数字教学法框架审视，智育偏重意味着&rdquo;技术赋能的深度学习&rdquo;维度未能充分实现——深度学习不仅指向知识掌握，更包括品格发展、审美体验、身体素养和劳动精神等全面发展目标。当前AI应用将&rdquo;学习&rdquo;窄化为&rdquo;知识学习&rdquo;，将&rdquo;赋能&rdquo;窄化为&rdquo;提分增效&rdquo;，偏离了数字教学法所倡导的全人发展取向。这也反映出&rdquo;双盲盒&rdquo;效应中&rdquo;方案空盒子&rdquo;的问题——技术供给方缺乏对五育并举教育理念的深入理解，无法提供超越智育范畴的教育解决方案。</p>
 <p><strong>发现八：自主研发能力薄弱，过度依赖第三方产品。</strong> 14.4%的自研比例暴露了学校在AI技术能力方面的短板，也提示了数据安全和供应链风险。</p>
 <p><strong>发现九：区域数字鸿沟依然存在但正在收窄。</strong> 浙江省（25.6%）的领先优势显著，但通用AI工具的普及正在为西部省份提供追赶的技术基础。</p>
 <p><strong>发现十：&rdquo;学习行为采集→学情诊断→个性化反馈→学习改进&rdquo;成为主导技术路径。</strong> 这一闭环模式代表了当前AI教育应用的技术共识，但在数据质量、模型精度和隐私保护方面仍面临挑战。</p>
-<h3 id="82">8.2 问题与挑战</h3>
+<h3 id="92">9.2 问题与挑战</h3>
 <p><strong>（1）应用浅层化风险。</strong> 多数案例仍停留在&rdquo;工具替代&rdquo;层面，AI被用于提高效率而非变革教学模式。真正实现&rdquo;人机协同&rdquo;的深层教学创新案例占比较低。从iSTAR人机协同框架来看，约75%的案例处于Level 1（人机合作）阶段，人机共创（Level 2）和网络协同（Level 3）几乎空白，表明人机关系尚停留在&rdquo;人用机器&rdquo;的初级形态，距离&rdquo;人机互信的协同教育&rdquo;目标差距显著（黄荣怀等, 2024）。</p>
 <p><strong>（2）技术伦理与数据安全隐忧。</strong> 大量教师直接使用商业AI产品处理学生数据，数据安全和隐私保护机制不健全。未成年人AI使用的伦理边界尚不清晰。</p>
 <p><strong>（3）教师AI素养参差不齐。</strong> 案例质量的巨大差异反映出教师群体在AI理解和应用能力方面的显著分化，系统性的教师AI素养培训体系亟待建立。</p>
 <p><strong>（4）评价体系缺失。</strong> 缺乏科学、可操作的AI教育应用效果评价框架，&rdquo;用了AI&rdquo;不等于&rdquo;用好了AI&rdquo;，效果验证是当前最薄弱的环节。这与数字教学法中&rdquo;循证导向的教学实践&rdquo;维度的要求形成鲜明对比——循证教学要求基于系统性证据进行教学决策和效果评估，而当前实践中证据采集和分析的机制严重缺失（黄荣怀等, 2024）。</p>
-<p><strong>（5）产品供需错配。</strong> 市场上通用AI工具泛滥，但针对特定学科、特定学段、特定教学场景的专业化产品供给不足，教师的精细化需求难以得到满足。这正是黄荣怀所指出的&rdquo;双盲盒&rdquo;效应的产业后果——&ldquo;技术黑盒子&rdquo;使教师无法精准表达需求，&rdquo;方案空盒子&rdquo;使企业无法提供场景化解决方案，供需双方在信息不对称中陷入低效匹配的困境。</p>
-<h3 id="83">8.3 趋势预判</h3>
+<p><strong>（5）产品供需错配。</strong> 市场上通用AI工具泛滥，但针对特定学科、特定学段、特定教学场景的专业化产品供给不足，教师的精细化需求难以得到满足。这正是&rdquo;双盲盒&rdquo;效应的产业后果——&ldquo;技术黑盒子&rdquo;使教师无法精准表达需求，&rdquo;方案空盒子&rdquo;使企业无法提供场景化解决方案，供需双方在信息不对称中陷入低效匹配的困境。</p>
+<h3 id="93">9.3 趋势预判</h3>
 <p><strong>趋势一：从&rdquo;通用AI+教育&rdquo;走向&rdquo;教育专用AI&rdquo;。</strong> 随着市场成熟，通用大模型将逐步被教育垂直领域的专用模型和产品所补充，学科知识图谱、教育评价模型等专业化方向将成为竞争焦点。</p>
 <p><strong>趋势二：从&rdquo;助学&rdquo;向&rdquo;助教&rdquo;&ldquo;助评&rdquo;&ldquo;助管&rdquo;全链条延伸。</strong> 当前&rdquo;助学&rdquo;一枝独秀的格局将逐步改变，AI在教师专业发展、教育评价改革和学校治理现代化中的角色将日益凸显。</p>
 <p><strong>趋势三：从&rdquo;单工具使用&rdquo;走向&rdquo;多工具协同&rdquo;。</strong> 平均2.26个工具/案例的数据已显示出多工具协同的趋势，未来教育AI生态将更加强调互操作性和平台化整合。</p>
 <p><strong>趋势四：区域均衡化进程加速。</strong> 通用AI工具的低成本和易获取性将持续缩小东西部数字鸿沟，政策驱动下的西部追赶效应将更加显著。</p>
 <p><strong>趋势五：监管框架逐步完善。</strong> 随着AI教育应用规模扩大，数据安全、内容审核、伦理规范等方面的监管政策将加速出台，合规能力将成为EdTech企业的核心竞争力之一。</p></div>
-
-<div class="section-divider">
-    <div class="section-divider-content">
-        <div class="section-divider-num">九</div>
-        <div class="section-divider-title">政策建议与展望</div>
-    </div>
-</div>
 <div class="section-content">
-<h2 class="section-heading">九、政策建议与展望</h2>
-<h3 id="91">9.1 对教育管理部门的建议</h3>
+<h2 class="section-heading">十、政策建议与展望</h2>
+<h3 id="101">10.1 对教育管理部门的建议</h3>
 <p><strong>（1）建立AI教育应用的分级分类指导框架。</strong> 根据学段特征、学科需求和应用场景，制定差异化的AI教育应用指导意见，避免&rdquo;一刀切&rdquo;式的推进或限制。</p>
-<p><strong>（2）建立智能教育产品校园准入制度。</strong> 借鉴黄荣怀提出的&rdquo;分类分级审查&rdquo;理念，构建智能教育产品进入校园的系统性审查机制。具体包括：按产品功能类型（助学类、助教类、助评类、助管类）实施分类管理；按数据敏感度和使用风险（低风险工具类、中风险平台类、高风险决策类）实施分级审查；建立&rdquo;教育适切性评估—技术安全性检测—数据合规性审查—使用效果跟踪&rdquo;四阶段准入流程。当前1726家企业、1830种产品的碎片化供给格局下，校园准入制度的缺失是导致产品质量参差不齐、教师选择困难的重要制度原因。</p>
+<p><strong>（2）建立智能教育产品校园准入制度。</strong> 借鉴&rdquo;分类分级审查&rdquo;理念（黄荣怀, 2024），构建智能教育产品进入校园的系统性审查机制。具体包括：按产品功能类型（助学类、助教类、助评类、助管类）实施分类管理；按数据敏感度和使用风险（低风险工具类、中风险平台类、高风险决策类）实施分级审查；建立&rdquo;教育适切性评估—技术安全性检测—数据合规性审查—使用效果跟踪&rdquo;四阶段准入流程。当前1726家企业、1830种产品的碎片化供给格局下，校园准入制度的缺失是导致产品质量参差不齐、教师选择困难的重要制度原因。</p>
 <p><strong>（3）加强教师AI素养培训体系建设。</strong> 将AI素养纳入教师继续教育必修内容，开发分层分类的培训课程，重点提升教师的AI工具选择能力、教学整合能力和伦理判断能力。</p>
 <p><strong>（4）完善数据安全和隐私保护制度。</strong> 制定教育领域AI产品的数据安全标准和准入机制，建立学生数据保护的专项制度，明确未成年人AI使用的伦理边界。</p>
 <p><strong>（5）推动五育均衡的AI应用发展。</strong> 针对劳动教育、体育等AI应用薄弱领域，设立专项课题和试点项目，探索AI赋能全面育人的创新路径。</p>
 <p><strong>（6）缩小区域数字鸿沟。</strong> 加大对中西部地区AI教育应用的政策支持和资源倾斜，建立东西部学校结对帮扶机制，推广低成本、易部署的AI教育解决方案。</p>
 <p><strong>（7）开展AI教育社会实验。</strong> 在条件成熟的地区设立&rdquo;AI教育社会实验区&rdquo;，系统性地开展AI教育应用的对照实验和长期跟踪研究。社会实验应覆盖不同学段、学科和区域，重点验证AI对学习效果、教师专业发展、学校治理效能的实际影响，为政策制定提供循证依据。当前1690个案例虽然规模可观，但均为教师自述的经验案例，缺乏严格的实验设计和效果验证，社会实验的开展将填补这一关键空白。</p>
 <p><strong>（8）推动教育垂直大模型发展。</strong> 当前教师大量使用通用大语言模型（豆包387次、DeepSeek 289次），这些模型并非为教育场景专门优化。应支持和引导研发面向基础教育的垂直大模型，在教育知识图谱、学科教学法、学生认知发展规律等方面进行专项训练和优化，提升AI教育应用的专业性和安全性。</p>
-<p><strong>（9）构建&rdquo;需求—融入—演化—治理&rdquo;闭环机制。</strong> 基于黄荣怀智慧教育理论框架，建立AI教育应用的全生命周期管理机制：需求阶段，基于TSPE模型精准识别教育场景需求；融入阶段，以数字教学法为指导推动技术与教学的深度融合；演化阶段，通过循证评估持续优化应用模式，推动从第一重境界向第二、第三重境界跃迁；治理阶段，完善分类分级审查、数据安全保护、伦理规范等制度体系。这一闭环机制的建立，是破解&rdquo;双盲盒&rdquo;效应、实现AI教育应用从&rdquo;规模化应用初期&rdquo;向&rdquo;深度融合期&rdquo;跨越的制度保障。</p>
-<h3 id="92">9.2 对学校和教师的建议</h3>
+<p><strong>（9）构建&rdquo;需求—融入—演化—治理&rdquo;闭环机制。</strong> 基于智慧教育理论框架，建立AI教育应用的全生命周期管理机制：需求阶段，基于TSPE模型精准识别教育场景需求；融入阶段，以数字教学法为指导推动技术与教学的深度融合；演化阶段，通过循证评估持续优化应用模式，推动从第一重境界向第二、第三重境界跃迁；治理阶段，完善分类分级审查、数据安全保护、伦理规范等制度体系。这一闭环机制的建立，是破解&rdquo;双盲盒&rdquo;效应、实现AI教育应用从&rdquo;规模化应用初期&rdquo;向&rdquo;深度融合期&rdquo;跨越的制度保障。</p>
+<h3 id="102">10.2 对学校和教师的建议</h3>
 <p><strong>（1）理性选择AI工具，避免盲目跟风。</strong> 根据教学实际需求选择适切的AI工具，注重工具与教学目标的匹配度，而非追求工具的数量和新颖性。</p>
 <p><strong>（2）从&rdquo;工具替代&rdquo;走向&rdquo;模式创新&rdquo;。</strong> 不满足于用AI提高效率，而是思考AI如何帮助实现传统手段难以实现的教学目标，如真正的个性化学习、深度的跨学科融合等。</p>
 <p><strong>（3）关注数据安全和学生隐私。</strong> 在使用商业AI产品时，审慎处理学生个人信息，避免将敏感数据上传至未经安全评估的平台。</p>
 <p><strong>（4）建立校本AI教育应用研究机制。</strong> 鼓励教师开展基于证据的AI教学实验，积累校本经验，形成可复制、可推广的应用模式。</p>
-<h3 id="93">9.3 对企业的建议</h3>
+<h3 id="103">10.3 对企业的建议</h3>
 <p><strong>（1）深耕教育垂直场景，避免同质化竞争。</strong> 在市场高度碎片化的背景下，企业应聚焦特定学段、学科或场景，打造差异化的专业产品，而非追求大而全的通用平台。运用TSPE场景识别模型（任务—空间—人员—环境），精准定位目标教育场景的特异性需求，是破解&rdquo;方案空盒子&rdquo;困境的关键路径。</p>
 <p><strong>（2）重视&rdquo;助评&rdquo;和&rdquo;助管&rdquo;蓝海市场。</strong> 当前AI教育产品高度集中于&rdquo;助学&rdquo;场景（73.5%），教育评价和管理领域存在巨大的未满足需求，是值得重点布局的蓝海市场。从&rdquo;三赋能&rdquo;框架来看，&rdquo;赋能教师&rdquo;和&rdquo;赋能学校&rdquo;的产品供给严重不足，率先布局这两个领域的企业将获得显著的先发优势。</p>
 <p><strong>（3）加强产品的教育适切性设计。</strong> 与一线教师深度合作，确保产品设计符合教学规律和教师使用习惯，避免&rdquo;技术驱动&rdquo;而非&rdquo;需求驱动&rdquo;的产品开发模式。</p>
 <p><strong>（4）构建数据安全和合规能力。</strong> 随着监管政策的完善，数据安全和合规能力将成为市场准入的基本门槛，企业应提前布局。</p>
-<p><strong>（5）构建&rdquo;双向赋能&rdquo;机制，实现从&rdquo;产品&rdquo;到&rdquo;服务&rdquo;的转型。</strong> 黄荣怀提出的&rdquo;科技赋能教育、教育赋值科技&rdquo;的双向赋能理念，为企业战略转型提供了重要方向。企业不应仅将教育视为技术的应用市场（单向赋能），更应将教育场景中积累的专业知识、教学规律和用户反馈反哺技术产品的迭代优化（双向赋能）。具体而言，应从一次性的&rdquo;产品交付&rdquo;模式转向持续性的&rdquo;教育服务&rdquo;模式，建立与学校的长期合作关系，通过持续的场景理解和需求响应构建竞争壁垒。当前CR5仅28.2%的碎片化格局下，率先实现&rdquo;双向赋能&rdquo;和&rdquo;服务化转型&rdquo;的企业，将在未来的行业整合中占据有利地位。</p>
-<h3 id="94">9.4 未来展望</h3>
+<p><strong>（5）构建&rdquo;双向赋能&rdquo;机制，实现从&rdquo;产品&rdquo;到&rdquo;服务&rdquo;的转型。</strong> &ldquo;科技赋能教育、教育赋值科技&rdquo;的双向赋能理念（黄荣怀, 2023），为企业战略转型提供了重要参考。企业不应仅将教育视为技术的应用市场（单向赋能），更应将教育场景中积累的专业知识、教学规律和用户反馈反哺技术产品的迭代优化（双向赋能）。具体而言，应从一次性的&rdquo;产品交付&rdquo;模式转向持续性的&rdquo;教育服务&rdquo;模式，建立与学校的长期合作关系，通过持续的场景理解和需求响应构建竞争壁垒。当前CR5仅28.2%的碎片化格局下，率先实现&rdquo;双向赋能&rdquo;和&rdquo;服务化转型&rdquo;的企业，将在未来的行业整合中占据有利地位。</p>
+<h3 id="104">10.4 未来展望</h3>
 <p>站在2026年的时间节点回望，AI赋能基础教育的实践已经走过了从概念到落地的关键阶段。1690个案例所呈现的实践图景，既展示了AI技术在教育领域的巨大潜力，也揭示了从&rdquo;技术可用&rdquo;到&rdquo;教育好用&rdquo;之间的漫长距离。</p>
-<p>以黄荣怀智慧教育理论体系为参照，当前实践整体处于智慧教育&rdquo;第一重境界&rdquo;（智慧学习环境）向&rdquo;第二重境界&rdquo;（新型教学模式）跃迁的关键窗口期。这一跃迁的实现，需要在以下方面取得突破：</p>
+<p>以智慧教育理论体系为参照，当前实践整体处于智慧教育&rdquo;第一重境界&rdquo;（智慧学习环境）向&rdquo;第二重境界&rdquo;（新型教学模式）跃迁的关键窗口期。这一跃迁的实现，需要在以下方面取得突破：</p>
 <p><strong>第一，从&rdquo;场景泛化&rdquo;走向&rdquo;场景精准&rdquo;。</strong> 破解&rdquo;双盲盒&rdquo;效应，建立基于TSPE模型的教育场景精准识别机制，使AI应用从&rdquo;千篇一律的智能辅导&rdquo;走向&rdquo;千校千面的场景化解决方案&rdquo;。</p>
 <p><strong>第二，从&rdquo;赋能学生&rdquo;走向&rdquo;系统赋能&rdquo;。</strong> 纠正当前73.5%集中于助学的结构性失衡，推动AI在赋能教师专业发展和赋能学校治理现代化方面发挥更大作用，实现&rdquo;三赋能&rdquo;的均衡发展。</p>
 <p><strong>第三，从&rdquo;人机合作&rdquo;走向&rdquo;人机共创&rdquo;。</strong> 推动人机协同关系从iSTAR框架的Level 1向Level 2跃迁，使AI从&rdquo;教师的工具&rdquo;升级为&rdquo;教师的伙伴&rdquo;，在教学设计、学情分析、教育评价等环节实现真正的人机共创。</p>
@@ -1756,113 +1781,133 @@ h2, h3, h4 {
 <p><em>本报告基于1690个AI教育应用案例的数据分析生成，数据截止至案例征集活动结束日期。报告中的分析和建议仅代表研究团队基于数据的学术判断，不构成政策承诺或商业建议。</em></p></div>
 
 
-<!-- ======== FIGURE GALLERY ======== -->
+<!-- FIGURE GALLERY -->
 <div class="figures-page">
-    <h2 class="figures-page-title">附录：核心图表</h2>
+    <h2 class="figures-page-title">附录：核心数据可视化图表</h2>
     
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig01_province_heatmap.png" alt="省域分布热力图">
-    <p class="gallery-caption">省域分布热力图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_a01_province_map.png" alt="A1. 案例省域分布地图">
+    <p class="gallery-caption">A1. 案例省域分布地图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig02_school_stage_donut.png" alt="学段分布">
-    <p class="gallery-caption">学段分布</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_a02_stage_waffle.png" alt="A2. 学段分布华夫饼图">
+    <p class="gallery-caption">A2. 学段分布华夫饼图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig03_top20_tools_bar.png" alt="工具使用Top20">
-    <p class="gallery-caption">工具使用Top20</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_a03_subject_lollipop.png" alt="A3. 学科渗透棒棒糖图">
+    <p class="gallery-caption">A3. 学科渗透棒棒糖图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig04_product_ecosystem_treemap.png" alt="产品生态树图">
-    <p class="gallery-caption">产品生态树图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_a04_scenario_treemap.png" alt="A4. 应用场景树图">
+    <p class="gallery-caption">A4. 应用场景树图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig05_scenario_sunburst.png" alt="应用场景旭日图">
-    <p class="gallery-caption">应用场景旭日图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_a05_five_edu_radar.png" alt="A5. 五育融合雷达图">
+    <p class="gallery-caption">A5. 五育融合雷达图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig06_subject_distribution.png" alt="学科分布">
-    <p class="gallery-caption">学科分布</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_b01_top20_tools.png" alt="B1. AI工具使用频次Top20">
+    <p class="gallery-caption">B1. AI工具使用频次Top20</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig07_cultivation_radar.png" alt="五育雷达图">
-    <p class="gallery-caption">五育雷达图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_b02_tech_sankey.png" alt="B2. 技术路径桑基图">
+    <p class="gallery-caption">B2. 技术路径桑基图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig10_stage_subject_heatmap.png" alt="学段-学科热力图">
-    <p class="gallery-caption">学段-学科热力图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_b03_model_landscape.png" alt="B3. AI大模型景观图">
+    <p class="gallery-caption">B3. AI大模型景观图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig11_industry_maturity.png" alt="产业成熟度">
-    <p class="gallery-caption">产业成熟度</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_b04_cooccurrence_network.png" alt="B4. 技术共现网络">
+    <p class="gallery-caption">B4. 技术共现网络</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig13_company_market_concentration.png" alt="市场集中度">
-    <p class="gallery-caption">市场集中度</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_c01_umap_clusters.png" alt="C1. UMAP聚类可视化">
+    <p class="gallery-caption">C1. UMAP聚类可视化</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig14_lda_topics.png" alt="LDA主题模型">
-    <p class="gallery-caption">LDA主题模型</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_d01_lorenz_curve.png" alt="D1. 市场集中度洛伦兹曲线">
+    <p class="gallery-caption">D1. 市场集中度洛伦兹曲线</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig15_tech_pathway_sankey.png" alt="技术路径桑基图">
-    <p class="gallery-caption">技术路径桑基图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_d02_ecosystem_treemap.png" alt="D2. EdTech产品生态树图">
+    <p class="gallery-caption">D2. EdTech产品生态树图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig18_comprehensive_dashboard.png" alt="综合仪表板">
-    <p class="gallery-caption">综合仪表板</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e01_sanfuneng_istar.png" alt="E1. 三赋能与iSTAR框架">
+    <p class="gallery-caption">E1. 三赋能与iSTAR框架</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f1_sanfuneng_istar_heatmap.png" alt="三赋能/iSTAR热力图">
-    <p class="gallery-caption">三赋能/iSTAR热力图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e02_innovation_ridgeline.png" alt="E2. 创新深度岭线图">
+    <p class="gallery-caption">E2. 创新深度岭线图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f3_digital_pedagogy_radar.png" alt="数字教学法雷达图">
-    <p class="gallery-caption">数字教学法雷达图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e03_three_realms.png" alt="E3. 智慧教育三重境界">
+    <p class="gallery-caption">E3. 智慧教育三重境界</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f4_smart_edu_sankey.png" alt="智慧教育桑基图">
-    <p class="gallery-caption">智慧教育桑基图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e04_digital_pedagogy_radar.png" alt="E4. 数字教学法雷达图">
+    <p class="gallery-caption">E4. 数字教学法雷达图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f5_innovation_depth.png" alt="创新深度分析">
-    <p class="gallery-caption">创新深度分析</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e05_techgen_scenario_bubble.png" alt="E5. 技术代际-场景气泡图">
+    <p class="gallery-caption">E5. 技术代际-场景气泡图</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f7_framework_dashboard.png" alt="理论框架仪表板">
-    <p class="gallery-caption">理论框架仪表板</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_e06_dashboard.png" alt="E6. 研究综合仪表板">
+    <p class="gallery-caption">E6. 研究综合仪表板</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_s3_correlation_matrix.png" alt="相关矩阵">
-    <p class="gallery-caption">相关矩阵</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f01_rf_shap.png" alt="F1. 随机森林SHAP分析">
+    <p class="gallery-caption">F1. 随机森林SHAP分析</p>
 </div>
 
 <div class="gallery-item">
-    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_s9_effect_size_forest.png" alt="效应量森林图">
-    <p class="gallery-caption">效应量森林图</p>
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f02_cramers_v.png" alt="F2. Cramér's V关联热力图">
+    <p class="gallery-caption">F2. Cramér's V关联热力图</p>
+</div>
+
+<div class="gallery-item">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f03_correspondence_biplot.png" alt="F3. 对应分析双标图">
+    <p class="gallery-caption">F3. 对应分析双标图</p>
+</div>
+
+<div class="gallery-item">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f04_mca_biplot.png" alt="F4. 多重对应分析双标图">
+    <p class="gallery-caption">F4. 多重对应分析双标图</p>
+</div>
+
+<div class="gallery-item">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f05_geographic_inequality.png" alt="F5. 地理不平等分析">
+    <p class="gallery-caption">F5. 地理不平等分析</p>
+</div>
+
+<div class="gallery-item">
+    <img src="file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/fig_f06_cluster_anova.png" alt="F6. 聚类方差分析">
+    <p class="gallery-caption">F6. 聚类方差分析</p>
 </div>
 
 </div>
 
-<!-- ======== ENDMATTER ======== -->
+<!-- ENDMATTER -->
 <div class="endmatter">
     <p>本报告基于1690个AI教育应用案例的数据分析生成。报告中的分析和建议仅代表研究团队基于数据的学术判断。</p>
     <p>数据截止至案例征集活动结束日期。 &copy; 2026</p>

@@ -1,0 +1,52 @@
+name: Run Analysis Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      modules:
+        description: 'Modules to run (comma-separated: core,nlp,viz,causal,all)'
+        required: true
+        default: 'all'
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+
+      - name: Run core analysis
+        if: contains(github.event.inputs.modules, 'core') || github.event.inputs.modules == 'all'
+        run: python src/core_analysis.py
+
+      - name: Run NLP analysis
+        if: contains(github.event.inputs.modules, 'nlp') || github.event.inputs.modules == 'all'
+        run: python src/nlp_analysis.py
+
+      - name: Run visualizations
+        if: contains(github.event.inputs.modules, 'viz') || github.event.inputs.modules == 'all'
+        run: python src/visualizations.py
+
+      - name: Run causal analysis
+        if: contains(github.event.inputs.modules, 'causal') || github.event.inputs.modules == 'all'
+        run: python src/causal_analysis.py
+
+      - name: Upload output artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: analysis-output-${{ github.run_number }}
+          path: |
+            output/*.json
+            output/figures/*.png
+          retention-days: 30

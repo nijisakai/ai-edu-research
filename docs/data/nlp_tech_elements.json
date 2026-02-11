@@ -1,0 +1,2540 @@
+﻿{
+  "case_level_elements": [
+    {
+      "element": "数据分析",
+      "count": 343
+    },
+    {
+      "element": "自然语言处理",
+      "count": 278
+    },
+    {
+      "element": "人工智能算法",
+      "count": 152
+    },
+    {
+      "element": "语音识别",
+      "count": 136
+    },
+    {
+      "element": "学习行为分析",
+      "count": 120
+    },
+    {
+      "element": "个性化学习",
+      "count": 103
+    },
+    {
+      "element": "数据可视化",
+      "count": 96
+    },
+    {
+      "element": "数据采集",
+      "count": 89
+    },
+    {
+      "element": "教育数据挖掘",
+      "count": 86
+    },
+    {
+      "element": "生成式AI",
+      "count": 85
+    },
+    {
+      "element": "图像识别",
+      "count": 77
+    },
+    {
+      "element": "知识图谱",
+      "count": 66
+    },
+    {
+      "element": "生成式人工智能",
+      "count": 63
+    },
+    {
+      "element": "虚拟现实技术",
+      "count": 61
+    },
+    {
+      "element": "大数据分析",
+      "count": 51
+    },
+    {
+      "element": "教育数据分析",
+      "count": 49
+    },
+    {
+      "element": "机器学习",
+      "count": 46
+    },
+    {
+      "element": "计算机视觉",
+      "count": 45
+    },
+    {
+      "element": "实时反馈",
+      "count": 39
+    },
+    {
+      "element": "过程性评价",
+      "count": 39
+    },
+    {
+      "element": "深度学习",
+      "count": 38
+    },
+    {
+      "element": "多模态数据采集",
+      "count": 37
+    },
+    {
+      "element": "数据采集与分析",
+      "count": 32
+    },
+    {
+      "element": "个性化学习支持",
+      "count": 32
+    },
+    {
+      "element": "个性化反馈",
+      "count": 31
+    },
+    {
+      "element": "情感计算",
+      "count": 31
+    },
+    {
+      "element": "情感分析",
+      "count": 30
+    },
+    {
+      "element": "个性化学习路径",
+      "count": 29
+    },
+    {
+      "element": "多模态数据融合",
+      "count": 27
+    },
+    {
+      "element": "语音合成",
+      "count": 26
+    },
+    {
+      "element": "实时反馈系统",
+      "count": 26
+    },
+    {
+      "element": "图像生成",
+      "count": 26
+    },
+    {
+      "element": "智能分析",
+      "count": 25
+    },
+    {
+      "element": "AR技术",
+      "count": 24
+    },
+    {
+      "element": "人工智能",
+      "count": 23
+    },
+    {
+      "element": "数据挖掘",
+      "count": 23
+    },
+    {
+      "element": "人脸识别",
+      "count": 23
+    },
+    {
+      "element": "项目式学习",
+      "count": 23
+    },
+    {
+      "element": "跨学科融合",
+      "count": 22
+    },
+    {
+      "element": "AI图像生成",
+      "count": 20
+    },
+    {
+      "element": "AI算法",
+      "count": 19
+    },
+    {
+      "element": "实时反馈机制",
+      "count": 19
+    },
+    {
+      "element": "游戏化学习",
+      "count": 19
+    },
+    {
+      "element": "行为识别",
+      "count": 18
+    },
+    {
+      "element": "多模态学习",
+      "count": 18
+    },
+    {
+      "element": "人工智能技术",
+      "count": 17
+    },
+    {
+      "element": "即时反馈机制",
+      "count": 17
+    },
+    {
+      "element": "学情分析",
+      "count": 17
+    },
+    {
+      "element": "虚拟实验技术",
+      "count": 17
+    },
+    {
+      "element": "互动式学习",
+      "count": 17
+    },
+    {
+      "element": "即时反馈系统",
+      "count": 16
+    },
+    {
+      "element": "智能批改",
+      "count": 16
+    },
+    {
+      "element": "云计算",
+      "count": 16
+    },
+    {
+      "element": "个性化学习系统",
+      "count": 16
+    },
+    {
+      "element": "大语言模型",
+      "count": 16
+    },
+    {
+      "element": "增强现实技术",
+      "count": 16
+    },
+    {
+      "element": "多模态交互",
+      "count": 16
+    },
+    {
+      "element": "数字人技术",
+      "count": 16
+    },
+    {
+      "element": "项目化学习",
+      "count": 15
+    },
+    {
+      "element": "人机协同",
+      "count": 15
+    },
+    {
+      "element": "AI辅助教学",
+      "count": 15
+    },
+    {
+      "element": "AI智能体",
+      "count": 15
+    },
+    {
+      "element": "动态可视化",
+      "count": 14
+    },
+    {
+      "element": "即时反馈",
+      "count": 14
+    },
+    {
+      "element": "数据驱动教学",
+      "count": 14
+    },
+    {
+      "element": "智能反馈系统",
+      "count": 14
+    },
+    {
+      "element": "边缘计算",
+      "count": 14
+    },
+    {
+      "element": "3D建模",
+      "count": 14
+    },
+    {
+      "element": "语义分析",
+      "count": 14
+    },
+    {
+      "element": "AI生成技术",
+      "count": 14
+    },
+    {
+      "element": "提示词工程",
+      "count": 13
+    },
+    {
+      "element": "物联网",
+      "count": 13
+    },
+    {
+      "element": "个性化反馈机制",
+      "count": 13
+    },
+    {
+      "element": "个性化指导",
+      "count": 13
+    },
+    {
+      "element": "AI生成内容",
+      "count": 13
+    },
+    {
+      "element": "实时数据分析",
+      "count": 12
+    },
+    {
+      "element": "情绪识别",
+      "count": 12
+    },
+    {
+      "element": "个性化学习路径生成",
+      "count": 12
+    },
+    {
+      "element": "多媒体教学",
+      "count": 12
+    },
+    {
+      "element": "行为分析",
+      "count": 12
+    },
+    {
+      "element": "个性化学习反馈",
+      "count": 12
+    },
+    {
+      "element": "互动设计",
+      "count": 12
+    },
+    {
+      "element": "AI技术",
+      "count": 12
+    },
+    {
+      "element": "情感识别",
+      "count": 12
+    },
+    {
+      "element": "学习行为分析模型",
+      "count": 11
+    },
+    {
+      "element": "AI数字人",
+      "count": 11
+    },
+    {
+      "element": "智能评价系统",
+      "count": 11
+    },
+    {
+      "element": "数据驱动决策",
+      "count": 11
+    },
+    {
+      "element": "数据统计与分析",
+      "count": 11
+    },
+    {
+      "element": "虚拟仿真技术",
+      "count": 11
+    },
+    {
+      "element": "动态演示",
+      "count": 11
+    },
+    {
+      "element": "个性化推荐算法",
+      "count": 11
+    },
+    {
+      "element": "视频剪辑",
+      "count": 11
+    },
+    {
+      "element": "语音交互",
+      "count": 11
+    },
+    {
+      "element": "情境创设",
+      "count": 11
+    },
+    {
+      "element": "机器学习算法",
+      "count": 10
+    },
+    {
+      "element": "OCR技术",
+      "count": 10
+    },
+    {
+      "element": "个性化推荐系统",
+      "count": 10
+    },
+    {
+      "element": "数据整合",
+      "count": 10
+    },
+    {
+      "element": "教育技术",
+      "count": 10
+    }
+  ],
+  "tool_level_layers": [
+    {
+      "layer": "数据采集层",
+      "count": 3618
+    },
+    {
+      "layer": "行为识别层",
+      "count": 2896
+    },
+    {
+      "layer": "画像诊断层",
+      "count": 2161
+    },
+    {
+      "layer": "个性化学习层",
+      "count": 2098
+    },
+    {
+      "layer": "智能策略层",
+      "count": 309
+    },
+    {
+      "layer": "环境互联层",
+      "count": 37
+    },
+    {
+      "layer": "状态感知层",
+      "count": 36
+    },
+    {
+      "layer": "情境建模层",
+      "count": 30
+    },
+    {
+      "layer": "数据分析层",
+      "count": 21
+    },
+    {
+      "layer": "需求分析层",
+      "count": 19
+    },
+    {
+      "layer": "智能分析层",
+      "count": 16
+    },
+    {
+      "layer": "应用优化层",
+      "count": 16
+    },
+    {
+      "layer": "应用层",
+      "count": 14
+    },
+    {
+      "layer": "生成层",
+      "count": 14
+    },
+    {
+      "layer": "应用交互层",
+      "count": 11
+    },
+    {
+      "layer": "技术研发层",
+      "count": 10
+    },
+    {
+      "layer": "智能评价层",
+      "count": 10
+    },
+    {
+      "layer": "验证层",
+      "count": 9
+    },
+    {
+      "layer": "智能批改层",
+      "count": 8
+    },
+    {
+      "layer": "资源供给链",
+      "count": 8
+    },
+    {
+      "layer": "数据循证链",
+      "count": 8
+    },
+    {
+      "layer": "评价迭代链",
+      "count": 8
+    },
+    {
+      "layer": "分析层",
+      "count": 7
+    },
+    {
+      "layer": "创意实践层",
+      "count": 7
+    },
+    {
+      "layer": "数据管理层",
+      "count": 7
+    },
+    {
+      "layer": "智能交互层",
+      "count": 6
+    },
+    {
+      "layer": "反馈层",
+      "count": 6
+    },
+    {
+      "layer": "智能反馈层",
+      "count": 6
+    },
+    {
+      "layer": "评价层",
+      "count": 5
+    },
+    {
+      "layer": "基础设施层",
+      "count": 5
+    }
+  ],
+  "tool_level_sub_elements": [
+    {
+      "element": "多模态学习数据采集与融合",
+      "count": 383
+    },
+    {
+      "element": "即时生成反馈",
+      "count": 327
+    },
+    {
+      "element": "个性化画像生成",
+      "count": 297
+    },
+    {
+      "element": "过程性反馈解释",
+      "count": 292
+    },
+    {
+      "element": "学习意图识别",
+      "count": 285
+    },
+    {
+      "element": "学习路径偏差检测",
+      "count": 233
+    },
+    {
+      "element": "个性化学习画像生成",
+      "count": 153
+    },
+    {
+      "element": "学生参与度分析",
+      "count": 63
+    },
+    {
+      "element": "多模态数据采集与融合",
+      "count": 63
+    },
+    {
+      "element": "个性化反馈",
+      "count": 55
+    },
+    {
+      "element": "实时反馈",
+      "count": 51
+    },
+    {
+      "element": "课堂互动分析",
+      "count": 45
+    },
+    {
+      "element": "即时反馈与指导",
+      "count": 44
+    },
+    {
+      "element": "互动模式分析",
+      "count": 42
+    },
+    {
+      "element": "即时反馈",
+      "count": 37
+    },
+    {
+      "element": "个性化学习反馈",
+      "count": 32
+    },
+    {
+      "element": "个性化学习路径推荐",
+      "count": 31
+    },
+    {
+      "element": "学生互动模式分析",
+      "count": 31
+    },
+    {
+      "element": "学生互动与反馈分析",
+      "count": 30
+    },
+    {
+      "element": "学生参与度与反馈分析",
+      "count": 28
+    },
+    {
+      "element": "学情报告生成",
+      "count": 27
+    },
+    {
+      "element": "个性化学情报告生成",
+      "count": 26
+    },
+    {
+      "element": "学情分析与反馈",
+      "count": 26
+    },
+    {
+      "element": "个性化学习路径生成",
+      "count": 24
+    },
+    {
+      "element": "个性化反馈生成",
+      "count": 22
+    },
+    {
+      "element": "课堂互动数据",
+      "count": 22
+    },
+    {
+      "element": "AI图像识别",
+      "count": 22
+    },
+    {
+      "element": "个性化学习报告生成",
+      "count": 21
+    },
+    {
+      "element": "学生参与度与互动分析",
+      "count": 21
+    },
+    {
+      "element": "课堂观察",
+      "count": 20
+    },
+    {
+      "element": "学情数据分析",
+      "count": 20
+    },
+    {
+      "element": "互动模式识别",
+      "count": 20
+    },
+    {
+      "element": "语音识别",
+      "count": 19
+    },
+    {
+      "element": "课堂互动模式分析",
+      "count": 18
+    },
+    {
+      "element": "个体学习画像生成",
+      "count": 18
+    },
+    {
+      "element": "教师与学生互动模式分析",
+      "count": 18
+    },
+    {
+      "element": "学情分析",
+      "count": 17
+    },
+    {
+      "element": "学习绩效预测",
+      "count": 16
+    },
+    {
+      "element": "动态调整教学策略",
+      "count": 16
+    },
+    {
+      "element": "情感分析",
+      "count": 16
+    },
+    {
+      "element": "个性化学习资源推送",
+      "count": 15
+    },
+    {
+      "element": "学生学习效果评估",
+      "count": 15
+    },
+    {
+      "element": "AI辅助创作与反馈",
+      "count": 15
+    },
+    {
+      "element": "课堂互动数据采集与分析",
+      "count": 15
+    },
+    {
+      "element": "动态视频生成",
+      "count": 15
+    },
+    {
+      "element": "可视化学情报告",
+      "count": 15
+    },
+    {
+      "element": "AI分组系统",
+      "count": 15
+    },
+    {
+      "element": "能力维度分析",
+      "count": 15
+    },
+    {
+      "element": "教师与学生的个性化画像生成",
+      "count": 15
+    },
+    {
+      "element": "多模态数据采集与分析",
+      "count": 14
+    },
+    {
+      "element": "互动反馈",
+      "count": 14
+    },
+    {
+      "element": "学生参与度与互动模式分析",
+      "count": 14
+    },
+    {
+      "element": "反馈机制",
+      "count": 14
+    },
+    {
+      "element": "即时生成反馈与评价",
+      "count": 13
+    },
+    {
+      "element": "虚拟实验数据采集与分析",
+      "count": 13
+    },
+    {
+      "element": "个性化运动处方生成",
+      "count": 13
+    },
+    {
+      "element": "学习行为数据收集与分析",
+      "count": 13
+    },
+    {
+      "element": "分层任务推送",
+      "count": 13
+    },
+    {
+      "element": "数据可视化",
+      "count": 13
+    },
+    {
+      "element": "个性化任务推送",
+      "count": 13
+    },
+    {
+      "element": "多模态数据采集",
+      "count": 13
+    },
+    {
+      "element": "自然语言处理",
+      "count": 12
+    },
+    {
+      "element": "学生学习数据收集与分析",
+      "count": 12
+    },
+    {
+      "element": "学生互动与参与状态分析",
+      "count": 12
+    },
+    {
+      "element": "个性化学习画像生成与反馈",
+      "count": 12
+    },
+    {
+      "element": "个性化写作画像生成",
+      "count": 12
+    },
+    {
+      "element": "学习效果评估",
+      "count": 12
+    },
+    {
+      "element": "学生反馈与互动分析",
+      "count": 12
+    },
+    {
+      "element": "个性化定制使用方式",
+      "count": 12
+    },
+    {
+      "element": "幼儿行为识别与反馈",
+      "count": 12
+    },
+    {
+      "element": "个性化指导",
+      "count": 12
+    },
+    {
+      "element": "学生探究行为分析",
+      "count": 11
+    },
+    {
+      "element": "知识图谱构建",
+      "count": 11
+    },
+    {
+      "element": "生成个性化运动处方",
+      "count": 11
+    },
+    {
+      "element": "学生操作行为识别与反馈",
+      "count": 11
+    },
+    {
+      "element": "学生操作与反馈分析",
+      "count": 11
+    },
+    {
+      "element": "即时生成反馈与指导",
+      "count": 11
+    },
+    {
+      "element": "课堂互动数据收集",
+      "count": 11
+    },
+    {
+      "element": "问卷调查",
+      "count": 11
+    },
+    {
+      "element": "语音交互",
+      "count": 11
+    },
+    {
+      "element": "学生学习状态与能力评估",
+      "count": 11
+    },
+    {
+      "element": "学情诊断工具",
+      "count": 11
+    },
+    {
+      "element": "AI视频生成",
+      "count": 11
+    },
+    {
+      "element": "即时反馈与支持",
+      "count": 11
+    },
+    {
+      "element": "生成学情报告",
+      "count": 11
+    },
+    {
+      "element": "个性化学习资源生成",
+      "count": 11
+    },
+    {
+      "element": "思维导图生成",
+      "count": 11
+    },
+    {
+      "element": "生物记APP快速识别动植物",
+      "count": 11
+    },
+    {
+      "element": "AI漫画生成器",
+      "count": 11
+    },
+    {
+      "element": "AI动画工具",
+      "count": 11
+    },
+    {
+      "element": "个性化报告生成",
+      "count": 10
+    },
+    {
+      "element": "实时反馈机制",
+      "count": 10
+    },
+    {
+      "element": "学生作业表现分析",
+      "count": 10
+    },
+    {
+      "element": "学生学习状态分析",
+      "count": 10
+    },
+    {
+      "element": "自适应问卷",
+      "count": 10
+    },
+    {
+      "element": "学生互动分析",
+      "count": 10
+    },
+    {
+      "element": "个性化学习建议生成",
+      "count": 10
+    },
+    {
+      "element": "学生画像生成",
+      "count": 10
+    },
+    {
+      "element": "学习行为数据采集",
+      "count": 10
+    },
+    {
+      "element": "过程性反馈",
+      "count": 10
+    }
+  ],
+  "element_cooccurrence": [
+    {
+      "elem1": "数据分析",
+      "elem2": "自然语言处理",
+      "count": 74
+    },
+    {
+      "elem1": "人工智能算法",
+      "elem2": "数据分析",
+      "count": 49
+    },
+    {
+      "elem1": "个性化学习",
+      "elem2": "数据分析",
+      "count": 46
+    },
+    {
+      "elem1": "自然语言处理",
+      "elem2": "语音识别",
+      "count": 46
+    },
+    {
+      "elem1": "数据分析",
+      "elem2": "语音识别",
+      "count": 37
+    },
+    {
+      "elem1": "人工智能算法",
+      "elem2": "教育数据挖掘",
+      "count": 34
+    },
+    {
+      "elem1": "人工智能算法",
+      "elem2": "学习行为分析",
+      "count": 32
+    },
+    {
+      "elem1": "机器学习",
+      "elem2": "自然语言处理",
+      "count": 31
+    },
+    {
+      "elem1": "人工智能算法",
+      "elem2": "自然语言处理",
+      "count": 31
+    },
+    {
+      "elem1": "学习行为分析",
+      "elem2": "数据分析",
+      "count": 28
+    },
+    {
+      "elem1": "人工智能算法",
+      "elem2": "语音识别",
+      "count": 27
+    },
+    {
+      "elem1": "知识图谱",
+      "elem2": "自然语言处理",
+      "count": 27
+    },
+    {
+      "elem1": "图像识别",
+      "elem2": "自然语言处理",
+      "count": 25
+    },
+    {
+      "elem1": "自然语言处理",
+      "elem2": "计算机视觉",
+      "count": 25
+    },
+    {
+      "elem1": "深度学习",
+      "elem2": "自然语言处理",
+      "count": 23
+    },
+    {
+      "elem1": "学习行为分析",
+      "elem2": "教育数据挖掘",
+      "count": 23
+    },
+    {
+      "elem1": "教育数据挖掘",
+      "elem2": "自然语言处理",
+      "count": 23
+    },
+    {
+      "elem1": "教育数据分析",
+      "elem2": "自然语言处理",
+      "count": 22
+    },
+    {
+      "elem1": "数据分析",
+      "elem2": "生成式AI",
+      "count": 21
+    },
+    {
+      "elem1": "图像识别",
+      "elem2": "语音识别",
+      "count": 20
+    },
+    {
+      "elem1": "教育数据挖掘",
+      "elem2": "数据分析",
+      "count": 20
+    },
+    {
+      "elem1": "学习行为分析",
+      "elem2": "自然语言处理",
+      "count": 20
+    },
+    {
+      "elem1": "图像识别",
+      "elem2": "数据分析",
+      "count": 19
+    },
+    {
+      "elem1": "教育数据挖掘",
+      "elem2": "语音识别",
+      "count": 17
+    },
+    {
+      "elem1": "人工智能算法",
+      "elem2": "图像识别",
+      "count": 17
+    },
+    {
+      "elem1": "数据分析",
+      "elem2": "生成式人工智能",
+      "count": 17
+    },
+    {
+      "elem1": "数据分析",
+      "elem2": "机器学习",
+      "count": 16
+    },
+    {
+      "elem1": "个性化学习",
+      "elem2": "自然语言处理",
+      "count": 16
+    },
+    {
+      "elem1": "数据分析",
+      "elem2": "虚拟现实技术",
+      "count": 16
+    },
+    {
+      "elem1": "数据分析",
+      "elem2": "知识图谱",
+      "count": 15
+    },
+    {
+      "elem1": "数据可视化",
+      "elem2": "自然语言处理",
+      "count": 15
+    },
+    {
+      "elem1": "情感分析",
+      "elem2": "自然语言处理",
+      "count": 15
+    },
+    {
+      "elem1": "生成式AI",
+      "elem2": "自然语言处理",
+      "count": 15
+    },
+    {
+      "elem1": "实时反馈",
+      "elem2": "数据分析",
+      "count": 14
+    },
+    {
+      "elem1": "数据采集",
+      "elem2": "智能分析",
+      "count": 13
+    },
+    {
+      "elem1": "数据分析",
+      "elem2": "计算机视觉",
+      "count": 13
+    },
+    {
+      "elem1": "图像生成",
+      "elem2": "自然语言处理",
+      "count": 12
+    },
+    {
+      "elem1": "教育数据分析",
+      "elem2": "语音识别",
+      "count": 12
+    },
+    {
+      "elem1": "个性化反馈",
+      "elem2": "数据分析",
+      "count": 11
+    },
+    {
+      "elem1": "实时反馈",
+      "elem2": "数据采集",
+      "count": 11
+    },
+    {
+      "elem1": "学习行为分析",
+      "elem2": "数据采集",
+      "count": 11
+    },
+    {
+      "elem1": "生成式人工智能",
+      "elem2": "自然语言处理",
+      "count": 11
+    },
+    {
+      "elem1": "数据分析",
+      "elem2": "过程性评价",
+      "count": 11
+    },
+    {
+      "elem1": "人工智能算法",
+      "elem2": "学习行为分析模型",
+      "count": 10
+    },
+    {
+      "elem1": "数据挖掘",
+      "elem2": "自然语言处理",
+      "count": 10
+    },
+    {
+      "elem1": "人工智能算法",
+      "elem2": "数据可视化",
+      "count": 10
+    },
+    {
+      "elem1": "AI算法",
+      "elem2": "数据分析",
+      "count": 10
+    },
+    {
+      "elem1": "数据分析",
+      "elem2": "数据采集",
+      "count": 10
+    },
+    {
+      "elem1": "情感计算",
+      "elem2": "自然语言处理",
+      "count": 10
+    },
+    {
+      "elem1": "学习行为分析",
+      "elem2": "数据可视化",
+      "count": 10
+    }
+  ],
+  "elements_by_school_level": {
+    "K-9": [
+      {
+        "element": "运动姿态识别算法",
+        "count": 1
+      },
+      {
+        "element": "多模态数据融合",
+        "count": 1
+      },
+      {
+        "element": "隐私计算技术",
+        "count": 1
+      },
+      {
+        "element": "边缘计算",
+        "count": 1
+      },
+      {
+        "element": "数据分析引擎",
+        "count": 1
+      }
+    ],
+    "中学": [
+      {
+        "element": "数据分析",
+        "count": 5
+      },
+      {
+        "element": "机器学习",
+        "count": 4
+      },
+      {
+        "element": "自然语言处理",
+        "count": 4
+      },
+      {
+        "element": "个性化学习",
+        "count": 4
+      },
+      {
+        "element": "知识图谱",
+        "count": 3
+      },
+      {
+        "element": "语音识别",
+        "count": 3
+      },
+      {
+        "element": "生成式AI",
+        "count": 3
+      },
+      {
+        "element": "虚拟现实技术",
+        "count": 3
+      },
+      {
+        "element": "大数据分析",
+        "count": 3
+      },
+      {
+        "element": "人工智能算法",
+        "count": 3
+      },
+      {
+        "element": "数据采集",
+        "count": 2
+      },
+      {
+        "element": "视频监控技术",
+        "count": 2
+      },
+      {
+        "element": "物联网技术",
+        "count": 2
+      },
+      {
+        "element": "人脸识别",
+        "count": 2
+      },
+      {
+        "element": "数据加密",
+        "count": 2
+      },
+      {
+        "element": "BIM技术",
+        "count": 2
+      },
+      {
+        "element": "GIS技术",
+        "count": 2
+      },
+      {
+        "element": "AI算法",
+        "count": 2
+      },
+      {
+        "element": "计算机视觉",
+        "count": 2
+      },
+      {
+        "element": "边缘计算",
+        "count": 2
+      }
+    ],
+    "中小学": [
+      {
+        "element": "数据分析",
+        "count": 4
+      },
+      {
+        "element": "语音识别",
+        "count": 4
+      },
+      {
+        "element": "自然语言处理",
+        "count": 3
+      },
+      {
+        "element": "情感计算",
+        "count": 2
+      },
+      {
+        "element": "边缘计算",
+        "count": 2
+      },
+      {
+        "element": "多模态数据采集",
+        "count": 2
+      },
+      {
+        "element": "项目式学习",
+        "count": 2
+      },
+      {
+        "element": "行为识别",
+        "count": 1
+      },
+      {
+        "element": "机器学习",
+        "count": 1
+      },
+      {
+        "element": "图像理解",
+        "count": 1
+      },
+      {
+        "element": "文本生成",
+        "count": 1
+      },
+      {
+        "element": "视频语义分析",
+        "count": 1
+      },
+      {
+        "element": "知识图谱构建",
+        "count": 1
+      },
+      {
+        "element": "个性化推荐算法",
+        "count": 1
+      },
+      {
+        "element": "AI视觉分析",
+        "count": 1
+      },
+      {
+        "element": "传感器网络",
+        "count": 1
+      },
+      {
+        "element": "AR技术",
+        "count": 1
+      },
+      {
+        "element": "数据驱动教学",
+        "count": 1
+      },
+      {
+        "element": "编程技术",
+        "count": 1
+      },
+      {
+        "element": "传感器应用",
+        "count": 1
+      }
+    ],
+    "中职": [
+      {
+        "element": "大语言模型",
+        "count": 2
+      },
+      {
+        "element": "动态分层系统",
+        "count": 2
+      },
+      {
+        "element": "错题归因分析",
+        "count": 2
+      },
+      {
+        "element": "自然语言处理",
+        "count": 1
+      },
+      {
+        "element": "数据可视化",
+        "count": 1
+      },
+      {
+        "element": "教育数据分析",
+        "count": 1
+      },
+      {
+        "element": "对话系统设计",
+        "count": 1
+      },
+      {
+        "element": "用户体验优化",
+        "count": 1
+      },
+      {
+        "element": "智能批改",
+        "count": 1
+      },
+      {
+        "element": "精准干预机制",
+        "count": 1
+      },
+      {
+        "element": "人工智能算法",
+        "count": 1
+      },
+      {
+        "element": "混合现实技术",
+        "count": 1
+      },
+      {
+        "element": "数据模型训练",
+        "count": 1
+      },
+      {
+        "element": "实时数据采集",
+        "count": 1
+      },
+      {
+        "element": "虚拟现实技术",
+        "count": 1
+      },
+      {
+        "element": "数据采集",
+        "count": 1
+      },
+      {
+        "element": "智能分析",
+        "count": 1
+      },
+      {
+        "element": "自然语言生成",
+        "count": 1
+      },
+      {
+        "element": "低代码开发",
+        "count": 1
+      },
+      {
+        "element": "人工智能技术",
+        "count": 1
+      }
+    ],
+    "义务教育": [
+      {
+        "element": "在线教育平台",
+        "count": 1
+      },
+      {
+        "element": "数据分析",
+        "count": 1
+      },
+      {
+        "element": "智能研修工具",
+        "count": 1
+      },
+      {
+        "element": "教师资源管理系统",
+        "count": 1
+      },
+      {
+        "element": "直播课堂技术",
+        "count": 1
+      }
+    ],
+    "九年一贯制": [
+      {
+        "element": "数据采集",
+        "count": 1
+      },
+      {
+        "element": "数据分析",
+        "count": 1
+      },
+      {
+        "element": "智能分类",
+        "count": 1
+      },
+      {
+        "element": "动态画像生成",
+        "count": 1
+      },
+      {
+        "element": "智能决策",
+        "count": 1
+      }
+    ],
+    "初中": [
+      {
+        "element": "数据分析",
+        "count": 76
+      },
+      {
+        "element": "自然语言处理",
+        "count": 50
+      },
+      {
+        "element": "人工智能算法",
+        "count": 33
+      },
+      {
+        "element": "学习行为分析",
+        "count": 28
+      },
+      {
+        "element": "个性化学习",
+        "count": 24
+      },
+      {
+        "element": "生成式人工智能",
+        "count": 18
+      },
+      {
+        "element": "教育数据挖掘",
+        "count": 16
+      },
+      {
+        "element": "语音识别",
+        "count": 16
+      },
+      {
+        "element": "数据可视化",
+        "count": 16
+      },
+      {
+        "element": "数据采集",
+        "count": 15
+      },
+      {
+        "element": "生成式AI",
+        "count": 13
+      },
+      {
+        "element": "大数据分析",
+        "count": 13
+      },
+      {
+        "element": "图像识别",
+        "count": 12
+      },
+      {
+        "element": "实时反馈",
+        "count": 10
+      },
+      {
+        "element": "机器学习",
+        "count": 9
+      },
+      {
+        "element": "知识图谱",
+        "count": 9
+      },
+      {
+        "element": "虚拟实验技术",
+        "count": 9
+      },
+      {
+        "element": "个性化反馈",
+        "count": 8
+      },
+      {
+        "element": "虚拟现实技术",
+        "count": 8
+      },
+      {
+        "element": "学情分析",
+        "count": 7
+      }
+    ],
+    "初中/高中": [
+      {
+        "element": "大型语言模型（LLM）",
+        "count": 1
+      },
+      {
+        "element": "自然语言处理",
+        "count": 1
+      },
+      {
+        "element": "智能评阅算法",
+        "count": 1
+      },
+      {
+        "element": "数据分析与可视化",
+        "count": 1
+      },
+      {
+        "element": "高清直播技术",
+        "count": 1
+      },
+      {
+        "element": "AI降噪技术",
+        "count": 1
+      },
+      {
+        "element": "智能手写板",
+        "count": 1
+      },
+      {
+        "element": "AI答题统计与可视化",
+        "count": 1
+      },
+      {
+        "element": "虚拟数字人演示",
+        "count": 1
+      },
+      {
+        "element": "智能批改系统",
+        "count": 1
+      },
+      {
+        "element": "个性化作业推送",
+        "count": 1
+      },
+      {
+        "element": "自动批改技术",
+        "count": 1
+      },
+      {
+        "element": "学情分析",
+        "count": 1
+      },
+      {
+        "element": "数据驱动教学",
+        "count": 1
+      },
+      {
+        "element": "人工智能算法",
+        "count": 1
+      },
+      {
+        "element": "手写识别",
+        "count": 1
+      },
+      {
+        "element": "AI分析",
+        "count": 1
+      },
+      {
+        "element": "数据驱动",
+        "count": 1
+      },
+      {
+        "element": "教学设计",
+        "count": 1
+      },
+      {
+        "element": "智能评议",
+        "count": 1
+      }
+    ],
+    "初中、高中": [
+      {
+        "element": "知识图谱",
+        "count": 1
+      },
+      {
+        "element": "自然语言处理",
+        "count": 1
+      },
+      {
+        "element": "情感计算",
+        "count": 1
+      },
+      {
+        "element": "深度学习",
+        "count": 1
+      },
+      {
+        "element": "数据分析与可视化",
+        "count": 1
+      }
+    ],
+    "初中至高中": [
+      {
+        "element": "计算机视觉",
+        "count": 1
+      },
+      {
+        "element": "大数据分析",
+        "count": 1
+      },
+      {
+        "element": "机器学习",
+        "count": 1
+      },
+      {
+        "element": "多模态数据采集",
+        "count": 1
+      },
+      {
+        "element": "智能评分系统",
+        "count": 1
+      }
+    ],
+    "基础教育": [
+      {
+        "element": "自然语言处理",
+        "count": 4
+      },
+      {
+        "element": "数据可视化",
+        "count": 2
+      },
+      {
+        "element": "生成式AI",
+        "count": 2
+      },
+      {
+        "element": "知识库构建",
+        "count": 2
+      },
+      {
+        "element": "多模态数据采集",
+        "count": 2
+      },
+      {
+        "element": "YOLOv12算法",
+        "count": 2
+      },
+      {
+        "element": "ASR语音识别",
+        "count": 2
+      },
+      {
+        "element": "Bi-LSTM网络",
+        "count": 2
+      },
+      {
+        "element": "图神经网络",
+        "count": 2
+      },
+      {
+        "element": "图像识别",
+        "count": 2
+      },
+      {
+        "element": "自动化评审",
+        "count": 1
+      },
+      {
+        "element": "大数据分析",
+        "count": 1
+      },
+      {
+        "element": "人工智能算法",
+        "count": 1
+      },
+      {
+        "element": "流式响应处理技术",
+        "count": 1
+      },
+      {
+        "element": "数据匿名处理",
+        "count": 1
+      },
+      {
+        "element": "教育数据挖掘",
+        "count": 1
+      },
+      {
+        "element": "语音识别",
+        "count": 1
+      },
+      {
+        "element": "硬件集成",
+        "count": 1
+      },
+      {
+        "element": "编程逻辑",
+        "count": 1
+      },
+      {
+        "element": "电路设计",
+        "count": 1
+      }
+    ],
+    "大学": [
+      {
+        "element": "生成式人工智能",
+        "count": 1
+      },
+      {
+        "element": "自然语言处理",
+        "count": 1
+      },
+      {
+        "element": "学习行为分析",
+        "count": 1
+      },
+      {
+        "element": "个性化推荐系统",
+        "count": 1
+      },
+      {
+        "element": "数据分析",
+        "count": 1
+      }
+    ],
+    "学前教育": [
+      {
+        "element": "数据分析",
+        "count": 2
+      },
+      {
+        "element": "数据采集",
+        "count": 1
+      },
+      {
+        "element": "动作解析",
+        "count": 1
+      },
+      {
+        "element": "个性化教学",
+        "count": 1
+      },
+      {
+        "element": "游戏化干预",
+        "count": 1
+      },
+      {
+        "element": "家园协同",
+        "count": 1
+      },
+      {
+        "element": "情绪识别",
+        "count": 1
+      },
+      {
+        "element": "生成式AI",
+        "count": 1
+      },
+      {
+        "element": "多模态AI",
+        "count": 1
+      },
+      {
+        "element": "教育干预模型",
+        "count": 1
+      },
+      {
+        "element": "AI语音",
+        "count": 1
+      },
+      {
+        "element": "AR识别技术",
+        "count": 1
+      },
+      {
+        "element": "学习行为分析",
+        "count": 1
+      },
+      {
+        "element": "AI工具开发",
+        "count": 1
+      },
+      {
+        "element": "数据采集与分析",
+        "count": 1
+      },
+      {
+        "element": "语音交互",
+        "count": 1
+      },
+      {
+        "element": "动态数据可视化",
+        "count": 1
+      },
+      {
+        "element": "触摸式界面",
+        "count": 1
+      }
+    ],
+    "小学": [
+      {
+        "element": "数据分析",
+        "count": 181
+      },
+      {
+        "element": "自然语言处理",
+        "count": 144
+      },
+      {
+        "element": "语音识别",
+        "count": 74
+      },
+      {
+        "element": "人工智能算法",
+        "count": 72
+      },
+      {
+        "element": "学习行为分析",
+        "count": 71
+      },
+      {
+        "element": "个性化学习",
+        "count": 53
+      },
+      {
+        "element": "生成式AI",
+        "count": 50
+      },
+      {
+        "element": "数据可视化",
+        "count": 49
+      },
+      {
+        "element": "图像识别",
+        "count": 43
+      },
+      {
+        "element": "数据采集",
+        "count": 42
+      },
+      {
+        "element": "教育数据挖掘",
+        "count": 40
+      },
+      {
+        "element": "虚拟现实技术",
+        "count": 34
+      },
+      {
+        "element": "生成式人工智能",
+        "count": 33
+      },
+      {
+        "element": "知识图谱",
+        "count": 30
+      },
+      {
+        "element": "过程性评价",
+        "count": 24
+      },
+      {
+        "element": "教育数据分析",
+        "count": 24
+      },
+      {
+        "element": "实时反馈",
+        "count": 23
+      },
+      {
+        "element": "大数据分析",
+        "count": 22
+      },
+      {
+        "element": "计算机视觉",
+        "count": 22
+      },
+      {
+        "element": "深度学习",
+        "count": 21
+      }
+    ],
+    "小学/初中": [
+      {
+        "element": "教育数据挖掘",
+        "count": 4
+      },
+      {
+        "element": "个性化学习",
+        "count": 2
+      },
+      {
+        "element": "多模态数据融合",
+        "count": 2
+      },
+      {
+        "element": "智能批改技术",
+        "count": 2
+      },
+      {
+        "element": "学情分析算法",
+        "count": 2
+      },
+      {
+        "element": "个性化学习路径生成",
+        "count": 2
+      },
+      {
+        "element": "人脸识别",
+        "count": 2
+      },
+      {
+        "element": "数据分析",
+        "count": 2
+      },
+      {
+        "element": "人工智能",
+        "count": 2
+      },
+      {
+        "element": "数据采集",
+        "count": 1
+      },
+      {
+        "element": "实时反馈",
+        "count": 1
+      },
+      {
+        "element": "教学行为分析",
+        "count": 1
+      },
+      {
+        "element": "AI诊断",
+        "count": 1
+      },
+      {
+        "element": "情感计算",
+        "count": 1
+      },
+      {
+        "element": "认知图谱技术",
+        "count": 1
+      },
+      {
+        "element": "智能音频分析技术",
+        "count": 1
+      },
+      {
+        "element": "自适应学习引擎",
+        "count": 1
+      },
+      {
+        "element": "AI作曲算法",
+        "count": 1
+      },
+      {
+        "element": "高精度OCR识别技术",
+        "count": 1
+      },
+      {
+        "element": "智能批改引擎",
+        "count": 1
+      }
+    ],
+    "小学/初中/幼儿园": [
+      {
+        "element": "人工智能",
+        "count": 1
+      },
+      {
+        "element": "大数据技术",
+        "count": 1
+      },
+      {
+        "element": "自适应模型",
+        "count": 1
+      },
+      {
+        "element": "数据挖掘",
+        "count": 1
+      },
+      {
+        "element": "情感计算",
+        "count": 1
+      }
+    ],
+    "小学/初中/高中": [
+      {
+        "element": "自然语言处理",
+        "count": 1
+      },
+      {
+        "element": "数据采集与分析",
+        "count": 1
+      },
+      {
+        "element": "AI评分系统",
+        "count": 1
+      },
+      {
+        "element": "跨学段目标模型",
+        "count": 1
+      },
+      {
+        "element": "情感分析",
+        "count": 1
+      },
+      {
+        "element": "实时数据采集",
+        "count": 1
+      },
+      {
+        "element": "认知分析",
+        "count": 1
+      },
+      {
+        "element": "AI学情分析",
+        "count": 1
+      },
+      {
+        "element": "多模态数据融合",
+        "count": 1
+      },
+      {
+        "element": "反馈机制",
+        "count": 1
+      }
+    ],
+    "小学至初中": [
+      {
+        "element": "多模态情绪识别",
+        "count": 1
+      },
+      {
+        "element": "数据加密与隐私保护",
+        "count": 1
+      },
+      {
+        "element": "动态数据分析",
+        "count": 1
+      },
+      {
+        "element": "人工智能算法",
+        "count": 1
+      },
+      {
+        "element": "心理健康风险评估",
+        "count": 1
+      },
+      {
+        "element": "OCR文字识别",
+        "count": 1
+      },
+      {
+        "element": "图像理解",
+        "count": 1
+      },
+      {
+        "element": "自然语言处理",
+        "count": 1
+      },
+      {
+        "element": "推荐算法",
+        "count": 1
+      },
+      {
+        "element": "知识图谱",
+        "count": 1
+      }
+    ],
+    "幼儿园": [
+      {
+        "element": "语音识别",
+        "count": 31
+      },
+      {
+        "element": "数据分析",
+        "count": 29
+      },
+      {
+        "element": "自然语言处理",
+        "count": 24
+      },
+      {
+        "element": "人工智能算法",
+        "count": 16
+      },
+      {
+        "element": "教育数据分析",
+        "count": 13
+      },
+      {
+        "element": "教育数据挖掘",
+        "count": 12
+      },
+      {
+        "element": "数据采集",
+        "count": 12
+      },
+      {
+        "element": "图像识别",
+        "count": 11
+      },
+      {
+        "element": "游戏化学习",
+        "count": 9
+      },
+      {
+        "element": "个性化学习支持",
+        "count": 8
+      },
+      {
+        "element": "个性化学习",
+        "count": 8
+      },
+      {
+        "element": "AR技术",
+        "count": 8
+      },
+      {
+        "element": "数据可视化",
+        "count": 8
+      },
+      {
+        "element": "行为分析",
+        "count": 7
+      },
+      {
+        "element": "虚拟现实技术",
+        "count": 7
+      },
+      {
+        "element": "情感识别",
+        "count": 6
+      },
+      {
+        "element": "行为识别",
+        "count": 5
+      },
+      {
+        "element": "语音交互",
+        "count": 5
+      },
+      {
+        "element": "动态内容生成",
+        "count": 5
+      },
+      {
+        "element": "图像生成",
+        "count": 5
+      }
+    ],
+    "幼儿园/小学/初中": [
+      {
+        "element": "数据互通技术",
+        "count": 1
+      },
+      {
+        "element": "AI辅助决策技术",
+        "count": 1
+      },
+      {
+        "element": "图像识别",
+        "count": 1
+      },
+      {
+        "element": "动态数据监测",
+        "count": 1
+      },
+      {
+        "element": "智能预警算法",
+        "count": 1
+      }
+    ],
+    "幼儿园中班": [
+      {
+        "element": "动作识别技术",
+        "count": 1
+      },
+      {
+        "element": "行为数据分析",
+        "count": 1
+      },
+      {
+        "element": "多媒体互动系统",
+        "count": 1
+      },
+      {
+        "element": "游戏化学习",
+        "count": 1
+      },
+      {
+        "element": "大模型生成内容",
+        "count": 1
+      }
+    ],
+    "未提及": [
+      {
+        "element": "数据分析",
+        "count": 9
+      },
+      {
+        "element": "自然语言处理",
+        "count": 7
+      },
+      {
+        "element": "人工智能算法",
+        "count": 6
+      },
+      {
+        "element": "知识图谱",
+        "count": 5
+      },
+      {
+        "element": "计算机视觉",
+        "count": 4
+      },
+      {
+        "element": "图像识别",
+        "count": 3
+      },
+      {
+        "element": "多模态数据采集",
+        "count": 3
+      },
+      {
+        "element": "语音识别",
+        "count": 3
+      },
+      {
+        "element": "深度学习",
+        "count": 3
+      },
+      {
+        "element": "个性化学习",
+        "count": 2
+      },
+      {
+        "element": "数据采集",
+        "count": 2
+      },
+      {
+        "element": "智能反馈系统",
+        "count": 2
+      },
+      {
+        "element": "资源整合",
+        "count": 2
+      },
+      {
+        "element": "行为识别",
+        "count": 2
+      },
+      {
+        "element": "学习行为分析",
+        "count": 2
+      },
+      {
+        "element": "个性化学习系统",
+        "count": 2
+      },
+      {
+        "element": "教学行为分析",
+        "count": 2
+      },
+      {
+        "element": "机器学习",
+        "count": 2
+      },
+      {
+        "element": "多模态数据融合",
+        "count": 2
+      },
+      {
+        "element": "多模态数据分析",
+        "count": 2
+      }
+    ],
+    "特殊教育": [
+      {
+        "element": "量化评估模型",
+        "count": 1
+      },
+      {
+        "element": "数据分析",
+        "count": 1
+      },
+      {
+        "element": "动态优化",
+        "count": 1
+      },
+      {
+        "element": "家校协同",
+        "count": 1
+      },
+      {
+        "element": "训练数据实时记录",
+        "count": 1
+      },
+      {
+        "element": "多模态行为识别",
+        "count": 1
+      },
+      {
+        "element": "教育数据挖掘",
+        "count": 1
+      },
+      {
+        "element": "动态评估模型",
+        "count": 1
+      },
+      {
+        "element": "个性化教育计划生成",
+        "count": 1
+      },
+      {
+        "element": "智能资源推荐",
+        "count": 1
+      }
+    ],
+    "职业教育": [
+      {
+        "element": "数据采集",
+        "count": 1
+      },
+      {
+        "element": "实时反馈",
+        "count": 1
+      },
+      {
+        "element": "学习行为分析",
+        "count": 1
+      },
+      {
+        "element": "大数据分析",
+        "count": 1
+      },
+      {
+        "element": "人工智能算法",
+        "count": 1
+      }
+    ],
+    "高中": [
+      {
+        "element": "自然语言处理",
+        "count": 36
+      },
+      {
+        "element": "数据分析",
+        "count": 31
+      },
+      {
+        "element": "数据可视化",
+        "count": 18
+      },
+      {
+        "element": "人工智能算法",
+        "count": 15
+      },
+      {
+        "element": "知识图谱",
+        "count": 13
+      },
+      {
+        "element": "生成式AI",
+        "count": 12
+      },
+      {
+        "element": "个性化学习",
+        "count": 10
+      },
+      {
+        "element": "学习行为分析",
+        "count": 10
+      },
+      {
+        "element": "机器学习",
+        "count": 9
+      },
+      {
+        "element": "数据采集与分析",
+        "count": 9
+      },
+      {
+        "element": "数据采集",
+        "count": 8
+      },
+      {
+        "element": "生成式人工智能",
+        "count": 8
+      },
+      {
+        "element": "虚拟现实技术",
+        "count": 7
+      },
+      {
+        "element": "教育数据分析",
+        "count": 7
+      },
+      {
+        "element": "教育数据挖掘",
+        "count": 7
+      },
+      {
+        "element": "图像生成",
+        "count": 6
+      },
+      {
+        "element": "物联网",
+        "count": 5
+      },
+      {
+        "element": "虚拟实验技术",
+        "count": 5
+      },
+      {
+        "element": "虚拟仿真技术",
+        "count": 5
+      },
+      {
+        "element": "过程性评价",
+        "count": 5
+      }
+    ],
+    "高中/初中": [
+      {
+        "element": "人工智能",
+        "count": 1
+      },
+      {
+        "element": "大数据",
+        "count": 1
+      },
+      {
+        "element": "知识图谱",
+        "count": 1
+      },
+      {
+        "element": "智能算法",
+        "count": 1
+      },
+      {
+        "element": "数据采集",
+        "count": 1
+      }
+    ],
+    "高等教育": [
+      {
+        "element": "大数据分析",
+        "count": 1
+      },
+      {
+        "element": "教育数据挖掘",
+        "count": 1
+      },
+      {
+        "element": "人工智能算法",
+        "count": 1
+      }
+    ]
+  }
+}

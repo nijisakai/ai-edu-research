@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: ../docs/site
+
+website:
+  title: "AI赋能基础教育的实践图景与产业生态"
+  description: "基于1,690个典型案例的混合方法研究"
+  navbar:
+    background: "#1a3a5c"
+    foreground: white
+    left:
+      - text: "首页"
+        href: index.qmd
+      - text: "研究方法"
+        href: methodology.qmd
+      - text: "核心发现"
+        menu:
+          - text: "教育视角"
+            href: findings/education.qmd
+          - text: "技术视角"
+            href: findings/technology.qmd
+          - text: "产业视角"
+            href: findings/industry.qmd
+      - text: "案例研究"
+        href: case-studies/index.qmd
+      - text: "数据仪表板"
+        href: ../index.html
+    right:
+      - icon: github
+        href: https://github.com/nijisakai/ai-edu-research
+  sidebar:
+    style: "docked"
+    search: true
+
+format:
+  html:
+    theme:
+      light: cosmo
+    toc: true
+    toc-depth: 3
+    lang: zh
+    css: custom.css
