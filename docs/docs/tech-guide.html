@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术说明与图表解读指南 — AI赋能基础教育研究</title>
+<meta name="author" content="陈虹宇">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<script src="../js/nav.js"></script>
+
+<div class="page-container doc-content">
+<h1 id="_1">技术说明与图表解读指南</h1>
+<h2 id="ai">——AI赋能基础教育研究项目完整技术文档</h2>
+<hr />
+<h2 id="_2">一、项目架构总览</h2>
+<h3 id="11">1.1 系统架构</h3>
+<div class="codehilite"><pre><span></span><code>ai-edu-research/
+├── data/                          # 原始数据
+│   ├── all_papers.json           # 3815条工具/产品记录（主数据源）
+│   └── 教育产品统计_V5.csv       # 教育产品分类辅助数据
+│
+├── src/                           # 分析代码（16个Python模块）
+│   ├── core_analysis.py          # 模块1：基础描述性统计
+│   ├── nlp_analysis.py           # 模块2：NLP文本挖掘（TF-IDF/LDA/聚类）
+│   ├── advanced_stats.py         # 模块3：高级统计可视化（10张补充图）
+│   ├── deep_clustering.py        # 模块4：深度聚类分析（8张聚类图）
+│   ├── visualizations.py         # 模块5：基础可视化
+│   ├── viz_part1.py / viz_part2.py # 模块5扩展：分批可视化
+│   ├── premium_viz.py            # 模块6：高品质主图生成（fig_a/b/d系列）
+│   ├── framework_viz.py          # 模块7：理论框架可视化（fig_e系列）
+│   ├── insight_mining.py         # 模块8：深度洞察挖掘（fig_f系列）
+│   ├── causal_analysis.py        # 模块9：因果分析与统计建模
+│   ├── relabel_framework.py      # 辅助：框架标签重编码
+│   ├── rebuild_all.py            # 构建引擎：MD→HTML→PDF
+│   └── render_*.py               # PDF渲染辅助脚本
+│
+├── output/
+│   ├── figures/                   # 97张可视化图（PNG/PDF格式，300DPI）
+│   ├── paper/                     # 论文输出（MD/HTML/PDF）
+│   ├── report/                    # 报告输出（MD/HTML/PDF）
+│   └── *.json                     # 25个中间分析结果JSON文件
+│
+└── requirements.txt
+</code></pre></div>
+
+<h3 id="12">1.2 数据流水线</h3>
+<div class="codehilite"><pre><span></span><code>原始数据 (JSON/CSV)
+    │
+    ▼
+┌─────────────────────────────────────────┐
+│  第一层：数据解析与清洗                    │
+│  core_analysis.py                        │
+│  · 读取3815条记录，去重得1690个案例        │
+│  · 字段标准化（省份/学段/学科/场景）        │
+│  · 输出：10个描述性统计JSON               │
+└─────────────────────────────────────────┘
+    │
+    ▼
+┌─────────────────────────────────────────┐
+│  第二层：NLP文本挖掘                      │
+│  nlp_analysis.py                         │
+│  · jieba分词 + 自定义词典（60+教育术语）    │
+│  · TF-IDF关键词 / LDA主题 / KMeans聚类    │
+│  · 技术路径模式提取 / 共现网络构建          │
+│  · 输出：11个NLP分析JSON                  │
+└─────────────────────────────────────────┘
+    │
+    ▼
+┌─────────────────────────────────────────┐
+│  第三层：高级统计与因果分析                 │
+│  advanced_stats.py + causal_analysis.py  │
+│  + insight_mining.py                     │
+│  · 对应分析/MCA / 卡方检验 / 回归分析      │
+│  · 随机森林+SHAP / Theil指数分解           │
+│  · Cramér&#39;s V关联矩阵 / 效应量计算         │
+│  · 输出：统计分析JSON + fig_s/fig_f系列图   │
+└─────────────────────────────────────────┘
+    │
+    ▼
+┌─────────────────────────────────────────┐
+│  第四层：可视化生成                        │
+│  premium_viz.py + framework_viz.py       │
+│  + deep_clustering.py                    │
+│  · 24张论文主图 (fig_a/b/c/d/e/f)         │
+│  · 10张补充统计图 (fig_s)                  │
+│  · 8张聚类分析图 (fig_c1-c8)              │
+│  · 全部300DPI，中文标签                    │
+└─────────────────────────────────────────┘
+    │
+    ▼
+┌─────────────────────────────────────────┐
+│  第五层：文档构建                          │
+│  rebuild_all.py                          │
+│  · 解析论文/报告Markdown结构               │
+│  · 基于文本标记(marker)定位插图位置         │
+│  · Markdown→HTML（含CSS排版）              │
+│  · Chrome Headless→PDF渲染                │
+└─────────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="13">1.3 核心依赖</h3>
+<table>
+<thead>
+<tr>
+<th>库</th>
+<th>用途</th>
+<th>版本要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pandas</td>
+<td>数据处理</td>
+<td>≥1.5</td>
+</tr>
+<tr>
+<td>numpy</td>
+<td>数值计算</td>
+<td>≥1.24</td>
+</tr>
+<tr>
+<td>scikit-learn</td>
+<td>ML算法（KMeans/TF-IDF/RandomForest/PCA）</td>
+<td>≥1.3</td>
+</tr>
+<tr>
+<td>scipy</td>
+<td>统计检验（chi2/mannwhitneyu/spearmanr）</td>
+<td>≥1.10</td>
+</tr>
+<tr>
+<td>matplotlib</td>
+<td>可视化基座</td>
+<td>≥3.7</td>
+</tr>
+<tr>
+<td>seaborn</td>
+<td>统计可视化（heatmap/clustermap/violin）</td>
+<td>≥0.12</td>
+</tr>
+<tr>
+<td>jieba</td>
+<td>中文分词</td>
+<td>≥0.42</td>
+</tr>
+<tr>
+<td>prince</td>
+<td>对应分析/MCA</td>
+<td>≥0.7</td>
+</tr>
+<tr>
+<td>umap-learn</td>
+<td>UMAP降维（可选，PCA回退）</td>
+<td>≥0.5</td>
+</tr>
+<tr>
+<td>shap</td>
+<td>SHAP特征解释</td>
+<td>≥0.41</td>
+</tr>
+<tr>
+<td>markdown</td>
+<td>Markdown→HTML转换</td>
+<td>≥3.4</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">二、数据结构与预处理</h2>
+<h3 id="21">2.1 原始数据结构</h3>
+<p>主数据文件 <code>all_papers.json</code> 包含3815条记录（每条对应一个"案例×工具"组合），每条记录约31个字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>类型</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>案例编号</td>
+<td>int</td>
+<td>172</td>
+<td>唯一案例标识，去重后得1690个</td>
+</tr>
+<tr>
+<td>省份</td>
+<td>str</td>
+<td>"浙江省"</td>
+<td>30个省级行政区</td>
+</tr>
+<tr>
+<td>学段</td>
+<td>str</td>
+<td>"高中"</td>
+<td>小学/初中/高中/幼儿园/其他</td>
+</tr>
+<tr>
+<td>学科</td>
+<td>str</td>
+<td>"地理"</td>
+<td>50+学科分类</td>
+</tr>
+<tr>
+<td>工具标准名</td>
+<td>str</td>
+<td>"豆包"</td>
+<td>1830种独立工具</td>
+</tr>
+<tr>
+<td>企业</td>
+<td>str</td>
+<td>"字节跳动"</td>
+<td>1726家企业</td>
+</tr>
+<tr>
+<td>主要应用场景</td>
+<td>str</td>
+<td>"助学"</td>
+<td>L1场景分类</td>
+</tr>
+<tr>
+<td>次要应用场景</td>
+<td>str</td>
+<td>"智能辅导系统"</td>
+<td>L2场景分类</td>
+</tr>
+<tr>
+<td>优势和创新点</td>
+<td>text</td>
+<td>"通过AI实现..."</td>
+<td>教师自述创新描述（NLP核心语料）</td>
+</tr>
+<tr>
+<td>关键技术路径</td>
+<td>text</td>
+<td>"数据采集→诊断→反馈"</td>
+<td>技术应用流程（路径分析语料）</td>
+</tr>
+<tr>
+<td>潜在成效</td>
+<td>text</td>
+<td>"提升学习效率..."</td>
+<td>预期效果描述</td>
+</tr>
+<tr>
+<td>培养方向</td>
+<td>str</td>
+<td>"智育"</td>
+<td>五育分类</td>
+</tr>
+<tr>
+<td>is_自研</td>
+<td>bool</td>
+<td>True/False</td>
+<td>是否教师自主研发</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22">2.2 数据清洗逻辑</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># core_analysis.py 核心清洗逻辑</span>
+
+<span class="c1"># 1. 读取原始数据</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;data/all_papers.json&quot;</span><span class="p">)</span>  <span class="c1"># 3815条</span>
+
+<span class="c1"># 2. 案例级去重（一个案例可能使用多个工具，产生多行记录）</span>
+<span class="n">cases</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;案例编号&#39;</span><span class="p">])</span>  <span class="c1"># → 1690个唯一案例</span>
+
+<span class="c1"># 3. 学段标准化</span>
+<span class="n">STAGE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;小学&#39;</span><span class="p">:</span> <span class="s1">&#39;小学&#39;</span><span class="p">,</span> <span class="s1">&#39;初中&#39;</span><span class="p">:</span> <span class="s1">&#39;初中&#39;</span><span class="p">,</span> <span class="s1">&#39;高中&#39;</span><span class="p">:</span> <span class="s1">&#39;高中&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;幼儿园&#39;</span><span class="p">:</span> <span class="s1">&#39;幼儿园&#39;</span><span class="p">,</span> <span class="s1">&#39;学前&#39;</span><span class="p">:</span> <span class="s1">&#39;幼儿园&#39;</span><span class="p">,</span>
+    <span class="c1"># 其余归入&quot;其他&quot;</span>
+<span class="p">}</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;学段_main&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;学段&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">STAGE_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;其他&#39;</span><span class="p">))</span>
+
+<span class="c1"># 4. 省份标准化（去除&quot;省&quot;&quot;市&quot;&quot;自治区&quot;等后缀用于部分分析）</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;省份_short&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;省份&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(省|市|自治区|壮族|回族|维吾尔)&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="23-vs">2.3 案例级 vs. 记录级分析</h3>
+<p><strong>关键区别</strong>：3815条记录 vs. 1690个案例</p>
+<ul>
+<li><strong>记录级分析</strong>（3815条）：用于工具使用频次统计、市场集中度、技术要素分布等——因为一个案例使用多个工具，每条工具记录都应计入</li>
+<li><strong>案例级分析</strong>（1690个）：用于学段/学科/场景分布、聚类分析、创新深度评估等——避免多工具案例被重复计数</li>
+</ul>
+<hr />
+<h2 id="_4">三、分析方法详解与核心代码</h2>
+<h3 id="31-core_analysispy">3.1 描述性统计（core_analysis.py）</h3>
+<p><strong>学段/学科/省份分布</strong>：直接对案例或记录进行 <code>value_counts()</code> 频次统计。</p>
+<p><strong>市场集中度计算</strong>：</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># CR5/CR10计算</span>
+<span class="n">tool_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;工具标准名&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">total</span> <span class="o">=</span> <span class="n">tool_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">cr5</span> <span class="o">=</span> <span class="n">tool_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">total</span> <span class="o">*</span> <span class="mi">100</span>    <span class="c1"># → 28.2%</span>
+<span class="n">cr10</span> <span class="o">=</span> <span class="n">tool_counts</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">total</span> <span class="o">*</span> <span class="mi">100</span>   <span class="c1"># → 33.2%</span>
+
+<span class="c1"># HHI指数（赫芬达尔-赫希曼指数）</span>
+<span class="n">shares</span> <span class="o">=</span> <span class="p">(</span><span class="n">tool_counts</span> <span class="o">/</span> <span class="n">total</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">hhi</span> <span class="o">=</span> <span class="p">(</span><span class="n">shares</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># → 196.1（高度竞争市场，&lt;1500）</span>
+</code></pre></div>
+
+<h3 id="32-nlpnlp_analysispy">3.2 NLP文本挖掘（nlp_analysis.py）</h3>
+<h4 id="321">3.2.1 中文分词与预处理</h4>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">jieba</span>
+
+<span class="c1"># 自定义词典（60+教育/AI专业术语，防止被错误切分）</span>
+<span class="n">CUSTOM_WORDS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;人工智能&#39;</span><span class="p">,</span> <span class="s1">&#39;大语言模型&#39;</span><span class="p">,</span> <span class="s1">&#39;深度学习&#39;</span><span class="p">,</span> <span class="s1">&#39;知识图谱&#39;</span><span class="p">,</span> <span class="s1">&#39;自适应学习&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;智慧教育&#39;</span><span class="p">,</span> <span class="s1">&#39;精准教学&#39;</span><span class="p">,</span> <span class="s1">&#39;学情分析&#39;</span><span class="p">,</span> <span class="s1">&#39;智能批改&#39;</span><span class="p">,</span> <span class="s1">&#39;核心素养&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;翻转课堂&#39;</span><span class="p">,</span> <span class="s1">&#39;项目式学习&#39;</span><span class="p">,</span> <span class="s1">&#39;五育并举&#39;</span><span class="p">,</span> <span class="s1">&#39;因材施教&#39;</span><span class="p">,</span> <span class="o">...</span>
+<span class="p">]</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">CUSTOM_WORDS</span><span class="p">:</span>
+    <span class="n">jieba</span><span class="o">.</span><span class="n">add_word</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+<span class="c1"># 停用词表（490个无信息量的高频词）</span>
+<span class="n">STOPWORDS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s1">&#39;的&#39;</span><span class="p">,</span> <span class="s1">&#39;了&#39;</span><span class="p">,</span> <span class="s1">&#39;在&#39;</span><span class="p">,</span> <span class="s1">&#39;是&#39;</span><span class="p">,</span> <span class="s1">&#39;和&#39;</span><span class="p">,</span> <span class="s1">&#39;与&#39;</span><span class="p">,</span> <span class="s1">&#39;等&#39;</span><span class="p">,</span> <span class="s1">&#39;对&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">lcut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">STOPWORDS</span><span class="p">]</span>
+</code></pre></div>
+
+<h4 id="322-tf-idf">3.2.2 TF-IDF关键词提取</h4>
+<p><strong>原理</strong>：TF-IDF（词频-逆文档频率）衡量一个词对特定文档的重要程度。TF高（在该文档中频繁出现）且IDF高（在整个语料库中罕见）的词，才是真正的"关键词"。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">jieba.analyse</span>
+
+<span class="c1"># 对每篇案例文本提取Top20关键词及权重</span>
+<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">innovation_texts</span><span class="p">:</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">keywords</span><span class="p">:</span>
+        <span class="n">global_keywords</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="n">weight</span>
+
+<span class="c1"># 全局Top50关键词</span>
+<span class="n">top50</span> <span class="o">=</span> <span class="n">global_keywords</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="c1"># 结果示例：[(&#39;智能推荐&#39;, 234.5), (&#39;自适应学习&#39;, 189.2), (&#39;数据分析&#39;, 156.8), ...]</span>
+</code></pre></div>
+
+<h4 id="323-lda">3.2.3 LDA主题建模</h4>
+<p><strong>原理</strong>：LDA（Latent Dirichlet Allocation）假设每篇文档是多个"主题"的混合，每个"主题"是词汇上的概率分布。算法自动发现语料库中的潜在主题结构。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">LatentDirichletAllocation</span>
+
+<span class="c1"># 1. 构建文档-词频矩阵</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">max_df</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dtm</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tokenized_texts</span><span class="p">)</span>
+<span class="c1"># dtm形状：(1690案例, 2000个词)</span>
+
+<span class="c1"># 2. 拟合LDA模型</span>
+<span class="n">lda</span> <span class="o">=</span> <span class="n">LatentDirichletAllocation</span><span class="p">(</span>
+    <span class="n">n_components</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>           <span class="c1"># 主题数（经困惑度/一致性评估确定）</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">learning_method</span><span class="o">=</span><span class="s1">&#39;online&#39;</span>  <span class="c1"># 在线变分贝叶斯推断</span>
+<span class="p">)</span>
+<span class="n">lda</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dtm</span><span class="p">)</span>
+
+<span class="c1"># 3. 获取每个主题的Top关键词</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">topic_idx</span><span class="p">,</span> <span class="n">topic</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lda</span><span class="o">.</span><span class="n">components_</span><span class="p">):</span>
+    <span class="n">top_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">feature_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">topic</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[:</span><span class="o">-</span><span class="mi">16</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="c1"># 例：Topic 0 = [&#39;语文&#39;, &#39;写作&#39;, &#39;阅读&#39;, &#39;课文&#39;, &#39;生成&#39;, ...]</span>
+
+<span class="c1"># 4. 获取每个文档的主题分布</span>
+<span class="n">doc_topics</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dtm</span><span class="p">)</span>
+<span class="c1"># doc_topics[i] = [0.05, 0.60, 0.10, ...]  文档i在各主题上的概率</span>
+</code></pre></div>
+
+<p><strong>主题数选择</strong>：通过困惑度（Perplexity，越低越好）和主题一致性（Coherence，越高越好）的综合评估，在K=5~12范围内确定K=7为最优。</p>
+<h4 id="324-kmeans">3.2.4 KMeans聚类分析</h4>
+<p><strong>原理</strong>：KMeans将1690个案例基于TF-IDF特征向量划分为K个互不重叠的簇，使簇内案例相似、簇间案例差异最大。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span>
+
+<span class="c1"># 1. TF-IDF向量化（合并创新描述+技术路径+潜在成效）</span>
+<span class="n">combined_text</span> <span class="o">=</span> <span class="n">innovation</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">tech_path</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">potential_effect</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span> <span class="n">max_df</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">combined_texts</span><span class="p">)</span>
+<span class="c1"># 矩阵形状：(1690, 1500)</span>
+
+<span class="c1"># 2. 轮廓系数选K</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span>
+    <span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="c1"># 典型结果：K=10时silhouette≈0.42</span>
+
+<span class="c1"># 3. 最终聚类</span>
+<span class="n">best_km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">best_km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>轮廓系数解读</strong>：取值[-1, 1]，&gt;0.5表示结构清晰，0.25-0.5表示结构合理，&lt;0.25表示结构模糊。文本聚类通常在0.35-0.50之间。</p>
+<h4 id="325">3.2.5 技术路径模式挖掘</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_tech_path</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;解析&quot;A → B → C&quot;格式的技术路径&quot;&quot;&quot;</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s*[→\-&gt;]+\s*&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">steps</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+
+<span class="c1"># 统计三种粒度</span>
+<span class="n">full_path_counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>    <span class="c1"># 完整路径：如 &quot;采集 → 诊断 → 反馈 → 改进&quot;</span>
+<span class="n">step_counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>          <span class="c1"># 单步频次：如 &quot;诊断&quot; 出现了多少次</span>
+<span class="n">transition_counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>    <span class="c1"># 步骤转移：如 &quot;采集→诊断&quot; 出现了多少次</span>
+
+<span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">tech_path_texts</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">parse_tech_path</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">full_path_counter</span><span class="p">[</span><span class="s1">&#39; → &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+        <span class="n">step_counter</span><span class="p">[</span><span class="n">step</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">transition_counter</span><span class="p">[(</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])]</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+
+<h3 id="33">3.3 高级统计分析</h3>
+<h4 id="331-cramers-vfig_f02">3.3.1 Cramér's V关联强度（fig_f02）</h4>
+<p><strong>原理</strong>：Cramér's V是衡量两个类别变量关联强度的指标，取值[0,1]。基于卡方统计量标准化得到，不受样本量影响。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="k">def</span> <span class="nf">cramers_v</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;计算两个类别变量之间的Cramér&#39;s V&quot;&quot;&quot;</span>
+    <span class="n">ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">chi2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span><span class="n">ct</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">phi2</span> <span class="o">=</span> <span class="n">chi2</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="n">denom</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">phi2</span> <span class="o">/</span> <span class="n">denom</span><span class="p">)</span> <span class="k">if</span> <span class="n">denom</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+
+<span class="c1"># 对14个特征两两计算V值，构建关联矩阵</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;自主研发&#39;</span><span class="p">,</span> <span class="s1">&#39;使用大模型&#39;</span><span class="p">,</span> <span class="s1">&#39;学段&#39;</span><span class="p">,</span> <span class="s1">&#39;学科&#39;</span><span class="p">,</span> <span class="s1">&#39;iSTAR层级&#39;</span><span class="p">,</span> <span class="s1">&#39;创新深度&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">14</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">cramers_v</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">[</span><span class="n">j</span><span class="p">]])</span>
+    <span class="n">corr_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr_matrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+</code></pre></div>
+
+<p><strong>效应量判据</strong>：V &lt; 0.1 弱关联，0.1-0.3 中等关联，&gt; 0.3 强关联。</p>
+<h4 id="332-shapfig_f01">3.3.2 随机森林 + SHAP分析（fig_f01）</h4>
+<p><strong>原理</strong>：随机森林是集成学习方法，通过构建多棵决策树并投票得到预测结果。SHAP（SHapley Additive exPlanations）基于博弈论中的Shapley值，量化每个特征对单个预测结果的贡献。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">import</span> <span class="nn">shap</span>
+
+<span class="c1"># 1. 准备特征矩阵</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;自主研发&#39;</span><span class="p">,</span> <span class="s1">&#39;D1深度学习&#39;</span><span class="p">,</span> <span class="s1">&#39;D3循证教学&#39;</span><span class="p">,</span> <span class="s1">&#39;D4人机互信&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;iSTAR层级&#39;</span><span class="p">,</span> <span class="s1">&#39;技术代际&#39;</span><span class="p">,</span> <span class="s1">&#39;工具数量&#39;</span><span class="p">,</span> <span class="s1">&#39;省份经济tier&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;创新深度等级&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># 1-5分</span>
+
+<span class="c1"># 2. 训练随机森林</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">cv_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+<span class="c1"># 5折交叉验证准确率 ≈ 66.3%</span>
+
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># 3. Gini重要性（基于节点分裂的纯度增益）</span>
+<span class="n">gini_importance</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">feature_importances_</span>
+<span class="c1"># [0.221, 0.139, 0.078, ...]  自主研发 &gt; D3循证 &gt; iSTAR</span>
+
+<span class="c1"># 4. SHAP值（基于Shapley值的模型无关解释）</span>
+<span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">TreeExplainer</span><span class="p">(</span><span class="n">rf</span><span class="p">)</span>
+<span class="n">shap_values</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># 5. 蜂群图（Beeswarm plot）</span>
+<span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="333-correspondence-analysis-fig_f03">3.3.3 对应分析（Correspondence Analysis, fig_f03）</h4>
+<p><strong>原理</strong>：对应分析是一种将列联表中行变量和列变量同时映射到低维空间的方法。它通过对列联表的标准化残差矩阵进行奇异值分解（SVD），使得关联强的类别在空间中靠近。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">prince</span>
+
+<span class="c1"># 1. 构建列联表</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;学段_main&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;学科&#39;</span><span class="p">])</span>
+
+<span class="c1"># 2. 拟合对应分析模型</span>
+<span class="n">ca</span> <span class="o">=</span> <span class="n">prince</span><span class="o">.</span><span class="n">CA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ca</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+
+<span class="c1"># 3. 获取行/列坐标</span>
+<span class="n">row_coords</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">row_coordinates</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>    <span class="c1"># 学段在二维空间的坐标</span>
+<span class="n">col_coords</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">column_coordinates</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>  <span class="c1"># 学科在二维空间的坐标</span>
+
+<span class="c1"># 解释方差比例</span>
+<span class="n">inertia</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">eigenvalues_</span> <span class="o">/</span> <span class="n">ca</span><span class="o">.</span><span class="n">eigenvalues_</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="c1"># 例：[45.2%, 28.7%, ...]  前两个维度解释了73.9%的关联信息</span>
+</code></pre></div>
+
+<h4 id="334-mca-fig_f04">3.3.4 多重对应分析（MCA, fig_f04）</h4>
+<p><strong>原理</strong>：MCA是对应分析的多变量推广。当需要同时分析3个以上类别变量的联合关系时使用。它将每个变量的每个水平（如"小学""自主研发""Gen4"）都映射为空间中的一个点。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">prince</span>
+
+<span class="c1"># 将多个类别变量编码为指示矩阵</span>
+<span class="n">mca_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;学段&#39;</span><span class="p">,</span> <span class="s1">&#39;自主研发状态&#39;</span><span class="p">,</span> <span class="s1">&#39;技术代际&#39;</span><span class="p">,</span> <span class="s1">&#39;iSTAR层级&#39;</span><span class="p">,</span> <span class="s1">&#39;创新深度等级&#39;</span><span class="p">]]</span>
+
+<span class="c1"># 拟合MCA</span>
+<span class="n">mca</span> <span class="o">=</span> <span class="n">prince</span><span class="o">.</span><span class="n">MCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mca</span> <span class="o">=</span> <span class="n">mca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">mca_data</span><span class="p">)</span>
+
+<span class="c1"># 获取各水平的坐标</span>
+<span class="n">col_coords</span> <span class="o">=</span> <span class="n">mca</span><span class="o">.</span><span class="n">column_coordinates</span><span class="p">(</span><span class="n">mca_data</span><span class="p">)</span>
+<span class="c1"># 每个类别水平（如&quot;小学&quot;&quot;Gen4&quot;&quot;HM2C&quot;）都有一个(x, y)坐标</span>
+</code></pre></div>
+
+<h4 id="335-theilfig_f05">3.3.5 Theil指数分解（fig_f05）</h4>
+<p><strong>原理</strong>：Theil指数是衡量不平等程度的指标，其核心优势在于可分解性——可以将总不平等精确分解为"组间不平等"和"组内不平等"。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">theil_index</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;计算Theil T指数&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">mean_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mean_val</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">ratios</span> <span class="o">=</span> <span class="n">values</span> <span class="o">/</span> <span class="n">mean_val</span>
+    <span class="n">ratios</span> <span class="o">=</span> <span class="n">ratios</span><span class="p">[</span><span class="n">ratios</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 去除零值</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ratios</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ratios</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">theil_decomposition</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">group_col</span><span class="p">,</span> <span class="n">value_col</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Theil指数分解：总 = 组间 + 组内&quot;&quot;&quot;</span>
+    <span class="n">total_theil</span> <span class="o">=</span> <span class="n">theil_index</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">value_col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_col</span><span class="p">)</span>
+    <span class="n">n_total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">mean_total</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">value_col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="n">between</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">within</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+        <span class="n">n_g</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">mean_g</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">value_col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">share</span> <span class="o">=</span> <span class="n">n_g</span> <span class="o">/</span> <span class="n">n_total</span>
+
+        <span class="c1"># 组间部分</span>
+        <span class="k">if</span> <span class="n">mean_g</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">mean_total</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">between</span> <span class="o">+=</span> <span class="n">share</span> <span class="o">*</span> <span class="p">(</span><span class="n">mean_g</span> <span class="o">/</span> <span class="n">mean_total</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mean_g</span> <span class="o">/</span> <span class="n">mean_total</span><span class="p">)</span>
+
+        <span class="c1"># 组内部分</span>
+        <span class="n">within</span> <span class="o">+=</span> <span class="n">share</span> <span class="o">*</span> <span class="p">(</span><span class="n">mean_g</span> <span class="o">/</span> <span class="n">mean_total</span><span class="p">)</span> <span class="o">*</span> <span class="n">theil_index</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="n">value_col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;total&#39;</span><span class="p">:</span> <span class="n">total_theil</span><span class="p">,</span>
+        <span class="s1">&#39;between&#39;</span><span class="p">:</span> <span class="n">between</span><span class="p">,</span>          <span class="c1"># 省间不平等</span>
+        <span class="s1">&#39;within&#39;</span><span class="p">:</span> <span class="n">within</span><span class="p">,</span>             <span class="c1"># 省内不平等</span>
+        <span class="s1">&#39;between_share&#39;</span><span class="p">:</span> <span class="n">between</span> <span class="o">/</span> <span class="n">total_theil</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>  <span class="c1"># → 1.9%</span>
+        <span class="s1">&#39;within_share&#39;</span><span class="p">:</span> <span class="n">within</span> <span class="o">/</span> <span class="n">total_theil</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>     <span class="c1"># → 98.1%</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h2 id="_5">四、全部图表详解与解读指南</h2>
+<p>下面按照论文中的图号（图1-图24）逐一说明每张图的生成方法、数据来源和解读方式。</p>
+<hr />
+<h3 id="11690ai">图1：1690个AI教育案例的省域分布热力图</h3>
+<p><strong>文件名</strong>：<code>fig_a01_province_map.png</code> (447 KB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code><br />
+<strong>数据来源</strong>：按省份对1690个案例计数</p>
+<p><strong>生成原理</strong>：<br />
+基于中国地图底图，以颜色深浅编码各省案例数量。使用matplotlib的fill方法对各省多边形着色，颜色映射为连续色阶（浅→深 = 少→多）。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>颜色越深 = 案例越多</strong>。浙江省颜色最深（432例），是唯一的"深色"省份<br />
+- <strong>空间格局</strong>：整体呈"东密西疏"分布，东部沿海省份颜色显著深于西部内陆<br />
+- <strong>第一梯队</strong>：浙江（432）、四川（190）、重庆（166）、北京（135）<br />
+- <strong>注意事项</strong>：分布受活动推广力度影响，不能直接等同于各省AI教育应用的实际水平</p>
+<hr />
+<h3 id="2ai">图2：AI教育案例的学段分布（华夫饼图）</h3>
+<p><strong>文件名</strong>：<code>fig_a02_stage_waffle.png</code> (407 KB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>生成原理</strong>：<br />
+华夫饼图（Waffle Chart）是饼图的替代形式。将100个小方格排列成10×10的网格，每个方格代表约1%的案例。按学段占比为方格着色。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>面积占比 = 案例占比</strong>。小学（蓝色）占据超过一半的方格，是视觉上的绝对主体<br />
+- 初中（绿色）占约五分之一，幼儿园和高中各占约十分之一<br />
+- <strong>核心信息</strong>：小学是AI教育应用的绝对"主战场"（52.7%）<br />
+- <strong>深层含义</strong>：小学教师群体基数大、课程弹性高、评价压力低，为AI应用提供了更大空间</p>
+<hr />
+<h3 id="3ai">图3：各学科AI应用渗透率（棒棒糖图）</h3>
+<p><strong>文件名</strong>：<code>fig_a03_subject_lollipop.png</code> (420 KB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>生成原理</strong>：<br />
+棒棒糖图（Lollipop Chart）是条形图的变体，用一条线段+一个圆点替代矩形条。视觉更清爽，适合展示排序数据。圆点大小与数值成正比。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>圆点越大/线段越长 = 该学科AI应用案例越多</strong><br />
+- 语文（577例）和数学（466例）两个圆点明显突出——因为LLM天然适配文本处理和逻辑推理<br />
+- <strong>美术（235例）超过英语（208例）</strong>——这是AI图像生成工具（如即梦AI）对美术教学的颠覆性影响<br />
+- 体育（127例）和心理健康教育（40例）的出现说明AI正在向非认知领域渗透</p>
+<hr />
+<h3 id="4">图4：四类应用场景的案例体量对比（树图）</h3>
+<p><strong>文件名</strong>：<code>fig_a04_scenario_treemap.png</code> (516 KB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>生成原理</strong>：<br />
+树图（Treemap）将数值映射为矩形面积——面积越大代表数值越大。采用squarify算法将总空间递归分割为大小成比例的矩形。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>面积 = 案例占比</strong>。"助学"占据约四分之三的面积，视觉冲击力极强<br />
+- "助教"仅占一隅（17.5%），"助育"和"助评"几乎不可辨识<br />
+- <strong>核心信息</strong>：AI教育应用高度集中于"辅助学生学习"这一单一场景<br />
+- <strong>政策含义</strong>：AI在教学评价（3.0%）和学校管理（2.1%）领域的潜力远未释放</p>
+<hr />
+<h3 id="5">图5：五育维度的案例数量与人机协同深度（雷达图）</h3>
+<p><strong>文件名</strong>：<code>fig_a05_five_edu_radar.png</code> (1.4 MB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>生成原理</strong>：<br />
+双轴雷达图在同一张图中叠加两组数据——案例数量（实线）和人机协同深度/HM2C占比（虚线），共享五个顶点（智育/德育/美育/体育/劳育）。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>两条线的形状差异是关键</strong>：<br />
+  - 实线（数量）：智育一枝独大，其余四育缩成一团<br />
+  - 虚线（深度）：智育优势大幅缩小，美育和体育的深度反而接近甚至超过智育<br />
+- <strong>反直觉发现</strong>：规模优势 ≠ 质量优势。非智育领域虽然体量小，但人机协同更深（美育HM2C=51.0%，体育=52.2%，智育=41.1%）<br />
+- <strong>解释</strong>：非智育领域天然要求更高的创造性整合，倒逼教师超越"工具替代"的浅层应用</p>
+<hr />
+<h3 id="6aitop20">图6：AI教育工具使用频次Top20（水平条形图）</h3>
+<p><strong>文件名</strong>：<code>fig_b01_top20_tools.png</code> (460 KB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>生成原理</strong>：<br />
+按工具在3815条记录中的出现频次降序排列，取Top20绘制水平条形图。</p>
+<p><strong>解读方式</strong>：<br />
+- 豆包（387次）和DeepSeek（289次）远远领先，两者合计占比近18%<br />
+- 其后各工具条形急剧缩短，形成<strong>"陡坡式"衰减曲线</strong><br />
+- 前三名（豆包/DeepSeek/即梦AI）均为国产生成式AI产品<br />
+- <strong>核心信息</strong>：大语言模型已成为AI教育应用的"基础设施"，教师倾向选择通用工具而非教育专用产品</p>
+<hr />
+<h3 id="7-">图7：技术要素-应用场景-教学环节的多级流转路径（桑基图）</h3>
+<p><strong>文件名</strong>：<code>fig_b02_tech_sankey.png</code> (386 KB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>生成原理</strong>：<br />
+桑基图（Sankey Diagram）以流的宽度编码流量大小。从左到右展示"技术要素→应用场景→教学环节"的三级流转。每条流的宽度与对应的案例/记录数成正比。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>左侧</strong>：NLP和数据分析是最粗的两个源节点<br />
+- <strong>中间</strong>：大部分流量汇入"助学"这一条主干流<br />
+- <strong>右侧</strong>：分散到课堂教学、课后巩固等教学环节<br />
+- <strong>核心信息</strong>：少数主干路径承载了绝大部分技术应用流量，呈现高度集中化</p>
+<hr />
+<h3 id="8ai">图8：AI教育大模型产品的市场定位与覆盖面（景观图）</h3>
+<p><strong>文件名</strong>：<code>fig_b03_model_landscape.png</code> (831 KB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>解读方式</strong>：<br />
+- 横轴=产品的通用性-垂直性定位，纵轴=教育场景的覆盖广度，气泡大小=使用频次<br />
+- 豆包和DeepSeek的气泡最大，位于"高通用性、宽覆盖"象限<br />
+- 希沃白板等教育专用产品气泡小但位于"高垂直性"象限<br />
+- <strong>核心信息</strong>：当前市场呈"通用底座 vs. 垂直应用"的二分格局</p>
+<hr />
+<h3 id="9ai">图9：AI工具共现关系网络图</h3>
+<p><strong>文件名</strong>：<code>fig_b04_cooccurrence_network.png</code> (1.7 MB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>生成原理</strong>：<br />
+基于NLP共现分析构建网络图。节点=AI工具，节点大小∝使用频次；边=两个工具在同一案例中被共同使用，边粗细∝共现次数。使用力导向布局算法（spring layout）确定节点位置。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>"核心-边缘"结构</strong>：豆包、DeepSeek等大节点居于中心，与多种工具形成密集连线<br />
+- 大量小节点分布在外围，仅有稀疏连线<br />
+- <strong>核心信息</strong>：市场同时存在"头部集中"和"尾部碎片化"两种特征</p>
+<hr />
+<h3 id="101690umap">图10：1690个案例的UMAP降维聚类可视化</h3>
+<p><strong>文件名</strong>：<code>fig_c01_umap_clusters.png</code> (917 KB)<br />
+<strong>生成模块</strong>：<code>deep_clustering.py</code></p>
+<p><strong>生成原理</strong>：<br />
+UMAP（Uniform Manifold Approximation and Projection）是一种非线性降维算法，将1500维的TF-IDF特征空间映射到2维平面，同时尽可能保持数据点之间的局部邻域关系。不同颜色标记10个KMeans聚类。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">umap</span>
+<span class="n">reducer</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">reducer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+</code></pre></div>
+
+<p><strong>解读方式</strong>：<br />
+- 每个点=一个案例，颜色=聚类标签<br />
+- <strong>团簇的紧凑度</strong>反映聚类内部的同质性（如"大模型辅助语文"类团簇紧凑）<br />
+- <strong>团簇间距离</strong>反映应用模式的差异性（如"编程教育"与"语文写作"团簇远离）<br />
+- <strong>重叠区域</strong>表示模式边界模糊的案例（如跨学科项目类团簇较松散）</p>
+<hr />
+<h3 id="11ai">图11：AI教育工具市场集中度洛伦兹曲线</h3>
+<p><strong>文件名</strong>：<code>fig_d01_lorenz_curve.png</code> (637 KB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>生成原理</strong>：<br />
+洛伦兹曲线是经济学中衡量分配不均的经典工具。横轴=工具的累计百分比（从使用最少到最多排列），纵轴=累计市场份额。对角线代表完全均等分配。</p>
+<div class="codehilite"><pre><span></span><code><span class="n">sorted_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">tool_counts</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">cumvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">sorted_vals</span><span class="p">)</span>
+<span class="n">lorenz_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>        <span class="c1"># 累计工具百分比</span>
+<span class="n">lorenz_y</span> <span class="o">=</span> <span class="n">cumvals</span> <span class="o">/</span> <span class="n">cumvals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>         <span class="c1"># 累计市场份额</span>
+<span class="n">gini</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">lorenz_y</span><span class="p">,</span> <span class="n">lorenz_x</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>解读方式</strong>：<br />
+- <strong>曲线离对角线越远=分配越不均</strong>。本图曲线极度弯曲<br />
+- 约80%的工具仅贡献了不到20%的市场份额<br />
+- 前3%的工具贡献了超过50%的份额<br />
+- <strong>Gini系数</strong>越接近1越不平等（本图中约为0.85-0.90）</p>
+<hr />
+<h3 id="12edtech">图12：EdTech产品生态的层次结构（嵌套树图）</h3>
+<p><strong>文件名</strong>：<code>fig_d02_ecosystem_treemap.png</code> (530 KB)<br />
+<strong>生成模块</strong>：<code>premium_viz.py</code></p>
+<p><strong>解读方式</strong>：<br />
+- 外层按产品形态分组（软件平台、硬件+AI等），内层按企业填充<br />
+- <strong>字节跳动生态</strong>（豆包+即梦AI+剪映AI）在软件平台区域占据最大面积<br />
+- 背景中1726家企业形成碎片化的马赛克<br />
+- <strong>核心信息</strong>：字节跳动生态占16.6%市场份额，形成平台依赖风险</p>
+<hr />
+<h3 id="13aitheil">图13：AI教育创新深度的地理不平等Theil指数分解</h3>
+<p><strong>文件名</strong>：<code>fig_f05_geographic_inequality.png</code> (649 KB)<br />
+<strong>生成模块</strong>：<code>insight_mining.py</code></p>
+<p><strong>解读方式</strong>：<br />
+- <strong>上层条形图</strong>：各省创新深度均分<br />
+- <strong>下层堆叠面积图</strong>：省间与省内不平等的贡献比例<br />
+- <strong>关键数字</strong>：省内不平等占98.1%，省间仅1.9%<br />
+- <strong>核心发现</strong>：AI教育的"数字鸿沟"主要不是省际差距，而是同一省份内部的微观差距<br />
+- <strong>政策含义</strong>：缩小差距的关键不在区域间资源转移，而在省内经验扩散</p>
+<hr />
+<h3 id="14istar">图14：三赋能框架与iSTAR人机协同层级映射</h3>
+<p><strong>文件名</strong>：<code>fig_e01_sanfuneng_istar.png</code> (412 KB)<br />
+<strong>生成模块</strong>：<code>framework_viz.py</code></p>
+<p><strong>解读方式</strong>：<br />
+- 以矩阵形式交叉呈现"三赋能"（赋能学生/教师/学校）与iSTAR层级（Level 0-3）<br />
+- 颜色深浅=该交叉单元格的案例密度<br />
+- <strong>"赋能学生×Level 1"</strong>单元格颜色最深——绝大多数案例集中于此<br />
+- <strong>"赋能学校×Level 2-3"</strong>区域几乎空白<br />
+- <strong>核心信息</strong>：AI教育应用的结构性失衡——过度集中于"助学+初级协同"</p>
+<hr />
+<h3 id="15">图15：智慧教育三重境界的递进关系与当前阶段定位</h3>
+<p><strong>文件名</strong>：<code>fig_e03_three_realms.png</code><br />
+<strong>生成模块</strong>：<code>framework_viz.py</code></p>
+<p><strong>解读方式</strong>：<br />
+- 三级台阶呈现智慧教育的递进境界<br />
+- 第一境界"智慧学习环境"标注"当前主体"<br />
+- 一二境界之间标注"过渡区"（少数先行案例）<br />
+- 第三境界标注"远景目标"<br />
+- <strong>核心信息</strong>：当前AI教育实践整体处于第一境界向第二境界过渡阶段</p>
+<hr />
+<h3 id="16">图16：数字教学法四维框架达成度诊断（雷达图）</h3>
+<p><strong>文件名</strong>：<code>fig_e04_digital_pedagogy_radar.png</code> (1.1 MB)<br />
+<strong>生成模块</strong>：<code>framework_viz.py</code></p>
+<p><strong>解读方式</strong>：<br />
+- 四个维度：技术赋能深度学习、绿色鲁棒环境、循证导向、人机互信<br />
+- <strong>"循证导向"轴延伸最长</strong>——数据驱动教学已有进展<br />
+- <strong>"深度学习"和"人机互信"轴明显较短</strong>——发展滞后<br />
+- 不对称的四边形轮廓=结构性失衡<br />
+- <strong>核心信息</strong>：数据采集能力领先，但深度学习促进和人机互信建设严重不足</p>
+<hr />
+<h3 id="1710">图17：10个聚类的创新深度评分分布（岭线图）</h3>
+<p><strong>文件名</strong>：<code>fig_e02_innovation_ridgeline.png</code> (718 KB)<br />
+<strong>生成模块</strong>：<code>framework_viz.py</code></p>
+<p><strong>生成原理</strong>：<br />
+岭线图（Ridgeline Plot）将多个密度分布曲线垂直层叠，每条"山脊"代表一个聚类的创新深度分布。使用核密度估计（KDE）平滑。</p>
+<p><strong>解读方式</strong>：<br />
+- 每条山脊的<strong>峰值位置</strong>反映该聚类的典型创新深度<br />
+- 山脊<strong>偏右</strong>=创新深度较高，<strong>偏左</strong>=较低<br />
+- 山脊<strong>宽度</strong>=内部离散程度<br />
+- <strong>核心信息</strong>：不同应用模式的创新深度差异显著，"先行者"与"跟随者"之间存在明显的创新鸿沟</p>
+<hr />
+<h3 id="18">图18：技术代际与应用场景的交叉分布（气泡图）</h3>
+<p><strong>文件名</strong>：<code>fig_e05_techgen_scenario_bubble.png</code> (643 KB)<br />
+<strong>生成模块</strong>：<code>framework_viz.py</code></p>
+<p><strong>解读方式</strong>：<br />
+- 横轴=技术代际（Gen1-Gen5），纵轴=应用场景（助学/助教/助育/助评/助管）<br />
+- 气泡大小=案例数量，颜色=创新深度均分<br />
+- Gen4（大模型）行的气泡集中在"助学"列且颜色偏暖（创新深度高）<br />
+- <strong>反直觉发现</strong>：Gen1-2行个别气泡颜色也较深——"低技术高创新"现象</p>
+<hr />
+<h3 id="19shap">图19：随机森林模型SHAP特征重要性（蜂群图）</h3>
+<p><strong>文件名</strong>：<code>fig_f01_rf_shap.png</code> (498 KB)<br />
+<strong>生成模块</strong>：<code>insight_mining.py</code></p>
+<p><strong>如何阅读SHAP蜂群图</strong>：<br />
+每个点代表一个案例。横轴是SHAP值（正值=推高创新深度预测，负值=拉低）。颜色编码特征值的高低（红色=高值，蓝色=低值）。特征按总体影响力从上到下排列。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>自主研发状态</strong>排在最上方，正向SHAP值分布最宽，红色点集中在正向区域——自研是创新深度最强的预测因子<br />
+- D3循证教学和iSTAR层级紧随其后<br />
+- 学段、区域等结构性特征的SHAP值接近零——几乎无预测力<br />
+- <strong>核心信息</strong>：过程能力（教学设计、人机协同）压倒结构因素（地区、学段）</p>
+<hr />
+<h3 id="20cramers-v">图20：关键变量间Cramér's V关联强度（热力图）</h3>
+<p><strong>文件名</strong>：<code>fig_f02_cramers_v.png</code> (850 KB)<br />
+<strong>生成模块</strong>：<code>insight_mining.py</code></p>
+<p><strong>解读方式</strong>：<br />
+- 颜色越深=两个变量之间的关联越强<br />
+- <strong>自主研发×创新深度</strong>色块最深（V值最高）<br />
+- <strong>学段×创新深度</strong>色块较浅<br />
+- <strong>核心信息</strong>：教学设计能力（而非结构性因素）决定创新深度</p>
+<hr />
+<h3 id="21-">图21：学段-学科-场景对应分析（双标图）</h3>
+<p><strong>文件名</strong>：<code>fig_f03_correspondence_biplot.png</code> (876 KB)<br />
+<strong>生成模块</strong>：<code>insight_mining.py</code></p>
+<p><strong>如何阅读对应分析双标图</strong>：<br />
+对应分析将行变量（学段）和列变量（学科/场景）同时映射到二维空间。<strong>空间距离反映关联强度</strong>——越近的变量在数据中越倾向于共同出现。<strong>原点代表"平均"模式</strong>，远离原点的变量代表偏离主流的差异化模式。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>靠近原点</strong>的变量（小学、助学、语文）= 主流模式<br />
+- <strong>远离原点</strong>的变量（幼儿园-环境创设、高中-助研）= 差异化模式<br />
+- 如果"高中"和"物理"靠近=高中案例中物理学科占比高于平均水平<br />
+- 坐标轴解释的方差比例标注在轴标签中</p>
+<hr />
+<h3 id="22mca">图22：多维特征联合关系的多重对应分析（MCA双标图）</h3>
+<p><strong>文件名</strong>：<code>fig_f04_mca_biplot.png</code> (609 KB)<br />
+<strong>生成模块</strong>：<code>insight_mining.py</code></p>
+<p><strong>如何阅读MCA双标图</strong>：<br />
+MCA将多个类别变量的所有水平同时投影到二维空间。每个点代表一个类别水平（如"自研""Gen4""HM2C"等）。<strong>空间位置靠近=在数据中倾向于共同出现</strong>。</p>
+<p><strong>解读方式</strong>：<br />
+- <strong>"高创新集群"</strong>（自研、Gen4+、HM2C）聚集在一个象限<br />
+- <strong>"低创新集群"</strong>（第三方工具、Gen1-2、HMC(1)）聚集在对角象限<br />
+- 两个集群的<strong>空间分离</strong>直观揭示了创新差异背后的多维特征组合<br />
+- <strong>核心信息</strong>：高创新案例具有"自主研发+新一代AI+深度人机协同"的三重特征</p>
+<hr />
+<h3 id="23">图23：聚类方差分析效应量对比（柱状图）</h3>
+<p><strong>文件名</strong>：<code>fig_f06_cluster_anova.png</code> (586 KB)<br />
+<strong>生成模块</strong>：<code>insight_mining.py</code></p>
+<p><strong>生成原理</strong>：<br />
+对10个KMeans聚类在各连续维度上进行单因素ANOVA（方差分析），计算eta-squared效应量——即该维度的变异中有多少比例可由聚类归属解释。</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;D1深度学习&#39;</span><span class="p">,</span> <span class="s1">&#39;D3循证教学&#39;</span><span class="p">,</span> <span class="s1">&#39;D4人机互信&#39;</span><span class="p">,</span> <span class="s1">&#39;创新深度&#39;</span><span class="p">]:</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">][</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+    <span class="n">F</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">f_oneway</span><span class="p">(</span><span class="o">*</span><span class="n">groups</span><span class="p">)</span>
+
+    <span class="c1"># eta-squared = SS_between / SS_total</span>
+    <span class="n">ss_total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ss_between</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">)</span>
+    <span class="n">eta_sq</span> <span class="o">=</span> <span class="n">ss_between</span> <span class="o">/</span> <span class="n">ss_total</span>
+</code></pre></div>
+
+<p><strong>解读方式</strong>：<br />
+- D4人机互信的柱子最高（eta²=0.989）——该维度对聚类区分贡献最大<br />
+- D3循证教学次之（eta²=0.778）<br />
+- <strong>核心信息</strong>：10种应用模式的核心差异在于人机协同深度，而非学段或学科</p>
+<hr />
+<h3 id="24">图24：研究核心数据指标综合仪表板</h3>
+<p><strong>文件名</strong>：<code>fig_e06_dashboard.png</code> (1.0 MB)<br />
+<strong>生成模块</strong>：<code>framework_viz.py</code></p>
+<p><strong>解读方式</strong>：<br />
+- 多面板布局，整合全研究的核心指标<br />
+- 包含：样本规模、学段分布、五育结构、工具Top10、市场集中度、区域热力图等<br />
+- <strong>用途</strong>：一站式数据总览，适合作为报告首页或汇报PPT</p>
+<hr />
+<h2 id="_6">五、文档构建引擎</h2>
+<h3 id="51-rebuild_allpy">5.1 rebuild_all.py 工作原理</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">Markdown文件</span>
+<span class="w">    </span><span class="err">│</span>
+<span class="w">    </span><span class="err">▼</span>
+<span class="err">┌──────────────────┐</span>
+<span class="err">│</span><span class="w">  </span><span class="err">结构解析</span><span class="w">          </span><span class="err">│</span><span class="w">  </span><span class="n">regex提取标题</span><span class="o">/</span><span class="err">摘要</span><span class="o">/</span><span class="err">关键词</span><span class="o">/</span><span class="err">正文</span><span class="o">/</span><span class="err">参考文献</span>
+<span class="err">│</span><span class="w">  </span><span class="n">parse_</span><span class="o">*</span><span class="n">_structure</span><span class="w"> </span><span class="err">│</span>
+<span class="err">└──────────────────┘</span>
+<span class="w">    </span><span class="err">│</span>
+<span class="w">    </span><span class="err">▼</span>
+<span class="err">┌──────────────────┐</span>
+<span class="err">│</span><span class="w">  </span><span class="n">Markdown</span><span class="err">→</span><span class="n">HTML</span><span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="n">python</span><span class="o">-</span><span class="n">markdown库</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tables</span><span class="o">/</span><span class="n">footnotes</span><span class="o">/</span><span class="n">toc扩展</span>
+<span class="err">│</span><span class="w">  </span><span class="n">md_to_html</span><span class="p">()</span><span class="w">     </span><span class="err">│</span>
+<span class="err">└──────────────────┘</span>
+<span class="w">    </span><span class="err">│</span>
+<span class="w">    </span><span class="err">▼</span>
+<span class="err">┌──────────────────┐</span>
+<span class="err">│</span><span class="w">  </span><span class="err">后处理</span><span class="w">           </span><span class="err">│</span><span class="w">  </span><span class="err">三线表</span><span class="n">class</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">blockquote</span><span class="err">→</span><span class="n">table容器</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="err">图注样式</span>
+<span class="err">│</span><span class="w">  </span><span class="n">post_process_</span><span class="o">*</span><span class="w">   </span><span class="err">│</span>
+<span class="err">└──────────────────┘</span>
+<span class="w">    </span><span class="err">│</span>
+<span class="w">    </span><span class="err">▼</span>
+<span class="err">┌──────────────────┐</span>
+<span class="err">│</span><span class="w">  </span><span class="err">图片插入</span><span class="w">          </span><span class="err">│</span><span class="w">  </span><span class="err">基于文本标记</span><span class="p">(</span><span class="n">marker</span><span class="p">)</span><span class="err">定位插入点</span>
+<span class="err">│</span><span class="w">  </span><span class="n">insert_</span><span class="o">*</span><span class="n">_figures</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="err">在</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span><span class="err">标签后插入</span><span class="o">&lt;</span><span class="n">div</span><span class="w"> </span><span class="n">class</span><span class="o">=</span><span class="s">&quot;figure-block&quot;</span><span class="o">&gt;</span>
+<span class="err">└──────────────────┘</span>
+<span class="w">    </span><span class="err">│</span>
+<span class="w">    </span><span class="err">▼</span>
+<span class="err">┌──────────────────┐</span>
+<span class="err">│</span><span class="w">  </span><span class="err">模板填充</span><span class="w">          </span><span class="err">│</span><span class="w">  </span><span class="err">论文模板</span><span class="p">(</span><span class="err">宋体</span><span class="o">/</span><span class="err">三线表</span><span class="o">/</span><span class="err">学术风</span><span class="p">)</span>
+<span class="err">│</span><span class="w">  </span><span class="n">HTML_TEMPLATE</span><span class="w">     </span><span class="err">│</span><span class="w">  </span><span class="err">报告模板</span><span class="p">(</span><span class="err">深青色</span><span class="o">/</span><span class="err">金色</span><span class="o">/</span><span class="err">咨询风</span><span class="p">)</span>
+<span class="err">└──────────────────┘</span>
+<span class="w">    </span><span class="err">│</span>
+<span class="w">    </span><span class="err">▼</span>
+<span class="err">┌──────────────────┐</span>
+<span class="err">│</span><span class="w">  </span><span class="n">PDF渲染</span><span class="w">          </span><span class="err">│</span><span class="w">  </span><span class="n">Chrome</span><span class="w"> </span><span class="n">Headless</span><span class="w"> </span><span class="o">--</span><span class="n">print</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">pdf</span>
+<span class="err">│</span><span class="w">  </span><span class="n">render_pdf</span><span class="p">()</span><span class="w">     </span><span class="err">│</span><span class="w">  </span><span class="p">(</span><span class="n">WeasyPrint因pango兼容问题已弃用</span><span class="p">)</span>
+<span class="err">└──────────────────┘</span>
+</code></pre></div>
+
+<h3 id="52">5.2 图片插入机制</h3>
+<p>图片插入的核心逻辑是<strong>基于文本标记（marker）定位</strong>：</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 定义插入规则：(标记文本, 图片键名)</span>
+<span class="n">insertions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;浙江省以432个案例位居首位&quot;</span><span class="p">,</span> <span class="s2">&quot;fig1&quot;</span><span class="p">),</span>   <span class="c1"># 找到这段文字后，在其所在&lt;/p&gt;标签后插入图1</span>
+    <span class="p">(</span><span class="s2">&quot;幼儿园阶段的AI应用占比达到11.2%&quot;</span><span class="p">,</span> <span class="s2">&quot;fig2&quot;</span><span class="p">),</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">marker</span><span class="p">,</span> <span class="n">fig_key</span> <span class="ow">in</span> <span class="n">insertions</span><span class="p">:</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">marker</span><span class="p">)</span>              <span class="c1"># 在HTML中搜索标记文本</span>
+    <span class="k">if</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">end_p</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;&lt;/p&gt;&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>   <span class="c1"># 找到该段落的结束标签</span>
+        <span class="n">insert_pos</span> <span class="o">=</span> <span class="n">end_p</span> <span class="o">+</span> <span class="mi">4</span>            <span class="c1"># 在&lt;/p&gt;后面插入</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="p">[:</span><span class="n">insert_pos</span><span class="p">]</span> <span class="o">+</span> <span class="n">fig_html</span> <span class="o">+</span> <span class="n">html</span><span class="p">[</span><span class="n">insert_pos</span><span class="p">:]</span>
+</code></pre></div>
+
+<p><strong>设计思路</strong>：不在Markdown中硬编码图片路径，而是在HTML渲染后动态插入。这样Markdown保持纯文本可读性，图片位置可以灵活调整。</p>
+<h3 id="53">5.3 运行方式</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 完整重建（HTML + PDF）</span>
+<span class="nb">cd</span><span class="w"> </span>/Users/sakai/Desktop/产业调研/ai-edu-research
+python3<span class="w"> </span>src/rebuild_all.py
+
+<span class="c1"># 仅查看输出</span>
+open<span class="w"> </span>output/paper/论文_AI赋能基础教育的实践图景与产业生态.html
+open<span class="w"> </span>output/report/研究报告_AI赋能基础教育实践图景与产业生态分析.html
+</code></pre></div>
+
+<hr />
+<h2 id="fig_s">六、补充统计图（fig_s系列）简要说明</h2>
+<table>
+<thead>
+<tr>
+<th>图号</th>
+<th>文件名</th>
+<th>方法</th>
+<th>核心发现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>fig_s1_correspondence_analysis.png</td>
+<td>对应分析</td>
+<td>学段×学科关联结构</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>fig_s2_chi_square_mosaic.png</td>
+<td>卡方检验+马赛克图</td>
+<td>学段×场景的显著关联</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>fig_s3_correlation_matrix.png</td>
+<td>Cramér's V矩阵+层次聚类</td>
+<td>14个二值特征的关联网络</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>fig_s4_tool_diversity_regression.png</td>
+<td>线性回归</td>
+<td>案例数↔工具多样性的正相关</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>fig_s5_tech_adoption_curve.png</td>
+<td>Rogers创新扩散曲线</td>
+<td>Gen4+工具已达50%拐点</td>
+</tr>
+<tr>
+<td>S6</td>
+<td>fig_s6_subject_scenario_alluvial.png</td>
+<td>冲积图</td>
+<td>学科→场景→五育的三级流转</td>
+</tr>
+<tr>
+<td>S7</td>
+<td>fig_s7_innovation_depth_boxplot.png</td>
+<td>小提琴图+Mann-Whitney U</td>
+<td>各学段创新深度分布比较</td>
+</tr>
+<tr>
+<td>S8</td>
+<td>fig_s8_geographic_inequality.png</td>
+<td>洛伦兹曲线+Gini系数</td>
+<td>省域案例分布的不平等程度</td>
+</tr>
+<tr>
+<td>S9</td>
+<td>fig_s9_effect_size_forest.png</td>
+<td>效应量森林图+Bootstrap CI</td>
+<td>各特征对学段差异的贡献排序</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>fig_s10_interaction_heatmap.png</td>
+<td>四面板交互热力图</td>
+<td>不同学段中场景×五育的组合模式</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="fig_c">七、深度聚类图（fig_c系列）简要说明</h2>
+<table>
+<thead>
+<tr>
+<th>图号</th>
+<th>文件名</th>
+<th>方法</th>
+<th>核心内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>fig_c1_tsne_clusters.png</td>
+<td>t-SNE降维+凸包</td>
+<td>聚类的二维可视化（备选UMAP）</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>fig_c2_cluster_profiles.png</td>
+<td>六维雷达图×10个聚类</td>
+<td>各聚类的特征画像</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>fig_c3_dendrogram.png</td>
+<td>Ward层次聚类树状图</td>
+<td>聚类的层次关系</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>fig_c4_silhouette.png</td>
+<td>轮廓系数分析</td>
+<td>聚类质量评估（含K选择曲线）</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>fig_c5_cluster_heatmap.png</td>
+<td>TF-IDF热力图+层次聚类</td>
+<td>各聚类的关键词特征</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>fig_c6_cluster_composition.png</td>
+<td>四面板堆叠条形图</td>
+<td>各聚类的学段/学科/场景/五育构成</td>
+</tr>
+<tr>
+<td>C7</td>
+<td>fig_c7_umap_3d.png</td>
+<td>UMAP三维投影（第三维→点大小）</td>
+<td>三维结构的二维展示</td>
+</tr>
+<tr>
+<td>C8</td>
+<td>fig_c8_cluster_evolution.png</td>
+<td>技术路径桑基图</td>
+<td>各聚类的主导技术路径</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>本文档详细说明了项目的完整技术架构、分析方法、核心代码和全部图表的解读方式，供研究团队参考。</em></p>
+</div>
+
+<footer class="site-footer">
+  <p>AI赋能基础教育的实践图景与产业生态 — 基于1690个典型案例的混合方法研究</p>
+  <p>研究者：陈虹宇 | <a href="https://github.com/nijisakai/ai-edu-research" target="_blank">GitHub</a></p>
+</footer>
+
+</body>
+</html>

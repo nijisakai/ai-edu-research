@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Analysis Summary — AI赋能基础教育研究</title>
+<meta name="author" content="陈虹宇">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<script src="../js/nav.js"></script>
+
+<div class="page-container doc-content">
+<h1 id="case-deep-analysis-summary-ai-basic-education-in-china">Case Deep Analysis Summary: AI + Basic Education in China</h1>
+<h2 id="executive-summary">Executive Summary</h2>
+<p>This analysis examines 46 representative cases sampled from 1,690 unique cases in the national "AI + Basic Education" case collection. Cases were stratified across 10 NLP clusters, 4 school stages, 5 application scenarios, 15+ provinces, and special categories (self-developed tools, multi-tool cases, unusual subjects).</p>
+<h3 id="key-findings">Key Findings</h3>
+<ol>
+<li>
+<p><strong>iSTAR Level Distribution</strong>: 47.8% HMC(1) (teacher uses AI, students don't interact) vs 50.0% HM2C (students interact with AI). Zero cases achieved true HMnC (multi-agent network collaboration). The field remains firmly in the "human-machine cooperation" stage.</p>
+</li>
+<li>
+<p><strong>Deep Learning Evidence</strong>: ~35% of cases show strong evidence of higher-order thinking, ~45% moderate depth, ~15% surface-level (memorization/imitation), ~5% non-teaching applications.</p>
+</li>
+<li>
+<p><strong>Tool Ecosystem</strong>: Doubao (豆包) appears in 33% of sampled cases, DeepSeek in 17%. The domestic LLM duopoly dominates classroom AI use.</p>
+</li>
+<li>
+<p><strong>Five-Education (五育) Imbalance</strong>: 56.5% of cases focus exclusively on intellectual education (智育). Physical, aesthetic, moral, and labor education together account for less than 35%.</p>
+</li>
+<li>
+<p><strong>Efficiency Over Innovation</strong>: The majority of AI applications prioritize teacher efficiency (grading, lesson planning, learning analytics) over fundamental pedagogical transformation.</p>
+</li>
+</ol>
+<hr />
+<h2 id="sampled-cases-overview">Sampled Cases Overview</h2>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Title</th>
+<th>Stage</th>
+<th>Province</th>
+<th>Scenario</th>
+<th>iSTAR</th>
+<th>Key Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>运算律教学新样态</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>豆包, DeepSeek</td>
+</tr>
+<tr>
+<td>02</td>
+<td>小学足球运球游戏</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>AI运动分析</td>
+</tr>
+<tr>
+<td>03</td>
+<td>智能评测驱动教学评一致</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助教</td>
+<td>HMC(1)</td>
+<td>智能评测系统</td>
+</tr>
+<tr>
+<td>04</td>
+<td>七大洲轮廓记忆消消乐</td>
+<td>初中</td>
+<td>上海</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>AI游戏平台</td>
+</tr>
+<tr>
+<td>07</td>
+<td>AI认知协作者数学阅读</td>
+<td>高中</td>
+<td>内蒙古</td>
+<td>助教</td>
+<td>HM2C</td>
+<td>DeepSeek, 豆包</td>
+</tr>
+<tr>
+<td>09</td>
+<td>校庆邀请函设计</td>
+<td>初中</td>
+<td>宁夏</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>豆包, 即梦AI</td>
+</tr>
+<tr>
+<td>11</td>
+<td>跨学科美术《用彩墨画鱼》</td>
+<td>小学</td>
+<td>上海</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>希沃, 即梦AI</td>
+</tr>
+<tr>
+<td>14</td>
+<td>AI+项目化高中物理</td>
+<td>高中</td>
+<td>四川</td>
+<td>助教</td>
+<td>HMC(1)</td>
+<td>AI-classroom</td>
+</tr>
+<tr>
+<td>16</td>
+<td>五星好少年评价体系</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助评</td>
+<td>HMC(1)</td>
+<td>AIGC互动情境</td>
+</tr>
+<tr>
+<td>29</td>
+<td>体质健康智能管理平台</td>
+<td>小学</td>
+<td>北京</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>DeepSeek</td>
+</tr>
+<tr>
+<td>33</td>
+<td>数学精准预警干预系统</td>
+<td>初中</td>
+<td>北京</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>随机森林算法</td>
+</tr>
+<tr>
+<td>38</td>
+<td>SEED平台个性化成长课程</td>
+<td>小学</td>
+<td>天津</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>SEED平台</td>
+</tr>
+<tr>
+<td>47</td>
+<td>AI赋能作业超市</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>DeepSeek, 豆包</td>
+</tr>
+<tr>
+<td>74</td>
+<td>AI导航高中作文精准教学</td>
+<td>高中</td>
+<td>北京</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>DeepSeek, 豆包</td>
+</tr>
+<tr>
+<td>110</td>
+<td>AI慧眼校园安全</td>
+<td>中学</td>
+<td>浙江</td>
+<td>助管</td>
+<td>HUM</td>
+<td>AI人脸识别</td>
+</tr>
+<tr>
+<td>112</td>
+<td>AI智慧操场</td>
+<td>未提及</td>
+<td>未提及</td>
+<td>助育</td>
+<td>HMC(1)</td>
+<td>AI智慧操场</td>
+</tr>
+<tr>
+<td>117</td>
+<td>多模态AI校园文化创作</td>
+<td>小学</td>
+<td>上海</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>豆包, 文心一言</td>
+</tr>
+<tr>
+<td>120</td>
+<td>四季农场STEM课程</td>
+<td>初中</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>DeepSeek, 秘塔AI</td>
+</tr>
+<tr>
+<td>124</td>
+<td>AI互动越剧课堂</td>
+<td>初中</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>豆包, 即梦AI</td>
+</tr>
+<tr>
+<td>146</td>
+<td>AI+未来科学家实验室</td>
+<td>高中</td>
+<td>新疆</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>DeepSeek</td>
+</tr>
+<tr>
+<td>157</td>
+<td>AI电影《我们班的故事1937》</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>即梦AI, SunoAI</td>
+</tr>
+<tr>
+<td>172</td>
+<td>高中地理智能体研发</td>
+<td>高中</td>
+<td>浙江</td>
+<td>助教</td>
+<td>HM2C</td>
+<td>自研智能体</td>
+</tr>
+<tr>
+<td>188</td>
+<td>AI助学心理健康</td>
+<td>小学</td>
+<td>吉林</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>AI心理平台</td>
+</tr>
+<tr>
+<td>272</td>
+<td>AI破解交友困惑道法课</td>
+<td>初中</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>AI对话系统</td>
+</tr>
+<tr>
+<td>305</td>
+<td>AI赋能非遗传承</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助育</td>
+<td>HM2C</td>
+<td>豆包, 即梦AI</td>
+</tr>
+<tr>
+<td>339</td>
+<td>AI赋能语文自读课</td>
+<td>小学</td>
+<td>北京</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>豆包</td>
+</tr>
+<tr>
+<td>469</td>
+<td>AI辅助三维设计劳动课</td>
+<td>初中</td>
+<td>四川</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>即梦AI</td>
+</tr>
+<tr>
+<td>1028</td>
+<td>历史学科智能体</td>
+<td>初中</td>
+<td>北京</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>豆包, Kimi</td>
+</tr>
+<tr>
+<td>1037</td>
+<td>AI赋能统计数据意识</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>秘塔AI</td>
+</tr>
+<tr>
+<td>1054</td>
+<td>全学科AI批量批改</td>
+<td>小学</td>
+<td>天津</td>
+<td>助教</td>
+<td>HMC(1)</td>
+<td>豆包, 飞书</td>
+</tr>
+<tr>
+<td>1112</td>
+<td>AI短跑步频训练</td>
+<td>初中</td>
+<td>天津</td>
+<td>助育</td>
+<td>HM2C</td>
+<td>AI动作捕捉</td>
+</tr>
+<tr>
+<td>1718</td>
+<td>AI数学阅卷分析</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>豆包</td>
+</tr>
+<tr>
+<td>1719</td>
+<td>混合式学情诊断同课异构</td>
+<td>初中</td>
+<td>重庆</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>Coze/扣子</td>
+</tr>
+<tr>
+<td>1756</td>
+<td>五育融合评价体系</td>
+<td>小学</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>评价系统</td>
+</tr>
+<tr>
+<td>1780</td>
+<td>幼儿计算思维评价</td>
+<td>幼儿园</td>
+<td>新疆</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>智能教学平台</td>
+</tr>
+<tr>
+<td>1801</td>
+<td>AI重塑幼儿园教研</td>
+<td>幼儿园</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HMC(1)</td>
+<td>云慧玩, 玛塔编程</td>
+</tr>
+<tr>
+<td>1857</td>
+<td>AI助力幼儿自主探索</td>
+<td>幼儿园</td>
+<td>新疆</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>豆包</td>
+</tr>
+<tr>
+<td>1864</td>
+<td>AI情境化音乐教学</td>
+<td>幼儿园</td>
+<td>浙江</td>
+<td>助学</td>
+<td>HM2C</td>
+<td>AI语音识别</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="key-evidence-by-theoretical-framework">Key Evidence by Theoretical Framework</h2>
+<h3 id="1-istar-human-machine-collaboration-levels">1. iSTAR Human-Machine Collaboration Levels</h3>
+<p><strong>Distribution</strong>: HUM 2.2% | HMC(1) 47.8% | HM2C 50.0% | HMnC 0%</p>
+<p>The absence of HMnC cases is significant: no case demonstrates true multi-agent network collaboration where multiple AI agents and humans form a collaborative network. The field is at the "cooperation" stage, not yet "co-creation."</p>
+<p><strong>Best HM2C Example</strong> (Case 172 - Geography AI Agent):</p>
+<blockquote>
+<p>"核心需求并非题库搜索，而是具备地理学科思维、能进行诊断与引导的AI助教。它需要理解地理学科的逻辑体系，并能用专业语言与学生交互。"</p>
+</blockquote>
+<p><strong>Typical HMC(1) Pattern</strong> (Case 1054 - AI Grading):</p>
+<blockquote>
+<p>"AI承担基础性评价任务...教师则聚焦于AI难以替代的价值判断与情感引导"</p>
+</blockquote>
+<h3 id="2-deep-learning-vs-surface-level-tool-use">2. Deep Learning vs Surface-Level Tool Use</h3>
+<p><strong>The "AI Packaging" Problem</strong>: Several cases use AI to wrap traditional learning tasks in new technology without increasing cognitive depth. Case 04 (geography memory game) exemplifies this -- a "消消乐" game for memorizing continent shapes is fundamentally a drill exercise regardless of the AI wrapper.</p>
+<p><strong>Cognitive Liberation Cases</strong>: The most promising cases use AI to remove low-level cognitive barriers so students can focus on higher-order thinking:<br />
+- Case 1037: AI handles data collection and chart generation, freeing students to focus on data analysis and interpretation<br />
+- Case 01: AI generates dynamic visualizations, allowing students to focus on mathematical reasoning</p>
+<h3 id="3-five-education-integration">3. Five-Education (五育) Integration</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Count</th>
+<th>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>智育 (Intellectual)</td>
+<td>26</td>
+<td>56.5%</td>
+</tr>
+<tr>
+<td>美育 (Aesthetic)</td>
+<td>7</td>
+<td>15.2%</td>
+</tr>
+<tr>
+<td>体育 (Physical)</td>
+<td>6</td>
+<td>13.0%</td>
+</tr>
+<tr>
+<td>五育融合 (Integrated)</td>
+<td>3</td>
+<td>6.5%</td>
+</tr>
+<tr>
+<td>德育 (Moral)</td>
+<td>2</td>
+<td>4.3%</td>
+</tr>
+<tr>
+<td>劳育 (Labor)</td>
+<td>1</td>
+<td>2.2%</td>
+</tr>
+<tr>
+<td>助管 (Management)</td>
+<td>1</td>
+<td>2.2%</td>
+</tr>
+</tbody>
+</table>
+<p>The dominance of intellectual education reflects a structural bias: AI tools are most naturally suited to text/data processing tasks that align with traditional academic subjects.</p>
+<h2 id="representative-quotes-with-case-numbers">Representative Quotes with Case Numbers</h2>
+<h3 id="best-practice-subject-specific-ai-agent-case-172">Best Practice: Subject-Specific AI Agent (Case 172)</h3>
+<blockquote>
+<p>"现有技术工具无法满足地理学科的核心需求：功能强大的公共大模型因缺乏学科约束，其回答常出现'地理语言不专业'、'逻辑不严谨'甚至事实性错误，存在误导学生、加剧教师甄别负担的风险。"</p>
+</blockquote>
+<p>This case represents the frontier of AI education: moving beyond generic chatbots to domain-specific agents that understand disciplinary epistemology.</p>
+<h3 id="typical-shallow-use-ai-wrapped-memorization-case-04">Typical Shallow Use: AI-Wrapped Memorization (Case 04)</h3>
+<blockquote>
+<p>"通过消消乐游戏方式帮助学生记忆七大洲轮廓"</p>
+</blockquote>
+<p>A game for memorizing shapes is a drill exercise regardless of whether AI generates it. The cognitive demand remains at Bloom's "Remember" level.</p>
+<h3 id="innovative-human-machine-collaboration-case-1037">Innovative Human-Machine Collaboration (Case 1037)</h3>
+<blockquote>
+<p>"学生四人一组使用平板上的秘塔AI搜索最新的各电影票房数据，并快速将大数据制作成想要的统计图。秘塔AI除了能精准制作出学生指定的统计图，还会生成符合题意的多元统计图。"</p>
+</blockquote>
+<p>AI removes the technical barrier of data collection and visualization, allowing students to focus on the higher-order skill of data interpretation.</p>
+<h3 id="efficiency-vs-innovation-tension-case-1054">Efficiency vs Innovation Tension (Case 1054)</h3>
+<blockquote>
+<p>"89%的学生表示，作文等主观作业评价反馈滞后，评语也存在宽泛且缺乏指导价值的模糊表述...采用该模式后教师用于师生深度互动的时间增长153%，教学满意度提升42%。"</p>
+</blockquote>
+<p>AI grading frees teacher time, but the quality of the resulting "deep interaction" depends entirely on teacher capability, not AI.</p>
+<h3 id="critical-technology-awareness-case-1719">Critical Technology Awareness (Case 1719)</h3>
+<blockquote>
+<p>"电子问卷形式往往需要使用家长手机完成，可能在家长的监督下完成前测问卷，这种方式可能出现替代思考、思考不充分等问题。考虑学生在纸笔书写的时候注意力、思考力相对较集中，所以最终选用纸质问卷。"</p>
+</blockquote>
+<p>A rare example of critical thinking about technology limitations -- choosing paper over digital for pedagogical reasons in an AI project.</p>
+<h3 id="five-education-integration-exemplar-case-157">Five-Education Integration Exemplar (Case 157)</h3>
+<blockquote>
+<p>"学生完成从AI工具选型到电影展映的全流程实践，在提升数字素养、深化跨学科能力的同时，落实'铭记历史、珍爱和平'的价值观塑造。"</p>
+</blockquote>
+<p>AI movie-making integrates aesthetic education (film creation), moral education (war history), and intellectual education (cross-disciplinary knowledge).</p>
+<h3 id="quantitative-evidence-case-33">Quantitative Evidence (Case 33)</h3>
+<blockquote>
+<p>"采集2023-2024学年第二学期48份日常课后作业数据，涵盖1296条结构化记录...模型预测准确率达82.3%...函数与几何题型薄弱点改善率提升至71%，逻辑推理能力测评得分增长28%。"</p>
+</blockquote>
+<p>One of the few cases with rigorous quantitative evidence of AI impact on learning outcomes.</p>
+<hr />
+<h2 id="implications-for-the-papers-arguments">Implications for the Paper's Arguments</h2>
+<h3 id="1-supporting-the-three-realms-framework">1. Supporting the "Three Realms" (三域) Framework</h3>
+<p>Case evidence strongly supports the technology-pedagogy-nurturing three-realm framework:<br />
+- <strong>Technology Realm</strong>: Dominated by content generation and data analytics (T1 pathway)<br />
+- <strong>Pedagogy Realm</strong>: Moderate innovation, mostly AI-assisted personalization<br />
+- <strong>Nurturing Realm</strong>: Weakest dimension, with 56.5% of cases confined to intellectual education</p>
+<h3 id="2-supporting-the-istar-progression-model">2. Supporting the iSTAR Progression Model</h3>
+<p>The 0% HMnC rate validates the paper's argument that the field is still in early stages of human-machine collaboration. The progression from HMC(1) to HM2C is underway but uneven.</p>
+<h3 id="3-challenging-overly-optimistic-narratives">3. Challenging Overly Optimistic Narratives</h3>
+<p>The gap between case application materials' aspirational language and actual implementation depth suggests that policy reports may overstate the current state of AI education integration. The "AI packaging" phenomenon (wrapping traditional tasks in AI technology) is widespread.</p>
+<h3 id="4-regional-inequality-evidence">4. Regional Inequality Evidence</h3>
+<p>Zhejiang province's dominance (26% of total cases, higher quality) alongside sparse representation from western provinces supports arguments about digital education inequality.</p>
+<h3 id="5-tool-ecosystem-concentration">5. Tool Ecosystem Concentration</h3>
+<p>The Doubao/DeepSeek duopoly (50% of tool mentions) raises questions about vendor dependency and the need for diverse AI tool ecosystems in education.</p>
+<hr />
+<h2 id="methodology-notes">Methodology Notes</h2>
+<ul>
+<li><strong>Sample</strong>: 46 cases from 1,690 unique cases (2.7% sample rate)</li>
+<li><strong>Sampling</strong>: Stratified by NLP cluster, school stage, scenario, province, and special categories</li>
+<li><strong>Text extraction</strong>: pdftotext for PDF files, python-docx for DOCX files</li>
+<li><strong>Analysis</strong>: Manual qualitative coding of implementation sections, supplemented by keyword-based automated screening</li>
+<li><strong>Limitations</strong>: Case application materials may present idealized versions of actual practice; text extraction quality varies by document format; some cases had insufficient text for deep analysis</li>
+</ul>
+</div>
+
+<footer class="site-footer">
+  <p>AI赋能基础教育的实践图景与产业生态 — 基于1690个典型案例的混合方法研究</p>
+  <p>研究者：陈虹宇 | <a href="https://github.com/nijisakai/ai-edu-research" target="_blank">GitHub</a></p>
+</footer>
+
+</body>
+</html>

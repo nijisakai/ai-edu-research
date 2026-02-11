@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON数据浏览器 — AI赋能基础教育研究</title>
+<meta name="author" content="陈虹宇">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/nav.js"></script>
+<script src="js/auth.js"></script>
+
+<div class="page-container">
+  <h2 class="section-header">JSON数据浏览器</h2>
+  <p style="color:#666;margin-bottom:24px">浏览28个研究数据集，基于1,690个AI教育典型案例的系统分析。</p>
+
+  <!-- Back button (hidden when showing list) -->
+  <div id="back-bar" style="display:none;margin-bottom:16px">
+    <a href="json-viewer.html" class="json-back-btn">← 返回数据列表</a>
+    <span id="current-file" style="margin-left:12px;color:#666;font-size:14px"></span>
+  </div>
+
+  <!-- File list view -->
+  <div id="file-list" class="json-file-grid"></div>
+
+  <!-- JSON content view -->
+  <div id="json-content" style="display:none">
+    <pre class="json-pre"><code id="json-code"></code></pre>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>AI赋能基础教育的实践图景与产业生态 — 基于1690个典型案例的混合方法研究</p>
+  <p>研究者：陈虹宇 | <a href="https://github.com/nijisakai/ai-edu-research" target="_blank">GitHub</a></p>
+</footer>
+
+<script>
+(function() {
+  const DATASETS = [
+    { cat: '核心统计', items: [
+      { file: 'metadata.json', size: '1.1 KB', desc: '数据集元信息：总行数、唯一案例数、字段列表' },
+      { file: 'province_distribution.json', size: '1.3 KB', desc: '28省份案例/工具分布' },
+      { file: 'stage_distribution.json', size: '0.7 KB', desc: '学段分布（小学/初中/高中/幼儿园）' },
+      { file: 'subject_distribution.json', size: '8.9 KB', desc: '319个学科分布及学科-工具映射' },
+      { file: 'tool_product_distribution.json', size: '5.8 KB', desc: 'Top30工具、产品形态、分类' },
+      { file: 'scenario_analysis.json', size: '3.3 KB', desc: '5级应用场景层次（L1/L2）' },
+    ]},
+    { cat: '理论框架', items: [
+      { file: 'framework_stats.json', size: '2.7 KB', desc: '框架标注统计 + 3个交叉表矩阵' },
+      { file: 'cross_tabulations.json', size: '9.5 KB', desc: '多维交叉列联表' },
+    ]},
+    { cat: 'NLP分析', items: [
+      { file: 'nlp_clusters.json', size: '24.4 KB', desc: '10个语义聚类（关键词/中心/大小）' },
+      { file: 'nlp_all_results.json', size: '229.7 KB', desc: '完整NLP分析结果' },
+      { file: 'nlp_cultivation.json', size: '5.5 KB', desc: '五育融合数据' },
+      { file: 'nlp_tfidf_keywords.json', size: '25 KB', desc: 'TF-IDF关键词' },
+      { file: 'nlp_lda_topics.json', size: '24 KB', desc: 'LDA主题模型结果' },
+      { file: 'nlp_cooccurrence.json', size: '23 KB', desc: '共现分析' },
+      { file: 'nlp_scenarios.json', size: '9.4 KB', desc: '场景NLP分析' },
+      { file: 'nlp_tech_elements.json', size: '45 KB', desc: '技术要素' },
+      { file: 'nlp_tech_pathways.json', size: '14 KB', desc: '技术路径分析' },
+      { file: 'nlp_tech_subject_matrix.json', size: '24 KB', desc: '技术×学科矩阵' },
+      { file: 'nlp_innovation_patterns.json', size: '14 KB', desc: '创新模式' },
+    ]},
+    { cat: '统计与因果分析', items: [
+      { file: 'causal_analysis_results.json', size: '73.8 KB', desc: '10种统计分析方法结果' },
+      { file: 'deep_insights.json', size: '43.0 KB', desc: '深度洞察与模式' },
+    ]},
+    { cat: '产业生态', items: [
+      { file: 'company_market_share.json', size: '1.2 KB', desc: '市场集中度（CR5/CR10/HHI）' },
+      { file: 'industry_maturity.json', size: '1.3 KB', desc: '产业成熟度分析' },
+      { file: 'self_developed_ratio.json', size: '98 B', desc: '自主研发比例' },
+      { file: 'tech_elements.json', size: '1.4 KB', desc: '技术要素统计' },
+    ]},
+    { cat: '案例研究', items: [
+      { file: 'case_deep_analysis.json', size: '64.2 KB', desc: '46个案例深度分析（已脱敏）' },
+    ]},
+  ];
+
+  function syntaxHighlight(json) {
+    if (typeof json !== 'string') json = JSON.stringify(json, null, 2);
+    return json
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/("(\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*")\s*:/g, '<span class="json-key">$1</span>:')
+      .replace(/:\s*("(\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*")/g, ': <span class="json-string">$1</span>')
+      .replace(/:\s*(\d+\.?\d*)/g, ': <span class="json-number">$1</span>')
+      .replace(/:\s*(true|false)/g, ': <span class="json-bool">$1</span>')
+      .replace(/:\s*(null)/g, ': <span class="json-null">$1</span>');
+  }
+
+  function renderFileList() {
+    const el = document.getElementById('file-list');
+    let html = '';
+    DATASETS.forEach(group => {
+      html += '<h3 class="json-group-title">' + group.cat + '</h3><div class="json-cards">';
+      group.items.forEach(item => {
+        html += '<a class="json-card" href="json-viewer.html?file=' + item.file + '">'
+          + '<div class="json-card-name">' + item.file + '</div>'
+          + '<div class="json-card-size">' + item.size + '</div>'
+          + '<div class="json-card-desc">' + item.desc + '</div>'
+          + '</a>';
+      });
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }
+
+  async function loadJSON(filename) {
+    // Validate filename
+    const allFiles = DATASETS.flatMap(g => g.items.map(i => i.file));
+    if (!allFiles.includes(filename)) {
+      document.getElementById('json-code').textContent = '错误：未知的数据文件 "' + filename + '"';
+      return;
+    }
+    document.getElementById('file-list').style.display = 'none';
+    document.getElementById('json-content').style.display = 'block';
+    document.getElementById('back-bar').style.display = 'flex';
+    document.getElementById('current-file').textContent = filename;
+    document.getElementById('json-code').innerHTML = '加载中...';
+
+    try {
+      const resp = await fetch('data/' + filename);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const data = await resp.json();
+      document.getElementById('json-code').innerHTML = syntaxHighlight(data);
+    } catch(e) {
+      document.getElementById('json-code').textContent = '加载失败: ' + e.message;
+    }
+  }
+
+  // Init
+  if (typeof AUTH !== 'undefined') AUTH.require();
+
+  const params = new URLSearchParams(window.location.search);
+  const file = params.get('file');
+  if (file) {
+    loadJSON(file);
+  } else {
+    renderFileList();
+  }
+})();
+</script>
+
+</body>
+</html>

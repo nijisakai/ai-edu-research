@@ -6,9 +6,11 @@ on:
     paths:
       - 'docs/**'
       - 'output/*.json'
+      - 'output/*.md'
       - 'output/figures/**'
       - 'output/paper/**'
       - 'output/report/**'
+      - '*.md'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -45,6 +47,80 @@ jobs:
           mkdir -p docs/paper docs/report
           cp "output/paper/论文_AI赋能基础教育的实践图景与产业生态.html" docs/paper/content.html 2>/dev/null || true
           cp "output/report/研究报告_AI赋能基础教育实践图景与产业生态分析.html" docs/report/content.html 2>/dev/null || true
+
+      - name: Fix image paths in paper/report
+        run: |
+          for f in docs/paper/content.html docs/report/content.html; do
+            if [ -f "$f" ]; then
+              python3 -c "
+          import sys
+          with open('$f', 'r', encoding='utf-8') as fh:
+              content = fh.read()
+          old = 'file:///Users/sakai/Desktop/产业调研/ai-edu-research/output/figures/'
+          count = content.count(old)
+          content = content.replace(old, '../figures/')
+          with open('$f', 'w', encoding='utf-8') as fh:
+              fh.write(content)
+          print(f'Fixed {count} image paths in $f')
+              "
+            fi
+          done
+
+      - name: Convert MD documents to HTML
+        run: |
+          pip install markdown > /dev/null 2>&1
+          mkdir -p docs/docs
+          python3 -c "
+          import markdown, os
+
+          TEMPLATE = '''<!DOCTYPE html>
+          <html lang=\"{lang}\">
+          <head>
+          <meta charset=\"UTF-8\">
+          <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+          <title>{title} — AI赋能基础教育研究</title>
+          <meta name=\"author\" content=\"陈虹宇\">
+          <link rel=\"stylesheet\" href=\"../css/style.css\">
+          </head>
+          <body>
+          <script src=\"../js/nav.js\"></script>
+          <div class=\"page-container doc-content\">{content}</div>
+          <footer class=\"site-footer\">
+            <p>AI赋能基础教育的实践图景与产业生态 — 基于1690个典型案例的混合方法研究</p>
+            <p>研究者：陈虹宇 | <a href=\"https://github.com/nijisakai/ai-edu-research\" target=\"_blank\">GitHub</a></p>
+          </footer>
+          </body>
+          </html>'''
+
+          files = [
+              ('output/案例深度分析摘要.md', 'docs/docs/case-analysis-zh.html', '案例深度分析摘要', 'zh-CN'),
+              ('output/因果与统计分析报告.md', 'docs/docs/causal-analysis-zh.html', '因果与统计分析报告', 'zh-CN'),
+              ('output/深度洞察挖掘报告.md', 'docs/docs/deep-insights-zh.html', '深度洞察挖掘报告', 'zh-CN'),
+              ('output/AI基础教育产业研究简报.md', 'docs/docs/industry-research-zh.html', '产业研究简报', 'zh-CN'),
+              ('output/case_deep_analysis_summary.md', 'docs/docs/case-analysis-en.html', 'Case Analysis Summary', 'en'),
+              ('output/causal_analysis_summary.md', 'docs/docs/causal-analysis-en.html', 'Causal Analysis Summary', 'en'),
+              ('output/deep_insights_summary.md', 'docs/docs/deep-insights-en.html', 'Deep Insights Summary', 'en'),
+              ('output/industry_research.md', 'docs/docs/industry-research-en.html', 'Industry Research', 'en'),
+              ('output/huang_ronghuai_research.md', 'docs/docs/huang-ronghuai.html', '黄荣怀理论研究', 'zh-CN'),
+              ('论文审读报告.md', 'docs/docs/paper-review.html', '论文审读报告', 'zh-CN'),
+              ('报告审读报告.md', 'docs/docs/report-review.html', '报告审读报告', 'zh-CN'),
+              ('技术说明与图表解读指南.md', 'docs/docs/tech-guide.html', '技术说明与图表解读指南', 'zh-CN'),
+          ]
+
+          extensions = ['tables', 'fenced_code', 'toc']
+
+          for src, dst, title, lang in files:
+              if not os.path.exists(src):
+                  print(f'SKIP {src}')
+                  continue
+              with open(src, 'r', encoding='utf-8') as f:
+                  md_text = f.read()
+              html_content = markdown.markdown(md_text, extensions=extensions)
+              page = TEMPLATE.format(lang=lang, title=title, content=html_content)
+              with open(dst, 'w', encoding='utf-8') as f:
+                  f.write(page)
+              print(f'OK {src} -> {dst}')
+          "
 
       - name: Anonymize data files
         run: |

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>因果与统计分析报告 — AI赋能基础教育研究</title>
+<meta name="author" content="陈虹宇">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<script src="../js/nav.js"></script>
+
+<div class="page-container doc-content">
+<h1 id="ai">AI教育数据集：综合因果与统计分析报告</h1>
+<h2 id="_1">概述</h2>
+<p>本报告对3,815条AI教育产品记录进行了10项多维度统计分析。<br />
+所有分析均妥善处理了缺失数据，在报告p值的同时报告效应量（effect size），并针对不同数据类型采用了相应的统计方法。</p>
+<hr />
+<h2 id="1-correspondence-analysis-ca">1. 对应分析（Correspondence Analysis, CA）</h2>
+<h3 id="1a-x">1a. 学科 x 应用场景</h3>
+<ul>
+<li><strong>总惯量（Total Inertia）</strong>: 0.7830</li>
+<li><strong>维度1</strong>: 解释50.6%的惯量</li>
+<li><strong>维度2</strong>: 解释38.2%的惯量</li>
+<li><strong>列联表规模</strong>: 33个学科 x 6个场景</li>
+</ul>
+<p><strong>主要学科坐标（维度1）：</strong></p>
+<ul>
+<li>网络安全教育: -0.3492</li>
+<li>语言: -0.3492</li>
+<li>科学: -0.3463<br />
+  ...</li>
+<li>心理健康教育: 2.1050</li>
+<li>德育: 3.3232</li>
+<li>美育: 4.9504</li>
+</ul>
+<h3 id="1b-x">1b. 学段 x 三赋能</h3>
+<ul>
+<li><strong>总惯量（Total Inertia）</strong>: 0.0880</li>
+<li><strong>维度1</strong>: 解释65.8%的惯量</li>
+<li><strong>维度2</strong>: 解释20.9%的惯量</li>
+</ul>
+<hr />
+<h2 id="2-multiple-correspondence-analysis-mca">2. 多重对应分析（Multiple Correspondence Analysis, MCA）</h2>
+<ul>
+<li><strong>观测数</strong>: 3548</li>
+<li><strong>成分数</strong>: 3</li>
+<li><strong>总惯量</strong>: 2.8000</li>
+<li><strong>维度1累积解释率</strong>: 14.6%</li>
+<li><strong>维度2累积解释率</strong>: 27.5%</li>
+<li><strong>维度3累积解释率</strong>: 36.9%</li>
+</ul>
+<h3 id="1">维度1</h3>
+<p><strong>负极</strong>（低分端）：<br />
+  - 产品技术代际__Gen5_多模态AI: -0.3047<br />
+  - iSTAR人机协同层级__HM2C(2): -0.2813<br />
+  - 智慧教育境界__第二境界_教学模式: -0.2611<br />
+<strong>正极</strong>（高分端）：<br />
+  - 智慧教育境界__第一境界_智慧环境: 0.4784<br />
+  - iSTAR人机协同层级__HUM(0): 7.2145<br />
+  - 三赋能分类__赋能学校: 7.5027</p>
+<h3 id="2">维度2</h3>
+<p><strong>负极</strong>（低分端）：<br />
+  - 三赋能分类__赋能学校: -1.0877<br />
+  - iSTAR人机协同层级__HUM(0): -1.0172<br />
+  - iSTAR人机协同层级__HM2C(2): -1.0071<br />
+<strong>正极</strong>（高分端）：<br />
+  - 三赋能分类__赋能教师: 0.9654<br />
+  - 智慧教育境界__第三境界_制度变革: 1.2401<br />
+  - 三赋能分类__赋能评价: 2.0134</p>
+<h3 id="3">维度3</h3>
+<p><strong>负极</strong>（低分端）：<br />
+  - 三赋能分类__赋能教师: -1.1265<br />
+  - 学段_clean__高中: -0.9591<br />
+  - 学段_clean__初中: -0.4996<br />
+<strong>正极</strong>（高分端）：<br />
+  - 产品技术代际__Gen3_AI辅助: 0.6457<br />
+  - 智慧教育境界__第三境界_制度变革: 2.2973<br />
+  - 三赋能分类__赋能评价: 3.1714</p>
+<hr />
+<h2 id="3-ordinal-logistic-regression">3. 有序逻辑回归（Ordinal Logistic Regression，因变量：创新深度）</h2>
+<ul>
+<li><strong>N</strong>: 3548</li>
+<li><strong>伪R方（Pseudo R-squared）</strong>: 0.2012</li>
+<li><strong>AIC</strong>: 7050.133419058166</li>
+</ul>
+<h3 id="proportional-odds-assumption">比例优势假设检验（Proportional Odds Assumption）</h3>
+<ul>
+<li>似然比统计量（LR statistic）: -1435.34, df=48, p=0.0000</li>
+<li>假设成立: <strong>否</strong></li>
+</ul>
+<h3 id="p-005">显著预测变量（p &lt; 0.05）</h3>
+<table>
+<thead>
+<tr>
+<th>预测变量</th>
+<th>优势比（Odds Ratio）</th>
+<th>95%置信区间</th>
+<th>p值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自研_num</td>
+<td>33.692</td>
+<td>[26.810, 42.339]</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>iSTAR_num</td>
+<td>9.875</td>
+<td>[8.131, 11.992]</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>三赋能分类_赋能教师</td>
+<td>0.093</td>
+<td>[0.053, 0.164]</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>三赋能分类_赋能评价</td>
+<td>0.071</td>
+<td>[0.036, 0.140]</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>tech_gen_num</td>
+<td>0.759</td>
+<td>[0.706, 0.816]</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>三赋能分类_赋能学生</td>
+<td>0.140</td>
+<td>[0.078, 0.249]</td>
+<td>0.0000</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-multinomial-logistic-regressionistar">4. 多项逻辑回归（Multinomial Logistic Regression，因变量：iSTAR层级）</h2>
+<ul>
+<li><strong>N</strong>: 3548</li>
+<li><strong>伪R方（Pseudo R-squared）</strong>: 0.2898</li>
+</ul>
+<h3 id="0">结果类别: 0（相对于参照组）</h3>
+<table>
+<thead>
+<tr>
+<th>预测变量</th>
+<th>相对风险比（RRR）</th>
+<th>p值</th>
+<th>显著性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tech_gen_num</td>
+<td>0.311</td>
+<td>0.0000</td>
+<td>*</td>
+</tr>
+<tr>
+<td>常数项（const）</td>
+<td>34.752</td>
+<td>0.0000</td>
+<td>*</td>
+</tr>
+<tr>
+<td>学科_grouped_未提及</td>
+<td>10.666</td>
+<td>0.0000</td>
+<td>*</td>
+</tr>
+<tr>
+<td>学科_grouped_物理</td>
+<td>6.566</td>
+<td>0.0000</td>
+<td>*</td>
+</tr>
+<tr>
+<td>学科_grouped_其他</td>
+<td>2.662</td>
+<td>0.0000</td>
+<td>*</td>
+</tr>
+<tr>
+<td>D1_深度学习</td>
+<td>0.624</td>
+<td>0.0001</td>
+<td>*</td>
+</tr>
+<tr>
+<td>学科_grouped_语文</td>
+<td>2.623</td>
+<td>0.0001</td>
+<td>*</td>
+</tr>
+<tr>
+<td>D3_循证教学</td>
+<td>1.373</td>
+<td>0.0014</td>
+<td>*</td>
+</tr>
+<tr>
+<td>学科_grouped_数学</td>
+<td>2.126</td>
+<td>0.0029</td>
+<td>*</td>
+</tr>
+<tr>
+<td>学科_grouped_美术</td>
+<td>2.224</td>
+<td>0.0043</td>
+<td>*</td>
+</tr>
+<tr>
+<td>学段_clean_幼儿园</td>
+<td>0.715</td>
+<td>0.0303</td>
+<td>*</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1_1">结果类别: 1（相对于参照组）</h3>
+<table>
+<thead>
+<tr>
+<th>预测变量</th>
+<th>相对风险比（RRR）</th>
+<th>p值</th>
+<th>显著性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tech_gen_num</td>
+<td>0.247</td>
+<td>0.0000</td>
+<td>*</td>
+</tr>
+<tr>
+<td>D1_深度学习</td>
+<td>0.136</td>
+<td>0.0000</td>
+<td>*</td>
+</tr>
+<tr>
+<td>D3_循证教学</td>
+<td>0.127</td>
+<td>0.0000</td>
+<td>*</td>
+</tr>
+<tr>
+<td>学段_clean_高中</td>
+<td>3.831</td>
+<td>0.0224</td>
+<td>*</td>
+</tr>
+<tr>
+<td>D2_绿色鲁棒</td>
+<td>3.921</td>
+<td>0.0440</td>
+<td>*</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-path-analysis">5. 结构方程模型（路径分析, Path Analysis）</h2>
+<ul>
+<li><strong>N</strong>: 3815</li>
+<li><strong>全模型R方</strong>: 0.1072</li>
+</ul>
+<h3 id="_2">路径系数</h3>
+<table>
+<thead>
+<tr>
+<th>路径</th>
+<th>系数</th>
+<th>p值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自研水平 → 技术代际</td>
+<td>-0.0386</td>
+<td>0.0572</td>
+</tr>
+<tr>
+<td>技术代际 → D4</td>
+<td>0.0125</td>
+<td>0.0043</td>
+</tr>
+<tr>
+<td>技术代际 → D3</td>
+<td>-0.0473</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>D4 → 创新深度</td>
+<td>0.6547</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>D3 → 创新深度</td>
+<td>0.3966</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>技术代际 → 创新深度（直接效应）</td>
+<td>0.0517</td>
+<td>0.0000</td>
+</tr>
+<tr>
+<td>技术代际 → 创新深度（总效应）</td>
+<td>0.0411</td>
+<td>0.0010</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">效应分解（技术代际 → 创新深度）</h3>
+<ul>
+<li><strong>总效应</strong>: 0.0411</li>
+<li><strong>直接效应</strong>: 0.0517</li>
+<li><strong>经由D4（人机互信）的间接效应</strong>: 0.0082</li>
+<li><strong>经由D3（循证教学）的间接效应</strong>: -0.0188</li>
+<li><strong>中介效应占比</strong>: -25.6%</li>
+</ul>
+<h3 id="_4">中介效应检验</h3>
+<ul>
+<li>D4 Sobel检验: z=2.810, p=0.0050, 显著=是</li>
+<li>D3 Sobel检验: z=-6.051, p=0.0000, 显著=是</li>
+<li>D4 Bootstrap 95%置信区间: (0.0028145599987198597, 0.014297416300916101), 不包含零: 是</li>
+<li>D3 Bootstrap 95%置信区间: (-0.025027289667089454, -0.013094403724090575), 不包含零: 是</li>
+</ul>
+<hr />
+<h2 id="6">6. 地理不平等分解</h2>
+<h3 id="innovation_depth">创新深度（innovation_depth）</h3>
+<ul>
+<li><strong>总体基尼系数（Gini）</strong>: 0.1966</li>
+<li><strong>泰尔指数（Theil，省级）</strong>: 总计=0.0700, 组间=1.9%, 组内=98.1%</li>
+<li><strong>泰尔指数（Theil，区域级）</strong>: 总计=0.0700, 组间=0.3%, 组内=99.7%</li>
+</ul>
+<p><strong>基尼系数最高的省份（不平等程度最大）：</strong><br />
+  - 湖南省: 0.2509<br />
+  - 辽宁省: 0.2395<br />
+  - 河北省: 0.2269<br />
+  - 山西省: 0.2160<br />
+  - 吉林省: 0.2142</p>
+<h3 id="istaristar_level">iSTAR层级（iSTAR_level）</h3>
+<ul>
+<li><strong>总体基尼系数（Gini）</strong>: 0.1903</li>
+<li><strong>泰尔指数（Theil，省级）</strong>: 总计=0.0253, 组间=1.0%, 组内=99.0%</li>
+<li><strong>泰尔指数（Theil，区域级）</strong>: 总计=0.0253, 组间=0.3%, 组内=99.7%</li>
+</ul>
+<p><strong>基尼系数最高的省份（不平等程度最大）：</strong><br />
+  - 江西省: 0.2227<br />
+  - 江苏省: 0.2013<br />
+  - 山西省: 0.1994<br />
+  - 重庆市: 0.1977<br />
+  - 新疆维吾尔自治区: 0.1952</p>
+<h3 id="tech_generation">技术代际（tech_generation）</h3>
+<ul>
+<li><strong>总体基尼系数（Gini）</strong>: 0.1842</li>
+<li><strong>泰尔指数（Theil，省级）</strong>: 总计=0.0580, 组间=0.9%, 组内=99.1%</li>
+<li><strong>泰尔指数（Theil，区域级）</strong>: 总计=0.0580, 组间=0.5%, 组内=99.5%</li>
+</ul>
+<p><strong>基尼系数最高的省份（不平等程度最大）：</strong><br />
+  - 内蒙古自治区: 0.2172<br />
+  - 广东省: 0.2041<br />
+  - 上海市: 0.2031<br />
+  - 江苏省: 0.1980<br />
+  - 福建省: 0.1898</p>
+<hr />
+<h2 id="7-k10">7. 聚类画像（K=10）</h2>
+<ul>
+<li><strong>观测数</strong>: 3815</li>
+<li><strong>各聚类规模</strong>: {'0': 271, '1': 528, '2': 542, '3': 865, '4': 245, '5': 54, '6': 393, '7': 321, '8': 373, '9': 223}</li>
+</ul>
+<h3 id="anova">方差分析结果（连续变量，ANOVA）</h3>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>F统计量</th>
+<th>p值</th>
+<th>Eta方</th>
+<th>效应量大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创新深度评分</td>
+<td>352.68</td>
+<td>0.00e+00</td>
+<td>0.4548</td>
+<td>大</td>
+</tr>
+<tr>
+<td>D1_深度学习</td>
+<td>1198.08</td>
+<td>0.00e+00</td>
+<td>0.7392</td>
+<td>大</td>
+</tr>
+<tr>
+<td>D3_循证教学</td>
+<td>1482.11</td>
+<td>0.00e+00</td>
+<td>0.7781</td>
+<td>大</td>
+</tr>
+<tr>
+<td>D4_人机互信</td>
+<td>38359.08</td>
+<td>0.00e+00</td>
+<td>0.9891</td>
+<td>大</td>
+</tr>
+<tr>
+<td>tech_gen_num</td>
+<td>413.11</td>
+<td>0.00e+00</td>
+<td>0.4942</td>
+<td>大</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">卡方检验结果（分类变量）</h3>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>卡方值</th>
+<th>p值</th>
+<th>Cramer's V</th>
+<th>效应量大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学段_clean</td>
+<td>417.93</td>
+<td>1.02e-43</td>
+<td>0.1103</td>
+<td>小</td>
+</tr>
+<tr>
+<td>应用场景（一级）</td>
+<td>1446.53</td>
+<td>4.38e-267</td>
+<td>0.2514</td>
+<td>小</td>
+</tr>
+<tr>
+<td>产品技术代际</td>
+<td>2360.28</td>
+<td>0.00e+00</td>
+<td>0.3933</td>
+<td>中</td>
+</tr>
+<tr>
+<td>三赋能分类</td>
+<td>1322.97</td>
+<td>5.65e-262</td>
+<td>0.3400</td>
+<td>中</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-apriori">8. 关联规则挖掘（Apriori算法）</h2>
+<ul>
+<li><strong>事务数</strong>: 3548</li>
+<li><strong>频繁项集数</strong>: 149</li>
+<li><strong>发现的规则数</strong>: 443</li>
+<li><strong>提升度（Lift）范围</strong>: [0.66, 6.12], 均值=1.71</li>
+</ul>
+<h3 id="10">提升度排名前10的规则</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>前件</th>
+<th>后件</th>
+<th>支持度</th>
+<th>置信度</th>
+<th>提升度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>场景_助教</td>
+<td>学科_其他学科, 赋能_赋能教师, 协同_HMC(1)</td>
+<td>0.051</td>
+<td>0.314</td>
+<td>6.12</td>
+</tr>
+<tr>
+<td>2</td>
+<td>学科_其他学科, 赋能_赋能教师, 协同_HMC(1)</td>
+<td>场景_助教</td>
+<td>0.051</td>
+<td>1.000</td>
+<td>6.12</td>
+</tr>
+<tr>
+<td>3</td>
+<td>学科_其他学科, 赋能_赋能教师</td>
+<td>场景_助教</td>
+<td>0.052</td>
+<td>1.000</td>
+<td>6.12</td>
+</tr>
+<tr>
+<td>4</td>
+<td>场景_助教</td>
+<td>学科_其他学科, 赋能_赋能教师</td>
+<td>0.052</td>
+<td>0.319</td>
+<td>6.12</td>
+</tr>
+<tr>
+<td>5</td>
+<td>场景_助教, 协同_HMC(1)</td>
+<td>学段_小学, 赋能_赋能教师</td>
+<td>0.083</td>
+<td>0.510</td>
+<td>6.10</td>
+</tr>
+<tr>
+<td>6</td>
+<td>学段_小学, 赋能_赋能教师</td>
+<td>场景_助教, 协同_HMC(1)</td>
+<td>0.083</td>
+<td>0.987</td>
+<td>6.10</td>
+</tr>
+<tr>
+<td>7</td>
+<td>场景_助教, 协同_HMC(1)</td>
+<td>学科_其他学科, 赋能_赋能教师</td>
+<td>0.051</td>
+<td>0.317</td>
+<td>6.08</td>
+</tr>
+<tr>
+<td>8</td>
+<td>学科_其他学科, 赋能_赋能教师</td>
+<td>场景_助教, 协同_HMC(1)</td>
+<td>0.051</td>
+<td>0.984</td>
+<td>6.08</td>
+</tr>
+<tr>
+<td>9</td>
+<td>学段_小学, 赋能_赋能教师</td>
+<td>场景_助教</td>
+<td>0.083</td>
+<td>0.987</td>
+<td>6.03</td>
+</tr>
+<tr>
+<td>10</td>
+<td>学段_小学, 协同_HMC(1), 赋能_赋能教师</td>
+<td>场景_助教</td>
+<td>0.083</td>
+<td>0.987</td>
+<td>6.03</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-factorial-anova">9. 交互效应（析因方差分析, Factorial ANOVA）</h2>
+<h3 id="x">学段 x 技术代际 对创新深度的影响</h3>
+<ul>
+<li><strong>N</strong>: 3548, R方: 0.0255</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>变异来源</th>
+<th>平方和（SS）</th>
+<th>自由度（df）</th>
+<th>F值</th>
+<th>p值</th>
+<th>Eta方</th>
+<th>效应量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C(学段)</td>
+<td>4.50</td>
+<td>3</td>
+<td>2.11</td>
+<td>0.0972</td>
+<td>0.0017</td>
+<td>小</td>
+</tr>
+<tr>
+<td>C(技术代际)</td>
+<td>49.48</td>
+<td>4</td>
+<td>17.37</td>
+<td>0.0000</td>
+<td>0.0192</td>
+<td>小</td>
+</tr>
+<tr>
+<td>C(学段):C(技术代际)</td>
+<td>12.37</td>
+<td>12</td>
+<td>1.45</td>
+<td>0.1368</td>
+<td>0.0048</td>
+<td>小</td>
+</tr>
+</tbody>
+</table>
+<h3 id="x-istar">学段 x 赋能类型 对iSTAR层级的影响</h3>
+<ul>
+<li><strong>N</strong>: 3548, R方: 0.2857</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>变异来源</th>
+<th>平方和（SS）</th>
+<th>自由度（df）</th>
+<th>F值</th>
+<th>p值</th>
+<th>Eta方</th>
+<th>效应量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C(学段)</td>
+<td>5.47</td>
+<td>3</td>
+<td>9.17</td>
+<td>0.0001</td>
+<td>0.0052</td>
+<td>小</td>
+</tr>
+<tr>
+<td>C(赋能类型)</td>
+<td>335.14</td>
+<td>3</td>
+<td>562.08</td>
+<td>0.0000</td>
+<td>0.3211</td>
+<td>大</td>
+</tr>
+<tr>
+<td>C(学段):C(赋能类型)</td>
+<td>0.91</td>
+<td>9</td>
+<td>0.51</td>
+<td>0.8524</td>
+<td>0.0009</td>
+<td>小</td>
+</tr>
+</tbody>
+</table>
+<h3 id="x_1">区域 x 技术代际 对创新深度的影响</h3>
+<ul>
+<li><strong>N</strong>: 3698, R方: 0.0227</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>变异来源</th>
+<th>平方和（SS）</th>
+<th>自由度（df）</th>
+<th>F值</th>
+<th>p值</th>
+<th>Eta方</th>
+<th>效应量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C(区域)</td>
+<td>6.70</td>
+<td>6</td>
+<td>1.56</td>
+<td>0.1555</td>
+<td>0.0025</td>
+<td>小</td>
+</tr>
+<tr>
+<td>C(技术代际)</td>
+<td>3.89</td>
+<td>4</td>
+<td>1.36</td>
+<td>0.2471</td>
+<td>0.0014</td>
+<td>小</td>
+</tr>
+<tr>
+<td>C(区域):C(技术代际)</td>
+<td>78.45</td>
+<td>24</td>
+<td>4.56</td>
+<td>0.0328</td>
+<td>0.0289</td>
+<td>小</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-shap">10. 预测建模（随机森林 + SHAP分析）</h2>
+<ul>
+<li><strong>N</strong>: 3511, 特征数: 18</li>
+<li><strong>模型</strong>: RandomForestClassifier(n_estimators=300, max_depth=12, balanced)</li>
+<li><strong>5折交叉验证准确率</strong>: 0.6633 (+/- 0.0106)</li>
+<li><strong>5折交叉验证F1值（宏平均）</strong>: 0.6944 (+/- 0.0259)</li>
+<li><strong>5折交叉验证F1值（加权平均）</strong>: 0.6649 (+/- 0.0109)</li>
+<li><strong>Cohen's Kappa系数（全数据）</strong>: 0.7670</li>
+</ul>
+<h3 id="15">特征重要性（前15位）</h3>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>特征</th>
+<th>重要性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>自研_num</td>
+<td>0.2214</td>
+</tr>
+<tr>
+<td>2</td>
+<td>D3_循证教学</td>
+<td>0.1394</td>
+</tr>
+<tr>
+<td>3</td>
+<td>iSTAR_num</td>
+<td>0.0778</td>
+</tr>
+<tr>
+<td>4</td>
+<td>iSTAR人机协同层级</td>
+<td>0.0721</td>
+</tr>
+<tr>
+<td>5</td>
+<td>D1_深度学习</td>
+<td>0.0684</td>
+</tr>
+<tr>
+<td>6</td>
+<td>D4_人机互信</td>
+<td>0.0542</td>
+</tr>
+<tr>
+<td>7</td>
+<td>产品分类</td>
+<td>0.0494</td>
+</tr>
+<tr>
+<td>8</td>
+<td>学段_clean</td>
+<td>0.0478</td>
+</tr>
+<tr>
+<td>9</td>
+<td>产品形态</td>
+<td>0.0443</td>
+</tr>
+<tr>
+<td>10</td>
+<td>区域</td>
+<td>0.0432</td>
+</tr>
+<tr>
+<td>11</td>
+<td>产品技术代际</td>
+<td>0.0328</td>
+</tr>
+<tr>
+<td>12</td>
+<td>tech_gen_num</td>
+<td>0.0312</td>
+</tr>
+<tr>
+<td>13</td>
+<td>应用场景（一级）</td>
+<td>0.0268</td>
+</tr>
+<tr>
+<td>14</td>
+<td>dev_level</td>
+<td>0.0241</td>
+</tr>
+<tr>
+<td>15</td>
+<td>smart_edu_num</td>
+<td>0.0202</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shap15">SHAP值（前15位）</h3>
+<p>| 排名 | 特征 | 平均|SHAP| |<br />
+|------|---------|-------------|<br />
+| 1 | 自研_num | 0.0869 |<br />
+| 2 | D3_循证教学 | 0.0644 |<br />
+| 3 | iSTAR_num | 0.0454 |<br />
+| 4 | iSTAR人机协同层级 | 0.0414 |<br />
+| 5 | D1_深度学习 | 0.0337 |<br />
+| 6 | D4_人机互信 | 0.0234 |<br />
+| 7 | 产品分类 | 0.0151 |<br />
+| 8 | 应用场景（一级） | 0.0126 |<br />
+| 9 | 三赋能分类 | 0.0097 |<br />
+| 10 | 产品技术代际 | 0.0096 |<br />
+| 11 | 学段_clean | 0.0092 |<br />
+| 12 | tech_gen_num | 0.0088 |<br />
+| 13 | 区域 | 0.0079 |<br />
+| 14 | 产品形态 | 0.0070 |<br />
+| 15 | dev_level | 0.0059 |</p>
+<hr />
+<h2 id="_6">核心发现总结</h2>
+<ol>
+<li>
+<p><strong>对应分析（CA）</strong>：学科 x 应用场景的对应分析表明，前两个维度捕获了总惯量的88.8%（维度1=50.6%，维度2=38.2%）。德育和美育等学科远离主流"智能辅导"极点，而STEM学科则聚集在"助学"（学习辅助）附近。学段 x 赋能类型的对应分析显示出较强的结构特征（总惯量=0.088），其中幼儿园与中学阶段明显分离。</p>
+</li>
+<li>
+<p><strong>多重对应分析（MCA）</strong>（N=3,548）：三个潜在维度解释了总惯量的36.9%。维度1对比了罕见的机构赋能（学校层面、HUM）与主流的学生赋能 + 高级协同极。维度2将教师赋能和制度变革与面向学生的模式分离。维度3捕捉了评价/评估导向与教学导向之间的差异。</p>
+</li>
+<li>
+<p><strong>有序逻辑回归</strong>（N=3,548，伪R2=0.201）：自研产品具有最强效应（OR=33.7, p&lt;0.001），其次是iSTAR层级（OR=9.9, p&lt;0.001）。三赋能分类中"赋能教师"（OR=0.09）和"赋能评价"（OR=0.07）相较于赋能学校，与较低的创新深度相关联。比例优势假设被违反（p&lt;0.001），表明效应在不同创新评分阈值间存在差异。</p>
+</li>
+<li>
+<p><strong>多项逻辑回归</strong>（伪R2=0.290）：在预测iSTAR层级时，技术代际是最强的区分变量（HMC相对于参照组的RRR=0.25）。D1（深度学习）和D3（循证教学）具有相反的效应：D1=0.14（强烈降低HMC的发生概率），D3=0.13（降低HMC的发生概率），表明高级协同需要深度学习与循证教学方法的共同支撑。</p>
+</li>
+<li>
+<p><strong>路径分析</strong>（N=3,815，R2=0.107）：技术代际对创新深度具有显著的总效应（beta=0.041, p=0.001）。D4（人机互信）路径起正向中介作用（间接效应=0.008, Sobel z=2.81, p=0.005, Bootstrap置信区间不包含零）。值得注意的是，D3（循证教学）路径起负向中介作用（间接效应=-0.019, Sobel z=-6.05, p&lt;0.001），原因在于更高的技术代际实际上与<em>更低</em>的D3得分相关（beta=-0.047），表明新兴技术尚未充分整合循证教学实践。</p>
+</li>
+<li>
+<p><strong>地理不平等分解</strong>：不平等主要存在于省内而非省际之间。就创新深度而言，泰尔指数方差的98.1%来自省内（基尼系数=0.197）。不平等程度最高的省份为湖南（基尼系数=0.251）、辽宁（0.240）和河北（0.227）。区域间不平等仅占0.3%-0.5%，表明AI教育领域的数字鸿沟是地方性的而非区域性的。</p>
+</li>
+<li>
+<p><strong>聚类画像</strong>（K=10）：所有连续变量的方差分析均呈现大效应量。D4（人机互信）具有最高的区分力（eta2=0.989, F=38,359），其次是D3（eta2=0.778）和D1（eta2=0.739）。创新深度的eta2=0.455。分类变量卡方检验显示，技术代际（Cramer's V=0.393，中等效应）和三赋能分类（V=0.340，中等效应）对聚类的区分效果最佳，而学段的区分力较弱（V=0.110，小效应）。</p>
+</li>
+<li>
+<p><strong>关联规则挖掘</strong>（443条规则，提升度范围[0.66, 6.12]）：提升度最高的规则（lift约6.1）一致地将"助教"（教学辅助）场景与"赋能教师"及HMC(1)协同层级相关联。小学 + 赋能教师的组合几乎确定性地指向"助教"场景（置信度=0.987）。这揭示了教师导向产品与中等协同设计之间的紧密耦合关系。</p>
+</li>
+<li>
+<p><strong>交互效应分析</strong>：学段 x 赋能类型对iSTAR层级的影响是最具实质性的模型（R2=0.286），其中仅赋能类型就解释了32.1%的方差（eta2=0.321，大效应）。区域 x 技术代际的交互效应在统计上显著（p=0.033）但效应量较小（eta2=0.029），表明不同区域在技术代际与创新之间的映射关系存在差异。学段 x 技术代际的交互效应不显著（p=0.137）。</p>
+</li>
+<li>
+<p><strong>预测建模</strong>（随机森林，5折交叉验证准确率=66.3%，Cohen's Kappa=0.767）：自研状态是最重要的预测变量（重要性=0.221, SHAP=0.087），其次是D3循证教学（重要性=0.139, SHAP=0.064）和iSTAR层级（重要性=0.078, SHAP=0.045）。SHAP值与基尼重要性的排名高度一致，证实了过程导向特征（D维度得分、协同层级）在预测创新深度方面优于结构性特征（区域、技术代际）。</p>
+</li>
+</ol>
+<hr />
+<p><em>本分析由 causal_analysis.py 流水线生成</em></p>
+</div>
+
+<footer class="site-footer">
+  <p>AI赋能基础教育的实践图景与产业生态 — 基于1690个典型案例的混合方法研究</p>
+  <p>研究者：陈虹宇 | <a href="https://github.com/nijisakai/ai-edu-research" target="_blank">GitHub</a></p>
+</footer>
+
+</body>
+</html>
