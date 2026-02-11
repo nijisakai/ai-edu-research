@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黄老师学术资源检索（云端版）</title>
+<meta name="description" content="黄老师学术资源检索程序代码云端部署页面（GitHub Pages 子路径）">
+<meta name="author" content="陈虹宇">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.search-wrap {
+  max-width: 1100px;
+  margin: 24px auto 40px;
+  display: grid;
+  gap: 18px;
+}
+.search-card {
+  background: #fff;
+  border: 1px solid #e3e7ed;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.search-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.search-form input,
+.search-form select {
+  border: 1px solid #d2d8e2;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+.search-form input {
+  flex: 1;
+  min-width: 260px;
+}
+.search-form button {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #1a3a5c;
+  color: #fff;
+}
+.search-form button:hover {
+  background: #244f7f;
+}
+.result-meta {
+  color: #5b677a;
+  font-size: 13px;
+  margin-top: 8px;
+}
+.result-list {
+  margin-top: 14px;
+  display: grid;
+  gap: 12px;
+}
+.result-item {
+  border: 1px solid #e8ecf2;
+  border-radius: 10px;
+  padding: 14px;
+  background: #fcfdff;
+}
+.result-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1d3557;
+  margin-bottom: 4px;
+}
+.result-tags {
+  color: #64748b;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.result-abstract {
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.result-links {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.result-links a {
+  color: #0f5ab4;
+  font-size: 13px;
+  text-decoration: underline;
+}
+.code-list {
+  margin-left: 18px;
+  line-height: 1.8;
+}
+.code-list a {
+  color: #0f5ab4;
+  text-decoration: underline;
+}
+.helper {
+  color: #64748b;
+  font-size: 13px;
+}
+@media (max-width: 700px) {
+  .search-wrap {
+    margin-top: 16px;
+  }
+}
+</style>
+</head>
+<body>
+<script src="js/nav.js"></script>
+
+<div class="page-container">
+  <div class="search-wrap">
+    <div class="search-card">
+      <h2 class="section-header" style="margin-bottom:10px">黄老师学术资源检索（云端版）</h2>
+      <p style="color:#4b5563;font-size:14px;margin-bottom:12px">
+        已部署到 GitHub Pages 子路径：<code>/huang-search.html</code>。此页面提供浏览器端检索 + 源代码下载。
+      </p>
+      <form id="search-form" class="search-form">
+        <input id="query" type="text" placeholder="输入关键词：标题 / 摘要 / 作者 / 文献编号" required>
+        <select id="limit" aria-label="显示条数">
+          <option value="10">前 10 条</option>
+          <option value="20" selected>前 20 条</option>
+          <option value="50">前 50 条</option>
+        </select>
+        <button type="submit">检索</button>
+      </form>
+      <div id="status" class="result-meta">等待检索...</div>
+    </div>
+
+    <div class="search-card">
+      <h3 style="font-size:18px;margin-bottom:4px">检索结果</h3>
+      <div id="results" class="result-list"></div>
+    </div>
+
+    <div class="search-card">
+      <h3 style="font-size:18px;margin-bottom:8px">程序代码与数据文件</h3>
+      <ul class="code-list">
+        <li><a href="huang-search/code/webui.py" target="_blank" rel="noopener">webui.py（Gradio 主程序）</a></li>
+        <li><a href="huang-search/code/aggregate_data.py" target="_blank" rel="noopener">aggregate_data.py（数据聚合脚本）</a></li>
+        <li><a href="huang-search/code/parse.py" target="_blank" rel="noopener">parse.py（解析脚本）</a></li>
+        <li><a href="huang-search/data/all_papers.json" target="_blank" rel="noopener">all_papers.json（检索数据，419条）</a></li>
+      </ul>
+      <p class="helper">说明：完整 Gradio 交互应用需要 Python 运行环境；当前页面为纯前端云端检索版，适合公开访问。</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>AI赋能基础教育的实践图景与产业生态 — 基于1690个典型案例的混合方法研究</p>
+  <p>研究者：陈虹宇 | <a href="https://github.com/nijisakai/ai-edu-research" target="_blank" rel="noopener">GitHub</a></p>
+</footer>
+
+<script>
+const DATA_URL = 'huang-search/data/all_papers.json';
+const PDF_BASE_URL = 'https://yuanzhuo.bnu.edu.cn/downloads/hrh/';
+let papersCache = null;
+
+function escapeHtml(text) {
+  return String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function snippet(text, n) {
+  const value = String(text || '').trim();
+  return value.length > n ? value.slice(0, n) + '...' : value;
+}
+
+function buildPdfUrl(id) {
+  const safeId = String(id || '').split('/').pop();
+  if (!safeId) return null;
+  const file = safeId.toLowerCase().endsWith('.pdf') ? safeId : safeId + '.pdf';
+  return PDF_BASE_URL + encodeURIComponent(file);
+}
+
+async function loadPapers() {
+  if (papersCache) return papersCache;
+  const resp = await fetch(DATA_URL, { cache: 'no-store' });
+  if (!resp.ok) throw new Error('数据文件加载失败：' + resp.status);
+  const text = await resp.text();
+  const papers = [];
+
+  text.split(/\r?\n/).forEach((line) => {
+    const trimmed = line.trim();
+    if (!trimmed) return;
+    try {
+      const row = JSON.parse(trimmed);
+      papers.push({
+        id: row.id || '',
+        title: row.title || '未命名文献',
+        abstract: row.abstract || '',
+        authors: Array.isArray(row.authors) ? row.authors : [],
+        citation_count: Number.isFinite(row.citation_count) ? row.citation_count : 0
+      });
+    } catch (e) {
+      // Skip invalid lines to keep page available even with partial bad data
+      console.warn('Invalid line skipped', e);
+    }
+  });
+
+  papersCache = papers;
+  return papersCache;
+}
+
+function renderResults(items, query, total) {
+  const box = document.getElementById('results');
+  const status = document.getElementById('status');
+
+  if (!query) {
+    status.textContent = '请输入关键词后开始检索。';
+    box.innerHTML = '';
+    return;
+  }
+
+  status.textContent = `关键词：${query} ｜ 命中 ${total} 条，当前展示 ${items.length} 条`;
+
+  if (!items.length) {
+    box.innerHTML = '<div class="result-item">未找到相关文献，请尝试更换关键词。</div>';
+    return;
+  }
+
+  box.innerHTML = items.map((p) => {
+    const authors = p.authors.length ? p.authors.join('，') : '未标注作者';
+    const pdfUrl = buildPdfUrl(p.id);
+    return `
+      <article class="result-item">
+        <h4 class="result-title">${escapeHtml(p.title)}</h4>
+        <div class="result-tags">作者：${escapeHtml(authors)} ｜ 引用次数：${p.citation_count} ｜ ID：${escapeHtml(p.id)}</div>
+        <p class="result-abstract">${escapeHtml(snippet(p.abstract, 260))}</p>
+        <div class="result-links">
+          ${pdfUrl ? `<a href="${pdfUrl}" target="_blank" rel="noopener">打开PDF</a>` : ''}
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+async function searchPapers(query, limit) {
+  const q = query.trim().toLowerCase();
+  if (!q) return { items: [], total: 0 };
+
+  const papers = await loadPapers();
+  const matched = papers.filter((p) => {
+    const authorText = p.authors.join(' ').toLowerCase();
+    const target = `${p.id} ${p.title} ${p.abstract} ${authorText}`.toLowerCase();
+    return target.includes(q);
+  }).sort((a, b) => b.citation_count - a.citation_count);
+
+  return {
+    items: matched.slice(0, limit),
+    total: matched.length
+  };
+}
+
+document.getElementById('search-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const status = document.getElementById('status');
+  const query = document.getElementById('query').value || '';
+  const limit = Number(document.getElementById('limit').value || 20);
+
+  status.textContent = '检索中，请稍候...';
+  try {
+    const { items, total } = await searchPapers(query, limit);
+    renderResults(items, query.trim(), total);
+  } catch (err) {
+    status.textContent = '检索失败，请稍后重试。';
+    document.getElementById('results').innerHTML = `<div class="result-item">${escapeHtml(err.message || String(err))}</div>`;
+  }
+});
+</script>
+</body>
+</html>

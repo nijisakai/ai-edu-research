@@ -23,6 +23,7 @@
         '<a href="' + prefix + 'index.html" data-page="index">图表画廊</a>' +
         '<a href="' + prefix + 'paper.html" data-page="paper">学术论文</a>' +
         '<a href="' + prefix + 'report.html" data-page="report">研究报告</a>' +
+        '<a href="' + prefix + 'huang-search.html" data-page="huang-search">黄老师检索</a>' +
         '<div class="nav-dropdown" id="nav-dropdown">' +
           '<button class="nav-dropdown-toggle" data-page="docs">研究文档 <span class="dropdown-arrow">▾</span></button>' +
           '<div class="nav-dropdown-menu">' +
