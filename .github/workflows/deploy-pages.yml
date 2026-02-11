@@ -6,6 +6,9 @@ on:
     paths:
       - 'docs/**'
       - 'output/*.json'
+      - 'output/figures/**'
+      - 'output/paper/**'
+      - 'output/report/**'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 
@@ -32,6 +35,58 @@ jobs:
             [ -f "$f" ] && cp "$f" docs/data/
           done
 
+      - name: Copy figures to docs/figures/
+        run: |
+          mkdir -p docs/figures
+          cp output/figures/*.png docs/figures/ 2>/dev/null || true
+
+      - name: Copy paper and report HTML
+        run: |
+          mkdir -p docs/paper docs/report
+          cp "output/paper/论文_AI赋能基础教育的实践图景与产业生态.html" docs/paper/content.html 2>/dev/null || true
+          cp "output/report/研究报告_AI赋能基础教育实践图景与产业生态分析.html" docs/report/content.html 2>/dev/null || true
+
+      - name: Anonymize data files
+        run: |
+          python3 -c "
+          import json, os
+
+          # 1. Remove _case_texts.json (contains PII)
+          texts_path = 'docs/data/_case_texts.json'
+          if os.path.exists(texts_path):
+              os.remove(texts_path)
+              print('Deleted _case_texts.json')
+
+          # 2. Anonymize case_deep_analysis.json (school names)
+          path = 'docs/data/case_deep_analysis.json'
+          if os.path.exists(path):
+              with open(path, 'r', encoding='utf-8') as f:
+                  data = json.load(f)
+              schools = sorted(set(c.get('school','') for c in data.get('cases',[])))
+              schools = [s for s in schools if s and s != '未明确']
+              school_map = {s: f'学校{chr(65+i)}' for i, s in enumerate(schools)}
+              school_map['未明确'] = '未明确'
+              for case in data.get('cases', []):
+                  if case.get('school') in school_map:
+                      case['school'] = school_map[case['school']]
+              with open(path, 'w', encoding='utf-8') as f:
+                  json.dump(data, f, ensure_ascii=False, indent=2)
+              print(f'Anonymized {len(school_map)} schools')
+
+          # 3. Anonymize _case_selection.json (teacher names, filepaths)
+          path = 'docs/data/_case_selection.json'
+          if os.path.exists(path):
+              with open(path, 'r', encoding='utf-8') as f:
+                  sel = json.load(f)
+              for key, case in sel.items():
+                  case.pop('filepath', None)
+                  title = case.get('title', '')
+                  case['filename'] = f'第{key}号案例_{title}'
+              with open(path, 'w', encoding='utf-8') as f:
+                  json.dump(sel, f, ensure_ascii=False, indent=2)
+              print(f'Anonymized {len(sel)} case selection entries')
+          "
+
       - name: Generate API index
         run: |
           python3 -c "
@@ -41,7 +96,8 @@ jobs:
           index = {
             'version': '1.0',
             'project': 'AI赋能基础教育研究',
-            'description': '1,690个典型案例的分析数据API',
+            'author': '陈虹宇',
+            'description': '1,690个典型案例的分析数据API（密钥：BNUSLI）',
             'base_url': 'https://nijisakai.github.io/ai-edu-research/data/',
             'updated': str(date.today()),
             'files': {}

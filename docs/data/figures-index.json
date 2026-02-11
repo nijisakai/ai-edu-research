@@ -1,0 +1,403 @@
+{
+  "meta": {
+    "title": "AI教育研究项目图表索引",
+    "total_figures": 69,
+    "total_series": 8,
+    "base_path": "docs/figures/"
+  },
+  "series": [
+    {
+      "id": "A",
+      "name": "概览与分布",
+      "figures": [
+        {
+          "file": "fig_a01_province_map.png",
+          "title": "1690个AI教育案例的省域分布热力图",
+          "series": "A"
+        },
+        {
+          "file": "fig_a02_stage_waffle.png",
+          "title": "AI教育案例的学段分布华夫饼图",
+          "series": "A"
+        },
+        {
+          "file": "fig_a03_subject_lollipop.png",
+          "title": "各学科AI应用渗透率棒棒糖图",
+          "series": "A"
+        },
+        {
+          "file": "fig_a04_scenario_treemap.png",
+          "title": "四类应用场景的案例体量对比树图",
+          "series": "A"
+        },
+        {
+          "file": "fig_a05_five_edu_radar.png",
+          "title": "五育维度的案例数量与人机协同深度雷达图",
+          "series": "A"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "技术分析",
+      "figures": [
+        {
+          "file": "fig_b01_top20_tools.png",
+          "title": "AI教育工具使用频次Top20",
+          "series": "B"
+        },
+        {
+          "file": "fig_b02_tech_sankey.png",
+          "title": "技术要素-应用场景-教学环节多级流转桑基图",
+          "series": "B"
+        },
+        {
+          "file": "fig_b03_model_landscape.png",
+          "title": "AI教育大模型产品市场定位景观图",
+          "series": "B"
+        },
+        {
+          "file": "fig_b04_cooccurrence_network.png",
+          "title": "AI工具共现关系网络图",
+          "series": "B"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "聚类分析",
+      "figures": [
+        {
+          "file": "fig_c01_umap_clusters.png",
+          "title": "1690个案例的UMAP降维聚类可视化",
+          "series": "C"
+        },
+        {
+          "file": "fig_c1_tsne_clusters.png",
+          "title": "t-SNE降维聚类可视化（含凸包）",
+          "series": "C"
+        },
+        {
+          "file": "fig_c2_cluster_profiles.png",
+          "title": "10个聚类的六维特征画像雷达图",
+          "series": "C"
+        },
+        {
+          "file": "fig_c3_dendrogram.png",
+          "title": "Ward层次聚类树状图",
+          "series": "C"
+        },
+        {
+          "file": "fig_c4_silhouette.png",
+          "title": "聚类质量轮廓系数分析",
+          "series": "C"
+        },
+        {
+          "file": "fig_c5_cluster_heatmap.png",
+          "title": "聚类TF-IDF关键词热力图",
+          "series": "C"
+        },
+        {
+          "file": "fig_c6_cluster_composition.png",
+          "title": "聚类的学段/学科/场景/五育构成",
+          "series": "C"
+        },
+        {
+          "file": "fig_c7_umap_3d.png",
+          "title": "UMAP三维投影可视化",
+          "series": "C"
+        },
+        {
+          "file": "fig_c8_cluster_evolution.png",
+          "title": "聚类技术路径桑基图",
+          "series": "C"
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "name": "市场分析",
+      "figures": [
+        {
+          "file": "fig_d01_lorenz_curve.png",
+          "title": "AI教育工具市场集中度洛伦兹曲线",
+          "series": "D"
+        },
+        {
+          "file": "fig_d02_ecosystem_treemap.png",
+          "title": "EdTech产品生态层次结构嵌套树图",
+          "series": "D"
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "name": "创新框架",
+      "figures": [
+        {
+          "file": "fig_e01_sanfuneng_istar.png",
+          "title": "三赋能框架与iSTAR人机协同层级映射",
+          "series": "E"
+        },
+        {
+          "file": "fig_e02_innovation_ridgeline.png",
+          "title": "10个聚类创新深度评分岭线图",
+          "series": "E"
+        },
+        {
+          "file": "fig_e03_three_realms.png",
+          "title": "智慧教育三重境界递进关系",
+          "series": "E"
+        },
+        {
+          "file": "fig_e04_digital_pedagogy_radar.png",
+          "title": "数字教学法四维框架达成度雷达图",
+          "series": "E"
+        },
+        {
+          "file": "fig_e05_techgen_scenario_bubble.png",
+          "title": "技术代际与应用场景交叉分布气泡图",
+          "series": "E"
+        },
+        {
+          "file": "fig_e06_dashboard.png",
+          "title": "研究核心数据指标综合仪表板",
+          "series": "E"
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "name": "统计分析与框架",
+      "figures": [
+        {
+          "file": "fig_f01_rf_shap.png",
+          "title": "随机森林SHAP特征重要性蜂群图",
+          "series": "F"
+        },
+        {
+          "file": "fig_f02_cramers_v.png",
+          "title": "关键变量Cramér's V关联强度热力图",
+          "series": "F"
+        },
+        {
+          "file": "fig_f03_correspondence_biplot.png",
+          "title": "学段-学科-场景对应分析双标图",
+          "series": "F"
+        },
+        {
+          "file": "fig_f04_mca_biplot.png",
+          "title": "多维特征联合关系MCA双标图",
+          "series": "F"
+        },
+        {
+          "file": "fig_f05_geographic_inequality.png",
+          "title": "AI教育创新深度地理不平等Theil分解",
+          "series": "F"
+        },
+        {
+          "file": "fig_f06_cluster_anova.png",
+          "title": "聚类方差分析效应量对比",
+          "series": "F"
+        },
+        {
+          "file": "fig_f1_sanfuneng_istar_heatmap.png",
+          "title": "三赋能×iSTAR交叉热力图",
+          "series": "F"
+        },
+        {
+          "file": "fig_f2_tech_generation_stream.png",
+          "title": "技术代际演进流图",
+          "series": "F"
+        },
+        {
+          "file": "fig_f3_digital_pedagogy_radar.png",
+          "title": "数字教学法维度雷达图",
+          "series": "F"
+        },
+        {
+          "file": "fig_f4_smart_edu_sankey.png",
+          "title": "智慧教育三重境界桑基图",
+          "series": "F"
+        },
+        {
+          "file": "fig_f5_innovation_depth.png",
+          "title": "创新深度分布分析",
+          "series": "F"
+        },
+        {
+          "file": "fig_f6_istar_techpath_bubble.png",
+          "title": "iSTAR层级与技术路径气泡图",
+          "series": "F"
+        },
+        {
+          "file": "fig_f7_framework_dashboard.png",
+          "title": "理论框架综合仪表板",
+          "series": "F"
+        },
+        {
+          "file": "fig_f8_province_framework.png",
+          "title": "省域框架分布分析",
+          "series": "F"
+        }
+      ]
+    },
+    {
+      "id": "S",
+      "name": "补充统计",
+      "figures": [
+        {
+          "file": "fig_s1_correspondence_analysis.png",
+          "title": "对应分析：学段×学科关联结构",
+          "series": "S"
+        },
+        {
+          "file": "fig_s2_chi_square_mosaic.png",
+          "title": "卡方检验马赛克图：学段×场景关联",
+          "series": "S"
+        },
+        {
+          "file": "fig_s3_correlation_matrix.png",
+          "title": "Cramér's V矩阵与层次聚类",
+          "series": "S"
+        },
+        {
+          "file": "fig_s4_tool_diversity_regression.png",
+          "title": "案例数与工具多样性线性回归",
+          "series": "S"
+        },
+        {
+          "file": "fig_s5_tech_adoption_curve.png",
+          "title": "Rogers创新扩散曲线",
+          "series": "S"
+        },
+        {
+          "file": "fig_s6_subject_scenario_alluvial.png",
+          "title": "学科→场景→五育三级流转冲积图",
+          "series": "S"
+        },
+        {
+          "file": "fig_s7_innovation_depth_boxplot.png",
+          "title": "各学段创新深度分布小提琴图",
+          "series": "S"
+        },
+        {
+          "file": "fig_s8_geographic_inequality.png",
+          "title": "省域案例分布洛伦兹曲线与Gini系数",
+          "series": "S"
+        },
+        {
+          "file": "fig_s9_effect_size_forest.png",
+          "title": "效应量森林图（Bootstrap CI）",
+          "series": "S"
+        },
+        {
+          "file": "fig_s10_interaction_heatmap.png",
+          "title": "学段中场景×五育交互热力图",
+          "series": "S"
+        }
+      ]
+    },
+    {
+      "id": "main",
+      "name": "核心论文图",
+      "figures": [
+        {
+          "file": "fig01_province_heatmap.png",
+          "title": "省域分布热力图",
+          "series": "main"
+        },
+        {
+          "file": "fig02_school_stage_donut.png",
+          "title": "学段分布环形图",
+          "series": "main"
+        },
+        {
+          "file": "fig03_top20_tools_bar.png",
+          "title": "Top20工具条形图",
+          "series": "main"
+        },
+        {
+          "file": "fig04_product_ecosystem_treemap.png",
+          "title": "产品生态树图",
+          "series": "main"
+        },
+        {
+          "file": "fig05_scenario_sunburst.png",
+          "title": "场景旭日图",
+          "series": "main"
+        },
+        {
+          "file": "fig06_subject_distribution.png",
+          "title": "学科分布",
+          "series": "main"
+        },
+        {
+          "file": "fig07_cultivation_radar.png",
+          "title": "培养方向雷达图",
+          "series": "main"
+        },
+        {
+          "file": "fig08_tech_wordcloud.png",
+          "title": "技术词云",
+          "series": "main"
+        },
+        {
+          "file": "fig09_tech_cooccurrence_network.png",
+          "title": "技术共现网络",
+          "series": "main"
+        },
+        {
+          "file": "fig10_stage_subject_heatmap.png",
+          "title": "学段×学科热力图",
+          "series": "main"
+        },
+        {
+          "file": "fig11_industry_maturity.png",
+          "title": "产业成熟度",
+          "series": "main"
+        },
+        {
+          "file": "fig11_istar_distribution.png",
+          "title": "iSTAR分布",
+          "series": "main"
+        },
+        {
+          "file": "fig12_self_developed_ratio.png",
+          "title": "自主研发比例",
+          "series": "main"
+        },
+        {
+          "file": "fig13_company_market_concentration.png",
+          "title": "企业市场集中度",
+          "series": "main"
+        },
+        {
+          "file": "fig14_lda_topics.png",
+          "title": "LDA主题模型",
+          "series": "main"
+        },
+        {
+          "file": "fig15_tech_pathway_sankey.png",
+          "title": "技术路径桑基图",
+          "series": "main"
+        },
+        {
+          "file": "fig16_scenario_stage_bubble.png",
+          "title": "场景×学段气泡图",
+          "series": "main"
+        },
+        {
+          "file": "fig17_innovation_cluster.png",
+          "title": "创新聚类",
+          "series": "main"
+        },
+        {
+          "file": "fig18_comprehensive_dashboard.png",
+          "title": "综合仪表板",
+          "series": "main"
+        }
+      ]
+    }
+  ]
+}

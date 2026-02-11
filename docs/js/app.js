@@ -1,7 +1,17 @@
 /* Main Application Controller */
-document.addEventListener('DOMContentLoaded', async () => {
-  const loading = document.getElementById('loading');
+document.addEventListener('DOMContentLoaded', () => {
+  const loading = document.getElementById('loading-overlay');
 
+  // Check authentication
+  if (!AUTH.require()) {
+    // Not authenticated — wait for auth-success event
+    document.addEventListener('auth-success', () => initDashboard(loading), { once: true });
+  } else {
+    initDashboard(loading);
+  }
+});
+
+async function initDashboard(loading) {
   try {
     // Preload critical data files in parallel
     await DataLoader.loadAll([
@@ -23,11 +33,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       renderClusterChart('chart-clusters'),
       renderInnovationChart('chart-innovation'),
       renderWuyuRadar('chart-wuyu'),
-      renderCaseBrowser('case-table-container')
+      renderCaseBrowser('chart-cases')
     ]);
 
-    // Initialize scroll spy for sidebar
-    initScrollSpy();
+    // Initialize figure gallery
+    if (typeof Gallery !== 'undefined') {
+      await Gallery.init('figure-gallery');
+    }
 
   } catch (err) {
     console.error('Dashboard initialization failed:', err);
@@ -43,38 +55,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       </div>`;
     }
   } finally {
-    if (loading) loading.classList.add('hidden');
+    if (loading) loading.style.display = 'none';
   }
-});
-
-/* Scroll Spy for Sidebar Navigation */
-function initScrollSpy() {
-  const sections = document.querySelectorAll('.chart-panel');
-  const navItems = document.querySelectorAll('.nav-item');
-
-  if (!sections.length || !navItems.length) return;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navItems.forEach(n => n.classList.remove('active'));
-        const id = entry.target.id;
-        const link = document.querySelector(`.nav-item[href="#${id}"]`);
-        if (link) link.classList.add('active');
-      }
-    });
-  }, { threshold: 0.3, rootMargin: '-100px 0px -50% 0px' });
-
-  sections.forEach(s => observer.observe(s));
-
-  // Smooth scroll on nav click
-  navItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector(item.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
 }
