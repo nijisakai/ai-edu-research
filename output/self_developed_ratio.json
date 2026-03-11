@@ -1,7 +1,7 @@
 {
   "distribution": {
-    "FALSE": 3234,
-    "TRUE": 544
+    "False": 3234,
+    "True": 544
   },
-  "self_developed_ratio_pct": 14.4
+  "self_developed_ratio_pct": 0.0
 }
