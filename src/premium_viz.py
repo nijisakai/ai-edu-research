@@ -24,8 +24,9 @@ from pathlib import Path
 warnings.filterwarnings('ignore')
 
 # ── Paths ──────────────────────────────────────────────────────────────
-CSV_PATH = '/Users/sakai/Desktop/产业调研/ai-edu-research/output/教育产品统计_V6_框架标注.csv'
-OUTPUT_DIR = Path('/Users/sakai/Desktop/产业调研/ai-edu-research/output')
+BASE_DIR = Path(__file__).resolve().parent.parent
+CSV_PATH = str(BASE_DIR / 'output' / '教育产品统计_V6_框架标注.csv')
+OUTPUT_DIR = BASE_DIR / 'output'
 FIG_DIR = OUTPUT_DIR / 'figures'
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 

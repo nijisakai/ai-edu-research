@@ -11,9 +11,10 @@ import markdown
 from pathlib import Path
 
 # Paths
-PAPER_MD = Path("/Users/sakai/Desktop/产业调研/ai-edu-research/output/paper/论文_AI赋能基础教育的实践图景与产业生态.md")
-PAPER_HTML = Path("/Users/sakai/Desktop/产业调研/ai-edu-research/output/paper/论文_AI赋能基础教育的实践图景与产业生态.html")
-PAPER_PDF = Path("/Users/sakai/Desktop/产业调研/ai-edu-research/output/paper/论文_AI赋能基础教育的实践图景与产业生态.pdf")
+BASE_DIR = Path(__file__).resolve().parent.parent
+PAPER_MD = BASE_DIR / "output/paper/论文_AI赋能基础教育的实践图景与产业生态.md"
+PAPER_HTML = BASE_DIR / "output/paper/论文_AI赋能基础教育的实践图景与产业生态.html"
+PAPER_PDF = BASE_DIR / "output/paper/论文_AI赋能基础教育的实践图景与产业生态.pdf"
 
 
 def read_markdown():

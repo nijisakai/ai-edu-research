@@ -5,7 +5,7 @@ import os
 import sys
 from pathlib import Path
 
-BASE = Path("/Users/sakai/Desktop/产业调研/ai-edu-research")
+BASE = Path(__file__).resolve().parent.parent
 
 PAPER_HTML = BASE / "output" / "paper" / "论文_AI赋能基础教育的实践图景与产业生态.html"
 PAPER_PDF = BASE / "output" / "paper" / "论文_AI赋能基础教育的实践图景与产业生态.pdf"

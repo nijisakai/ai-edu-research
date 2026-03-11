@@ -25,6 +25,7 @@ from sklearn.preprocessing import LabelEncoder
 import json
 import os
 import ast
+from pathlib import Path
 
 # ── Global Style ──────────────────────────────────────────────────────────────
 plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'PingFang SC']
@@ -46,8 +47,9 @@ REDS = ['#922b21', '#e74c3c', '#f1948a', '#f5b7b1', '#fadbd8']
 PALETTE_MAIN = [BLUES[1], TEALS[1], ORANGES[1], PURPLES[1], REDS[1],
                 BLUES[0], TEALS[0], ORANGES[0], PURPLES[0], REDS[0]]
 
-FIG_DIR = '/Users/sakai/Desktop/产业调研/ai-edu-research/output/figures'
-CSV_PATH = '/Users/sakai/Desktop/产业调研/教育产品统计_V5.csv'
+BASE_DIR = Path(__file__).resolve().parent.parent
+FIG_DIR = str(BASE_DIR / 'output' / 'figures')
+CSV_PATH = str(BASE_DIR / 'new_reviews' / 'V5.xlsx')
 
 # ── Helper Functions ──────────────────────────────────────────────────────────
 
@@ -75,7 +77,7 @@ def add_analysis_box(fig, text, x=0.02, y=0.02):
                        edgecolor='#cccccc', alpha=0.8))
 
 def load_data():
-    df = pd.read_csv(CSV_PATH, encoding='utf-8-sig')
+    df = pd.read_excel(CSV_PATH, engine='calamine')
     # Standardize 学段
     stage_map = {
         '小学': '小学', '初中': '初中', '高中': '高中', '幼儿园': '幼儿园',

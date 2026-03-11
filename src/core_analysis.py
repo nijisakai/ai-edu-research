@@ -17,8 +17,9 @@ import numpy as np
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-CSV_PATH = "/Users/sakai/Desktop/产业调研/教育产品统计_V5.csv"
-OUTPUT_DIR = "/Users/sakai/Desktop/产业调研/ai-edu-research/output"
+BASE_DIR = Path(__file__).resolve().parent.parent
+CSV_PATH = BASE_DIR / "new_reviews" / "V5.xlsx"
+OUTPUT_DIR = BASE_DIR / "output"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -27,8 +28,8 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 # 1. Load & Clean
 # ---------------------------------------------------------------------------
 def load_data(path: str) -> pd.DataFrame:
-    """Load CSV with proper encoding and rename duplicate columns."""
-    df = pd.read_csv(path, encoding="utf-8-sig", dtype=str)
+    """Load Excel with proper encoding and rename duplicate columns."""
+    df = pd.read_excel(path, dtype=str, engine='calamine')
 
     # The CSV has 31 columns; column index 10 is unnamed/empty.
     # Duplicate names: 关键技术路径(8,23), 技术要素(9,24),

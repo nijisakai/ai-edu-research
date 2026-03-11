@@ -35,7 +35,7 @@ import networkx as nx
 from networkx.algorithms.community import louvain_communities
 
 # ---------- paths -----------------------------------------------------------
-BASE      = Path("/Users/sakai/Desktop/产业调研/ai-edu-research")
+BASE      = Path(__file__).resolve().parent.parent
 CSV_PATH  = BASE / "output" / "教育产品统计_V6_框架标注.csv"
 JSON_PATH = BASE / "output" / "causal_analysis_results.json"
 FIG_DIR   = BASE / "output" / "figures"

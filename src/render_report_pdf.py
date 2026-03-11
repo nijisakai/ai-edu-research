@@ -11,10 +11,11 @@ import markdown
 from pathlib import Path
 
 # Paths
-REPORT_MD = Path("/Users/sakai/Desktop/产业调研/ai-edu-research/output/report/研究报告_AI赋能基础教育实践图景与产业生态分析.md")
-REPORT_HTML = Path("/Users/sakai/Desktop/产业调研/ai-edu-research/output/report/研究报告_AI赋能基础教育实践图景与产业生态分析.html")
-REPORT_PDF = Path("/Users/sakai/Desktop/产业调研/ai-edu-research/output/report/研究报告_AI赋能基础教育实践图景与产业生态分析.pdf")
-FIGURES_DIR = Path("/Users/sakai/Desktop/产业调研/ai-edu-research/output/figures")
+BASE_DIR = Path(__file__).resolve().parent.parent
+REPORT_MD = BASE_DIR / "output/report/研究报告_AI赋能基础教育实践图景与产业生态分析.md"
+REPORT_HTML = BASE_DIR / "output/report/研究报告_AI赋能基础教育实践图景与产业生态分析.html"
+REPORT_PDF = BASE_DIR / "output/report/研究报告_AI赋能基础教育实践图景与产业生态分析.pdf"
+FIGURES_DIR = BASE_DIR / "output/figures"
 
 # Color scheme
 TEAL = "#0D4F4F"

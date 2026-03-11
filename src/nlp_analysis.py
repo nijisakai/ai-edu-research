@@ -24,8 +24,10 @@ from sklearn.metrics import silhouette_score
 warnings.filterwarnings('ignore')
 
 # ── Paths ──
-CSV_PATH = '/Users/sakai/Desktop/产业调研/教育产品统计_V5.csv'
-OUTPUT_DIR = '/Users/sakai/Desktop/产业调研/ai-edu-research/output'
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
+CSV_PATH = str(BASE_DIR / 'new_reviews' / 'V5.xlsx')
+OUTPUT_DIR = str(BASE_DIR / 'output')
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # ── Column indices ──
@@ -96,14 +98,13 @@ for w in CUSTOM_WORDS:
 # ── Helper functions ──
 
 def load_data():
-    """Load CSV and return all rows."""
-    rows = []
-    with open(CSV_PATH, 'r', encoding='utf-8-sig') as f:
-        reader = csv.reader(f)
-        header = next(reader)
-        for row in reader:
-            rows.append(row)
-    print(f"[DATA] Loaded {len(rows)} rows, {len(set(r[COL['case_id']] for r in rows))} unique cases")
+    """Load Excel and return all rows."""
+    import pandas as pd
+    df = pd.read_excel(CSV_PATH, dtype=str, engine='calamine')
+    df.fillna('', inplace=True)
+    header = list(df.columns)
+    rows = df.values.tolist()
+    print(f"[DATA] Loaded {len(rows)} rows, {len(set(r[COL['case_id']] for r in rows if len(r) > COL['case_id']))} unique cases")
     return header, rows
 
 def get_case_level_data(rows):

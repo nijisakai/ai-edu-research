@@ -34,9 +34,10 @@ import seaborn as sns
 warnings.filterwarnings('ignore')
 
 # ── Paths ──────────────────────────────────────────────────────────────────
-CSV_PATH = Path('/Users/sakai/Desktop/产业调研/教育产品统计_V5.csv')
-NLP_DIR  = Path('/Users/sakai/Desktop/产业调研/ai-edu-research/output')
-FIG_DIR  = Path('/Users/sakai/Desktop/产业调研/ai-edu-research/output/figures')
+BASE_DIR = Path(__file__).resolve().parent.parent
+CSV_PATH = BASE_DIR / 'new_reviews' / 'V5.xlsx'
+NLP_DIR  = BASE_DIR / 'output'
+FIG_DIR  = BASE_DIR / 'output' / 'figures'
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Global Style ───────────────────────────────────────────────────────────
@@ -102,7 +103,7 @@ def save_fig(fig, name):
 
 # ── Load & Prepare Data ───────────────────────────────────────────────────
 print('Loading data...')
-df = pd.read_csv(CSV_PATH, encoding='utf-8-sig')
+df = pd.read_excel(CSV_PATH, engine='calamine')
 
 # Deduplicate by 案例编号 – keep first row per case
 case_df = df.drop_duplicates(subset='案例编号', keep='first').copy()

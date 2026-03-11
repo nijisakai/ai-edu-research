@@ -30,8 +30,8 @@ import traceback
 # -------------------------------------------------------------------
 # PATHS
 # -------------------------------------------------------------------
-BASE = Path("/Users/sakai/Desktop/产业调研/ai-edu-research")
-DATA_PATH = BASE / "output" / "教育产品统计_V6_框架标注.csv"
+BASE = Path(__file__).resolve().parent.parent
+DATA_PATH = BASE / "new_reviews" / "V5.xlsx"
 OUT_DIR = BASE / "output"
 RESULTS_JSON = OUT_DIR / "causal_analysis_results.json"
 SUMMARY_MD = OUT_DIR / "causal_analysis_summary.md"
@@ -61,7 +61,7 @@ class NumpyEncoder(json.JSONEncoder):
 # LOAD & PREPROCESS
 # -------------------------------------------------------------------
 def load_data():
-    df = pd.read_csv(DATA_PATH, encoding="utf-8-sig")
+    df = pd.read_excel(DATA_PATH, engine='calamine')
     print(f"Loaded {len(df)} rows x {len(df.columns)} columns")
 
     # Standardize stage labels

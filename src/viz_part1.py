@@ -23,9 +23,10 @@ from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 import squarify
 
 # ─── Paths ─────────────────────────────────────────────────────────────────
-DATA   = "/Users/sakai/Desktop/产业调研/ai-edu-research/output/教育产品统计_V6_框架标注.csv"
-CAUSAL = "/Users/sakai/Desktop/产业调研/ai-edu-research/output/causal_analysis_results.json"
-OUTDIR = pathlib.Path("/Users/sakai/Desktop/产业调研/ai-edu-research/output/figures")
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
+DATA   = str(BASE_DIR / "output" / "教育产品统计_V6_框架标注.csv")
+CAUSAL = str(BASE_DIR / "output" / "causal_analysis_results.json")
+OUTDIR = BASE_DIR / "output" / "figures"
 OUTDIR.mkdir(parents=True, exist_ok=True)
 
 # ─── Load data ─────────────────────────────────────────────────────────────

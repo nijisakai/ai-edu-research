@@ -32,10 +32,11 @@ plt.rcParams['figure.facecolor'] = 'white'
 plt.rcParams['axes.facecolor'] = 'white'
 plt.rcParams['font.size'] = 10
 
-BASE_DIR = '/Users/sakai/Desktop/产业调研/ai-edu-research'
+BASE_DIR_PATH = Path(__file__).resolve().parent.parent
+BASE_DIR = str(BASE_DIR_PATH)
 OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
 FIG_DIR = os.path.join(OUTPUT_DIR, 'figures')
-CSV_PATH = '/Users/sakai/Desktop/产业调研/教育产品统计_V5.csv'
+CSV_PATH = str(BASE_DIR_PATH / 'new_reviews' / 'V5.xlsx')
 
 os.makedirs(FIG_DIR, exist_ok=True)
 
@@ -77,7 +78,7 @@ def load_json(filename):
             return json.load(f)
 
 def load_csv():
-    return pd.read_csv(CSV_PATH, encoding='utf-8-sig')
+    return pd.read_excel(CSV_PATH, engine='calamine')
 
 def save_fig(fig, name):
     fig.savefig(os.path.join(FIG_DIR, f'{name}.png'), dpi=300, bbox_inches='tight',

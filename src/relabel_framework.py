@@ -19,11 +19,14 @@ import json
 import re
 import os
 
+from pathlib import Path
+
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-CSV_IN = "/Users/sakai/Desktop/产业调研/教育产品统计_V5.csv"
-OUT_DIR = "/Users/sakai/Desktop/产业调研/ai-edu-research/output"
+BASE_DIR = Path(__file__).resolve().parent.parent
+CSV_IN = BASE_DIR / "new_reviews" / "V5.xlsx"
+OUT_DIR = BASE_DIR / "output"
 CSV_OUT = os.path.join(OUT_DIR, "教育产品统计_V6_框架标注.csv")
 STATS_OUT = os.path.join(OUT_DIR, "framework_stats.json")
 CASE_JSON = os.path.join(OUT_DIR, "case_deep_analysis.json")
@@ -409,8 +412,8 @@ def assign_tech_generation(row):
 # Main: load, label, save
 # ---------------------------------------------------------------------------
 def main():
-    print("Loading CSV...")
-    df = pd.read_csv(CSV_IN, encoding="utf-8-sig")
+    print("Loading Data...")
+    df = pd.read_excel(CSV_IN, engine='calamine')
     print(f"  Loaded {len(df)} rows, {len(df.columns)} columns")
 
     # Load case deep analysis for iSTAR overrides
