@@ -101,6 +101,7 @@ class LegacyBundle:
     stage_scene_pct: pd.DataFrame
     region_scene_pct: pd.DataFrame
     scene_profiles: pd.DataFrame
+    region_stage_scene_pivot: pd.DataFrame
 
 
 def configure_matplotlib() -> None:
@@ -264,6 +265,12 @@ def build_legacy_bundle() -> LegacyBundle:
         else:
             scene_profiles.loc[scene, "top_subject"] = "未提及"
 
+    # Multi-factor pivot for new chart: Region x Stage x Top 3 Scenes
+    cases_filtered = cases[cases["区域"].isin(["东部", "中部", "西部"]) & cases["学段_标准"].isin(["学前", "小学", "初中", "高中"])].copy()
+    pivot = cases_filtered.groupby(["区域", "学段_标准", "应用场景（一级）"]).size().reset_index(name="count")
+    region_stage_scene_pivot = pivot.pivot_table(index=["区域", "学段_标准"], columns="应用场景（一级）", values="count", fill_value=0)
+    region_stage_scene_pivot = region_stage_scene_pivot.reindex(columns=SCENE_ORDER, fill_value=0)
+
     return LegacyBundle(
         bundle=source,
         df=df,
@@ -276,6 +283,7 @@ def build_legacy_bundle() -> LegacyBundle:
         stage_scene_pct=stage_scene_pct,
         region_scene_pct=region_scene_pct,
         scene_profiles=scene_profiles,
+        region_stage_scene_pivot=region_stage_scene_pivot,
     )
 
 
@@ -286,6 +294,7 @@ def build_ppt_figures(data: LegacyBundle) -> dict[str, Path]:
         "region_structure": PPT_FIG_DIR / "fig_ppt_region_structure.png",
         "stage_scene": PPT_FIG_DIR / "fig_ppt_stage_scene_pct.png",
         "scene_product": PPT_FIG_DIR / "fig_ppt_scene_product.png",
+        "complex_pivot": PPT_FIG_DIR / "fig_ppt_complex_pivot.png",
     }
 
     scene_profiles = data.scene_profiles.copy()
@@ -358,6 +367,37 @@ def build_ppt_figures(data: LegacyBundle) -> dict[str, Path]:
     ax.set_xticklabels([wrap_label(label.get_text(), 6) for label in ax.get_xticklabels()], fontsize=9)
     fig.tight_layout()
     fig.savefig(paths["scene_product"], dpi=240)
+    plt.close(fig)
+
+    # Generate new complex pivot chart (Segmented Bar)
+    fig, ax = plt.subplots(figsize=(10.5, 5.5))
+    pivot = data.region_stage_scene_pivot
+    if not pivot.empty:
+        # Reorder to group by region
+        ordered_index = pd.MultiIndex.from_tuples(
+            [(r, s) for r in ["东部", "中部", "西部"] for s in ["小学", "初中", "高中"] if (r, s) in pivot.index]
+        )
+        pivot = pivot.reindex(ordered_index).fillna(0)
+        
+        bottom = pd.Series(0, index=range(len(pivot)), dtype=float)
+        x_labels = [f"{r}\n{s}" for r, s in pivot.index]
+        for scene in SCENE_ORDER:
+            values = pivot[scene].values
+            bars = ax.bar(x_labels, values, bottom=bottom, color=SCENE_COLORS[scene], label=scene, edgecolor="white", linewidth=0.5)
+            # Add text inside bars if height is significant
+            for bar, val in zip(bars, values):
+                if val >= 10:
+                    ax.text(bar.get_x() + bar.get_width() / 2, bar.get_y() + val / 2, f"{int(val)}", ha="center", va="center", color="white", fontsize=8, weight="bold")
+            bottom += values
+        
+        ax.set_title("区域×学段×核心场景多维透视格局", fontsize=18, weight="bold")
+        ax.set_ylabel("案例数量", fontsize=11)
+        ax.legend(ncol=6, bbox_to_anchor=(0.5, 1.12), loc="upper center", frameon=False)
+        sns.despine()
+        for idx in [2.5, 5.5]:
+            ax.axvline(x=idx, color="#DDDDDD", linestyle="--", linewidth=1.2)
+        fig.tight_layout()
+        fig.savefig(paths["complex_pivot"], dpi=240)
     plt.close(fig)
 
     return paths
@@ -493,29 +533,38 @@ def build_word_doc(data: LegacyBundle) -> None:
     insert_picture(doc, LEGACY_FIGURES["scenario"])
     add_caption(doc, "图4 应用场景树图")
 
-    doc.add_heading("2.2.4 三维交叉：典型产品联动分析", level=2)
-    doc.add_paragraph("为了进一步揭示头部AI产品在不同维度的真实渗透率与适配特征，本节基于应用产品频次映射，从三大维度进行深度联动交叉验证。")
+    doc.add_heading("2.2.4 三维交叉：典型产品与多维场景联动分析", level=2)
+    doc.add_paragraph("为了进一步揭示头部AI产品在不同维度的真实渗透率与适配特征，本节基于横向的“区域×学段”联结与纵向的应用产品频次映射，从三大维度及其综合透视面进行深度联动交叉验证。")
+
+    doc.add_paragraph("首先，从核心力量的交汇点看（见图5 多维透视格局）：")
+    insert_picture(doc, PPT_FIG_DIR / "fig_ppt_complex_pivot.png")
+    add_caption(doc, "图5 区域×学段×核心场景多维透视格局")
+    
+    add_bold_lead(doc, "东部高段的综合突破：", "东部地区不仅案例居首，其初高中学段的场景结构远不再限于助学。相反，助教与助评的厚度显著增加，说明东部地区正尝试将AI融入更深度的教研与评价体系。")
+    add_bold_lead(doc, "中西部的小学依赖：", "中西部地区目前压倒性集中于小学助学场景，这显示其 AI 应用仍处在一线课堂的初步导入期。")
+
+    doc.add_paragraph("进一步回到单维度的热力映射，我们发现：")
 
     doc.add_paragraph("1. 区域 X 产品联动分析", style="List Number")
     add_region_bullet(doc, "东部地区", east_top, "呈现出头部模型与多模态工具并进的复合结构。")
     add_region_bullet(doc, "中部地区", middle_top, "以通用大模型为主导，但常态化教学平台的重要性更加突出。")
     add_region_bullet(doc, "西部地区", west_top, "应用生态呈现向头部产品集聚的“长尾收缩”特征。")
     insert_picture(doc, LEGACY_FIGURES["region_product"])
-    add_caption(doc, "图5 典型区域与头部AI产品联动应用热力图")
+    add_caption(doc, "图6 典型区域与头部AI产品联动应用热力图")
 
     doc.add_paragraph("2. 学段 X 产品联动分析", style="List Number")
     for stage_name in ["幼儿园", "小学", "初中", "高中"]:
         if stage_name in stage_top:
             add_stage_bullet(doc, stage_name, stage_top[stage_name])
     insert_picture(doc, LEGACY_FIGURES["stage_product"])
-    add_caption(doc, "图6 学段与头部AI产品联动应用热力图")
+    add_caption(doc, "图7 学段与头部AI产品联动应用热力图")
 
     doc.add_paragraph("3. 学科 X 产品联动分析", style="List Number")
     for subject_name in ["语文", "数学", "英语", "科学", "美术"]:
         if subject_name in subject_top:
             add_subject_bullet(doc, subject_name, subject_top[subject_name])
     insert_picture(doc, LEGACY_FIGURES["subject_product"])
-    add_caption(doc, "图7 核心学科与头部AI产品联动应用热力图")
+    add_caption(doc, "图8 核心学科与头部AI产品联动应用热力图")
     doc.add_paragraph(
         "三维交叉结果表明，真正值得关注的已不是某个产品是否高频出现，而是它是否在特定区域、特定学段、特定学科中形成了稳定的联动优势。换言之，下一阶段竞争的核心不是通用热度，而是教育场景控制力。"
     )
@@ -746,16 +795,34 @@ def build_ppt(data: LegacyBundle, figures: dict[str, Path]) -> None:
     add_notes(slide, product_notes)
     notes_sections.append(slide_notes_markdown("Slide 5 场景控制力竞争", product_notes))
 
+    # New Multi-Factor Pivot Slide
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_background(slide, PPT_THEME["bg"])
-    add_text(slide, 0.68, 0.52, 6.4, 0.48, "五、汇报结论：下一阶段看的是结构升级，而不是简单铺量", 24, True)
+    add_text(slide, 0.68, 0.4, 8.2, 0.5, "五、结构叠加：区域×学段与场景组合的断层差异", 24, True)
+    add_text(slide, 0.7, 0.92, 8.4, 0.32, "透视多重维度的交叉地带，寻找不同市场的成熟度", 12, False, PPT_THEME["muted"])
+    add_panel(slide, 0.64, 1.32, 8.05, 5.55)
+    slide.shapes.add_picture(str(figures["complex_pivot"]), PptInches(0.86), PptInches(1.56), width=PptInches(7.58))
+    add_panel(slide, 8.94, 1.32, 3.64, 5.55)
+    add_text(slide, 9.2, 1.72, 3.1, 1.5, "东部初高中已经出现明显的助教、助评加深，脱离了单纯的终端学习属性；中西部则依然压倒性地以小学助学为主。", 16)
+    add_text(slide, 9.2, 4.18, 3.1, 1.28, "分化启示：低线城市打标准工具，高线城市做系统级整合配套。", 15, True, PPT_THEME["accent"])
+    pivot_notes = (
+        "这张多维透视图将区域、学段和场景三合一展现。"
+        "很容易看出，同样是普及AI，东部尤其是初高中的应用色彩已经开始变厚，“教、评、育”比重增加；而中西部的基本盘全靠小学助学支撑。"
+        "这就意味着下半场在打法上，必定存在断层分化。"
+    )
+    add_notes(slide, pivot_notes)
+    notes_sections.append(slide_notes_markdown("Slide 6 多维透视交叉格局", pivot_notes))
+
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    add_background(slide, PPT_THEME["bg"])
+    add_text(slide, 0.68, 0.52, 6.4, 0.48, "六、汇报结论：下一阶段看的是结构升级，而不是简单铺量", 24, True)
     add_panel(slide, 0.72, 1.46, 12.0, 4.9)
     add_text(slide, 1.02, 1.88, 11.25, 3.45, "1. 从场景看：教育 AI 已从泛试点进入主航道收敛阶段，助学与助教构成最清晰的两条主线。\n\n2. 从区域看：全国格局并非均匀扩散，而是少数头部区域先形成产品组合与应用路径，东部生态化、中部平台化、西部导入期的分层已经出现。\n\n3. 从产品看：下一阶段真正决定胜负的，不是模型热度，而是谁能在关键教育场景里形成稳定控制力。", 22)
     closing_notes = (
         "最后要把判断收住。接下来不应再只看案例数增长，而要看三件事：主航道之外的新场景能否继续抬升，中西部能否从导入走向稳定的平台化与生态化，以及头部产品能否在关键教育场景中建立长期控制力。"
     )
     add_notes(slide, closing_notes)
-    notes_sections.append(slide_notes_markdown("Slide 6 汇报结论", closing_notes))
+    notes_sections.append(slide_notes_markdown("Slide 7 汇报结论", closing_notes))
 
     prs.save(PPTX_PATH)
     NOTES_PATH.write_text("# Section 2.2 汇报讲稿\n\n" + "\n".join(notes_sections), encoding="utf-8")

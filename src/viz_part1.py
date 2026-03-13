@@ -338,29 +338,22 @@ def fig_a03():
 # ═══════════════════════════════════════════════════════════════════════════
 def fig_a04():
     print("  [A04] Scenario treemap …")
-    # Build nested data: 一级 → 二级
-    grp = df.groupby(["应用场景（一级）", "应用场景（二级）"]).size().reset_index(name="n")
+    # Build data: 一级分类 only
+    grp = df.groupby(["应用场景（一级）"]).size().reset_index(name="n")
     grp = grp.sort_values("n", ascending=False)
-
-    # Color by 一级
-    l1_cats = grp["应用场景（一级）"].unique()
-    l1_colors = {c: PAL8[i % len(PAL8)] for i, c in enumerate(l1_cats)}
 
     sizes = grp["n"].values
     labels = []
     colors = []
-    for _, row in grp.iterrows():
-        l2 = row["应用场景（二级）"]
-        if len(l2) > 8:
-            l2 = l2[:8] + "…"
-        labels.append(f"{row['应用场景（一级）']}\n{l2}\n({row['n']})")
-        base = l1_colors[row["应用场景（一级）"]]
-        # Slightly vary lightness for each sub-category
-        colors.append(lighten(base, np.random.uniform(0, 0.3)))
+    for i, row in grp.iterrows():
+        l1 = row["应用场景（一级）"]
+        labels.append(f"{l1}\n({row['n']})")
+        base = PAL8[i % len(PAL8)]
+        colors.append(base)
 
     fig, ax = plt.subplots(figsize=(14, 10))
     squarify.plot(sizes=sizes, label=labels, color=colors, alpha=0.88,
-                  text_kwargs=dict(fontsize=6, fontfamily=CN_FONT,
+                  text_kwargs=dict(fontsize=11, fontfamily=CN_FONT,
                                    fontweight="bold", color="white",
                                    wrap=True),
                   ax=ax, pad=True)

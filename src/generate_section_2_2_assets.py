@@ -1,190 +1,144 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 import re
-from typing import Iterable
+from typing import Any
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import matplotlib.ticker as mticker
+import numpy as np
 import pandas as pd
 import seaborn as sns
 from docx import Document
-from docx.enum.section import WD_SECTION
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
-from docx.shared import Inches, Pt
+from docx.shared import Inches, Pt, RGBColor, Cm
 from matplotlib import font_manager
+from matplotlib.colors import LinearSegmentedColormap
+import squarify
 from pptx import Presentation
-from pptx.enum.text import PP_ALIGN
-from pptx.util import Inches as PptInches
-from pptx.util import Pt as PptPt
-
+from pptx.dml.color import RGBColor as PptRGB
+from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
+from pptx.util import Inches as PptInches, Pt as PptPt, Emu
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 WORKBOOK_PATH = BASE_DIR / "data" / "V6.xlsx"
 DOCX_PATH = BASE_DIR / "Section_2.2_应用现状综述_最终版.docx"
-PPTX_PATH = BASE_DIR / "六大场景统计_区域学科学段_两页PPT.pptx"
-SUMMARY_PATH = BASE_DIR / "output" / "V6_workbook_sheet_summary.md"
+PPTX_PATH = BASE_DIR / "Section_2.2_应用现状综述_汇报版.pptx"
 FIG_DIR = BASE_DIR / "output" / "figures" / "section_2_2_v6"
 
 SCENE_ORDER = ["助学", "助教", "助评", "助育", "助管", "助研"]
 SCENE_COLORS = {
-    "助学": "#4C78A8",
-    "助教": "#F58518",
-    "助评": "#E45756",
-    "助育": "#72B7B2",
-    "助管": "#54A24B",
-    "助研": "#B279A2",
+    "助学": "#3B82F6", "助教": "#F59E0B", "助评": "#EF4444",
+    "助育": "#10B981", "助管": "#8B5CF6", "助研": "#EC4899",
 }
+SCENE_PALETTE = list(SCENE_COLORS.values())
 
+ACCENT1 = "#3B82F6"
+ACCENT2 = "#F59E0B"
+ACCENT3 = "#10B981"
+BG_DARK = "#1E293B"
+BG_CARD = "#FFFFFF"
+TEXT_DARK = "#1E293B"
+TEXT_MID = "#64748B"
+GRADIENT_CMAP = LinearSegmentedColormap.from_list("custom_heat", ["#EFF6FF", "#3B82F6", "#1E3A8A"])
 
-@dataclass
-class AnalysisBundle:
-    sheets: list[dict]
-    df: pd.DataFrame
-    cases: pd.DataFrame
-    region_scene: pd.DataFrame
-    stage_scene: pd.DataFrame
-    subject_scene: pd.DataFrame
-    summary: dict
+FONT_FAMILY = "Microsoft YaHei"
 
 
 def configure_matplotlib() -> None:
-    preferred_font_names = [
-        "Arial Unicode MS",
-        "Hiragino Sans GB",
-        "Songti SC",
-        "Heiti TC",
-        "PingFang HK",
-        "DejaVu Sans",
-    ]
-    available_names = {font.name for font in font_manager.fontManager.ttflist}
-    selected_font = next((name for name in preferred_font_names if name in available_names), "DejaVu Sans")
-    plt.rcParams["font.family"] = [selected_font]
-    plt.rcParams["font.sans-serif"] = [selected_font]
-    plt.rcParams["axes.unicode_minus"] = False
-    sns.set_theme(style="whitegrid", rc={"font.family": selected_font, "axes.unicode_minus": False})
+    import os
+    # 1) 清除 matplotlib 字体缓存，避免缓存不一致导致中文乱码
+    cache_dir = matplotlib.get_cachedir()
+    if cache_dir and os.path.isdir(cache_dir):
+        for fname in os.listdir(cache_dir):
+            if "font" in fname.lower():
+                try:
+                    os.remove(os.path.join(cache_dir, fname))
+                except OSError:
+                    pass
+    # 2) 重建字体管理器
+    font_manager._load_fontmanager(try_read_cache=False)
+
+    candidates = ["Microsoft YaHei", "SimHei", "SimSun", "KaiTi", "Noto Sans SC", "DejaVu Sans"]
+    available = {f.name for f in font_manager.fontManager.ttflist}
+    global FONT_FAMILY
+    FONT_FAMILY = next((n for n in candidates if n in available), "DejaVu Sans")
+    print(f"[字体] 使用: {FONT_FAMILY}")
+
+    # 3) 先调用 seaborn set_theme（它会重置 rcParams）
+    sns.set_theme(style="whitegrid")
+
+    # 4) 在 seaborn 之后设置字体，确保不被覆盖
+    plt.rcParams.update({
+        "font.family": "sans-serif",
+        "font.sans-serif": [FONT_FAMILY, "SimHei", "DejaVu Sans"],
+        "axes.unicode_minus": False,
+        "figure.dpi": 150,
+        "savefig.dpi": 300,
+        "figure.facecolor": "white",
+        "axes.facecolor": "white",
+        "axes.edgecolor": "#E2E8F0",
+        "axes.grid": True,
+        "grid.color": "#F1F5F9",
+        "grid.linewidth": 0.8,
+    })
 
 
-def normalize_text(value) -> str | pd.NA:
+def normalize_text(value) -> str | None:
     if pd.isna(value):
-        return pd.NA
+        return None
     text = str(value).strip()
     if text in {"", "nan", "None", "未提及", "未知"}:
-        return pd.NA
+        return None
     return text
 
 
-def normalize_product_name(value) -> str | pd.NA:
+def normalize_product_name(value) -> str | None:
     text = normalize_text(value)
-    if pd.isna(text):
-        return pd.NA
+    if text is None:
+        return None
     text = re.sub(r"\s+", " ", str(text)).strip()
-    text = re.sub(r"(?<=[\u4e00-\u9fffA-Za-z0-9])\s+(?=AI\b)", "", text)
-    text = re.sub(r"\(\s+", "(", text)
-    text = re.sub(r"\s+\)", ")", text)
-    alias_map = {
-        "即梦": "即梦AI",
-        "即梦 AI": "即梦AI",
-        "剪映": "剪映AI",
-        "剪映 AI": "剪映AI",
-        "DeepSeek": "DeepSeek 大模型",
-        "语文朗读宝 AI": "语文朗读宝AI",
-    }
-    return alias_map.get(text, text)
+    alias = {"即梦": "即梦AI", "即梦 AI": "即梦AI", "剪映": "剪映AI",
+             "剪映 AI": "剪映AI", "DeepSeek": "DeepSeek 大模型", "语文朗读宝 AI": "语文朗读宝AI"}
+    return alias.get(text, text)
 
 
 def normalize_stage(value) -> str:
     if pd.isna(value):
         return "未提及"
     text = str(value)
-    if "小学/初中/高中" in text:
-        return "全学段"
-    if "小学至初中" in text:
-        return "小学/初中"
-    if "初中/高中" in text:
-        return "初中/高中"
-    if "幼儿园" in text or "学前" in text:
-        return "学前"
-    if "小学" in text:
-        return "小学"
-    if "初中" in text:
-        return "初中"
-    if "高中" in text:
-        return "高中"
-    if "中学" in text:
-        return "中学"
-    if "中职" in text or "职高" in text:
-        return "中职"
+    for kw, label in [("小学/初中/高中", "全学段"), ("小学至初中", "小学/初中"),
+                       ("初中/高中", "初中/高中"), ("幼儿园", "学前"), ("学前", "学前"),
+                       ("小学", "小学"), ("初中", "初中"), ("高中", "高中"),
+                       ("中学", "中学"), ("中职", "中职"), ("职高", "中职")]:
+        if kw in text:
+            return label
     return text.strip() or "未提及"
 
 
 def pct(part: float, whole: float) -> str:
-    if not whole:
-        return "0.0%"
-    return f"{part / whole * 100:.1f}%"
+    return f"{part / whole * 100:.1f}%" if whole else "0.0%"
 
 
-def add_caption(doc: Document, text: str) -> None:
-    paragraph = doc.add_paragraph()
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = paragraph.add_run(text)
-    run.font.size = Pt(10)
-    run.bold = True
-
-
-def insert_picture(doc: Document, path: Path, width: float = 5.8) -> None:
-    paragraph = doc.add_paragraph()
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    paragraph.add_run().add_picture(str(path), width=Inches(width))
-
-
-def workbook_role(sheet_name: str) -> str:
-    mapping = {
-        "（新）processed_results": "主事实表：3815条工具级记录，承载案例、场景、学科、省份与产品分类字段",
-        "省份产品": "省份-产品展开表，用于产品地理分布追踪",
-        "Sheet1": "案例级摘要表，用于理解1690+案例的压缩口径",
-        "Sheet2": "产品频次明细与透视辅助表",
-        "「工具标准名」映射表": "原始工具名称到标准产品名/场景/学科的映射字典",
-        "产品分类_教育_参考表": "教育技术类型参考表",
-        "产品分类_产业_参考表": "AI产业链分类参考表",
-        "省份映 射": "地区到省份的补充映射表",
-        "省份映射": "地区到省份的补充映射表",
-        "Sheet4": "省级城市/区县覆盖汇总表",
-        "Top 40产品": "高频产品的产业分类、场景分类与技术分类总表",
-        "Top40产品-场景简介": "头部产品的场景简介与应用说明",
-        "Top": "头部产品清单",
-        "参考-三类产品分类总表": "产业分类总参考",
-        "2. 场景驱动分类-表格": "六大一级场景与29个二级场景字典",
-        "1. 产业链分类-表格": "产业链分类表格版",
-        "3. 教育领域分类-表格": "教育领域技术分类表格版",
-        "助育、助管、助评、助研（雅溶&杨妍）": "长尾场景补充说明表",
-    }
-    return mapping.get(sheet_name, "辅助工作表")
-
-
-def read_workbook_summary(path: Path) -> list[dict]:
-    excel = pd.ExcelFile(path)
-    sheets = []
-    for sheet_name in excel.sheet_names:
-        frame = pd.read_excel(path, sheet_name=sheet_name)
-        sheets.append(
-            {
-                "name": sheet_name,
-                "shape": frame.shape,
-                "columns": list(frame.columns),
-                "role": workbook_role(sheet_name),
-            }
-        )
-    return sheets
+@dataclass
+class AnalysisBundle:
+    df: pd.DataFrame
+    cases: pd.DataFrame
+    stage_scene: pd.DataFrame
+    subject_scene: pd.DataFrame
+    product_type_scene: pd.DataFrame
+    product_attr_scene: pd.DataFrame
+    llm_scene: pd.DataFrame
+    summary: dict = field(default_factory=dict)
 
 
 def load_bundle() -> AnalysisBundle:
-    sheets = read_workbook_summary(WORKBOOK_PATH)
     df = pd.read_excel(WORKBOOK_PATH, sheet_name="（新）processed_results")
-    unnamed_cols = [col for col in df.columns if str(col).startswith("Unnamed")]
-    df = df.drop(columns=unnamed_cols, errors="ignore")
-
+    df = df.drop(columns=[c for c in df.columns if str(c).startswith("Unnamed")], errors="ignore")
     for col in df.columns:
         if df[col].dtype == object:
             df[col] = df[col].map(normalize_text)
@@ -193,376 +147,547 @@ def load_bundle() -> AnalysisBundle:
     df["省份_标准"] = df["省份_更新"].fillna(df["省份"])
     df["产品名_标准"] = df["产品名（校准）"].fillna(df["工具标准名"]).map(normalize_product_name)
 
+    # 核心去重：按文件名去重，一个案例只出现一次
+    if "文件名" in df.columns:
+        df = df.drop_duplicates(subset=["文件名"], keep="first")
+        print(f"[去重] 按文件名去重后剩余 {len(df)} 条记录")
+
     cases = df.dropna(subset=["案例编号"]).sort_values("案例编号").drop_duplicates("案例编号", keep="first").copy()
     cases["学段_标准"] = cases["学段"].apply(normalize_stage)
+    cases["产品属性_标准"] = cases["产品属性"].fillna("其他")
+    cases["是否大模型_标准"] = cases["产品名_是否大模型"].fillna("否")
+    cases["产品分类_标准"] = cases["产品分类"].fillna("未提及")
 
-    province_region = {
-        "北京市": "东部",
-        "天津市": "东部",
-        "河北省": "东部",
-        "上海市": "东部",
-        "江苏省": "东部",
-        "浙江省": "东部",
-        "福建省": "东部",
-        "山东省": "东部",
-        "广东省": "东部",
-        "海南省": "东部",
-        "辽宁省": "东部",
-        "山西省": "中部",
-        "吉林省": "中部",
-        "黑龙江省": "中部",
-        "安徽省": "中部",
-        "江西省": "中部",
-        "河南省": "中部",
-        "湖北省": "中部",
-        "湖南省": "中部",
-        "内蒙古自治区": "西部",
-        "广西壮族自治区": "西部",
-        "重庆市": "西部",
-        "四川省": "西部",
-        "贵州省": "西部",
-        "云南省": "西部",
-        "西藏自治区": "西部",
-        "陕西省": "西部",
-        "甘肃省": "西部",
-        "青海省": "西部",
-        "宁夏回族自治区": "西部",
-        "新疆维吾尔自治区": "西部",
-    }
-    cases["区域"] = cases["省份_标准"].map(province_region).fillna("未提及")
-
-    region_scene = pd.crosstab(cases["区域"], cases["应用场景（一级）"])
-    region_scene = region_scene.reindex(index=["东部", "中部", "西部", "未提及"], fill_value=0)
-    region_scene = region_scene.reindex(columns=SCENE_ORDER, fill_value=0)
-
+    # 交叉表
     stage_order = ["学前", "小学", "初中", "高中", "中学", "小学/初中", "初中/高中", "全学段", "中职", "未提及"]
     stage_scene = pd.crosstab(cases["学段_标准"], cases["应用场景（一级）"])
-    stage_scene = stage_scene.reindex(index=[item for item in stage_order if item in stage_scene.index], fill_value=0)
+    stage_scene = stage_scene.reindex(index=[s for s in stage_order if s in stage_scene.index], fill_value=0)
     stage_scene = stage_scene.reindex(columns=SCENE_ORDER, fill_value=0)
 
-    subject_counts = cases["学科"].fillna("未提及").value_counts()
-    subject_order = [subject for subject in subject_counts.index if subject != "未提及"][:10]
-    subject_scene = pd.crosstab(cases[cases["学科"].isin(subject_order)]["学科"], cases[cases["学科"].isin(subject_order)]["应用场景（一级）"])
-    subject_scene = subject_scene.reindex(index=subject_order, fill_value=0)
-    subject_scene = subject_scene.reindex(columns=SCENE_ORDER, fill_value=0)
+    subj_counts = cases["学科"].fillna("未提及").value_counts()
+    subj_top = [s for s in subj_counts.index if s != "未提及"][:10]
+    mask = cases["学科"].isin(subj_top)
+    subject_scene = pd.crosstab(cases.loc[mask, "学科"], cases.loc[mask, "应用场景（一级）"])
+    subject_scene = subject_scene.reindex(index=subj_top, fill_value=0).reindex(columns=SCENE_ORDER, fill_value=0)
+
+    pt_order = cases["产品分类_标准"].value_counts().index.tolist()
+    product_type_scene = pd.crosstab(cases["产品分类_标准"], cases["应用场景（一级）"])
+    product_type_scene = product_type_scene.reindex(index=pt_order, fill_value=0).reindex(columns=SCENE_ORDER, fill_value=0)
+
+    pa_valid = cases[cases["产品属性_标准"].isin(["AI智能体", "大语言模型", "其他"])]
+    product_attr_scene = pd.crosstab(pa_valid["产品属性_标准"], pa_valid["应用场景（一级）"])
+    product_attr_scene = product_attr_scene.reindex(index=["AI智能体", "大语言模型", "其他"], fill_value=0)
+    product_attr_scene = product_attr_scene.reindex(columns=SCENE_ORDER, fill_value=0)
+
+    llm_valid = cases[cases["是否大模型_标准"].isin(["是", "否"])]
+    llm_scene = pd.crosstab(llm_valid["是否大模型_标准"], llm_valid["应用场景（一级）"])
+    llm_scene = llm_scene.reindex(index=["是", "否"], fill_value=0).reindex(columns=SCENE_ORDER, fill_value=0)
 
     l1_counts = cases["应用场景（一级）"].value_counts().reindex(SCENE_ORDER, fill_value=0)
-    l2_pairs = (
-        cases.dropna(subset=["应用场景（一级）", "应用场景（二级）"])
-        .groupby(["应用场景（一级）", "应用场景（二级）"])
-        .size()
-        .reset_index(name="count")
-        .sort_values(["应用场景（一级）", "count"], ascending=[True, False])
-    )
-    top_l2_by_l1 = {}
-    for scene in SCENE_ORDER:
-        subset = l2_pairs[l2_pairs["应用场景（一级）"] == scene].head(2)
-        top_l2_by_l1[scene] = [f"{row['应用场景（二级）']}（{int(row['count'])}例）" for _, row in subset.iterrows()]
+    l2_pairs = (cases.dropna(subset=["应用场景（一级）", "应用场景（二级）"])
+                .groupby(["应用场景（一级）", "应用场景（二级）"]).size()
+                .reset_index(name="count").sort_values(["应用场景（一级）", "count"], ascending=[True, False]))
+    top_l2 = {}
+    for sc in SCENE_ORDER:
+        sub = l2_pairs[l2_pairs["应用场景（一级）"] == sc].head(2)
+        top_l2[sc] = [f"{r['应用场景（二级）']}（{int(r['count'])}例）" for _, r in sub.iterrows()]
 
+    total = int(cases["案例编号"].nunique())
     summary = {
-        "sheet_count": len(sheets),
+        "total_cases": total,
         "tool_rows": int(len(df)),
-        "case_count": int(cases["案例编号"].nunique()),
         "product_count": int(df["产品名_标准"].dropna().nunique()),
-        "company_count": int(df["公司"].dropna().nunique()),
         "province_count": int(cases["省份_标准"].dropna().nunique()),
+        "scene_counts": l1_counts.to_dict(),
+        "top_l2_by_l1": top_l2,
         "stage_counts": cases["学段_标准"].value_counts().to_dict(),
         "subject_counts": cases["学科"].fillna("未提及").value_counts().to_dict(),
         "province_counts": cases["省份_标准"].fillna("未提及").value_counts().to_dict(),
-        "region_counts": cases["区域"].value_counts().to_dict(),
-        "scene_counts": l1_counts.to_dict(),
-        "top_l2_by_l1": top_l2_by_l1,
         "top_products": df["产品名_标准"].dropna().value_counts().head(15).to_dict(),
     }
 
-    return AnalysisBundle(
-        sheets=sheets,
-        df=df,
-        cases=cases,
-        region_scene=region_scene,
-        stage_scene=stage_scene,
-        subject_scene=subject_scene,
-        summary=summary,
-    )
+    return AnalysisBundle(df=df, cases=cases, stage_scene=stage_scene,
+                          subject_scene=subject_scene, product_type_scene=product_type_scene,
+                          product_attr_scene=product_attr_scene, llm_scene=llm_scene, summary=summary)
 
 
-def save_workbook_summary(bundle: AnalysisBundle) -> None:
-    SUMMARY_PATH.parent.mkdir(parents=True, exist_ok=True)
-    lines = [
-        "# V6.xlsx 工作簿结构摘要",
-        "",
-        f"- 工作表总数：{bundle.summary['sheet_count']}",
-        f"- 主事实表：`（新）processed_results`，共 {bundle.summary['tool_rows']} 条工具级记录",
-        f"- 案例口径：{bundle.summary['case_count']} 个去重案例",
-        "",
-        "| Sheet | 规模 | 作用 |",
-        "|---|---:|---|",
-    ]
-    for sheet in bundle.sheets:
-        lines.append(f"| {sheet['name']} | {sheet['shape'][0]}×{sheet['shape'][1]} | {sheet['role']} |")
-    SUMMARY_PATH.write_text("\n".join(lines), encoding="utf-8")
+# ---------------------------------------------------------------------------
+# Chart generation helpers
+# ---------------------------------------------------------------------------
+
+def _finish(fig, path):
+    fig.tight_layout()
+    fig.savefig(path, dpi=300, bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print(f"  [图表] {path.name}")
 
 
-def barh_chart(series: pd.Series, title: str, output: Path, color: str) -> None:
-    fig, ax = plt.subplots(figsize=(9, 5.2))
-    ordered = series.sort_values(ascending=True)
-    ax.barh(ordered.index, ordered.values, color=color)
-    ax.set_title(title, fontsize=16, weight="bold")
-    ax.set_xlabel("案例数")
-    for idx, value in enumerate(ordered.values):
-        ax.text(value + max(ordered.values) * 0.01, idx, str(int(value)), va="center", fontsize=10)
+def fig_scene_bar(bundle: AnalysisBundle, path: Path):
+    """① 六大场景柱状图"""
+    s = pd.Series(bundle.summary["scene_counts"]).reindex(SCENE_ORDER, fill_value=0)
+    total = s.sum()
+    fig, ax = plt.subplots(figsize=(10, 5.5))
+    bars = ax.bar(s.index, s.values, color=SCENE_PALETTE, width=0.6, edgecolor="white", linewidth=1.2)
+    for bar, v in zip(bars, s.values):
+        ax.text(bar.get_x() + bar.get_width()/2, v + total*0.008,
+                f"{int(v)}\n({v/total*100:.1f}%)", ha="center", va="bottom", fontsize=10, fontweight="bold")
+    ax.set_title("六大一级应用场景案例分布", fontsize=18, fontweight="bold", pad=20, color=TEXT_DARK)
+    ax.set_ylabel("案例数", fontsize=12)
+    ax.set_ylim(0, s.max() * 1.18)
     sns.despine()
-    fig.tight_layout()
-    fig.savefig(output, dpi=220)
-    plt.close(fig)
+    _finish(fig, path)
 
 
-def scene_bar_chart(series: pd.Series, title: str, output: Path) -> None:
-    fig, ax = plt.subplots(figsize=(9.5, 5.2))
-    colors = [SCENE_COLORS[item] for item in series.index]
-    bars = ax.bar(series.index, series.values, color=colors)
-    ax.set_title(title, fontsize=16, weight="bold")
-    ax.set_ylabel("案例数")
-    for bar, value in zip(bars, series.values):
-        ax.text(bar.get_x() + bar.get_width() / 2, value + 8, str(int(value)), ha="center", va="bottom", fontsize=10)
+def fig_scene_treemap(bundle: AnalysisBundle, path: Path):
+    """② 场景 Treemap（仅一级）"""
+    s = pd.Series(bundle.summary["scene_counts"]).reindex(SCENE_ORDER, fill_value=0)
+    total = s.sum()
+    labels = [f"{name}\n{int(v)} 例\n({v/total*100:.1f}%)" for name, v in s.items()]
+    colors = [SCENE_COLORS[name] for name in s.index]
+    fig, ax = plt.subplots(figsize=(11, 6.5))
+    squarify.plot(sizes=s.values, label=labels, color=colors, alpha=0.88,
+                  text_kwargs={"fontsize": 13, "fontweight": "bold", "color": "white"}, ax=ax)
+    ax.set_title("六大应用场景占比（一级分类）", fontsize=18, fontweight="bold", pad=15, color=TEXT_DARK)
+    ax.axis("off")
+    _finish(fig, path)
+
+
+def fig_stage_bar(bundle: AnalysisBundle, path: Path):
+    """③ 学段分布水平柱状图"""
+    s = pd.Series(bundle.summary["stage_counts"])
+    s = s.drop(labels=["未提及"], errors="ignore").sort_values(ascending=True)
+    fig, ax = plt.subplots(figsize=(9.5, 5.5))
+    colors = plt.cm.Blues(np.linspace(0.35, 0.85, len(s)))
+    ax.barh(s.index, s.values, color=colors, height=0.6, edgecolor="white")
+    for i, v in enumerate(s.values):
+        ax.text(v + s.max()*0.015, i, f"{int(v)}", va="center", fontsize=11, fontweight="bold")
+    ax.set_title("案例学段分布", fontsize=18, fontweight="bold", pad=15, color=TEXT_DARK)
+    ax.set_xlabel("案例数", fontsize=12)
     sns.despine()
-    fig.tight_layout()
-    fig.savefig(output, dpi=220)
-    plt.close(fig)
+    _finish(fig, path)
 
 
-def stacked_region_chart(df: pd.DataFrame, title: str, output: Path) -> None:
-    plot_df = df.loc[[idx for idx in df.index if idx != "未提及"]].copy()
-    fig, ax = plt.subplots(figsize=(11, 5.8))
-    left = pd.Series(0, index=plot_df.index, dtype=float)
-    for scene in SCENE_ORDER:
-        values = plot_df[scene]
-        ax.barh(plot_df.index, values, left=left, color=SCENE_COLORS[scene], label=scene)
-        left += values
-    ax.set_title(title, fontsize=18, weight="bold")
-    ax.set_xlabel("案例数")
-    ax.legend(ncol=6, bbox_to_anchor=(0.5, 1.12), loc="upper center", frameon=False)
+def fig_subject_lollipop(bundle: AnalysisBundle, path: Path):
+    """④ 学科 Top10 棒棒糖图"""
+    s = pd.Series(bundle.summary["subject_counts"]).drop(labels=["未提及"], errors="ignore").head(10)
+    s = s.sort_values(ascending=True)
+    fig, ax = plt.subplots(figsize=(9.5, 6))
+    y = range(len(s))
+    colors = plt.cm.Oranges(np.linspace(0.4, 0.85, len(s)))
+    ax.hlines(y=list(y), xmin=0, xmax=s.values, color=colors, linewidth=2.5)
+    ax.scatter(s.values, list(y), color=colors, s=100, zorder=5, edgecolors="white", linewidth=1.5)
+    ax.set_yticks(list(y))
+    ax.set_yticklabels(s.index, fontsize=11)
+    for i, v in enumerate(s.values):
+        ax.text(v + s.max()*0.02, i, str(int(v)), va="center", fontsize=11, fontweight="bold")
+    ax.set_title("案例学科 Top 10", fontsize=18, fontweight="bold", pad=15, color=TEXT_DARK)
+    ax.set_xlabel("案例数", fontsize=12)
+    ax.set_xlim(0, s.max()*1.15)
     sns.despine()
-    fig.tight_layout()
-    fig.savefig(output, dpi=220)
-    plt.close(fig)
+    _finish(fig, path)
 
 
-def heatmap_chart(df: pd.DataFrame, title: str, output: Path) -> None:
-    width = max(8.5, 1.2 * len(df.columns) + 3.5)
-    height = max(4.8, 0.55 * len(df.index) + 2.4)
-    fig, ax = plt.subplots(figsize=(width, height))
-    sns.heatmap(df, annot=True, fmt="g", cmap="YlGnBu", linewidths=0.5, cbar=True, ax=ax)
-    ax.set_title(title, fontsize=16, weight="bold")
-    ax.set_xlabel("")
-    ax.set_ylabel("")
-    fig.tight_layout()
-    fig.savefig(output, dpi=220)
-    plt.close(fig)
+def fig_stage_scene_heatmap(bundle: AnalysisBundle, path: Path):
+    """⑤ 学段×场景 热力图"""
+    df = bundle.stage_scene.copy()
+    df = df.loc[df.sum(axis=1) > 0]
+    fig, ax = plt.subplots(figsize=(10, max(5.5, 0.6*len(df)+2.5)))
+    sns.heatmap(df, annot=True, fmt="g", cmap=GRADIENT_CMAP, linewidths=0.8,
+                linecolor="white", cbar_kws={"shrink": 0.8, "label": "案例数"}, ax=ax)
+    ax.set_title("学段 × 应用场景 交叉分布", fontsize=16, fontweight="bold", pad=15, color=TEXT_DARK)
+    ax.set_xlabel(""); ax.set_ylabel("")
+    ax.tick_params(axis="both", labelsize=11)
+    _finish(fig, path)
+
+
+def fig_subject_scene_heatmap(bundle: AnalysisBundle, path: Path):
+    """⑥ 学科×场景 热力图"""
+    df = bundle.subject_scene.copy()
+    fig, ax = plt.subplots(figsize=(10, max(5.5, 0.6*len(df)+2.5)))
+    sns.heatmap(df, annot=True, fmt="g", cmap=GRADIENT_CMAP, linewidths=0.8,
+                linecolor="white", cbar_kws={"shrink": 0.8, "label": "案例数"}, ax=ax)
+    ax.set_title("Top10 学科 × 应用场景 交叉分布", fontsize=16, fontweight="bold", pad=15, color=TEXT_DARK)
+    ax.set_xlabel(""); ax.set_ylabel("")
+    ax.tick_params(axis="both", labelsize=11)
+    _finish(fig, path)
+
+
+def fig_product_type_scene(bundle: AnalysisBundle, path: Path):
+    """⑦ 产品分类×场景 堆叠横向条形图"""
+    df = bundle.product_type_scene.loc[bundle.product_type_scene.sum(axis=1) > 0].copy()
+    fig, ax = plt.subplots(figsize=(11, max(5, 0.7*len(df)+2.5)))
+    left = pd.Series(0.0, index=df.index)
+    for sc in SCENE_ORDER:
+        if sc in df.columns:
+            vals = df[sc]
+            ax.barh(df.index, vals, left=left, color=SCENE_COLORS[sc], label=sc,
+                    height=0.55, edgecolor="white", linewidth=0.8)
+            left += vals
+    ax.set_title("产品分类 × 应用场景 交叉分布", fontsize=16, fontweight="bold", pad=30, color=TEXT_DARK)
+    ax.set_xlabel("案例数", fontsize=12)
+    ax.legend(ncol=6, bbox_to_anchor=(0.5, 1.02), loc="lower center", frameon=False, fontsize=10)
+    ax.invert_yaxis()
+    sns.despine()
+    _finish(fig, path)
+
+
+def fig_product_attr_scene(bundle: AnalysisBundle, path: Path):
+    """⑧ 产品属性×场景 分组柱状图"""
+    df = bundle.product_attr_scene.copy()
+    n_groups = len(SCENE_ORDER)
+    n_bars = len(df)
+    x = np.arange(n_groups)
+    w = 0.22
+    attr_colors = {"AI智能体": "#3B82F6", "大语言模型": "#F59E0B", "其他": "#94A3B8"}
+    fig, ax = plt.subplots(figsize=(11, 5.5))
+    for i, (attr, row) in enumerate(df.iterrows()):
+        offset = (i - n_bars/2 + 0.5) * w
+        bars = ax.bar(x + offset, [row.get(s, 0) for s in SCENE_ORDER], w,
+                      label=attr, color=attr_colors.get(attr, "#94A3B8"),
+                      edgecolor="white", linewidth=0.8)
+        for bar in bars:
+            h = bar.get_height()
+            if h > 0:
+                ax.text(bar.get_x()+bar.get_width()/2, h+2, str(int(h)),
+                        ha="center", va="bottom", fontsize=8, fontweight="bold")
+    ax.set_xticks(x)
+    ax.set_xticklabels(SCENE_ORDER, fontsize=12)
+    ax.set_title("产品属性 × 应用场景 分布", fontsize=16, fontweight="bold", pad=15, color=TEXT_DARK)
+    ax.set_ylabel("案例数", fontsize=12)
+    ax.legend(frameon=False, fontsize=11)
+    sns.despine()
+    _finish(fig, path)
+
+
+def fig_province_bar(bundle: AnalysisBundle, path: Path):
+    """⑨ 省份 Top10"""
+    s = pd.Series(bundle.summary["province_counts"]).drop(labels=["未提及"], errors="ignore").head(10)
+    s = s.sort_values(ascending=True)
+    fig, ax = plt.subplots(figsize=(9.5, 5.5))
+    colors = plt.cm.Greens(np.linspace(0.35, 0.85, len(s)))
+    ax.barh(s.index, s.values, color=colors, height=0.6, edgecolor="white")
+    for i, v in enumerate(s.values):
+        ax.text(v + s.max()*0.015, i, str(int(v)), va="center", fontsize=11, fontweight="bold")
+    ax.set_title("案例量最高的 10 个省份", fontsize=18, fontweight="bold", pad=15, color=TEXT_DARK)
+    ax.set_xlabel("案例数", fontsize=12)
+    sns.despine()
+    _finish(fig, path)
+
+
+def fig_llm_scene(bundle: AnalysisBundle, path: Path):
+    """⑩ 是否大模型×场景 对比柱状图"""
+    df = bundle.llm_scene.copy()
+    x = np.arange(len(SCENE_ORDER))
+    w = 0.32
+    fig, ax = plt.subplots(figsize=(11, 5.5))
+    clr = {"是": "#EF4444", "否": "#3B82F6"}
+    lbl = {"是": "大模型产品", "否": "非大模型产品"}
+    for i, (key, row) in enumerate(df.iterrows()):
+        offset = (i - 0.5) * w
+        bars = ax.bar(x + offset, [row.get(s, 0) for s in SCENE_ORDER], w,
+                      label=lbl.get(key, key), color=clr.get(key, "#94A3B8"),
+                      edgecolor="white", linewidth=0.8)
+        for bar in bars:
+            h = bar.get_height()
+            if h > 0:
+                ax.text(bar.get_x()+bar.get_width()/2, h+2, str(int(h)),
+                        ha="center", va="bottom", fontsize=9, fontweight="bold")
+    ax.set_xticks(x)
+    ax.set_xticklabels(SCENE_ORDER, fontsize=12)
+    ax.set_title("大模型 vs 非大模型 × 应用场景", fontsize=16, fontweight="bold", pad=15, color=TEXT_DARK)
+    ax.set_ylabel("案例数", fontsize=12)
+    ax.legend(frameon=False, fontsize=11)
+    sns.despine()
+    _finish(fig, path)
 
 
 def generate_figures(bundle: AnalysisBundle) -> dict[str, Path]:
     FIG_DIR.mkdir(parents=True, exist_ok=True)
-    figure_paths = {
-        "province": FIG_DIR / "fig_section22_province_top10.png",
-        "stage": FIG_DIR / "fig_section22_stage_distribution.png",
-        "subject": FIG_DIR / "fig_section22_subject_top10.png",
-        "scene": FIG_DIR / "fig_section22_scene_l1.png",
-        "region_scene": FIG_DIR / "fig_section22_region_scene.png",
-        "stage_scene": FIG_DIR / "fig_section22_stage_scene_heatmap.png",
-        "subject_scene": FIG_DIR / "fig_section22_subject_scene_heatmap.png",
-    }
-    province_series = pd.Series(bundle.summary["province_counts"]).head(10)
-    stage_series = pd.Series(bundle.summary["stage_counts"]).head(8)
-    subject_series = pd.Series(bundle.summary["subject_counts"]).drop(labels=["未提及"], errors="ignore").head(10)
-    scene_series = pd.Series(bundle.summary["scene_counts"]).reindex(SCENE_ORDER).fillna(0)
-
-    barh_chart(province_series, "V6 案例量最高的 10 个省份", figure_paths["province"], "#4C78A8")
-    barh_chart(stage_series, "V6 案例学段分布", figure_paths["stage"], "#72B7B2")
-    barh_chart(subject_series, "V6 案例学科 Top10", figure_paths["subject"], "#F58518")
-    scene_bar_chart(scene_series, "V6 六大一级应用场景分布", figure_paths["scene"])
-    stacked_region_chart(bundle.region_scene, "六大场景的区域分布", figure_paths["region_scene"])
-    heatmap_chart(bundle.stage_scene, "六大场景 × 学段分布", figure_paths["stage_scene"])
-    heatmap_chart(bundle.subject_scene, "六大场景 × 学科分布（Top10 学科）", figure_paths["subject_scene"])
-    return figure_paths
+    paths = {}
+    chart_funcs = [
+        ("scene_bar", fig_scene_bar),
+        ("scene_treemap", fig_scene_treemap),
+        ("stage_bar", fig_stage_bar),
+        ("subject_lollipop", fig_subject_lollipop),
+        ("stage_scene_heatmap", fig_stage_scene_heatmap),
+        ("subject_scene_heatmap", fig_subject_scene_heatmap),
+        ("product_type_scene", fig_product_type_scene),
+        ("product_attr_scene", fig_product_attr_scene),
+        ("province_bar", fig_province_bar),
+        ("llm_scene", fig_llm_scene),
+    ]
+    for name, func in chart_funcs:
+        p = FIG_DIR / f"fig_s22_{name}.png"
+        func(bundle, p)
+        paths[name] = p
+    return paths
 
 
-def set_docx_style(doc: Document) -> None:
+# ---------------------------------------------------------------------------
+# DOCX builder
+# ---------------------------------------------------------------------------
+
+def _set_docx_style(doc: Document):
     style = doc.styles["Normal"]
     style.font.name = "宋体"
     style._element.rPr.rFonts.set(qn("w:eastAsia"), "宋体")
     style.font.size = Pt(11)
+    style.font.color.rgb = RGBColor(0x1E, 0x29, 0x3B)
 
 
-def add_paragraph(doc: Document, text: str, bold_prefix: str | None = None) -> None:
-    paragraph = doc.add_paragraph()
+def _add_para(doc, text, bold_prefix=None):
+    p = doc.add_paragraph()
+    p.paragraph_format.line_spacing = Pt(22)
+    p.paragraph_format.space_after = Pt(6)
     if bold_prefix and text.startswith(bold_prefix):
-        run = paragraph.add_run(bold_prefix)
-        run.bold = True
-        paragraph.add_run(text[len(bold_prefix):])
+        r = p.add_run(bold_prefix); r.bold = True
+        p.add_run(text[len(bold_prefix):])
     else:
-        paragraph.add_run(text)
+        p.add_run(text)
 
 
-def build_docx(bundle: AnalysisBundle, figures: dict[str, Path]) -> None:
+def _add_caption(doc, text):
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    r = p.add_run(text)
+    r.font.size = Pt(10); r.bold = True; r.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
+
+
+def _insert_pic(doc, path, width=5.8):
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.add_run().add_picture(str(path), width=Inches(width))
+
+
+def build_docx(bundle: AnalysisBundle, figs: dict[str, Path]):
     doc = Document()
-    set_docx_style(doc)
+    _set_docx_style(doc)
+    s = bundle.summary
+    total = s["total_cases"]
+    sc = pd.Series(s["scene_counts"]).reindex(SCENE_ORDER, fill_value=0)
+    top_scene, top_scene_n = sc.idxmax(), int(sc.max())
+    st = s["stage_counts"]
+    top_stage = next(iter(st)); top_stage_n = st[top_stage]
+    sj = {k: v for k, v in s["subject_counts"].items() if k != "未提及"}
+    top_subj = next(iter(sj)); top_subj_n = sj[top_subj]
+    prov = {k: v for k, v in s["province_counts"].items() if k != "未提及"}
+    top_prov = next(iter(prov)); top_prov_n = prov[top_prov]
 
-    summary = bundle.summary
-    total_cases = summary["case_count"]
-    top_stage, top_stage_count = next(iter(summary["stage_counts"].items()))
-    top_subject, top_subject_count = next(iter({k: v for k, v in summary["subject_counts"].items() if k != "未提及"}.items()))
-    top_province, top_province_count = next(iter({k: v for k, v in summary["province_counts"].items() if k != "未提及"}.items()))
-    scene_counts = pd.Series(summary["scene_counts"]).reindex(SCENE_ORDER).fillna(0)
-    dominant_scene = scene_counts.idxmax()
-    dominant_scene_count = int(scene_counts.max())
-
-    east_count = int(bundle.region_scene.loc["东部"].sum())
-    middle_count = int(bundle.region_scene.loc["中部"].sum())
-    west_count = int(bundle.region_scene.loc["西部"].sum())
-
+    # 2.2 总览
     doc.add_heading("2.2 教育应用类产品应用现状综述", level=1)
-    add_paragraph(
-        doc,
-        f"基于 V6.xlsx 的全量更新，本节重新梳理了教育应用类产品的实践格局。新版工作簿共包含 {summary['sheet_count']} 个 sheets，其中主事实表“（新）processed_results”记录了 {summary['tool_rows']} 条工具级记录，并可回收为 {total_cases} 个案例、{summary['product_count']} 个标准化产品和 {summary['province_count']} 个省级地域单元。与旧版 V5 口径相比，V6 已经不只是底表替换，而是形成了“主事实表 + 场景分类字典 + 产品分类参考 + 头部产品说明 + 省份映射”的完整分析工作簿结构。"
-    )
+    _add_para(doc, f'基于 V6.xlsx 全量更新（主事实表经文件名去重后共 {total} 个独立案例、{s["product_count"]} 个标准化产品、覆盖 {s["province_count"]} 个省级单元），本节从学段学科、应用场景、产品形态和技术路径四个维度，系统梳理 AI 教育应用的实践格局。')
 
+    # 2.2.1
     doc.add_heading("2.2.1 数据基础与工作簿理解", level=2)
-    add_paragraph(
-        doc,
-        f"从工作簿结构看，V6 将项目所需的五类信息整合在同一文件内：一是主事实表“（新）processed_results”，承载案例、产品、学科、场景、省份等核心变量；二是“省份产品”“Sheet1”“Sheet2”等展开表，用于在产品级与案例级之间切换口径；三是“2. 场景驱动分类-表格”“产品分类_教育_参考表”“产品分类_产业_参考表”等字典表，为场景、教育技术、产业链三套分类口径提供统一标准；四是“Top 40产品”“Top40产品-场景简介”“Top”等产品说明表，帮助识别高频产品及其典型应用；五是“省份映射”“Sheet4”等地域补充表，用于完善地区到省份的归一化。"
+    sheet_desc = (
+        'V6 工作簿已形成"主事实表 + 场景分类字典 + 产品分类参考 + 头部产品说明 + 省份映射"'
+        '的完整分析结构。主事实表"（新）processed_results"原始记录 '
+        f'{s["tool_rows"]} 条工具级记录，经按文件名去重后回收为 {total} 个独立案例。'
+        '本节所有分析均基于去重后的案例级口径。'
     )
-    add_paragraph(
-        doc,
-        "这种结构说明，本项目并非单纯的案例汇编，而是围绕“案例事实、产品标准化、场景分类、产业分类、地域映射”建立了可复用的研究数据底座。Section 2.2 的更新因此不再沿用旧版写死数字，而是直接从 V6 的主事实表和字典表同步生成。"
-    )
+    _add_para(doc, sheet_desc)
 
+    # 2.2.2
     doc.add_heading("2.2.2 学段学科角度：应用落地的主阵地", level=2)
-    add_paragraph(
-        doc,
-        f"从案例级口径看，{top_stage}仍是 AI 教育应用最集中的落地学段，共 {top_stage_count} 例，占全部案例的 {pct(top_stage_count, total_cases)}。其后依次为初中和高中，说明当前实践仍主要围绕义务教育与升学关键阶段展开。跨学段或全学段案例虽已出现，但总体体量仍明显小于单一学段场景，反映出产品适配仍以具体教学组织单元为主，而非完全通用化部署。"
-    )
-    add_paragraph(
-        doc,
-        f"学科维度同样表现出显著集中性。{top_subject}以 {top_subject_count} 例位居首位，语文、英语、科学、物理等学科随后跟进，表明当前 AI 应用最容易切入的是既存在高频教学任务、又便于形成标准化反馈的数据密集型学科。与之相比，美术、体育、心理健康等素养型领域虽然总体体量较小，但在特定场景中已形成较强特色，说明项目正在从“主科增效”向“多学科延展”过渡。"
-    )
-    insert_picture(doc, figures["stage"])
-    add_caption(doc, "图2-1 V6 案例学段分布")
-    insert_picture(doc, figures["subject"])
-    add_caption(doc, "图2-2 V6 案例学科 Top10")
+    _add_para(doc, f'从案例级口径看，{top_stage}是 AI 教育应用最集中的落地学段，共 {top_stage_n} 例（{pct(top_stage_n, total)}）。初中、高中紧随其后，说明实践主要围绕义务教育与升学关键阶段展开。跨学段案例虽已出现但体量仍小于单一学段，反映出产品适配仍以具体教学组织单元为主。')
+    _add_para(doc, f'{top_subj}以 {top_subj_n} 例位居首位，语文、英语、科学等学科随后跟进，表明 AI 应用最容易切入的是既有高频教学任务、又便于形成标准化反馈的数据密集型学科。美术、体育等素养型领域在特定场景中已形成较强特色，说明正在从"主科增效"向"多学科延展"过渡。')
+    _insert_pic(doc, figs["stage_bar"])
+    _add_caption(doc, "图2-1 案例学段分布")
+    _insert_pic(doc, figs["subject_lollipop"])
+    _add_caption(doc, "图2-2 案例学科 Top 10")
 
-    doc.add_heading("2.2.3 区域角度：东部领跑，中西部加速跟进", level=2)
-    add_paragraph(
-        doc,
-        f"区域维度上，东部样本仍保持绝对领先，东部、中部、西部分别对应 {east_count}、{middle_count}、{west_count} 个案例。若按案例来源省份观察，{top_province}以 {top_province_count} 例位列第一，说明头部省份仍在以平台建设、课程整合和区域推进三种方式同步放大案例产出。"
-    )
-    add_paragraph(
-        doc,
-        "值得注意的是，中西部并未停留在零散试点状态。V6 中，西部样本已在助学、助教、助评、助育等多个场景形成可观分布，反映出 AI 应用正在从东部先行试验转向更广范围的跨区域扩散。区域差异仍然存在，但差异的核心已不再是“有没有”，而是“主要集中在哪些场景、以何种形态部署”。"
-    )
-    insert_picture(doc, figures["province"])
-    add_caption(doc, "图2-3 V6 案例量最高的 10 个省份")
-
-    doc.add_heading("2.2.4 场景角度：一级场景结构先行呈现", level=2)
-    add_paragraph(
-        doc,
-        f"按照你的要求，本轮正文中的场景表先仅保留一级场景。V6 显示，{dominant_scene}仍然是最核心的应用方向，共 {dominant_scene_count} 例，占全部案例的 {pct(dominant_scene_count, total_cases)}。其后依次是助教、助评、助育、助管和助研，整体呈现“以学生学习支持为主轴、以教师赋能和评价改革为次主线、以治理与研究场景为长尾”的结构特征。"
-    )
-    add_paragraph(
-        doc,
-        "进一步看，一级场景之下的二级场景已经开始分化出相对清晰的功能重心：助学主要集中在智能辅导系统、情境式学习与智能作业设计；助教则聚焦教学分析、作业管理与课堂管理；助评明显向综合素质评价与学生评估集中；助育主要围绕智能心理支持和德育/家庭教育指导展开；助管与助研则保持较小规模，但已显现出学生信息管理、校园治理和科研辅助等明确切口。"
-    )
-
-    table = doc.add_table(rows=1, cols=4)
-    table.style = "Table Grid"
-    header = table.rows[0].cells
-    header[0].text = "一级应用场景"
-    header[1].text = "案例数"
-    header[2].text = "占比"
-    header[3].text = "核心二级场景提要"
+    # 2.2.3
+    doc.add_heading("2.2.3 场景角度：一级场景结构与占比", level=2)
+    _add_para(doc, f'{top_scene}是最核心的应用方向（{top_scene_n} 例，{pct(top_scene_n, total)}），其后依次是助教、助评、助育、助管、助研，整体呈现"以学生学习支持为主轴、以教师赋能和评价改革为次主线、以治理与研究为长尾"的结构特征。')
+    tbl = doc.add_table(rows=1, cols=4, style="Table Grid")
+    for i, h in enumerate(["一级场景", "案例数", "占比", "核心二级场景"]):
+        tbl.rows[0].cells[i].text = h
     for scene in SCENE_ORDER:
-        row = table.add_row().cells
-        count = int(scene_counts[scene])
-        row[0].text = scene
-        row[1].text = str(count)
-        row[2].text = pct(count, total_cases)
-        row[3].text = "；".join(bundle.summary["top_l2_by_l1"].get(scene, [])) or "-"
+        cnt = int(sc[scene])
+        row = tbl.add_row().cells
+        row[0].text = scene; row[1].text = str(cnt)
+        row[2].text = pct(cnt, total)
+        row[3].text = "；".join(s["top_l2_by_l1"].get(scene, [])) or "-"
+    _insert_pic(doc, figs["scene_bar"])
+    _add_caption(doc, "图2-3 六大一级应用场景分布")
+    _insert_pic(doc, figs["scene_treemap"])
+    _add_caption(doc, "图2-4 六大应用场景占比（Treemap）")
 
-    insert_picture(doc, figures["scene"])
-    add_caption(doc, "图2-4 V6 六大一级应用场景分布")
+    # 2.2.4
+    doc.add_heading("2.2.4 多因素交叉分析", level=2)
+    _add_para(doc, "为揭示不同维度之间的互动模式，本节对学段×场景、学科×场景、产品分类×场景、产品属性×场景、大模型渗透×场景进行交叉透视分析。")
 
-    doc.add_heading("2.2.5 综合判断：从单点应用转向结构分化", level=2)
-    add_paragraph(
-        doc,
-        "综合学段、学科、区域和场景四个维度，可以将当前 AI 教育应用概括为三点。第一，应用主阵地仍在小学与主干学科，但多学科扩散趋势已经出现。第二，东部仍是高密度集聚区，但中西部正在通过标准化平台和通用模型快速补位。第三，六大场景已不再是单纯的“助学独大”，而是开始沿着教师赋能、评价改革、心理支持和教育治理等方向展开结构性分化。"
-    )
-    add_paragraph(
-        doc,
-        "也正因为如此，本次额外生成的两页 PPT 不再重复总体分布，而是专门聚焦六大场景在区域、学段、学科上的交叉分布，用于把场景结构从“总体占比”进一步推进到“在哪里发生、由谁使用、集中在哪些教育单元”这一层。"
-    )
+    doc.add_heading("（1）学段 × 场景", level=3)
+    dom_stage = {sc_name: bundle.stage_scene[sc_name].idxmax() for sc_name in SCENE_ORDER if bundle.stage_scene[sc_name].sum() > 0}
+    stage_mapping = '、'.join(f'{k}\u2192{v}' for k, v in dom_stage.items())
+    _add_para(doc, f'热力图显示，助学在小学学段最为集中，助教在小学和初中均有大量案例，助评和助育则在小学和幼儿园阶段呈现较高活跃度。各场景的主力学段分别为：{stage_mapping}。')
+    _insert_pic(doc, figs["stage_scene_heatmap"])
+    _add_caption(doc, "图2-5 学段 × 应用场景 交叉热力图")
+
+    doc.add_heading("（2）学科 × 场景", level=3)
+    dom_subj = {sc_name: bundle.subject_scene[sc_name].idxmax() for sc_name in SCENE_ORDER if bundle.subject_scene[sc_name].sum() > 0}
+    subj_mapping = '、'.join(f'{k}\u2192{v}' for k, v in dom_subj.items())
+    _add_para(doc, f'Top10 学科与场景的交叉分布进一步揭示了学科偏好差异：{subj_mapping}。数学、语文、英语在助学场景中占据主体，美术和体育则在助教场景呈现特色。')
+    _insert_pic(doc, figs["subject_scene_heatmap"])
+    _add_caption(doc, "图2-6 Top10 学科 × 应用场景 交叉热力图")
+
+    doc.add_heading("（3）产品分类 × 场景", level=3)
+    _add_para(doc, '产品分类维度显示，平台型综合系统在所有场景中均占据主体地位，Web 教学平台（SaaS）是第二大产品形态。教学辅助工具在助学场景中有较高渗透率，AI 能力/模型/API 层产品虽然总量有限但在助学和助教中已有明显应用。')
+    _insert_pic(doc, figs["product_type_scene"])
+    _add_caption(doc, "图2-7 产品分类 × 应用场景 交叉分布")
+
+    doc.add_heading("（4）产品属性 × 场景", level=3)
+    _add_para(doc, "AI 智能体是最主要的产品属性类型，在所有六大场景中均居首位。大语言模型型产品在助学场景的渗透率最高，反映出生成式 AI 正在成为学习辅助的核心技术路径。")
+    _insert_pic(doc, figs["product_attr_scene"])
+    _add_caption(doc, "图2-8 产品属性 × 应用场景 分布")
+
+    doc.add_heading("（5）大模型渗透 × 场景", level=3)
+    llm_yes = bundle.llm_scene.loc["是"].sum() if "是" in bundle.llm_scene.index else 0
+    llm_total = bundle.llm_scene.sum().sum()
+    _add_para(doc, f'大模型产品在全部场景中的渗透率为 {pct(llm_yes, llm_total)}。从场景分布看，助学是大模型渗透最高的场景，助研和助管中大模型占比相对较低，反映出大模型应用目前仍以直接面向师生的教学场景为主。')
+    _insert_pic(doc, figs["llm_scene"])
+    _add_caption(doc, "图2-9 大模型 vs 非大模型 × 应用场景")
+
+    # 2.2.5
+    doc.add_heading("2.2.5 省份分布", level=2)
+    _add_para(doc, f"按省份统计，{top_prov}以 {top_prov_n} 例位列首位，头部省份以平台建设、课程整合和区域推进三种方式同步放大案例产出。")
+    _insert_pic(doc, figs["province_bar"])
+    _add_caption(doc, "图2-10 案例量最高的 10 个省份")
+
+    # 2.2.6
+    doc.add_heading("2.2.6 综合判断：从单点应用转向结构分化", level=2)
+    _add_para(doc, "综合学段、学科、场景、产品形态和技术路径五个维度，当前 AI 教育应用可概括为三个趋势：")
+    _add_para(doc, "第一，应用主阵地仍在小学与主干学科，但多学科、多学段扩散趋势已经显现。")
+    _add_para(doc, '第二，六大场景已从"助学独大"向"多场景并行"演化，助教、助评、助育正在成为新的增长极。')
+    _add_para(doc, "第三，产品形态以平台型和 SaaS 为主体，AI 智能体和大模型正在加速渗透，特别是在助学场景中大模型已形成显著份额，预示着生成式 AI 将深刻重塑未来教育应用的技术路径。")
 
     doc.save(DOCX_PATH)
+    print(f"[DOCX] 已生成 {DOCX_PATH}")
 
 
-def add_textbox(slide, left: float, top: float, width: float, height: float, text: str, font_size: int = 18, bold: bool = False) -> None:
+# ---------------------------------------------------------------------------
+# PPTX builder
+# ---------------------------------------------------------------------------
+
+def _add_tb(slide, left, top, width, height, text, size=18, bold=False, color=None, align=PP_ALIGN.LEFT):
     box = slide.shapes.add_textbox(PptInches(left), PptInches(top), PptInches(width), PptInches(height))
-    frame = box.text_frame
-    frame.word_wrap = True
-    paragraph = frame.paragraphs[0]
-    paragraph.text = text
-    paragraph.font.size = PptPt(font_size)
-    paragraph.font.bold = bold
-    paragraph.font.name = "PingFang SC"
+    tf = box.text_frame; tf.word_wrap = True
+    p = tf.paragraphs[0]; p.text = text
+    p.font.size = PptPt(size); p.font.bold = bold; p.font.name = "Microsoft YaHei"
+    p.alignment = align
+    if color:
+        p.font.color.rgb = PptRGB(*color)
 
 
-def build_ppt(bundle: AnalysisBundle, figures: dict[str, Path]) -> None:
-    presentation = Presentation()
-    presentation.slide_width = PptInches(13.333)
-    presentation.slide_height = PptInches(7.5)
+def _add_pic(slide, path, left, top, width=None, height=None):
+    kwargs = {}
+    if width: kwargs["width"] = PptInches(width)
+    if height: kwargs["height"] = PptInches(height)
+    slide.shapes.add_picture(str(path), PptInches(left), PptInches(top), **kwargs)
 
-    scene_counts = pd.Series(bundle.summary["scene_counts"]).reindex(SCENE_ORDER).fillna(0)
-    region_top = bundle.region_scene.loc[["东部", "中部", "西部"]]
-    east_share = pct(region_top.loc["东部"].sum(), region_top.to_numpy().sum())
-    dominant_stage = {scene: bundle.stage_scene[scene].idxmax() for scene in SCENE_ORDER if bundle.stage_scene[scene].sum() > 0}
-    dominant_subject = {scene: bundle.subject_scene[scene].idxmax() for scene in SCENE_ORDER if bundle.subject_scene[scene].sum() > 0}
 
-    slide = presentation.slides.add_slide(presentation.slide_layouts[6])
-    add_textbox(slide, 0.45, 0.18, 12.3, 0.45, "六大场景统计：区域分布", 24, True)
-    add_textbox(slide, 0.48, 0.62, 12.0, 0.35, f"数据口径：V6.xlsx 案例级去重样本 {bundle.summary['case_count']} 例；场景按一级分类统计", 11)
-    slide.shapes.add_picture(str(figures["region_scene"]), PptInches(0.45), PptInches(1.05), width=PptInches(8.2))
-    slide.shapes.add_picture(str(figures["scene"]), PptInches(8.95), PptInches(1.12), width=PptInches(3.95))
-    insight_text = (
-        f"1. 东部承载 {east_share} 的场景案例总量，是六大场景共同的主集聚区。\n"
-        f"2. 场景总体仍以{scene_counts.idxmax()}为主，案例数 {int(scene_counts.max())}。\n"
-        f"3. 中西部已在助教、助评、助育等场景形成可见扩散，不再只是单一助学渗透。"
+def build_pptx(bundle: AnalysisBundle, figs: dict[str, Path]):
+    prs = Presentation()
+    prs.slide_width = PptInches(13.333); prs.slide_height = PptInches(7.5)
+    blank = prs.slide_layouts[6]
+    s = bundle.summary
+    total = s["total_cases"]
+    sc = pd.Series(s["scene_counts"]).reindex(SCENE_ORDER, fill_value=0)
+    st = s["stage_counts"]
+    top_st = next(iter(st))
+    sj = {k: v for k, v in s["subject_counts"].items() if k != "未提及"}
+    top_sj = next(iter(sj))
+    prov = {k: v for k, v in s["province_counts"].items() if k != "未提及"}
+    top_prov = next(iter(prov)); top_prov_n = prov[top_prov]
+    llm_yes = bundle.llm_scene.loc["是"].sum() if "是" in bundle.llm_scene.index else 0
+    llm_all = bundle.llm_scene.sum().sum()
+
+    # Slide 1: 封面
+    sl = prs.slides.add_slide(blank)
+    _add_tb(sl, 1.0, 1.5, 11.3, 1.2, "2.2 教育应用类产品应用现状综述", 36, True, (0x1E, 0x29, 0x3B), PP_ALIGN.CENTER)
+    _add_tb(sl, 1.0, 3.0, 11.3, 0.8,
+            f"数据口径：V6.xlsx · 按文件名去重后 {total} 个独立案例 · {s['product_count']} 个标准化产品 · 覆盖 {s['province_count']} 个省份",
+            14, False, (0x64, 0x74, 0x8B), PP_ALIGN.CENTER)
+
+    # Slide 2: 场景概览
+    sl = prs.slides.add_slide(blank)
+    _add_tb(sl, 0.4, 0.15, 12.5, 0.5, "六大应用场景概览", 26, True, (0x1E, 0x29, 0x3B))
+    _add_pic(sl, figs["scene_bar"], 0.3, 0.8, width=6.8)
+    _add_pic(sl, figs["scene_treemap"], 7.2, 0.8, width=5.8)
+    insight = (f"• {sc.idxmax()}场景占比 {pct(int(sc.max()), total)}，是最核心应用方向\n"
+               f"• 助教（{int(sc['助教'])}例）、助评（{int(sc['助评'])}例）构成第二梯队\n"
+               f"• 助育、助管、助研等长尾场景已形成明确功能切口")
+    _add_tb(sl, 0.5, 6.5, 12.0, 0.9, insight, 11, False, (0x47, 0x55, 0x69))
+
+    # Slide 3: 学段与学科
+    sl = prs.slides.add_slide(blank)
+    _add_tb(sl, 0.4, 0.15, 12.5, 0.5, "学段与学科分布", 26, True, (0x1E, 0x29, 0x3B))
+    _add_pic(sl, figs["stage_bar"], 0.3, 0.75, width=6.3)
+    _add_pic(sl, figs["subject_lollipop"], 6.8, 0.75, width=6.2)
+    st = s["stage_counts"]; top_st = next(iter(st))
+    sj = {k: v for k, v in s["subject_counts"].items() if k != "未提及"}; top_sj = next(iter(sj))
+    _add_tb(sl, 0.5, 6.5, 12.0, 0.9,
+            f"• {top_st}是最主要落地学段（{st[top_st]}例） • {top_sj}是最高频学科（{sj[top_sj]}例） • 多学科扩散趋势已显现",
+            11, False, (0x47, 0x55, 0x69))
+
+    # Slide 4: 多因素交叉 1
+    sl = prs.slides.add_slide(blank)
+    _add_tb(sl, 0.4, 0.15, 12.5, 0.5, "多因素交叉分析：学段×场景 & 学科×场景", 24, True, (0x1E, 0x29, 0x3B))
+    _add_pic(sl, figs["stage_scene_heatmap"], 0.3, 0.75, width=6.3)
+    _add_pic(sl, figs["subject_scene_heatmap"], 6.8, 0.75, width=6.2)
+    dom_st = {k: bundle.stage_scene[k].idxmax() for k in SCENE_ORDER if bundle.stage_scene[k].sum() > 0}
+    lines = [f"• {k}场景集中在{v}学段" for k, v in list(dom_st.items())[:3]]
+    _add_tb(sl, 0.5, 6.5, 12.0, 0.9, " ".join(lines), 11, False, (0x47, 0x55, 0x69))
+
+    # Slide 5: 多因素交叉 2
+    sl = prs.slides.add_slide(blank)
+    _add_tb(sl, 0.4, 0.15, 12.5, 0.5, "产品分类 × 场景 & 产品属性 × 场景 & 大模型对比", 22, True, (0x1E, 0x29, 0x3B))
+    _add_pic(sl, figs["product_type_scene"], 0.2, 0.75, width=4.3)
+    _add_pic(sl, figs["product_attr_scene"], 4.6, 0.75, width=4.3)
+    _add_pic(sl, figs["llm_scene"], 9.0, 0.75, width=4.1)
+    llm_yes = bundle.llm_scene.loc["是"].sum() if "是" in bundle.llm_scene.index else 0
+    llm_all = bundle.llm_scene.sum().sum()
+    _add_tb(sl, 0.5, 6.5, 12.0, 0.9,
+            f"• 平台型系统主导所有场景 • AI智能体占据最大份额 • 大模型渗透率 {pct(llm_yes, llm_all)}，助学场景最高",
+            11, False, (0x47, 0x55, 0x69))
+
+    # Slide 6: 综合判断
+    sl = prs.slides.add_slide(blank)
+    _add_tb(sl, 0.4, 0.15, 12.5, 0.5, "综合判断", 28, True, (0x1E, 0x29, 0x3B))
+    _add_pic(sl, figs["province_bar"], 0.3, 0.75, width=6.0)
+    conclusions = (
+        "核心洞见\n\n"
+        f"1. 应用主阵地：{top_st}学段 + {top_sj}学科，但多学科扩散趋势已现\n\n"
+        f'2. 场景分化：从"助学独大"（{pct(int(sc.max()), total)}）向助教、助评、助育多线并行演化\n\n'
+        f"3. 产品形态：平台型 + SaaS 是主体，AI智能体是最主要产品属性\n\n"
+        f"4. 技术路径：大模型渗透率 {pct(llm_yes, llm_all)}，在助学场景最为突出\n\n"
+        f"5. 地域格局：{top_prov}以 {top_prov_n} 例领跑，头部省份持续扩大应用规模"
     )
-    add_textbox(slide, 8.95, 5.1, 3.95, 1.7, insight_text, 13)
+    _add_tb(sl, 6.5, 0.75, 6.5, 5.8, conclusions, 14, False, (0x1E, 0x29, 0x3B))
 
-    slide = presentation.slides.add_slide(presentation.slide_layouts[6])
-    add_textbox(slide, 0.45, 0.18, 12.3, 0.45, "六大场景统计：学段与学科分布", 24, True)
-    add_textbox(slide, 0.48, 0.62, 12.0, 0.35, "左侧为学段×场景热力图，右侧为 Top10 学科×场景热力图", 11)
-    slide.shapes.add_picture(str(figures["stage_scene"]), PptInches(0.45), PptInches(1.0), width=PptInches(6.2))
-    slide.shapes.add_picture(str(figures["subject_scene"]), PptInches(6.85), PptInches(1.0), width=PptInches(5.95))
-    summary_lines = [
-        f"- {scene}最集中学段：{dominant_stage.get(scene, '未提及')}；最集中学科：{dominant_subject.get(scene, '未提及')}"
-        for scene in SCENE_ORDER
-    ]
-    add_textbox(slide, 0.55, 6.35, 12.0, 0.8, "\n".join(summary_lines[:3]), 10)
-    add_textbox(slide, 6.85, 6.35, 5.95, 0.8, "\n".join(summary_lines[3:]), 10)
-
-    presentation.save(PPTX_PATH)
+    prs.save(PPTX_PATH)
+    print(f"[PPTX] 已生成 {PPTX_PATH}")
 
 
-def main() -> None:
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
+def main():
     configure_matplotlib()
+    print("=" * 60)
+    print("Section 2.2 资产生成：开始")
+    print("=" * 60)
     bundle = load_bundle()
-    save_workbook_summary(bundle)
-    figures = generate_figures(bundle)
-    build_docx(bundle, figures)
-    build_ppt(bundle, figures)
-    print(f"Generated docx: {DOCX_PATH}")
-    print(f"Generated pptx: {PPTX_PATH}")
-    print(f"Workbook summary: {SUMMARY_PATH}")
+    figs = generate_figures(bundle)
+    build_docx(bundle, figs)
+    build_pptx(bundle, figs)
+    print("=" * 60)
+    print("全部完成！")
+    print(f"  DOCX: {DOCX_PATH}")
+    print(f"  PPTX: {PPTX_PATH}")
+    print(f"  图表: {FIG_DIR}")
+    print("=" * 60)
 
 
 if __name__ == "__main__":
