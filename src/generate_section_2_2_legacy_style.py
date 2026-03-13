@@ -407,8 +407,11 @@ def build_word_doc(data: LegacyBundle) -> None:
     main_subject = next((item for item in top_subject_counts.index if item != "未提及"), "语文")
     main_subject_count = int(top_subject_counts[main_subject])
     top_provinces = cases["省份_标准"].dropna().value_counts().head(4)
+    top4_province_share = top_provinces.sum() / total_cases if total_cases else 0
     top_scene = pd.Series(summary["scene_counts"]).reindex(SCENE_ORDER).idxmax()
     top_scene_count = int(pd.Series(summary["scene_counts"]).reindex(SCENE_ORDER).max())
+    scene_ranked = pd.Series(summary["scene_counts"]).sort_values(ascending=False)
+    top2_scene_share = scene_ranked.head(2).sum() / scene_ranked.sum() if scene_ranked.sum() else 0
     east_cases = int((cases["区域"] == "东部").sum())
     middle_cases = int((cases["区域"] == "中部").sum())
     west_cases = int((cases["区域"] == "西部").sum())
@@ -452,7 +455,7 @@ def build_word_doc(data: LegacyBundle) -> None:
     add_bold_lead(
         doc,
         "第一，东部极化与“生态构建阶段”到来。",
-        f" 在案例省域分布地图中，深色高频区域仍高度集中，{list_phrase(top_provinces.index.tolist(), 4)}构成当前最明显的头部省域板块。东部地区样本达到{east_cases}例，显著高于中部的{middle_cases}例和西部的{west_cases}例，说明领先地区已经从单点试用转向平台、模型与教学流程的复合整合。",
+        f" 在案例省域分布地图中，深色高频区域仍高度集中，{list_phrase(top_provinces.index.tolist(), 4)}构成当前最明显的头部省域板块，四省市合计占全部案例的{pct(top4_province_share, 1)}。东部地区样本达到{east_cases}例，显著高于中部的{middle_cases}例和西部的{west_cases}例，说明领先地区已经从单点试用转向平台、模型与教学流程的复合整合。",
     )
     add_bold_lead(
         doc,
@@ -466,13 +469,16 @@ def build_word_doc(data: LegacyBundle) -> None:
     )
     insert_picture(doc, LEGACY_FIGURES["province"])
     add_caption(doc, "图1 案例省域分布地图")
+    doc.add_paragraph(
+        "综合来看，当前区域差异的核心已经不只是案例总量高低，而是区域内部是否形成了稳定的产品组合与协同应用路径。东部更接近生态化整合阶段，中部处于平台化稳步推进阶段，西部则仍以头部通用产品牵引的导入式应用为主。"
+    )
 
     doc.add_heading("2.2.3 场景角度：核心应用结构", level=2)
     doc.add_paragraph("对案例应用场景的分类剖析揭示了当前AI赋能教育的深层次偏向（见图4）：")
     add_bold_lead(
         doc,
         "首先，教育智能应用呈现显著的“助学主导”结构。",
-        f" V6 案例中，{top_scene}场景共有{top_scene_count}例，占全部案例的{pct(top_scene_count, total_cases)}。在应用场景树图中，它仍然以压倒性的面积占据画面核心，说明当前 AI 教育应用最成熟、最常见的切口，依然是直接面向学生学习过程的支持性场景。",
+        f" V6 案例中，{top_scene}场景共有{top_scene_count}例，占全部案例的{pct(top_scene_count, total_cases)}；前两大场景合计占比达到{pct(top2_scene_share, 1)}。在应用场景树图中，它仍然以压倒性的面积占据画面核心，说明当前 AI 教育应用并不是平均铺开，而是已经形成非常明确的主航道与次主航道。",
     )
     add_bold_lead(
         doc,
@@ -510,6 +516,9 @@ def build_word_doc(data: LegacyBundle) -> None:
             add_subject_bullet(doc, subject_name, subject_top[subject_name])
     insert_picture(doc, LEGACY_FIGURES["subject_product"])
     add_caption(doc, "图7 核心学科与头部AI产品联动应用热力图")
+    doc.add_paragraph(
+        "三维交叉结果表明，真正值得关注的已不是某个产品是否高频出现，而是它是否在特定区域、特定学段、特定学科中形成了稳定的联动优势。换言之，下一阶段竞争的核心不是通用热度，而是教育场景控制力。"
+    )
 
     doc.add_heading("数据与代码使用说明（供核查参考）", level=3)
     doc.add_paragraph("为确保各项统计分析客观、精准溯源，本章节以上统计逻辑与作图说明如下：")
@@ -620,20 +629,34 @@ def build_ppt(data: LegacyBundle, figures: dict[str, Path]) -> None:
     scene_counts = pd.Series(summary["scene_counts"]).reindex(SCENE_ORDER)
     dominant_scene = scene_counts.idxmax()
     dominant_scene_count = int(scene_counts.max())
-    east_share = data.region_scene_pct.loc["东部"].sum()
+    scene_ranked = pd.Series(summary["scene_counts"]).sort_values(ascending=False)
+    top2_scene_share = scene_ranked.head(2).sum() / scene_ranked.sum() if scene_ranked.sum() else 0
     scene_profiles = data.scene_profiles.sort_values("case_count", ascending=False)
     scene_product_pct = data.scene_product.div(data.scene_product.sum(axis=1).replace(0, 1), axis=0).mul(100)
+    province_counts = data.cases["省份_标准"].dropna().value_counts()
+    top_provinces = data.cases["省份_标准"].dropna().value_counts().head(4)
+    top4_province_share = top_provinces.sum() / summary["case_count"] if summary["case_count"] else 0
+    east_cases = int((data.cases["区域"] == "东部").sum())
+    middle_cases = int((data.cases["区域"] == "中部").sum())
+    west_cases = int((data.cases["区域"] == "西部").sum())
+    east_top = data.region_product.loc["东部"].sort_values(ascending=False)
+    middle_top = data.region_product.loc["中部"].sort_values(ascending=False)
+    west_top = data.region_product.loc["西部"].sort_values(ascending=False)
+    east_top3_share = east_top.head(3).sum() / east_top.sum() if east_top.sum() else 0
+    middle_top3_share = middle_top.head(3).sum() / middle_top.sum() if middle_top.sum() else 0
+    west_top3_share = west_top.head(3).sum() / west_top.sum() if west_top.sum() else 0
+    subject_scene_pct = pd.crosstab(data.cases["学科"].fillna("未提及"), data.cases["应用场景（一级）"], normalize="columns").mul(100)
 
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_background(slide, PPT_THEME["bg"])
     add_text(slide, 0.62, 0.48, 6.8, 0.6, "Section 2.2 教育应用现状综述", 28, True)
-    add_text(slide, 0.64, 1.06, 7.2, 0.52, "旧版正文风格更新到 V6 口径，并补充结构分化与产品控制力洞见", 14, False, PPT_THEME["muted"])
+    add_text(slide, 0.64, 1.06, 7.2, 0.52, "当前 Word 2.2 结论同步升级为公开宣讲版：观点更锋利，证据更集中，落点更适合大型场合表达", 14, False, PPT_THEME["muted"])
     add_metric_card(slide, 0.72, 1.9, "案例数", str(summary["case_count"]), PPT_THEME["accent"])
     add_metric_card(slide, 2.9, 1.9, "工具记录", str(summary["tool_rows"]), PPT_THEME["olive"])
     add_metric_card(slide, 5.08, 1.9, "标准化产品", str(summary["product_count"]), PPT_THEME["accent"])
     add_metric_card(slide, 7.26, 1.9, "覆盖省份", str(summary["province_count"]), PPT_THEME["olive"])
     add_panel(slide, 0.72, 3.34, 6.95, 2.88)
-    add_text(slide, 1.0, 3.64, 6.2, 1.8, "这份汇报不再重复总量结论，而是回答三个更关键的问题：\n1. 六大场景是不是已经进入结构分化期？\n2. 区域差异到底体现为总量差异，还是场景结构差异？\n3. 哪些产品已经在不同场景中形成控制力？", 18)
+    add_text(slide, 1.0, 3.64, 6.2, 1.9, "这份汇报要回答的不是“AI 有没有进校园”，而是三件更重要的事：\n1. 为什么七成以上案例仍集中在助学，但我们已经不能只讲助学？\n2. 为什么区域差异的本质，不是有没有接入，而是谁先形成了稳定的产品组合？\n3. 为什么下一阶段真正的竞争，不在模型热度，而在教育场景控制力？", 17)
     slide.shapes.add_picture(str(LEGACY_FIGURES["scenario"]), PptInches(8.2), PptInches(1.52), width=PptInches(4.35))
     cover_notes = (
         f"这一页先交代口径和结论框架。当前 V6 一共包含 {summary['case_count']} 个去重案例、{summary['tool_rows']} 条工具记录。"
@@ -644,39 +667,44 @@ def build_ppt(data: LegacyBundle, figures: dict[str, Path]) -> None:
 
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_background(slide, PPT_THEME["bg"])
-    add_text(slide, 0.68, 0.4, 8.0, 0.5, "一、六大场景已经进入“扩散广度 × 教学复杂度”分化期", 24, True)
+    add_text(slide, 0.68, 0.4, 8.4, 0.5, "一、真正的变化不是场景变多，而是主航道已经收敛出来", 24, True)
     add_text(slide, 0.7, 0.92, 8.2, 0.32, "横轴看覆盖省份数，纵轴看涉及学科数，气泡大小看场景案例规模", 12, False, PPT_THEME["muted"])
     add_panel(slide, 0.64, 1.32, 7.2, 5.55)
     slide.shapes.add_picture(str(figures["scene_bubble"]), PptInches(0.86), PptInches(1.58), width=PptInches(6.75))
     add_panel(slide, 8.14, 1.32, 4.45, 5.55)
-    add_text(slide, 8.44, 1.68, 3.85, 1.5, f"助学仍然保持最大规模，当前达到 {dominant_scene_count} 例，但它已经不是唯一增长方向。助教、助评和助育虽然体量较小，却明显向更高复杂度任务延伸。", 17)
-    add_text(slide, 8.44, 3.48, 3.7, 2.4, f"最值得关注的是右上象限：如果某一场景同时具备更高的省份覆盖和学科覆盖，就说明它不仅能做，而且开始在不同教育单元中可复制。当前最接近这一状态的，已经不只是 {dominant_scene}。", 17)
+    add_text(slide, 8.44, 1.62, 3.85, 1.75, f"助学单一场景就占到 {pct(dominant_scene_count, scene_ranked.sum())}，而助学+助教合计达到 {pct(top2_scene_share, 1)}。这说明行业已经不是“六路并进”，而是从泛试点走向主航道收敛。", 16)
+    add_text(slide, 8.44, 3.62, 3.7, 2.05, f"但收敛不等于单一。助教、助评、助育虽然体量小，却在省份覆盖与学科覆盖上持续抬升，意味着更高复杂度的教学系统场景正在进入可复制阶段。", 16)
     bubble_notes = (
-        "这张图的重点不是谁最大，而是谁开始变得更复杂、更可复制。"
-        f"{scene_profiles.index[0]}规模最大，但助教、助评、助育这些场景的扩散广度正在抬升，说明 AI 应用正从单一学生支持转向教学、评价和治理的多支点演化。"
+        f"这张图最值得讲的，不是 {dominant_scene} 最大，而是它虽然占了 {pct(dominant_scene_count, scene_ranked.sum())}，却已经不能代表全部趋势。"
+        f"前两大场景合计 {pct(top2_scene_share, 1)}，说明行业正在出现主航道；与此同时，助评、助育等更复杂场景在覆盖广度上抬升，说明 AI 教育应用开始从学生支持走向教学系统深处。"
     )
     add_notes(slide, bubble_notes)
-    notes_sections.append(slide_notes_markdown("Slide 2 场景扩散矩阵", bubble_notes))
+    notes_sections.append(slide_notes_markdown("Slide 2 主航道收敛", bubble_notes))
 
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_background(slide, PPT_THEME["bg"])
-    add_text(slide, 0.68, 0.4, 7.8, 0.5, "二、区域差异正在从“有没有”转向“结构长什么样”", 24, True)
-    add_text(slide, 0.7, 0.92, 8.2, 0.32, "把每个区域内部标准化到 100%，就能看清场景结构而不仅是总量大小", 12, False, PPT_THEME["muted"])
-    add_panel(slide, 0.64, 1.32, 7.35, 5.55)
-    slide.shapes.add_picture(str(figures["region_structure"]), PptInches(0.88), PptInches(1.58), width=PptInches(6.9))
-    add_panel(slide, 8.2, 1.32, 4.38, 5.55)
-    add_text(slide, 8.48, 1.72, 3.78, 1.5, "东部依然是绝对主集聚区，但更重要的是，它在助教、助评、助育这些非助学场景中的占比更高，说明它已经开始从规模领先切向结构领先。", 17)
-    add_text(slide, 8.48, 3.55, 3.78, 1.95, "中西部并非没有 AI，而是更集中在可快速落地、低门槛的场景。换句话说，后发地区当前最显著的任务不是扩大总量，而是推进场景结构升级。", 17)
+    add_text(slide, 0.68, 0.4, 8.6, 0.5, "二、区域空间格局已经呈现“东部生态化、中部平台化、西部导入期”", 24, True)
+    add_text(slide, 0.7, 0.92, 9.4, 0.32, "直接复用 Word 2.2.2 的当前论证链：省域分布地图负责看总量，区域×产品热力图负责看组合结构", 12, False, PPT_THEME["muted"])
+    add_panel(slide, 0.64, 1.3, 6.0, 2.3)
+    slide.shapes.add_picture(str(LEGACY_FIGURES["province"]), PptInches(0.88), PptInches(1.54), width=PptInches(5.5))
+    add_panel(slide, 0.64, 3.9, 6.0, 2.95)
+    slide.shapes.add_picture(str(LEGACY_FIGURES["region_product"]), PptInches(0.88), PptInches(4.12), width=PptInches(5.5))
+    add_panel(slide, 6.92, 1.3, 5.66, 5.55)
+    add_text(slide, 7.22, 1.66, 5.02, 0.72, "这页不再谈抽象的“结构长什么样”，而是直接给出当前 Word 已经成立的三条证据链。", 16, True, PPT_THEME["accent"])
+    add_text(slide, 7.22, 2.32, 5.0, 1.18, f"1. 头部板块已经非常集中。{list_phrase(top_provinces.index.tolist(), 4)}四省市合计占全部案例的{pct(top4_province_share, 1)}，这意味着全国应用并不是均匀铺开，而是由少数头部区域牵引。", 15)
+    add_text(slide, 7.22, 3.76, 5.0, 1.02, f"2. 东部的领先不是“多一点”，而是已经进入生态化组合。东部样本 {east_cases} 例，且{top_items_text(east_top, 3)}三者就构成了{pct(east_top3_share, 1)}的头部产品集中度。", 15)
+    add_text(slide, 7.22, 5.0, 5.0, 1.34, f"3. 中西部的差别也很清楚。中部更像平台化稳步推进，{top_items_text(middle_top, 3)}三者集中度为{pct(middle_top3_share, 1)}；西部则更像头部产品导入期，{top_items_text(west_top, 3)}三者集中度达到{pct(west_top3_share, 1)}。", 15)
     region_notes = (
-        "看区域时不能只看东部有多少案例，更要看东部内部是不是已经形成更丰富的场景组合。"
-        "标准化之后可以看到，东部在助教、助评、助育等结构性场景中的权重更高，而中西部更依赖少数高频通用场景，这就是当前真正的区域分化。"
+        f"这一页要讲清三层意思。第一，{list_phrase(top_provinces.index.tolist(), 4)}四省市合计占比达到{pct(top4_province_share, 1)}，头部区域板块已经成形。"
+        f"第二，东部不只是案例多，而是{top_items_text(east_top, 3)}形成了更高阶的组合结构；第三，中部更像平台化推进，西部更像头部产品导入期。"
+        "所以区域差异的本质不是有没有接入 AI，而是谁先形成了稳定、可复制、可扩展的产品组合。"
     )
     add_notes(slide, region_notes)
-    notes_sections.append(slide_notes_markdown("Slide 3 区域结构差异", region_notes))
+    notes_sections.append(slide_notes_markdown("Slide 3 区域空间格局证据", region_notes))
 
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_background(slide, PPT_THEME["bg"])
-    add_text(slide, 0.68, 0.4, 8.0, 0.5, "三、不同场景并不是均匀落地，而是各自依附不同教育单元", 24, True)
+    add_text(slide, 0.68, 0.4, 8.6, 0.5, "三、场景不是平均落地，而是深度绑定不同教育单元", 24, True)
     add_text(slide, 0.7, 0.92, 8.2, 0.32, "按场景内部归一化后，能看到它们最依赖哪些学段", 12, False, PPT_THEME["muted"])
     add_panel(slide, 0.64, 1.32, 6.5, 5.55)
     slide.shapes.add_picture(str(figures["stage_scene"]), PptInches(0.86), PptInches(1.56), width=PptInches(6.04))
@@ -684,42 +712,47 @@ def build_ppt(data: LegacyBundle, figures: dict[str, Path]) -> None:
     insight_lines = []
     for scene in SCENE_ORDER[:4]:
         row = data.scene_profiles.loc[scene]
-        insight_lines.append(f"{scene}：最集中学段为{row['top_stage']}，最集中学科为{row['top_subject']}")
+        top_stage_pct = float(data.stage_scene_pct.loc[row['top_stage'], scene]) if row['top_stage'] in data.stage_scene_pct.index else 0.0
+        top_subject_pct = float(subject_scene_pct.loc[row['top_subject'], scene]) if row['top_subject'] in subject_scene_pct.index else 0.0
+        insight_lines.append(f"{scene}：{row['top_stage']}占{top_stage_pct:.0f}%，{row['top_subject']}占{top_subject_pct:.0f}%")
     add_text(slide, 7.74, 1.7, 4.54, 3.7, "\n".join(insight_lines), 16)
-    add_text(slide, 7.74, 5.52, 4.3, 0.95, "同一批产品之所以在不同场景里表现不同，关键不在模型本身，而在它落入了哪一个教育组织单元。", 15, True, PPT_THEME["accent"])
+    add_text(slide, 7.74, 5.38, 4.3, 1.1, "这页真正要讲的是：同一模型进入不同场景后，决定它效果上限的往往不是模型参数，而是它嵌入了哪个教育组织单元。", 15, True, PPT_THEME["accent"])
     stage_notes = (
-        "这一页强调的是场景依附关系。比如助学为什么更集中在小学，不只是因为小学案例多，而是因为小学更适合把模型嵌入到情境化教学和即时反馈里。"
-        "而助评、助育等场景的学段依赖更集中，说明这些场景还没有进入真正的泛化阶段。"
+        "这一页强调的不是哪个学段多，而是每个场景在依附哪个教育单元。"
+        "如果一个场景对某一学段和某一学科的依赖特别高，就说明它还处在强绑定阶段；只有这种依赖逐步下降，这个场景才可能真正泛化。"
     )
     add_notes(slide, stage_notes)
     notes_sections.append(slide_notes_markdown("Slide 4 场景与教育单元依附关系", stage_notes))
 
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_background(slide, PPT_THEME["bg"])
-    add_text(slide, 0.68, 0.4, 7.9, 0.5, "四、头部产品已经在不同场景中形成差异化控制力", 24, True)
+    add_text(slide, 0.68, 0.4, 8.2, 0.5, "四、产品竞争已经从“谁更热”升级为“谁能控制关键场景”", 24, True)
     add_text(slide, 0.7, 0.92, 8.4, 0.32, "热力值不是总频次，而是场景内部占比，因此更能看出“谁在主导这个场景”", 12, False, PPT_THEME["muted"])
     add_panel(slide, 0.64, 1.32, 8.05, 5.55)
     slide.shapes.add_picture(str(figures["scene_product"]), PptInches(0.86), PptInches(1.56), width=PptInches(7.58))
     add_panel(slide, 8.94, 1.32, 3.64, 5.55)
-    add_text(slide, 9.2, 1.72, 3.1, 1.85, f"如果某个产品在某个场景中的占比明显高于其他产品，就说明它不只是高频，而是已经形成场景控制力。当前最强的控制力仍主要出现在{dominant_scene}相关场景。", 16)
+    weakest_scene = scene_product_pct.max(axis=1).sort_values().index[0]
+    weakest_pct = scene_product_pct.max(axis=1).sort_values().iloc[0]
+    add_text(slide, 9.2, 1.72, 3.1, 2.0, f"这一页最重要的不是谁排第一，而是控制力已经开始分层。最强单点仍在{dominant_scene}相关场景，但也有场景的头部占比只有约{weakest_pct:.0f}%，说明仍处开放竞争状态。", 16)
     strongest_scene = scene_product_pct.max(axis=1).sort_values(ascending=False).index[0]
     strongest_product = scene_product_pct.loc[strongest_scene].sort_values(ascending=False).index[0]
     strongest_pct = scene_product_pct.loc[strongest_scene].sort_values(ascending=False).iloc[0]
-    add_text(slide, 9.2, 4.18, 3.1, 1.1, f"最强单点：{strongest_scene}场景中的{strongest_product}，场景内占比约{strongest_pct:.0f}%", 16, True, PPT_THEME["accent"])
+    add_text(slide, 9.2, 4.18, 3.1, 1.28, f"最强单点：{strongest_scene}场景中的{strongest_product}，场景内占比约{strongest_pct:.0f}%\n最开放场景：{weakest_scene}，头部占比约{weakest_pct:.0f}%", 15, True, PPT_THEME["accent"])
     product_notes = (
-        "最后这一页要强调，产品竞争已经不只是总量竞争，而是场景控制力竞争。"
-        f"目前最强的单点控制关系出现在 {strongest_scene} 场景中的 {strongest_product}。谁能先在具体场景里形成高占比、强替代性，谁就更有机会从工具走向教育基础设施。"
+        "最后这一页要讲的不是品牌热度，而是控制力分化。"
+        f"目前最强单点关系出现在 {strongest_scene} 场景中的 {strongest_product}，占比约 {strongest_pct:.0f}%；但 {weakest_scene} 这样的场景头部占比只有约 {weakest_pct:.0f}%，仍是开放竞争。"
+        "这意味着真正的胜负手不是谁更红，而是谁先在关键教育场景中形成不可替代的位置。"
     )
     add_notes(slide, product_notes)
-    notes_sections.append(slide_notes_markdown("Slide 5 场景产品控制力", product_notes))
+    notes_sections.append(slide_notes_markdown("Slide 5 场景控制力竞争", product_notes))
 
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     add_background(slide, PPT_THEME["bg"])
     add_text(slide, 0.68, 0.52, 6.4, 0.48, "五、汇报结论：下一阶段看的是结构升级，而不是简单铺量", 24, True)
     add_panel(slide, 0.72, 1.46, 12.0, 4.9)
-    add_text(slide, 1.02, 1.88, 11.25, 3.45, "1. 从场景看：AI 教育应用已由“助学单核”转向“助学为主、助教助评助育多核起势”。\n\n2. 从区域看：真正的差异已经从总量落差转向结构落差，东部领先更多体现为场景组合更丰富。\n\n3. 从产品看：头部产品正在争夺具体场景的控制力，未来胜负手不在通用能力，而在教育场景嵌入深度。", 22)
+    add_text(slide, 1.02, 1.88, 11.25, 3.45, "1. 从场景看：教育 AI 已从泛试点进入主航道收敛阶段，助学与助教构成最清晰的两条主线。\n\n2. 从区域看：全国格局并非均匀扩散，而是少数头部区域先形成产品组合与应用路径，东部生态化、中部平台化、西部导入期的分层已经出现。\n\n3. 从产品看：下一阶段真正决定胜负的，不是模型热度，而是谁能在关键教育场景里形成稳定控制力。", 22)
     closing_notes = (
-        "最后落到行动判断。接下来不应继续只看案例数增长，而要看非助学场景是否继续扩张、后发地区是否完成结构升级、以及头部产品是否在具体场景里形成稳定控制力。"
+        "最后要把判断收住。接下来不应再只看案例数增长，而要看三件事：主航道之外的新场景能否继续抬升，中西部能否从导入走向稳定的平台化与生态化，以及头部产品能否在关键教育场景中建立长期控制力。"
     )
     add_notes(slide, closing_notes)
     notes_sections.append(slide_notes_markdown("Slide 6 汇报结论", closing_notes))
